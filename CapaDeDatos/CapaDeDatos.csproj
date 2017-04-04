@@ -77,7 +77,6 @@
     <EntityDeploy Include="mAsistencia.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>mAsistencia.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>CapaEntities</CustomToolNamespace>
     </EntityDeploy>
     <None Include="mAsistencia.edmx.diagram">
       <DependentUpon>mAsistencia.edmx</DependentUpon>
@@ -89,11 +88,18 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>mAsistencia.Context.cs</LastGenOutput>
       <DependentUpon>mAsistencia.edmx</DependentUpon>
+      <CustomToolNamespace>CapaEntities</CustomToolNamespace>
     </Content>
     <Content Include="mAsistencia.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntities\CapaEntities.csproj">
+      <Project>{8751729e-e7e3-4e6f-9c7d-fec2fbb57dea}</Project>
+      <Name>CapaEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
