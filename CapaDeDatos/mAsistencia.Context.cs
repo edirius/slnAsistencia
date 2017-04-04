@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaDeDatos
+namespace CapaEntities
 {
     using System;
     using System.Data.Entity;
