@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mAsistencia.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="mAsistenciaStoreContainer">
+    <EntitySet Name="TrabajadorSet" EntityType="mAsistencia.Store.TrabajadorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OficinaSet" EntityType="mAsistencia.Store.OficinaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AsistenciaSet" EntityType="mAsistencia.Store.AsistenciaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocalSet" EntityType="mAsistencia.Store.LocalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HorarioSet" EntityType="mAsistencia.Store.HorarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HorarioDiaSet" EntityType="mAsistencia.Store.HorarioDiaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HorarioSemanaSet" EntityType="mAsistencia.Store.HorarioSemanaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReglasTardanzaSet" EntityType="mAsistencia.Store.ReglasTardanzaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PermisosHorasSet" EntityType="mAsistencia.Store.PermisosHorasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoPermisosSet" EntityType="mAsistencia.Store.TipoPermisosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PermisosDiasSet" EntityType="mAsistencia.Store.PermisosDiasSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiaFestivoSet" EntityType="mAsistencia.Store.DiaFestivoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CronogramaVacacionesSet" EntityType="mAsistencia.Store.CronogramaVacacionesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmpresaSet" EntityType="mAsistencia.Store.EmpresaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TrabajadorOficina" Association="mAsistencia.Store.TrabajadorOficina">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="Oficina" EntitySet="OficinaSet" />
+    </AssociationSet>
+    <AssociationSet Name="LocalOficina" Association="mAsistencia.Store.LocalOficina">
+      <End Role="Local" EntitySet="LocalSet" />
+      <End Role="Oficina" EntitySet="OficinaSet" />
+    </AssociationSet>
+    <AssociationSet Name="HorarioDiaHorario" Association="mAsistencia.Store.HorarioDiaHorario">
+      <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
+      <End Role="Horario" EntitySet="HorarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="HorarioSemanaHorarioDia" Association="mAsistencia.Store.HorarioSemanaHorarioDia">
+      <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
+      <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorHorarioSemana" Association="mAsistencia.Store.TrabajadorHorarioSemana">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
+    </AssociationSet>
+    <AssociationSet Name="ReglasTardanzaHorario" Association="mAsistencia.Store.ReglasTardanzaHorario">
+      <End Role="ReglasTardanza" EntitySet="ReglasTardanzaSet" />
+      <End Role="Horario" EntitySet="HorarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorAsistencia" Association="mAsistencia.Store.TrabajadorAsistencia">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="Asistencia" EntitySet="AsistenciaSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorPermisosHoras" Association="mAsistencia.Store.TrabajadorPermisosHoras">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="PermisosHoras" EntitySet="PermisosHorasSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorPermisosDias" Association="mAsistencia.Store.TrabajadorPermisosDias">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="PermisosDias" EntitySet="PermisosDiasSet" />
+    </AssociationSet>
+    <AssociationSet Name="PermisosHorasTipoPermisos" Association="mAsistencia.Store.PermisosHorasTipoPermisos">
+      <End Role="PermisosHoras" EntitySet="PermisosHorasSet" />
+      <End Role="TipoPermisos" EntitySet="TipoPermisosSet" />
+    </AssociationSet>
+    <AssociationSet Name="PermisosDiasTipoPermisos" Association="mAsistencia.Store.PermisosDiasTipoPermisos">
+      <End Role="PermisosDias" EntitySet="PermisosDiasSet" />
+      <End Role="TipoPermisos" EntitySet="TipoPermisosSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorCronogramaVacaciones" Association="mAsistencia.Store.TrabajadorCronogramaVacaciones">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
+    </AssociationSet>
+    <AssociationSet Name="OficinaOficina" Association="mAsistencia.Store.OficinaOficina">
+      <End Role="Oficina" EntitySet="OficinaSet" />
+      <End Role="Oficina1" EntitySet="OficinaSet" />
+    </AssociationSet>
+    <AssociationSet Name="EmpresaLocal" Association="mAsistencia.Store.EmpresaLocal">
+      <End Role="Empresa" EntitySet="EmpresaSet" />
+      <End Role="Local" EntitySet="LocalSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TrabajadorSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="longtext" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="longtext" Nullable="false" />
+    <Property Name="DNI" Type="longtext" Nullable="false" />
+    <Property Name="Oficina_Id" Type="int" Nullable="false" />
+    <Property Name="HorarioSemana_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OficinaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="Local_Id" Type="int" Nullable="false" />
+    <Property Name="Oficina2_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AsistenciaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PicadoReloj" Type="datetime" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="Empresa_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HorarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Entrada" Type="datetime" Nullable="false" />
+    <Property Name="Salida" Type="datetime" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="HorarioDia_Id" Type="int" Nullable="false" />
+    <Property Name="ReglasTardanza_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HorarioDiaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dia" Type="longtext" Nullable="false" />
+    <Property Name="HorarioSemana_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HorarioSemanaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReglasTardanzaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TiempoTardanza" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermisosHorasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inicio" Type="longtext" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="true" />
+    <Property Name="TipoPermisos_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPermisosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="Computable" Type="longtext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermisosDiasSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="true" />
+    <Property Name="TipoPermisos_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiaFestivoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dia" Type="datetime" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CronogramaVacacionesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Anio" Type="smallint" Nullable="false" />
+    <Property Name="Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Fin" Type="datetime" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpresaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
+  </EntityType>
+  <Association Name="TrabajadorOficina">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="*" />
+    <End Role="Oficina" Type="mAsistencia.Store.OficinaSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Oficina">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trabajador">
+        <PropertyRef Name="Oficina_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocalOficina">
+    <End Role="Local" Type="mAsistencia.Store.LocalSet" Multiplicity="1" />
+    <End Role="Oficina" Type="mAsistencia.Store.OficinaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Local">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Oficina">
+        <PropertyRef Name="Local_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HorarioDiaHorario">
+    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="1" />
+    <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HorarioDia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Horario">
+        <PropertyRef Name="HorarioDia_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HorarioSemanaHorarioDia">
+    <End Role="HorarioSemana" Type="mAsistencia.Store.HorarioSemanaSet" Multiplicity="1" />
+    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HorarioSemana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HorarioDia">
+        <PropertyRef Name="HorarioSemana_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorHorarioSemana">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="*" />
+    <End Role="HorarioSemana" Type="mAsistencia.Store.HorarioSemanaSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="HorarioSemana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trabajador">
+        <PropertyRef Name="HorarioSemana_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReglasTardanzaHorario">
+    <End Role="ReglasTardanza" Type="mAsistencia.Store.ReglasTardanzaSet" Multiplicity="1" />
+    <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReglasTardanza">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Horario">
+        <PropertyRef Name="ReglasTardanza_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorAsistencia">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="1" />
+    <End Role="Asistencia" Type="mAsistencia.Store.AsistenciaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Asistencia">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorPermisosHoras">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="0..1" />
+    <End Role="PermisosHoras" Type="mAsistencia.Store.PermisosHorasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosHoras">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorPermisosDias">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="0..1" />
+    <End Role="PermisosDias" Type="mAsistencia.Store.PermisosDiasSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosDias">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PermisosHorasTipoPermisos">
+    <End Role="PermisosHoras" Type="mAsistencia.Store.PermisosHorasSet" Multiplicity="*" />
+    <End Role="TipoPermisos" Type="mAsistencia.Store.TipoPermisosSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPermisos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosHoras">
+        <PropertyRef Name="TipoPermisos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PermisosDiasTipoPermisos">
+    <End Role="PermisosDias" Type="mAsistencia.Store.PermisosDiasSet" Multiplicity="*" />
+    <End Role="TipoPermisos" Type="mAsistencia.Store.TipoPermisosSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPermisos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisosDias">
+        <PropertyRef Name="TipoPermisos_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorCronogramaVacaciones">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="1" />
+    <End Role="CronogramaVacaciones" Type="mAsistencia.Store.CronogramaVacacionesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CronogramaVacaciones">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OficinaOficina">
+    <End Role="Oficina" Type="mAsistencia.Store.OficinaSet" Multiplicity="1" />
+    <End Role="Oficina1" Type="mAsistencia.Store.OficinaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oficina">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Oficina1">
+        <PropertyRef Name="Oficina2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpresaLocal">
+    <End Role="Empresa" Type="mAsistencia.Store.EmpresaSet" Multiplicity="1" />
+    <End Role="Local" Type="mAsistencia.Store.LocalSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Local">
+        <PropertyRef Name="Empresa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="mAsistencia" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="mAsistenciaContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TrabajadorSet" EntityType="mAsistencia.Trabajador" />
+          <EntitySet Name="OficinaSet" EntityType="mAsistencia.Oficina" />
+          <AssociationSet Name="TrabajadorOficina" Association="mAsistencia.TrabajadorOficina">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="Oficina" EntitySet="OficinaSet" />
+          </AssociationSet>
+          <EntitySet Name="AsistenciaSet" EntityType="mAsistencia.Asistencia" />
+          <EntitySet Name="LocalSet" EntityType="mAsistencia.Local" />
+          <AssociationSet Name="LocalOficina" Association="mAsistencia.LocalOficina">
+            <End Role="Local" EntitySet="LocalSet" />
+            <End Role="Oficina" EntitySet="OficinaSet" />
+          </AssociationSet>
+          <EntitySet Name="HorarioSet" EntityType="mAsistencia.Horario" />
+          <EntitySet Name="HorarioDiaSet" EntityType="mAsistencia.HorarioDia" />
+          <AssociationSet Name="HorarioDiaHorario" Association="mAsistencia.HorarioDiaHorario">
+            <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
+            <End Role="Horario" EntitySet="HorarioSet" />
+          </AssociationSet>
+          <EntitySet Name="HorarioSemanaSet" EntityType="mAsistencia.HorarioSemana" />
+          <AssociationSet Name="HorarioSemanaHorarioDia" Association="mAsistencia.HorarioSemanaHorarioDia">
+            <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
+            <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadorHorarioSemana" Association="mAsistencia.TrabajadorHorarioSemana">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
+          </AssociationSet>
+          <EntitySet Name="ReglasTardanzaSet" EntityType="mAsistencia.ReglasTardanza" />
+          <AssociationSet Name="ReglasTardanzaHorario" Association="mAsistencia.ReglasTardanzaHorario">
+            <End Role="ReglasTardanza" EntitySet="ReglasTardanzaSet" />
+            <End Role="Horario" EntitySet="HorarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadorAsistencia" Association="mAsistencia.TrabajadorAsistencia">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="Asistencia" EntitySet="AsistenciaSet" />
+          </AssociationSet>
+          <EntitySet Name="PermisosHorasSet" EntityType="mAsistencia.PermisosHoras" />
+          <EntitySet Name="TipoPermisosSet" EntityType="mAsistencia.TipoPermisos" />
+          <EntitySet Name="PermisosDiasSet" EntityType="mAsistencia.PermisosDias" />
+          <AssociationSet Name="TrabajadorPermisosHoras" Association="mAsistencia.TrabajadorPermisosHoras">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="PermisosHoras" EntitySet="PermisosHorasSet" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadorPermisosDias" Association="mAsistencia.TrabajadorPermisosDias">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="PermisosDias" EntitySet="PermisosDiasSet" />
+          </AssociationSet>
+          <AssociationSet Name="PermisosHorasTipoPermisos" Association="mAsistencia.PermisosHorasTipoPermisos">
+            <End Role="PermisosHoras" EntitySet="PermisosHorasSet" />
+            <End Role="TipoPermisos" EntitySet="TipoPermisosSet" />
+          </AssociationSet>
+          <AssociationSet Name="PermisosDiasTipoPermisos" Association="mAsistencia.PermisosDiasTipoPermisos">
+            <End Role="PermisosDias" EntitySet="PermisosDiasSet" />
+            <End Role="TipoPermisos" EntitySet="TipoPermisosSet" />
+          </AssociationSet>
+          <EntitySet Name="DiaFestivoSet" EntityType="mAsistencia.DiaFestivo" />
+          <EntitySet Name="CronogramaVacacionesSet" EntityType="mAsistencia.CronogramaVacaciones" />
+          <AssociationSet Name="TrabajadorCronogramaVacaciones" Association="mAsistencia.TrabajadorCronogramaVacaciones">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
+          </AssociationSet>
+          <AssociationSet Name="OficinaOficina" Association="mAsistencia.OficinaOficina">
+            <End Role="Oficina" EntitySet="OficinaSet" />
+            <End Role="Oficina1" EntitySet="OficinaSet" />
+          </AssociationSet>
+          <EntitySet Name="EmpresaSet" EntityType="mAsistencia.Empresa" />
+          <AssociationSet Name="EmpresaLocal" Association="mAsistencia.EmpresaLocal">
+            <End Role="Empresa" EntitySet="EmpresaSet" />
+            <End Role="Local" EntitySet="LocalSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="String" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="String" Nullable="false" />
+          <Property Name="DNI" Type="String" Nullable="false" />
+          <NavigationProperty Name="Oficina" Relationship="mAsistencia.TrabajadorOficina" FromRole="Trabajador" ToRole="Oficina" />
+          <NavigationProperty Name="HorarioSemana" Relationship="mAsistencia.TrabajadorHorarioSemana" FromRole="Trabajador" ToRole="HorarioSemana" />
+          <NavigationProperty Name="Asistencia" Relationship="mAsistencia.TrabajadorAsistencia" FromRole="Trabajador" ToRole="Asistencia" />
+          <NavigationProperty Name="PermisosHoras" Relationship="mAsistencia.TrabajadorPermisosHoras" FromRole="Trabajador" ToRole="PermisosHoras" />
+          <NavigationProperty Name="PermisosDias" Relationship="mAsistencia.TrabajadorPermisosDias" FromRole="Trabajador" ToRole="PermisosDias" />
+          <NavigationProperty Name="CronogramaVacaciones" Relationship="mAsistencia.TrabajadorCronogramaVacaciones" FromRole="Trabajador" ToRole="CronogramaVacaciones" />
+        </EntityType>
+        <EntityType Name="Oficina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorOficina" FromRole="Oficina" ToRole="Trabajador" />
+          <NavigationProperty Name="Local" Relationship="mAsistencia.LocalOficina" FromRole="Oficina" ToRole="Local" />
+          <NavigationProperty Name="Oficina1" Relationship="mAsistencia.OficinaOficina" FromRole="Oficina" ToRole="Oficina1" />
+          <NavigationProperty Name="Oficina2" Relationship="mAsistencia.OficinaOficina" FromRole="Oficina1" ToRole="Oficina" />
+        </EntityType>
+        <Association Name="TrabajadorOficina">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <End Type="mAsistencia.Oficina" Role="Oficina" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Asistencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PicadoReloj" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorAsistencia" FromRole="Asistencia" ToRole="Trabajador" />
+        </EntityType>
+        <EntityType Name="Local">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Oficina" Relationship="mAsistencia.LocalOficina" FromRole="Local" ToRole="Oficina" />
+          <NavigationProperty Name="Empresa" Relationship="mAsistencia.EmpresaLocal" FromRole="Local" ToRole="Empresa" />
+        </EntityType>
+        <Association Name="LocalOficina">
+          <End Type="mAsistencia.Local" Role="Local" Multiplicity="1" />
+          <End Type="mAsistencia.Oficina" Role="Oficina" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Entrada" Type="DateTime" Nullable="false" />
+          <Property Name="Salida" Type="DateTime" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioDiaHorario" FromRole="Horario" ToRole="HorarioDia" />
+          <NavigationProperty Name="ReglasTardanza" Relationship="mAsistencia.ReglasTardanzaHorario" FromRole="Horario" ToRole="ReglasTardanza" />
+        </EntityType>
+        <EntityType Name="HorarioDia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dia" Type="String" Nullable="false" />
+          <NavigationProperty Name="Horario" Relationship="mAsistencia.HorarioDiaHorario" FromRole="HorarioDia" ToRole="Horario" />
+          <NavigationProperty Name="HorarioSemana" Relationship="mAsistencia.HorarioSemanaHorarioDia" FromRole="HorarioDia" ToRole="HorarioSemana" />
+        </EntityType>
+        <Association Name="HorarioDiaHorario">
+          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="1" />
+          <End Type="mAsistencia.Horario" Role="Horario" Multiplicity="*" />
+        </Association>
+        <EntityType Name="HorarioSemana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioSemanaHorarioDia" FromRole="HorarioSemana" ToRole="HorarioDia" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorHorarioSemana" FromRole="HorarioSemana" ToRole="Trabajador" />
+        </EntityType>
+        <Association Name="HorarioSemanaHorarioDia">
+          <End Type="mAsistencia.HorarioSemana" Role="HorarioSemana" Multiplicity="1" />
+          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="*" />
+        </Association>
+        <Association Name="TrabajadorHorarioSemana">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="mAsistencia.HorarioSemana" Role="HorarioSemana" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ReglasTardanza">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Horario" Relationship="mAsistencia.ReglasTardanzaHorario" FromRole="ReglasTardanza" ToRole="Horario" />
+          <Property Name="TiempoTardanza" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="ReglasTardanzaHorario">
+          <End Type="mAsistencia.ReglasTardanza" Role="ReglasTardanza" Multiplicity="1" />
+          <End Type="mAsistencia.Horario" Role="Horario" Multiplicity="*" />
+        </Association>
+        <Association Name="TrabajadorAsistencia">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="mAsistencia.Asistencia" Role="Asistencia" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PermisosHoras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inicio" Type="String" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorPermisosHoras" FromRole="PermisosHoras" ToRole="Trabajador" />
+          <NavigationProperty Name="TipoPermisos" Relationship="mAsistencia.PermisosHorasTipoPermisos" FromRole="PermisosHoras" ToRole="TipoPermisos" />
+        </EntityType>
+        <EntityType Name="TipoPermisos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="PermisosHoras" Relationship="mAsistencia.PermisosHorasTipoPermisos" FromRole="TipoPermisos" ToRole="PermisosHoras" />
+          <NavigationProperty Name="PermisosDias" Relationship="mAsistencia.PermisosDiasTipoPermisos" FromRole="TipoPermisos" ToRole="PermisosDias" />
+          <Property Name="Computable" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermisosDias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorPermisosDias" FromRole="PermisosDias" ToRole="Trabajador" />
+          <NavigationProperty Name="TipoPermisos" Relationship="mAsistencia.PermisosDiasTipoPermisos" FromRole="PermisosDias" ToRole="TipoPermisos" />
+        </EntityType>
+        <Association Name="TrabajadorPermisosHoras">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="0..1" />
+          <End Type="mAsistencia.PermisosHoras" Role="PermisosHoras" Multiplicity="*" />
+        </Association>
+        <Association Name="TrabajadorPermisosDias">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="0..1" />
+          <End Type="mAsistencia.PermisosDias" Role="PermisosDias" Multiplicity="*" />
+        </Association>
+        <Association Name="PermisosHorasTipoPermisos">
+          <End Type="mAsistencia.PermisosHoras" Role="PermisosHoras" Multiplicity="1" />
+          <End Type="mAsistencia.TipoPermisos" Role="TipoPermisos" Multiplicity="1" />
+        </Association>
+        <Association Name="PermisosDiasTipoPermisos">
+          <End Type="mAsistencia.PermisosDias" Role="PermisosDias" Multiplicity="1" />
+          <End Type="mAsistencia.TipoPermisos" Role="TipoPermisos" Multiplicity="1" />
+        </Association>
+        <EntityType Name="DiaFestivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dia" Type="DateTime" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CronogramaVacaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Anio" Type="Int16" Nullable="false" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorCronogramaVacaciones" FromRole="CronogramaVacaciones" ToRole="Trabajador" />
+        </EntityType>
+        <Association Name="TrabajadorCronogramaVacaciones">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="mAsistencia.CronogramaVacaciones" Role="CronogramaVacaciones" Multiplicity="*" />
+        </Association>
+        <Association Name="OficinaOficina">
+          <End Type="mAsistencia.Oficina" Role="Oficina" Multiplicity="1" />
+          <End Type="mAsistencia.Oficina" Role="Oficina1" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Local" Relationship="mAsistencia.EmpresaLocal" FromRole="Empresa" ToRole="Local" />
+        </EntityType>
+        <Association Name="EmpresaLocal">
+          <End Type="mAsistencia.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="mAsistencia.Local" Role="Local" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mAsistenciaStoreContainer" CdmEntityContainer="mAsistenciaContainer">
+    <EntitySetMapping Name="TrabajadorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Trabajador)">
+        <MappingFragment StoreEntitySet="TrabajadorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OficinaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Oficina)">
+        <MappingFragment StoreEntitySet="OficinaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AsistenciaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Asistencia)">
+        <MappingFragment StoreEntitySet="AsistenciaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PicadoReloj" ColumnName="PicadoReloj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Local)">
+        <MappingFragment StoreEntitySet="LocalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Horario)">
+        <MappingFragment StoreEntitySet="HorarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Entrada" ColumnName="Entrada" />
+          <ScalarProperty Name="Salida" ColumnName="Salida" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorarioDiaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.HorarioDia)">
+        <MappingFragment StoreEntitySet="HorarioDiaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dia" ColumnName="Dia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorarioSemanaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.HorarioSemana)">
+        <MappingFragment StoreEntitySet="HorarioSemanaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReglasTardanzaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.ReglasTardanza)">
+        <MappingFragment StoreEntitySet="ReglasTardanzaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TiempoTardanza" ColumnName="TiempoTardanza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermisosHorasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.PermisosHoras)">
+        <MappingFragment StoreEntitySet="PermisosHorasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPermisosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.TipoPermisos)">
+        <MappingFragment StoreEntitySet="TipoPermisosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Computable" ColumnName="Computable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermisosDiasSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.PermisosDias)">
+        <MappingFragment StoreEntitySet="PermisosDiasSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiaFestivoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.DiaFestivo)">
+        <MappingFragment StoreEntitySet="DiaFestivoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Dia" ColumnName="Dia" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CronogramaVacacionesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.CronogramaVacaciones)">
+        <MappingFragment StoreEntitySet="CronogramaVacacionesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Fin" ColumnName="Fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpresaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Empresa)">
+        <MappingFragment StoreEntitySet="EmpresaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TrabajadorOficina" TypeName="mAsistencia.TrabajadorOficina" StoreEntitySet="TrabajadorSet">
+      <EndProperty Name="Oficina">
+        <ScalarProperty Name="Id" ColumnName="Oficina_Id" />
+      </EndProperty>
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocalOficina" TypeName="mAsistencia.LocalOficina" StoreEntitySet="OficinaSet">
+      <EndProperty Name="Local">
+        <ScalarProperty Name="Id" ColumnName="Local_Id" />
+      </EndProperty>
+      <EndProperty Name="Oficina">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HorarioDiaHorario" TypeName="mAsistencia.HorarioDiaHorario" StoreEntitySet="HorarioSet">
+      <EndProperty Name="HorarioDia">
+        <ScalarProperty Name="Id" ColumnName="HorarioDia_Id" />
+      </EndProperty>
+      <EndProperty Name="Horario">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HorarioSemanaHorarioDia" TypeName="mAsistencia.HorarioSemanaHorarioDia" StoreEntitySet="HorarioDiaSet">
+      <EndProperty Name="HorarioSemana">
+        <ScalarProperty Name="Id" ColumnName="HorarioSemana_Id" />
+      </EndProperty>
+      <EndProperty Name="HorarioDia">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorHorarioSemana" TypeName="mAsistencia.TrabajadorHorarioSemana" StoreEntitySet="TrabajadorSet">
+      <EndProperty Name="HorarioSemana">
+        <ScalarProperty Name="Id" ColumnName="HorarioSemana_Id" />
+      </EndProperty>
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ReglasTardanzaHorario" TypeName="mAsistencia.ReglasTardanzaHorario" StoreEntitySet="HorarioSet">
+      <EndProperty Name="ReglasTardanza">
+        <ScalarProperty Name="Id" ColumnName="ReglasTardanza_Id" />
+      </EndProperty>
+      <EndProperty Name="Horario">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorAsistencia" TypeName="mAsistencia.TrabajadorAsistencia" StoreEntitySet="AsistenciaSet">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="Asistencia">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorPermisosHoras" TypeName="mAsistencia.TrabajadorPermisosHoras" StoreEntitySet="PermisosHorasSet">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="PermisosHoras">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Trabajador_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorPermisosDias" TypeName="mAsistencia.TrabajadorPermisosDias" StoreEntitySet="PermisosDiasSet">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="PermisosDias">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Trabajador_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PermisosHorasTipoPermisos" TypeName="mAsistencia.PermisosHorasTipoPermisos" StoreEntitySet="PermisosHorasSet">
+      <EndProperty Name="TipoPermisos">
+        <ScalarProperty Name="Id" ColumnName="TipoPermisos_Id" />
+      </EndProperty>
+      <EndProperty Name="PermisosHoras">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PermisosDiasTipoPermisos" TypeName="mAsistencia.PermisosDiasTipoPermisos" StoreEntitySet="PermisosDiasSet">
+      <EndProperty Name="TipoPermisos">
+        <ScalarProperty Name="Id" ColumnName="TipoPermisos_Id" />
+      </EndProperty>
+      <EndProperty Name="PermisosDias">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorCronogramaVacaciones" TypeName="mAsistencia.TrabajadorCronogramaVacaciones" StoreEntitySet="CronogramaVacacionesSet">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="CronogramaVacaciones">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OficinaOficina" TypeName="mAsistencia.OficinaOficina" StoreEntitySet="OficinaSet">
+      <EndProperty Name="Oficina">
+        <ScalarProperty Name="Id" ColumnName="Oficina2_Id" />
+      </EndProperty>
+      <EndProperty Name="Oficina1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmpresaLocal" TypeName="mAsistencia.EmpresaLocal" StoreEntitySet="LocalSet">
+      <EndProperty Name="Empresa">
+        <ScalarProperty Name="Id" ColumnName="Empresa_Id" />
+      </EndProperty>
+      <EndProperty Name="Local">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
