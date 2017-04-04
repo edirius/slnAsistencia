@@ -49,6 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="blTipoPermisos\blTipoPermisos.cs" />
+    <Compile Include="blReglasTardanza\blReglasTardanza.cs" />
+    <Compile Include="blEmpresa\blEmpresa.cs" />
+    <Compile Include="blHorario\blHorario.cs" />
+    <Compile Include="blHorarioDia\blHorarioDia.cs" />
+    <Compile Include="blHorarioSemana\blHorarioSemana.cs" />
+    <Compile Include="blLocal\blLocal.cs" />
+    <Compile Include="blOficina\blOficina.cs" />
+    <Compile Include="blPermisosDias\blPermisosDias.cs" />
+    <Compile Include="blPermisosHoras\blPermisosHoras.cs" />
+    <Compile Include="blCronogramaVacaciones\blCronogramaVacaciones.cs" />
+    <Compile Include="blDiaFestivo\blDiaFestivo.cs" />
+    <Compile Include="blAsistencia\blAsistencia.cs" />
     <Compile Include="blTrabajador\blTrabajador.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +80,7 @@
       <Name>CapaEntities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
