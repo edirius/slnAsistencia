@@ -64,6 +64,7 @@
     <Compile Include="blAsistencia\blAsistencia.cs" />
     <Compile Include="blTrabajador\blTrabajador.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="cReglaNegociosException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
