@@ -8,7 +8,6 @@ using CapaDeDatos;
 
 namespace CapaDeNegocios.blAsistencia
 {
-
     public class blAsistencia
     {
 
