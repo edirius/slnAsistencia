@@ -30,7 +30,7 @@ namespace CapaPresentacion
         public MainWindow()
         {
             InitializeComponent();
-            //Iniciar();
+            Iniciar();
         }
 
         public void Iniciar()
@@ -50,9 +50,7 @@ namespace CapaPresentacion
                 oblEmpresa.AgregarEmpresa(miEntidad);
                 miListaEmpresa = oblEmpresa.ListarEmpresas();
             }
-
             miEntidad = miListaEmpresa.First();
-             
         }
 
         public static DialogResult InputBox(string title, string promptText, ref string value)
