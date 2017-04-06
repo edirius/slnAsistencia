@@ -11,12 +11,13 @@ namespace CapaDeNegocios.blOficina
     public class blOficina
     {
 
-        public ICollection<Oficina> ListarOficinas()
+        public ICollection<Oficina> ListarOficinas(Local miLocal)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Oficina> consultaOficinas = from d in bd.OficinaSet
-                                                             select d;
+                                                       where d.Local.Id == miLocal.Id
+                                                       select d;
                 return consultaOficinas.ToList() ;
             }
         }
