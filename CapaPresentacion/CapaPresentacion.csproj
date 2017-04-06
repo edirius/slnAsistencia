@@ -132,7 +132,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Oficina\ListaOficinas.xaml">
+    <Page Include="Oficina\wListaOficinas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,8 +162,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Oficina\ListaOficinas.xaml.cs">
-      <DependentUpon>ListaOficinas.xaml</DependentUpon>
+    <Compile Include="Oficina\wListaOficinas.xaml.cs">
+      <DependentUpon>wListaOficinas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

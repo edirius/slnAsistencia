@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.AgenciaAgraria"
         mc:Ignorable="d"
-        Title="wAgenciaAgraria" Height="310.15" Width="454.511" Loaded="Window_Loaded">
+        Title="Lista Agencias Agrarias" Height="310.15" Width="454.511" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Height="33" Margin="43,226,0,0" VerticalAlignment="Top" Width="129" Click="btnAceptar_Click"/>
         <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Height="33" Margin="234,226,0,0" VerticalAlignment="Top" Width="130" Click="btnCancelar_Click"/>

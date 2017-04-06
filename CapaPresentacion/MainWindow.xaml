@@ -7,11 +7,35 @@
         mc:Ignorable="d"
         Title="Sistema Control de Asistencia" Height="1148.684" Width="828.783" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        <Menu x:Name="menu" Height="38" Margin="0" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="753*"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="menu" Height="38" Margin="0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem Header="Menu Principal">
-                <MenuItem x:Name="mnuEntidad" Header="Lista Agencias" HorizontalAlignment="Left" Width="175" Margin="0,0,-35,0" Click="mnuEntidad_Click"/>
+                <MenuItem x:Name="mnuEntidad" Header="Lista Agencias" HorizontalAlignment="Left" Width="175" Click="mnuEntidad_Click"/>
+                <MenuItem x:Name="mnuOficina" Header="Lista Oficinas" HorizontalAlignment="Left" Width="175" Click="mnuOficina_Click"/>
+            </MenuItem>
+            <MenuItem Header="Asistencia">
+                <MenuItem x:Name="mnuTrabajador" Header="Trabajadores" HorizontalAlignment="Left" Width="155" Click="mnuTrabajador_Click"/>
+                <MenuItem x:Name="mnuAsistencia" Header="Asistencia" HorizontalAlignment="Left" Width="155" Click="mnuAsistencia_Click"/>
+            </MenuItem>
+            <MenuItem Header="Horario">
+                <MenuItem x:Name="mnuHorario" Header="Horario" HorizontalAlignment="Left" Width="170" Click="mnuHorario_Click"/>
+                <MenuItem x:Name="mnuHorarioDia" Header="Horario Dia" HorizontalAlignment="Left" Width="170" Click="mnuHorarioDia_Click"/>
+                <MenuItem x:Name="mnuHorarioSemana" Header="Horario Semana" HorizontalAlignment="Left" Width="170" Click="mnuHorarioSemana_Click"/>
+            </MenuItem>
+            <MenuItem Header="Permisos">
+                <MenuItem x:Name="mnuPermisoHoras" Header="Permiso por Hora" HorizontalAlignment="Left" Width="180" Click="mnuPermisoHoras_Click"/>
+                <MenuItem x:Name="mnuPermisoDias" Header="Permiso por Dia" HorizontalAlignment="Left" Width="180" Click="mnuPermisoDias_Click"/>
+                <Separator HorizontalAlignment="Left" Height="1" Width="180"/>
+                <MenuItem x:Name="mnuTipoPermisos" Header="Tipo de Permisos" HorizontalAlignment="Left" Width="180" Click="mnuTipoPermisos_Click"/>
+            </MenuItem>
+            <MenuItem Header="Registros">
+                <MenuItem x:Name="mnuCronogramaVacaciones" Header="Cronograma Vacaciones" HorizontalAlignment="Left" Width="215" Click="mnuCronogramaVacaciones_Click"/>
+                <MenuItem x:Name="mnuDiasFestivos" Header="Dias Festivos" HorizontalAlignment="Left" Width="215" Click="mnuDiasFestivos_Click"/>
+                <MenuItem x:Name="mnuReglasTardanza" Header="Reglas de Tardanza" HorizontalAlignment="Left" Width="215" Click="mnuReglasTardanza_Click"/>
             </MenuItem>
         </Menu>
-
     </Grid>
 </Window>

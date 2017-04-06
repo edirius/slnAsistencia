@@ -17,9 +17,9 @@ namespace CapaPresentacion.Oficina
     /// <summary>
     /// Lógica de interacción para ListaOficinas.xaml
     /// </summary>
-    public partial class ListaOficinas : Window
+    public partial class wListaOficinas : Window
     {
-        public ListaOficinas()
+        public wListaOficinas()
         {
             InitializeComponent();
         }

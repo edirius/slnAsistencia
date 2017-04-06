@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Asistencia"
         mc:Ignorable="d"
-        Title="wListaAsistencias" Height="437.594" Width="491.729">
+        Title="Lista de Asistencias" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top" Width="235"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="308" Width="464"/>

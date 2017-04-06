@@ -16,9 +16,9 @@ namespace CapaDeNegocios.blEmpresa
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Empresa> consultaEmpresas = from d in bd.EmpresaSet
-                                                             select d;
-                
-                return consultaEmpresas.ToList() ;
+                                                       select d;
+
+                return consultaEmpresas.ToList();
             }
         }
 

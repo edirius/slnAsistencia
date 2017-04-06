@@ -30,7 +30,7 @@ namespace CapaPresentacion
         public MainWindow()
         {
             InitializeComponent();
-            Iniciar();
+            //Iniciar();
         }
 
         public void Iniciar()
@@ -103,6 +103,78 @@ namespace CapaPresentacion
             fListaEntidad.miEntidad = miEntidad;
             fListaEntidad.ShowDialog();
         }
-    }
 
+        private void mnuOficina_Click(object sender, RoutedEventArgs e)
+        {
+            Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
+            //fListaOficinas.MD
+            fListaOficinas.Show();
+        }
+
+        private void mnuTrabajador_Click(object sender, RoutedEventArgs e)
+        {
+            //Trabajador = new Oficina.wListaOficinas();
+            //fListaOficinas.ShowDialog();
+        }
+
+        private void mnuAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            Asistencia.wListaAsistencias fListaAsistencias = new Asistencia.wListaAsistencias();
+            fListaAsistencias.ShowDialog();
+        }
+
+        private void mnuHorario_Click(object sender, RoutedEventArgs e)
+        {
+            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
+            //fListaOficinas.ShowDialog();
+        }
+
+        private void mnuHorarioDia_Click(object sender, RoutedEventArgs e)
+        {
+            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
+            //fListaOficinas.ShowDialog();
+        }
+
+        private void mnuHorarioSemana_Click(object sender, RoutedEventArgs e)
+        {
+            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
+            //fListaOficinas.ShowDialog();
+        }
+
+        private void mnuPermisoHoras_Click(object sender, RoutedEventArgs e)
+        {
+            PermisosHoras.wListaPermisosHoras fListaPermisosHoras = new PermisosHoras.wListaPermisosHoras();
+            fListaPermisosHoras.ShowDialog();
+        }
+
+        private void mnuPermisoDias_Click(object sender, RoutedEventArgs e)
+        {
+            PermisosDias.wListaPermisosDias fListaPermisosDias = new PermisosDias.wListaPermisosDias();
+            fListaPermisosDias.ShowDialog();
+        }
+
+        private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)
+        {
+            TipoPermisos.wListaTipoPermisos fListaTipoPermisos = new TipoPermisos.wListaTipoPermisos();
+            fListaTipoPermisos.ShowDialog();
+        }
+
+        private void mnuCronogramaVacaciones_Click(object sender, RoutedEventArgs e)
+        {
+            CronogramaVacaciones.wListaCronogramaVacaciones fListaCronogramaVacaciones = new CronogramaVacaciones.wListaCronogramaVacaciones();
+            fListaCronogramaVacaciones.ShowDialog();
+        }
+
+        private void mnuDiasFestivos_Click(object sender, RoutedEventArgs e)
+        {
+            DiasFestivos.wListaDiasFestivos fListaDiasFestivos = new DiasFestivos.wListaDiasFestivos();
+            fListaDiasFestivos.ShowDialog();
+        }
+
+        private void mnuReglasTardanza_Click(object sender, RoutedEventArgs e)
+        {
+            ReglasTardanza.wListaReglasTardanzas fListaReglasTardanzas = new ReglasTardanza.wListaReglasTardanzas();
+            fListaReglasTardanzas.ShowDialog();
+        }
+    }
 }
