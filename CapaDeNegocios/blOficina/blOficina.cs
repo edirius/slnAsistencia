@@ -15,7 +15,7 @@ namespace CapaDeNegocios.blOficina
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                var consultaOficinas = from d in bd.OficinaSet.Include("Oficina1")
+                var consultaOficinas = from d in bd.OficinaSet.Include("Oficinas")
                                                         where (d.Local.Id == miLocal.Id) /*&& (d.Oficina2 == null)*/
                                                         select d;
 
@@ -31,9 +31,9 @@ namespace CapaDeNegocios.blOficina
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.LocalSet.Attach(miAgregarOficina.Local);
-                if (miAgregarOficina.Oficina2 != null)
+                if (miAgregarOficina.OficinaPadre != null)
                 {
-                    bd.OficinaSet.Attach(miAgregarOficina.Oficina2);
+                    bd.OficinaSet.Attach(miAgregarOficina.OficinaPadre);
                 }
 
                 bd.OficinaSet.Add(miAgregarOficina);
