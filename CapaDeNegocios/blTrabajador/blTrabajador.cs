@@ -26,6 +26,8 @@ namespace CapaDeNegocios.blTrabajador
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.TrabajadorSet.Add(miNuevoTrabajador);
+                bd.OficinaSet.Attach(miNuevoTrabajador.Oficina);
+                //bd.HORA
                 bd.SaveChanges();
             }
         }

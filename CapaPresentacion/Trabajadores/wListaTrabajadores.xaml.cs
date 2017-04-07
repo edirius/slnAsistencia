@@ -62,23 +62,23 @@ namespace CapaPresentacion.Trabajadores
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            //AgenciaAgraria.wAgenciaAgraria fAgenciaAgraria = new AgenciaAgraria.wAgenciaAgraria();
-            //fAgenciaAgraria.miLocal = new Local();
-            //fAgenciaAgraria.miLocal.Empresa = miEntidad;
-            //if (fAgenciaAgraria.ShowDialog() == true)
-            //{
-            //    oblLocal.AgregarLocal(fAgenciaAgraria.miLocal);
-            //}
+            Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
+            fTrabajadores.miTrabajador = new Trabajador();
+            fTrabajadores.miTrabajador.Oficina = miOficina;
+            if (fTrabajadores.ShowDialog() == true)
+            {
+                oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
+            }
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            //AgenciaAgraria.wAgenciaAgraria fAgenciaAgraria = new AgenciaAgraria.wAgenciaAgraria();
+            Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
             //fAgenciaAgraria.miLocal = (Local)dtgAgenciasAgrarias.SelectedItem;
-            //if (fAgenciaAgraria.ShowDialog() == true)
-            //{
-            //    oblLocal.ModificarLocal(fAgenciaAgraria.miLocal);
-            //}
+            if (fTrabajadores.ShowDialog() == true)
+            {
+                oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
+            }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
