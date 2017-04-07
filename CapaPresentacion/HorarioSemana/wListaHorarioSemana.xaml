@@ -1,0 +1,16 @@
+﻿<Window x:Class="CapaPresentacion.HorarioSemana.wListaHorarioSemana"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.HorarioSemana"
+        mc:Ignorable="d"
+        Title="Lista de Horarios Semanales" Height="337.594" Width="319.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="dgHorarioSemana" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="241" Width="291" SelectionChanged="dgHorarioSemana_SelectionChanged" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True"/>
+        <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Height="38" Margin="10,256,0,0" VerticalAlignment="Top" Width="69" Click="btnNuevo_Click"/>
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="38" Margin="84,256,0,0" VerticalAlignment="Top" Width="69" Click="btnModificar_Click"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="158,256,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="232,256,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
+    </Grid>
+</Window>

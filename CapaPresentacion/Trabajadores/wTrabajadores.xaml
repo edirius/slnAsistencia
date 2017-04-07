@@ -5,19 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Trabajadores"
         mc:Ignorable="d"
-        Title="Trabajadores" Height="200.594" Width="470.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Trabajadores" Height="180.594" Width="470.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="lblOficinas" Content="OFICINA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtOficinas" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361" IsEnabled="False"/>
-        <Label x:Name="lblNombres" Content="NOMBRES" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361"/>
-        <Label x:Name="lblAPaterno" Content="A. PATERNO" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="txtAPaterno" HorizontalAlignment="Left" Height="23" Margin="95,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361"/>
-        <Label x:Name="lblAMaterno" Content="A. MATERNO" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="txtAMaterno" HorizontalAlignment="Left" Height="23" Margin="95,98,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="361"/>
-        <Label x:Name="lblDNI" Content="DNI" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="txtDNI" HorizontalAlignment="Left" Height="23" Margin="95,126,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="187"/>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="313,126,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
-        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="387,126,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
+        <Label x:Name="lblNombres" Content="NOMBRES" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="358"/>
+        <Label x:Name="lblAPaterno" Content="A. PATERNO" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtAPaterno" HorizontalAlignment="Left" Height="23" Margin="95,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="358"/>
+        <Label x:Name="lblAMaterno" Content="A. MATERNO" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtAMaterno" HorizontalAlignment="Left" Height="23" Margin="95,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="358"/>
+        <Label x:Name="lblDNI" Content="DNI" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtDNI" HorizontalAlignment="Left" Height="23" Margin="95,98,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="184"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="310,98,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="384,98,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
     </Grid>
 </Window>

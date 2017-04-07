@@ -14,16 +14,16 @@ using System.Windows.Shapes;
 using CapaDeNegocios;
 using CapaEntities;
 
-namespace CapaPresentacion.Trabajadores
+namespace CapaPresentacion.HorarioSemana
 {
     /// <summary>
-    /// Lógica de interacción para wTrabajadores.xaml
+    /// Lógica de interacción para wHorarioSemana.xaml
     /// </summary>
-    public partial class wTrabajadores : Window
+    public partial class wHorarioSemana : Window
     {
-        public Trabajador miTrabajador;
+        public Trabajador miHorarioSemana;
 
-        public wTrabajadores()
+        public wHorarioSemana()
         {
             InitializeComponent();
         }
@@ -35,19 +35,19 @@ namespace CapaPresentacion.Trabajadores
 
         private void Iniciar()
         {
-            txtNombres.Text = miTrabajador.Nombre;
-            txtAPaterno.Text = miTrabajador.ApellidoPaterno;
-            txtAMaterno.Text = miTrabajador.ApellidoPaterno;
-            txtDNI.Text = miTrabajador.DNI;
+            //txtNombres.Text = miTrabajador.Nombre;
+            //txtAPaterno.Text = miTrabajador.ApellidoPaterno;
+            //txtAMaterno.Text = miTrabajador.ApellidoPaterno;
+            //txtDNI.Text = miTrabajador.DNI;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            miTrabajador.Nombre = txtNombres.Text;
-            miTrabajador.ApellidoPaterno = txtAPaterno.Text;
-            miTrabajador.ApellidoMaterno = txtAMaterno.Text;
-            miTrabajador.DNI = txtDNI.Text;
-            this.DialogResult = true;
+            //miTrabajador.Nombre = txtNombres.Text;
+            //miTrabajador.ApellidoPaterno = txtAPaterno.Text;
+            //miTrabajador.ApellidoMaterno = txtAMaterno.Text;
+            //miTrabajador.DNI = txtDNI.Text;
+            //this.DialogResult = true;
         }
 
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
