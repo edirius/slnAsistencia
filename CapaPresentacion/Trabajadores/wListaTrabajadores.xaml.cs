@@ -64,7 +64,7 @@ namespace CapaPresentacion.Trabajadores
         {
             Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
             fTrabajadores.miTrabajador = new Trabajador();
-            fTrabajadores.miTrabajador.Oficina = miOficina;
+            //fTrabajadores.miTrabajador.Oficina = miOficina;
             if (fTrabajadores.ShowDialog() == true)
             {
                 oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
