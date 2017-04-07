@@ -13,7 +13,7 @@
         <StackPanel x:Name="LayoutRoot" Background="White" Grid.ColumnSpan="2" Margin="0,0,335,0" >
             <StackPanel.Resources>
                 <HierarchicalDataTemplate x:Key="hdtOficina" 
-                        ItemsSource="{Binding Path=Oficina1}">
+                        ItemsSource="{Binding Path=OficinasHijas}">
                     <TextBlock Text="{Binding Nombre}"/>
 
                 </HierarchicalDataTemplate>

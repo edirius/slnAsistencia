@@ -23,6 +23,13 @@ namespace CapaEntities
     
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public bool Lunes { get; set; }
+        public bool Martes { get; set; }
+        public bool Miercoles { get; set; }
+        public bool Jueves { get; set; }
+        public bool Viernes { get; set; }
+        public bool Sabado { get; set; }
+        public bool Domingo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HorarioDia> HorarioDia { get; set; }

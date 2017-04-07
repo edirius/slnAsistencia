@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.DiasFestivos"
         mc:Ignorable="d"
-        Title="Lista de Dias Festivos" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Title="Lista de Dias Festivos" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top" Width="235"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="308" Width="464"/>
-        <Label x:Name="label" Content="OFICINA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="69"/>
-
+        <Button x:Name="btnAgregarDiaFestivo" Content="Agregar Dia Festivo" HorizontalAlignment="Left" Height="31" Margin="19,273,0,0" VerticalAlignment="Top" Width="135" Click="btnAgregarDiaFestivo_Click"/>
+        <DataGrid x:Name="dtgListaDiasFestivos" HorizontalAlignment="Left" Height="206" Margin="19,23,0,0" VerticalAlignment="Top" Width="444"/>
+        <Button x:Name="btnModificarDiaFestivo" Content="ModificarDiaFestivo" HorizontalAlignment="Left" Height="31" Margin="244,273,0,0" VerticalAlignment="Top" Width="155" Click="btnModificarDiaFestivo_Click"/>
     </Grid>
 </Window>

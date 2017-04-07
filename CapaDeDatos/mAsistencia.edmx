@@ -148,6 +148,13 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="longtext" Nullable="false" />
+    <Property Name="Lunes" Type="bool" Nullable="false" />
+    <Property Name="Martes" Type="bool" Nullable="false" />
+    <Property Name="Miercoles" Type="bool" Nullable="false" />
+    <Property Name="Jueves" Type="bool" Nullable="false" />
+    <Property Name="Viernes" Type="bool" Nullable="false" />
+    <Property Name="Sabado" Type="bool" Nullable="false" />
+    <Property Name="Domingo" Type="bool" Nullable="false" />
   </EntityType>
   <EntityType Name="ReglasTardanzaSet">
     <Key>
@@ -580,6 +587,13 @@
           <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioSemanaHorarioDia" FromRole="HorarioSemana" ToRole="HorarioDia" />
           <Property Name="Nombre" Type="String" Nullable="false" />
           <NavigationProperty Name="PeriodoTrabajador" Relationship="mAsistencia.HorarioSemanaPeriodoTrabajador" FromRole="HorarioSemana" ToRole="PeriodoTrabajador" />
+          <Property Name="Lunes" Type="Boolean" Nullable="false" />
+          <Property Name="Martes" Type="Boolean" Nullable="false" />
+          <Property Name="Miercoles" Type="Boolean" Nullable="false" />
+          <Property Name="Jueves" Type="Boolean" Nullable="false" />
+          <Property Name="Viernes" Type="Boolean" Nullable="false" />
+          <Property Name="Sabado" Type="Boolean" Nullable="false" cg:GetterAccess="Public" />
+          <Property Name="Domingo" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="HorarioSemanaHorarioDia">
           <End Type="mAsistencia.HorarioSemana" Role="HorarioSemana" Multiplicity="1" />
@@ -781,6 +795,13 @@
         <MappingFragment StoreEntitySet="HorarioSemanaSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Lunes" ColumnName="Lunes" />
+          <ScalarProperty Name="Martes" ColumnName="Martes" />
+          <ScalarProperty Name="Miercoles" ColumnName="Miercoles" />
+          <ScalarProperty Name="Jueves" ColumnName="Jueves" />
+          <ScalarProperty Name="Viernes" ColumnName="Viernes" />
+          <ScalarProperty Name="Sabado" ColumnName="Sabado" />
+          <ScalarProperty Name="Domingo" ColumnName="Domingo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -21,6 +21,17 @@ namespace CapaDeNegocios.blTrabajador
             }
         }
 
+        public ICollection<Trabajador> ListaTrabajadores()
+        {
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
+                                                              
+                                                              select d;
+                return consultaTrabajadores.ToList();
+            }
+        }
+
         public void AgregarTrabajador(Trabajador miNuevoTrabajador)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

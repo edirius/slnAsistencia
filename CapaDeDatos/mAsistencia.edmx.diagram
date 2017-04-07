@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="mAsistencia.Horario" Width="1.5" PointX="8.125" PointY="0.5" />
         <EntityTypeShape EntityType="mAsistencia.HorarioDia" Width="1.5" PointX="5.375" PointY="0.625" />
         <AssociationConnector Association="mAsistencia.HorarioDiaHorario" />
-        <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="5.875" PointY="3.625" />
+        <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="5.875" PointY="2.875" />
         <AssociationConnector Association="mAsistencia.HorarioSemanaHorarioDia" />
         <EntityTypeShape EntityType="mAsistencia.ReglasTardanza" Width="1.5" PointX="8.25" PointY="3.5" />
         <AssociationConnector Association="mAsistencia.ReglasTardanzaHorario" />

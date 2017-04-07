@@ -80,6 +80,9 @@
     <Compile Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
       <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DiasFestivos\wDiaFestivo.xaml.cs">
+      <DependentUpon>wDiaFestivo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DiasFestivos\wListaDiasFestivos.xaml.cs">
       <DependentUpon>wListaDiasFestivos.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,9 @@
     <Compile Include="TipoPermisos\wListaTipoPermisos.xaml.cs">
       <DependentUpon>wListaTipoPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="wImportarAsistencia\wImportarAsistencia.xaml.cs">
+      <DependentUpon>wImportarAsistencia.xaml</DependentUpon>
+    </Compile>
     <Page Include="AgenciaAgraria\wAgenciaAgraria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +121,10 @@
     <Page Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DiasFestivos\wDiaFestivo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Entidad\wListaEntidad.xaml">
       <SubType>Designer</SubType>
@@ -173,6 +183,10 @@
     <Page Include="TipoPermisos\wListaTipoPermisos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wImportarAsistencia\wImportarAsistencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

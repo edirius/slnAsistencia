@@ -174,5 +174,11 @@ namespace CapaPresentacion
             ReglasTardanza.wListaReglasTardanzas fListaReglasTardanzas = new ReglasTardanza.wListaReglasTardanzas();
             fListaReglasTardanzas.ShowDialog();
         }
+
+        private void mnuImportarAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            wImportarAsistencia.wImportarAsistencia fImportarAsistencia = new wImportarAsistencia.wImportarAsistencia();
+            fImportarAsistencia.ShowDialog();
+        }
     }
 }

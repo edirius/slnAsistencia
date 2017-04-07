@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/07/2017 10:43:08
+-- Date Created: 04/07/2017 14:10:03
 
 -- Generated from EDMX file: H:\Software\Proyectos\slnControlDeAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -59,23 +59,15 @@
 -- --------------------------------------------------
 
 
---    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_TrabajadorOficina`;
-
 --    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_LocalOficina`;
 
 --    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_HorarioDiaHorario`;
 
 --    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioSemanaHorarioDia`;
 
---    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_TrabajadorHorarioSemana`;
-
 --    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_ReglasTardanzaHorario`;
 
 --    ALTER TABLE `AsistenciaSet` DROP CONSTRAINT `FK_TrabajadorAsistencia`;
-
---    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_TrabajadorPermisosHoras`;
-
---    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_TrabajadorPermisosDias`;
 
 --    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_PermisosHorasTipoPermisos`;
 
@@ -86,6 +78,18 @@
 --    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_OficinaOficina`;
 
 --    ALTER TABLE `LocalSet` DROP CONSTRAINT `FK_EmpresaLocal`;
+
+--    ALTER TABLE `PeriodoTrabajadorSet` DROP CONSTRAINT `FK_TrabajadorPeriodo`;
+
+--    ALTER TABLE `PeriodoTrabajadorSet` DROP CONSTRAINT `FK_OficinaPeriodoTrabajador`;
+
+--    ALTER TABLE `PeriodoTrabajadorSet` DROP CONSTRAINT `FK_HorarioSemanaPeriodoTrabajador`;
+
+--    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_PeriodoTrabajadorPermisosHoras`;
+
+--    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_PeriodoTrabajadorPermisosDias`;
+
+--    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_OficinaTrabajador`;
 
 
 -- --------------------------------------------------
@@ -122,6 +126,8 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `EmpresaSet`;
 
     DROP TABLE IF EXISTS `PruebaSet`;
+
+    DROP TABLE IF EXISTS `PeriodoTrabajadorSet`;
 
 SET foreign_key_checks = 1;
 
@@ -205,7 +211,14 @@ ALTER TABLE `HorarioDiaSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `HorarioSemanaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Nombre` longtext NOT NULL);
+	`Nombre` longtext NOT NULL, 
+	`Lunes` bool NOT NULL, 
+	`Martes` bool NOT NULL, 
+	`Miercoles` bool NOT NULL, 
+	`Jueves` bool NOT NULL, 
+	`Viernes` bool NOT NULL, 
+	`Sabado` bool NOT NULL, 
+	`Domingo` bool NOT NULL);
 
 ALTER TABLE `HorarioSemanaSet` ADD PRIMARY KEY (`Id`);
 
