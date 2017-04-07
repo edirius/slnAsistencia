@@ -15,7 +15,7 @@ namespace CapaDeNegocios.blTrabajador
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
-                                                              where d.Oficina.Id  == miOficina.Id
+                                                              where d.OficinaActual.Id  == miOficina.Id
                                                               select d;
                 return consultaTrabajadores.ToList() ;
             }
@@ -26,7 +26,7 @@ namespace CapaDeNegocios.blTrabajador
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.TrabajadorSet.Add(miNuevoTrabajador);
-                bd.OficinaSet.Attach(miNuevoTrabajador.Oficina);
+                bd.OficinaSet.Attach(miNuevoTrabajador.OficinaActual);
                 //bd.HORA
                 bd.SaveChanges();
             }
