@@ -53,25 +53,25 @@ namespace CapaPresentacion.Oficina
             //tvListaOficinas.DisplayMemberPath = "Nombre";
         }
 
-        private void llenarArbol()
-        {
-            ICollection<CapaEntities.Oficina> ListaOficinas = oblOficina.ListarOficinas(miLocal);
-            tvListaOficinas.Items.Clear();
-            tvListaOficinas.DisplayMemberPath = "Nombre";
-            foreach (CapaEntities.Oficina  auxOficina in ListaOficinas)
-            {
-                //significa que no tiene padre
-                if (auxOficina.Oficina2 != null)
-                {
-                    tvListaOficinas.Items.Add(auxOficina);
-                }
-                //significa que tiene hijos
-                else
-                {
+        //private void llenarArbol()
+        //{
+        //    ICollection<CapaEntities.Oficina> ListaOficinas = oblOficina.ListarOficinas(miLocal);
+        //    tvListaOficinas.Items.Clear();
+        //    tvListaOficinas.DisplayMemberPath = "Nombre";
+        //    foreach (CapaEntities.Oficina  auxOficina in ListaOficinas)
+        //    {
+        //        //significa que no tiene padre
+        //        if (auxOficina.Oficina2 != null)
+        //        {
+        //            tvListaOficinas.Items.Add(auxOficina);
+        //        }
+        //        //significa que tiene hijos
+        //        else
+        //        {
                             
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
             //try
@@ -81,7 +81,7 @@ namespace CapaPresentacion.Oficina
                 fOficina.miOficina.Local = miLocal;
                 if (tvListaOficinas.SelectedItem != null)
                 {
-                    fOficina.miOficina.Oficina2 = (CapaEntities.Oficina)tvListaOficinas.SelectedItem;
+                    fOficina.miOficina.OficinaPadre  = (CapaEntities.Oficina)tvListaOficinas.SelectedItem;
                 }
                 //fOficina.miOficina.Oficina1 = fOficina.miOficina;
                 //fOficina.miOficina.Oficina2 = fOficina.miOficina;
@@ -102,15 +102,15 @@ namespace CapaPresentacion.Oficina
             {
                 CapaEntities.Oficina oficinaSeleccionada = (CapaEntities.Oficina)tvListaOficinas.SelectedItem;
 
-                if (oficinaSeleccionada.Oficina2 != null)
+                if (oficinaSeleccionada.OficinaPadre != null)
                 {
-                    lblPadre.Content = oficinaSeleccionada.Oficina2.Nombre;
+                    lblPadre.Content = oficinaSeleccionada.OficinaPadre.Nombre;
                 }
                 else
                 {
                     lblPadre.Content = "sin padre";
                 }
-                cboHijos.ItemsSource = oficinaSeleccionada.Oficina1;
+                cboHijos.ItemsSource = oficinaSeleccionada.OficinasHijas;
                 cboHijos.DisplayMemberPath = "Nombre";
             }
            
