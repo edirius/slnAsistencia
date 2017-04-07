@@ -14,16 +14,16 @@ using System.Windows.Shapes;
 using CapaDeNegocios;
 using CapaEntities;
 
-namespace CapaPresentacion.Trabajadores
+namespace CapaPresentacion.caTrabajadores
 {
     /// <summary>
     /// Lógica de interacción para wListaTrabajadores.xaml
     /// </summary>
     public partial class wListaTrabajadores : Window
     {
-        public CapaEntities.Local miLocal = new Local();
+        public Local miLocal = new Local();
         public CapaEntities.Oficina miOficina = new CapaEntities.Oficina();
-        public CapaEntities.Trabajador miTrabajador = new Trabajador();
+        public Trabajador miTrabajador = new Trabajador();
         CapaDeNegocios.blLocal.blLocal oblLocal = new CapaDeNegocios.blLocal.blLocal();
         CapaDeNegocios.blOficina.blOficina oblOficina = new CapaDeNegocios.blOficina.blOficina();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
@@ -70,7 +70,7 @@ namespace CapaPresentacion.Trabajadores
                     MessageBox.Show("TIENE QUE ESTAR SELECCIONADA UN A OFICINA.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
-                Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
+                caTrabajadores.wTrabajadores fTrabajadores = new caTrabajadores.wTrabajadores();
                 fTrabajadores.miTrabajador = new Trabajador();
                 fTrabajadores.miTrabajador.OficinaActual = miOficina;
                 if (fTrabajadores.ShowDialog() == true)
@@ -92,7 +92,7 @@ namespace CapaPresentacion.Trabajadores
                     MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
-                Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
+                caTrabajadores.wTrabajadores fTrabajadores = new caTrabajadores.wTrabajadores();
                 fTrabajadores.miTrabajador = miTrabajador;
                 if (fTrabajadores.ShowDialog() == true)
                 {
@@ -122,6 +122,27 @@ namespace CapaPresentacion.Trabajadores
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnPeriodo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (miTrabajador.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                caPeriodoTrabajador.wListaPeriodoTrabajador fPeriodoTrabajador = new caPeriodoTrabajador.wListaPeriodoTrabajador();
+                fPeriodoTrabajador.txtTrabajador.Text = miTrabajador.Nombre + ' ' + miTrabajador.ApellidoPaterno + ' ' + miTrabajador.ApellidoMaterno;
+                if (fPeriodoTrabajador.ShowDialog() == true)
+                {
+                    //oblTrabajador.ModificarTrabajador(fPeriodoTrabajador.miTrabajador);
+                }
+                CargarTrabajadores();
+            }
+            catch
+            { }
         }
 
         private void CargarLocales()
