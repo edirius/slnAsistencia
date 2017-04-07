@@ -95,7 +95,10 @@
     <Compile Include="ReglasTardanza\wListaReglasTardanzas.xaml.cs">
       <DependentUpon>wListaReglasTardanzas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Trabajador\wListaTrabajadores.xaml.cs">
+    <Compile Include="Trabajadores\wTrabajadores.xaml.cs">
+      <DependentUpon>wTrabajadores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trabajadores\wListaTrabajadores.xaml.cs">
       <DependentUpon>wListaTrabajadores.xaml</DependentUpon>
     </Compile>
     <Compile Include="TipoPermisos\wListaTipoPermisos.xaml.cs">
@@ -159,7 +162,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Trabajador\wListaTrabajadores.xaml">
+    <Page Include="Trabajadores\wTrabajadores.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Trabajadores\wListaTrabajadores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

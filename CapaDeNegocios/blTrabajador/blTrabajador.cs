@@ -10,22 +10,24 @@ namespace CapaDeNegocios.blTrabajador
 {
     public class blTrabajador
     {
-
-        public ICollection<Trabajador> ListaTrabajadores(Local miLocal)
+        public ICollection<Trabajador> ListaTrabajadores(Oficina miOficina)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
-                                                       where d.Oficina.Local.Id  == miLocal.Id 
-                                                       select d;
+                                                              where d.Oficina.Id  == miOficina.Id
+                                                              select d;
                 return consultaTrabajadores.ToList() ;
             }
-        } 
+        }
+
         public void AgregarTrabajador(Trabajador miNuevoTrabajador)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.TrabajadorSet.Add(miNuevoTrabajador);
+                bd.OficinaSet.Attach(miNuevoTrabajador.Oficina);
+                //bd.HORA
                 bd.SaveChanges();
             }
         }
@@ -41,7 +43,6 @@ namespace CapaDeNegocios.blTrabajador
                 auxiliar.ApellidoMaterno = trabajadorAModificar.ApellidoMaterno;
                 auxiliar.Nombre = trabajadorAModificar.Nombre;
                 bd.SaveChanges();
-                 
             }
         }
 
@@ -53,7 +54,6 @@ namespace CapaDeNegocios.blTrabajador
                                        where c.Id == trabajadorAEliminar.Id
                                        select c).FirstOrDefault();
                 bd.TrabajadorSet.Remove(auxiliar);
-
             }
         }
     }

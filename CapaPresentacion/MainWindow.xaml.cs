@@ -30,7 +30,7 @@ namespace CapaPresentacion
         public MainWindow()
         {
             InitializeComponent();
-            Iniciar();
+            //Iniciar();
         }
 
         public void Iniciar()
@@ -111,8 +111,8 @@ namespace CapaPresentacion
 
         private void mnuTrabajador_Click(object sender, RoutedEventArgs e)
         {
-            //Trabajador = new Oficina.wListaOficinas();
-            //fListaOficinas.ShowDialog();
+            Trabajadores.wListaTrabajadores fListaTrabajadores = new Trabajadores.wListaTrabajadores();
+            fListaTrabajadores.ShowDialog();
         }
 
         private void mnuAsistencia_Click(object sender, RoutedEventArgs e)
