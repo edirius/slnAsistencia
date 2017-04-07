@@ -23,6 +23,7 @@ namespace CapaPresentacion.Trabajadores
     {
         public CapaEntities.Local miLocal = new Local();
         public CapaEntities.Oficina miOficina = new CapaEntities.Oficina();
+        public CapaEntities.Trabajador miTrabajador = new Trabajador();
         CapaDeNegocios.blLocal.blLocal oblLocal = new CapaDeNegocios.blLocal.blLocal();
         CapaDeNegocios.blOficina.blOficina oblOficina = new CapaDeNegocios.blOficina.blOficina();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
@@ -57,33 +58,65 @@ namespace CapaPresentacion.Trabajadores
 
         private void dgTrabajadores_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            miTrabajador = (Trabajador)dgTrabajadores.SelectedItem;
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
-            fTrabajadores.miTrabajador = new Trabajador();
-            //fTrabajadores.miTrabajador.Oficina = miOficina;
-            if (fTrabajadores.ShowDialog() == true)
+            try
             {
-                oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
+                if (miOficina.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADA UN A OFICINA.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
+                fTrabajadores.miTrabajador = new Trabajador();
+                fTrabajadores.miTrabajador.OficinaActual = miOficina;
+                if (fTrabajadores.ShowDialog() == true)
+                {
+                    oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
+                }
+                CargarTrabajadores();
             }
+            catch
+            { }
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
-            //fAgenciaAgraria.miLocal = (Local)dtgAgenciasAgrarias.SelectedItem;
-            if (fTrabajadores.ShowDialog() == true)
+            try
             {
-                oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
+                if (miTrabajador.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                Trabajadores.wTrabajadores fTrabajadores = new Trabajadores.wTrabajadores();
+                fTrabajadores.miTrabajador = miTrabajador;
+                if (fTrabajadores.ShowDialog() == true)
+                {
+                    oblTrabajador.ModificarTrabajador(fTrabajadores.miTrabajador);
+                }
+                CargarTrabajadores();
             }
+            catch
+            { }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (miTrabajador.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                oblTrabajador.EliminarTrabajador(miTrabajador);
+                CargarTrabajadores();
+            }
+            catch
+            { }
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -111,6 +144,14 @@ namespace CapaPresentacion.Trabajadores
         {
             ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores(miOficina);
             dgTrabajadores.ItemsSource = ListaTrabajadores;
+            if (dgTrabajadores.Items.Count > 0)
+            {
+                object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
+                dgTrabajadores.SelectedItem = item;
+                //dgTrabajadores.ScrollIntoView(item);
+                //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                //break;
+            }
         }
     }
 }

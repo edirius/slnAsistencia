@@ -25,9 +25,8 @@ namespace CapaDeNegocios.blTrabajador
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                bd.TrabajadorSet.Add(miNuevoTrabajador);
                 bd.OficinaSet.Attach(miNuevoTrabajador.OficinaActual);
-                //bd.HORA
+                bd.TrabajadorSet.Add(miNuevoTrabajador);
                 bd.SaveChanges();
             }
         }
@@ -39,9 +38,10 @@ namespace CapaDeNegocios.blTrabajador
                 Trabajador auxiliar = (from c in bd.TrabajadorSet
                                        where c.Id == trabajadorAModificar.Id
                                        select c).FirstOrDefault();
+                auxiliar.Nombre = trabajadorAModificar.Nombre;
                 auxiliar.ApellidoPaterno = trabajadorAModificar.ApellidoPaterno;
                 auxiliar.ApellidoMaterno = trabajadorAModificar.ApellidoMaterno;
-                auxiliar.Nombre = trabajadorAModificar.Nombre;
+                auxiliar.DNI = trabajadorAModificar.DNI;
                 bd.SaveChanges();
             }
         }

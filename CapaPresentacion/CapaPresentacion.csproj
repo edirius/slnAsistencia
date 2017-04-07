@@ -83,6 +83,12 @@
     <Compile Include="DiasFestivos\wListaDiasFestivos.xaml.cs">
       <DependentUpon>wListaDiasFestivos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HorarioSemana\wListaHorarioSemana.xaml.cs">
+      <DependentUpon>wListaHorarioSemana.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioSemana\wHorarioSemana.xaml.cs">
+      <DependentUpon>wHorarioSemana.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Oficina\wOficina.xaml.cs">
       <DependentUpon>wOficina.xaml</DependentUpon>
     </Compile>
@@ -119,6 +125,14 @@
     <Page Include="Entidad\wListaEntidad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HorarioSemana\wListaHorarioSemana.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HorarioSemana\wHorarioSemana.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
