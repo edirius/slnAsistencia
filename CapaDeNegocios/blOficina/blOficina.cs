@@ -15,7 +15,7 @@ namespace CapaDeNegocios.blOficina
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                var consultaOficinas = from d in bd.OficinaSet.Include("Oficinas")
+                var consultaOficinas = from d in bd.OficinaSet.Include("OficinasHijas")
                                                         where (d.Local.Id == miLocal.Id) /*&& (d.Oficina2 == null)*/
                                                         select d;
 

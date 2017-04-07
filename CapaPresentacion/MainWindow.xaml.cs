@@ -30,7 +30,7 @@ namespace CapaPresentacion
         public MainWindow()
         {
             InitializeComponent();
-            //Iniciar();
+            Iniciar();
         }
 
         public void Iniciar()
