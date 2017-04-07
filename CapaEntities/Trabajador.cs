@@ -18,9 +18,8 @@ namespace CapaEntities
         public Trabajador()
         {
             this.Asistencia = new HashSet<Asistencia>();
-            this.PermisosHoras = new HashSet<PermisosHoras>();
-            this.PermisosDias = new HashSet<PermisosDias>();
             this.CronogramaVacaciones = new HashSet<CronogramaVacaciones>();
+            this.Periodo = new HashSet<PeriodoTrabajador>();
         }
     
         public int Id { get; set; }
@@ -29,15 +28,12 @@ namespace CapaEntities
         public string ApellidoMaterno { get; set; }
         public string DNI { get; set; }
     
-        public virtual Oficina Oficina { get; set; }
-        public virtual HorarioSemana HorarioSemana { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PermisosHoras> PermisosHoras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PermisosDias> PermisosDias { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CronogramaVacaciones> CronogramaVacaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PeriodoTrabajador> Periodo { get; set; }
+        public virtual Oficina OficinaActual { get; set; }
     }
 }

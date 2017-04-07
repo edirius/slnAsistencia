@@ -82,6 +82,9 @@
     <Compile Include="Oficina.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="PeriodoTrabajador.cs">
+      <DependentUpon>mAsistencia.tt</DependentUpon>
+    </Compile>
     <Compile Include="PermisosDias.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
@@ -89,6 +92,9 @@
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prueba.cs">
+      <DependentUpon>mAsistencia.tt</DependentUpon>
+    </Compile>
     <Compile Include="ReglasTardanza.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>

@@ -44,17 +44,13 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/04/2017 09:07:19
+-- Date Created: 04/07/2017 10:43:08
 
 -- Generated from EDMX file: H:\Software\Proyectos\slnControlDeAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
 
 -- --------------------------------------------------
 
-
-DROP DATABASE IF EXISTS `bdasistencia`;
-CREATE DATABASE `bdasistencia`;
-USE `bdasistencia`;
 
 
 -- --------------------------------------------------
@@ -63,11 +59,69 @@ USE `bdasistencia`;
 -- --------------------------------------------------
 
 
+--    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_TrabajadorOficina`;
+
+--    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_LocalOficina`;
+
+--    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_HorarioDiaHorario`;
+
+--    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioSemanaHorarioDia`;
+
+--    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_TrabajadorHorarioSemana`;
+
+--    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_ReglasTardanzaHorario`;
+
+--    ALTER TABLE `AsistenciaSet` DROP CONSTRAINT `FK_TrabajadorAsistencia`;
+
+--    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_TrabajadorPermisosHoras`;
+
+--    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_TrabajadorPermisosDias`;
+
+--    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_PermisosHorasTipoPermisos`;
+
+--    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_PermisosDiasTipoPermisos`;
+
+--    ALTER TABLE `CronogramaVacacionesSet` DROP CONSTRAINT `FK_TrabajadorCronogramaVacaciones`;
+
+--    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_OficinaOficina`;
+
+--    ALTER TABLE `LocalSet` DROP CONSTRAINT `FK_EmpresaLocal`;
+
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 SET foreign_key_checks = 0;
+
+    DROP TABLE IF EXISTS `TrabajadorSet`;
+
+    DROP TABLE IF EXISTS `OficinaSet`;
+
+    DROP TABLE IF EXISTS `AsistenciaSet`;
+
+    DROP TABLE IF EXISTS `LocalSet`;
+
+    DROP TABLE IF EXISTS `HorarioSet`;
+
+    DROP TABLE IF EXISTS `HorarioDiaSet`;
+
+    DROP TABLE IF EXISTS `HorarioSemanaSet`;
+
+    DROP TABLE IF EXISTS `ReglasTardanzaSet`;
+
+    DROP TABLE IF EXISTS `PermisosHorasSet`;
+
+    DROP TABLE IF EXISTS `TipoPermisosSet`;
+
+    DROP TABLE IF EXISTS `PermisosDiasSet`;
+
+    DROP TABLE IF EXISTS `DiaFestivoSet`;
+
+    DROP TABLE IF EXISTS `CronogramaVacacionesSet`;
+
+    DROP TABLE IF EXISTS `EmpresaSet`;
+
+    DROP TABLE IF EXISTS `PruebaSet`;
 
 SET foreign_key_checks = 1;
 
@@ -82,8 +136,7 @@ CREATE TABLE `TrabajadorSet`(
 	`ApellidoPaterno` longtext NOT NULL, 
 	`ApellidoMaterno` longtext NOT NULL, 
 	`DNI` longtext NOT NULL, 
-	`Oficina_Id` int NOT NULL, 
-	`HorarioSemana_Id` int NOT NULL);
+	`OficinaActual_Id` int NOT NULL);
 
 ALTER TABLE `TrabajadorSet` ADD PRIMARY KEY (`Id`);
 
@@ -95,7 +148,7 @@ CREATE TABLE `OficinaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Nombre` longtext NOT NULL, 
 	`Local_Id` int NOT NULL, 
-	`Oficina2_Id` int NOT NULL);
+	`OficinaPadre_Id` int);
 
 ALTER TABLE `OficinaSet` ADD PRIMARY KEY (`Id`);
 
@@ -173,8 +226,8 @@ ALTER TABLE `ReglasTardanzaSet` ADD PRIMARY KEY (`Id`);
 CREATE TABLE `PermisosHorasSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Inicio` longtext NOT NULL, 
-	`Trabajador_Id` int, 
-	`TipoPermisos_Id` int NOT NULL);
+	`TipoPermisos_Id` int NOT NULL, 
+	`PeriodoTrabajador_Id` int);
 
 ALTER TABLE `PermisosHorasSet` ADD PRIMARY KEY (`Id`);
 
@@ -195,8 +248,8 @@ ALTER TABLE `TipoPermisosSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `PermisosDiasSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Trabajador_Id` int, 
-	`TipoPermisos_Id` int NOT NULL);
+	`TipoPermisos_Id` int NOT NULL, 
+	`PeriodoTrabajador_Id` int);
 
 ALTER TABLE `PermisosDiasSet` ADD PRIMARY KEY (`Id`);
 
@@ -238,29 +291,34 @@ ALTER TABLE `EmpresaSet` ADD PRIMARY KEY (`Id`);
 
 
 
+CREATE TABLE `PruebaSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE);
+
+ALTER TABLE `PruebaSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `PeriodoTrabajadorSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Inicio` datetime NOT NULL, 
+	`Fin` datetime NOT NULL, 
+	`Trabajador_Id` int NOT NULL, 
+	`Oficina_Id` int NOT NULL, 
+	`HorarioSemana_Id` int NOT NULL);
+
+ALTER TABLE `PeriodoTrabajadorSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
 
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
-
--- Creating foreign key on `Oficina_Id` in table 'TrabajadorSet'
-
-ALTER TABLE `TrabajadorSet`
-ADD CONSTRAINT `FK_TrabajadorOficina`
-    FOREIGN KEY (`Oficina_Id`)
-    REFERENCES `OficinaSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorOficina'
-
-CREATE INDEX `IX_FK_TrabajadorOficina`
-    ON `TrabajadorSet`
-    (`Oficina_Id`);
-
 
 
 -- Creating foreign key on `Local_Id` in table 'OficinaSet'
@@ -317,24 +375,6 @@ CREATE INDEX `IX_FK_HorarioSemanaHorarioDia`
 
 
 
--- Creating foreign key on `HorarioSemana_Id` in table 'TrabajadorSet'
-
-ALTER TABLE `TrabajadorSet`
-ADD CONSTRAINT `FK_TrabajadorHorarioSemana`
-    FOREIGN KEY (`HorarioSemana_Id`)
-    REFERENCES `HorarioSemanaSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorHorarioSemana'
-
-CREATE INDEX `IX_FK_TrabajadorHorarioSemana`
-    ON `TrabajadorSet`
-    (`HorarioSemana_Id`);
-
-
-
 -- Creating foreign key on `ReglasTardanza_Id` in table 'HorarioSet'
 
 ALTER TABLE `HorarioSet`
@@ -367,42 +407,6 @@ ADD CONSTRAINT `FK_TrabajadorAsistencia`
 
 CREATE INDEX `IX_FK_TrabajadorAsistencia`
     ON `AsistenciaSet`
-    (`Trabajador_Id`);
-
-
-
--- Creating foreign key on `Trabajador_Id` in table 'PermisosHorasSet'
-
-ALTER TABLE `PermisosHorasSet`
-ADD CONSTRAINT `FK_TrabajadorPermisosHoras`
-    FOREIGN KEY (`Trabajador_Id`)
-    REFERENCES `TrabajadorSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorPermisosHoras'
-
-CREATE INDEX `IX_FK_TrabajadorPermisosHoras`
-    ON `PermisosHorasSet`
-    (`Trabajador_Id`);
-
-
-
--- Creating foreign key on `Trabajador_Id` in table 'PermisosDiasSet'
-
-ALTER TABLE `PermisosDiasSet`
-ADD CONSTRAINT `FK_TrabajadorPermisosDias`
-    FOREIGN KEY (`Trabajador_Id`)
-    REFERENCES `TrabajadorSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorPermisosDias'
-
-CREATE INDEX `IX_FK_TrabajadorPermisosDias`
-    ON `PermisosDiasSet`
     (`Trabajador_Id`);
 
 
@@ -461,11 +465,11 @@ CREATE INDEX `IX_FK_TrabajadorCronogramaVacaciones`
 
 
 
--- Creating foreign key on `Oficina2_Id` in table 'OficinaSet'
+-- Creating foreign key on `OficinaPadre_Id` in table 'OficinaSet'
 
 ALTER TABLE `OficinaSet`
 ADD CONSTRAINT `FK_OficinaOficina`
-    FOREIGN KEY (`Oficina2_Id`)
+    FOREIGN KEY (`OficinaPadre_Id`)
     REFERENCES `OficinaSet`
         (`Id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -475,7 +479,7 @@ ADD CONSTRAINT `FK_OficinaOficina`
 
 CREATE INDEX `IX_FK_OficinaOficina`
     ON `OficinaSet`
-    (`Oficina2_Id`);
+    (`OficinaPadre_Id`);
 
 
 
@@ -494,6 +498,114 @@ ADD CONSTRAINT `FK_EmpresaLocal`
 CREATE INDEX `IX_FK_EmpresaLocal`
     ON `LocalSet`
     (`Empresa_Id`);
+
+
+
+-- Creating foreign key on `Trabajador_Id` in table 'PeriodoTrabajadorSet'
+
+ALTER TABLE `PeriodoTrabajadorSet`
+ADD CONSTRAINT `FK_TrabajadorPeriodo`
+    FOREIGN KEY (`Trabajador_Id`)
+    REFERENCES `TrabajadorSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorPeriodo'
+
+CREATE INDEX `IX_FK_TrabajadorPeriodo`
+    ON `PeriodoTrabajadorSet`
+    (`Trabajador_Id`);
+
+
+
+-- Creating foreign key on `Oficina_Id` in table 'PeriodoTrabajadorSet'
+
+ALTER TABLE `PeriodoTrabajadorSet`
+ADD CONSTRAINT `FK_OficinaPeriodoTrabajador`
+    FOREIGN KEY (`Oficina_Id`)
+    REFERENCES `OficinaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OficinaPeriodoTrabajador'
+
+CREATE INDEX `IX_FK_OficinaPeriodoTrabajador`
+    ON `PeriodoTrabajadorSet`
+    (`Oficina_Id`);
+
+
+
+-- Creating foreign key on `HorarioSemana_Id` in table 'PeriodoTrabajadorSet'
+
+ALTER TABLE `PeriodoTrabajadorSet`
+ADD CONSTRAINT `FK_HorarioSemanaPeriodoTrabajador`
+    FOREIGN KEY (`HorarioSemana_Id`)
+    REFERENCES `HorarioSemanaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HorarioSemanaPeriodoTrabajador'
+
+CREATE INDEX `IX_FK_HorarioSemanaPeriodoTrabajador`
+    ON `PeriodoTrabajadorSet`
+    (`HorarioSemana_Id`);
+
+
+
+-- Creating foreign key on `PeriodoTrabajador_Id` in table 'PermisosHorasSet'
+
+ALTER TABLE `PermisosHorasSet`
+ADD CONSTRAINT `FK_PeriodoTrabajadorPermisosHoras`
+    FOREIGN KEY (`PeriodoTrabajador_Id`)
+    REFERENCES `PeriodoTrabajadorSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PeriodoTrabajadorPermisosHoras'
+
+CREATE INDEX `IX_FK_PeriodoTrabajadorPermisosHoras`
+    ON `PermisosHorasSet`
+    (`PeriodoTrabajador_Id`);
+
+
+
+-- Creating foreign key on `PeriodoTrabajador_Id` in table 'PermisosDiasSet'
+
+ALTER TABLE `PermisosDiasSet`
+ADD CONSTRAINT `FK_PeriodoTrabajadorPermisosDias`
+    FOREIGN KEY (`PeriodoTrabajador_Id`)
+    REFERENCES `PeriodoTrabajadorSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PeriodoTrabajadorPermisosDias'
+
+CREATE INDEX `IX_FK_PeriodoTrabajadorPermisosDias`
+    ON `PermisosDiasSet`
+    (`PeriodoTrabajador_Id`);
+
+
+
+-- Creating foreign key on `OficinaActual_Id` in table 'TrabajadorSet'
+
+ALTER TABLE `TrabajadorSet`
+ADD CONSTRAINT `FK_OficinaTrabajador`
+    FOREIGN KEY (`OficinaActual_Id`)
+    REFERENCES `OficinaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OficinaTrabajador'
+
+CREATE INDEX `IX_FK_OficinaTrabajador`
+    ON `TrabajadorSet`
+    (`OficinaActual_Id`);
 
 
 

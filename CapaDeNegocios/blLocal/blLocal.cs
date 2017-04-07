@@ -25,6 +25,7 @@ namespace CapaDeNegocios.blLocal
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
+                bd.EmpresaSet.Attach(miAgregarLocal.Empresa);
                 bd.LocalSet.Add(miAgregarLocal);
                 bd.SaveChanges();
             }

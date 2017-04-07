@@ -17,7 +17,7 @@ namespace CapaEntities
         public int Id { get; set; }
         public string Inicio { get; set; }
     
-        public virtual Trabajador Trabajador { get; set; }
         public virtual TipoPermisos TipoPermisos { get; set; }
+        public virtual PeriodoTrabajador PeriodoTrabajador { get; set; }
     }
 }

@@ -12,26 +12,25 @@ namespace CapaEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class Oficina
+    public partial class PeriodoTrabajador
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Oficina()
+        public PeriodoTrabajador()
         {
-            this.OficinasHijas = new HashSet<Oficina>();
-            this.PeriodoTrabajador = new HashSet<PeriodoTrabajador>();
-            this.Trabajador = new HashSet<Trabajador>();
+            this.PermisosHoras = new HashSet<PermisosHoras>();
+            this.PermisosDias = new HashSet<PermisosDias>();
         }
     
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public System.DateTime Inicio { get; set; }
+        public System.DateTime Fin { get; set; }
     
-        public virtual Local Local { get; set; }
+        public virtual Trabajador Trabajador { get; set; }
+        public virtual Oficina Oficina { get; set; }
+        public virtual HorarioSemana HorarioSemana { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oficina> OficinasHijas { get; set; }
-        public virtual Oficina OficinaPadre { get; set; }
+        public virtual ICollection<PermisosHoras> PermisosHoras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PeriodoTrabajador> PeriodoTrabajador { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Trabajador> Trabajador { get; set; }
+        public virtual ICollection<PermisosDias> PermisosDias { get; set; }
     }
 }

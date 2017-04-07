@@ -5,9 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Oficina"
         mc:Ignorable="d"
-        Title="Lista de Oficinas" Height="336.09" Width="470.301" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Title="Lista de Oficinas" Height="365.15" Width="470.301" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="258" Width="442"/>
+
+        <ComboBox x:Name="cboLocales" HorizontalAlignment="Left" Margin="148,14,0,0" VerticalAlignment="Top" Width="192" SelectionChanged="cboLocales_SelectionChanged"/>
+        <Label x:Name="label" Content="Locales:" HorizontalAlignment="Left" Height="26" Margin="10,10,0,0" VerticalAlignment="Top" Width="97" Grid.ColumnSpan="2"/>
+        <StackPanel x:Name="LayoutRoot" Background="White" Grid.ColumnSpan="2" Margin="0,0,335,0" >
+            <StackPanel.Resources>
+                <HierarchicalDataTemplate x:Key="hdtOficina" 
+                        ItemsSource="{Binding Path=Oficina1}">
+                    <TextBlock Text="{Binding Nombre}"/>
+
+                </HierarchicalDataTemplate>
+            </StackPanel.Resources>
+            <TreeView x:Name="tvListaOficinas" HorizontalAlignment="Left" Height="221" Margin="25,68,-85,0" VerticalAlignment="Top" Width="147" SelectedItemChanged="tvListaOficinas_SelectedItemChanged"
+        		ItemTemplate="{StaticResource hdtOficina}"/>
+        </StackPanel>
+
+
+        <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Height="29" Margin="215,69,0,0" VerticalAlignment="Top" Width="103" Click="btnAgregar_Click"/>
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="28" Margin="215,127,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label x:Name="lblPadre" Content="Label" HorizontalAlignment="Left" Height="42" Margin="239,190,0,0" VerticalAlignment="Top" Width="170"/>
+        <ComboBox x:Name="cboHijos" HorizontalAlignment="Left" Height="24" Margin="215,260,0,0" VerticalAlignment="Top" Width="164"/>
     </Grid>
 </Window>

@@ -12,11 +12,8 @@ namespace CapaEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class PermisosDias
+    public partial class Prueba
     {
         public int Id { get; set; }
-    
-        public virtual TipoPermisos TipoPermisos { get; set; }
-        public virtual PeriodoTrabajador PeriodoTrabajador { get; set; }
     }
 }

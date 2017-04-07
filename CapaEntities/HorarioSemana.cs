@@ -18,6 +18,7 @@ namespace CapaEntities
         public HorarioSemana()
         {
             this.HorarioDia = new HashSet<HorarioDia>();
+            this.PeriodoTrabajador = new HashSet<PeriodoTrabajador>();
         }
     
         public int Id { get; set; }
@@ -25,6 +26,7 @@ namespace CapaEntities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HorarioDia> HorarioDia { get; set; }
-        public virtual Trabajador Trabajador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PeriodoTrabajador> PeriodoTrabajador { get; set; }
     }
 }

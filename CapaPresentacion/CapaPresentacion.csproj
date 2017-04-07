@@ -83,6 +83,9 @@
     <Compile Include="DiasFestivos\wListaDiasFestivos.xaml.cs">
       <DependentUpon>wListaDiasFestivos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Oficina\wOficina.xaml.cs">
+      <DependentUpon>wOficina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PermisosDias\wListaPermisosDias.xaml.cs">
       <DependentUpon>wListaPermisosDias.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
     <Page Include="DiasFestivos\wListaDiasFestivos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Oficina\wOficina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PermisosDias\wListaPermisosDias.xaml">
       <Generator>MSBuild:Compile</Generator>
