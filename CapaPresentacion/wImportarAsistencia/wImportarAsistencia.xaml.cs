@@ -21,7 +21,7 @@ namespace CapaPresentacion.wImportarAsistencia
     /// </summary>
     public partial class wImportarAsistencia : Window
     {
-        CapaEntities.Asistencia miAsistencia;
+        CapaEntities.Trabajador miTrabajador; 
         CapaDeNegocios.blAsistencia.blAsistencia oblAsistencia = new CapaDeNegocios.blAsistencia.blAsistencia();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
          
@@ -43,7 +43,22 @@ namespace CapaPresentacion.wImportarAsistencia
 
         private void btnAgregarAsistencia_Click(object sender, RoutedEventArgs e)
         {
-            
+            CapaPresentacion.wImportarAsistencia.wAsistencia fAsistencia = new wAsistencia();
+            fAsistencia.miAsistencia = new CapaEntities.Asistencia();
+            fAsistencia.miAsistencia.Trabajador = miTrabajador;
+            if (fAsistencia.ShowDialog() == true)
+            {
+                oblAsistencia.AgregarAsistencia(fAsistencia.miAsistencia);
+            }
+        }
+
+        private void cboTrabajador_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboTrabajador.SelectedItem != null)
+            {
+                dtgListaAsistencia.ItemsSource = oblAsistencia.ListarAsistencias((CapaEntities.Trabajador ) cboTrabajador.SelectedItem);
+                miTrabajador = (Trabajador)cboTrabajador.SelectedItem;
+            }
         }
     }
 }

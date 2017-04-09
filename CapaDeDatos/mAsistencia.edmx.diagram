@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="mAsistencia.ReglasTardanza" Width="1.5" PointX="8.25" PointY="3.5" />
         <AssociationConnector Association="mAsistencia.ReglasTardanzaHorario" />
         <AssociationConnector Association="mAsistencia.TrabajadorAsistencia" />
-        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7" PointY="5.625" />
+        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7.75" PointY="6" />
         <EntityTypeShape EntityType="mAsistencia.TipoPermisos" Width="1.5" PointX="10.25" PointY="6.5" />
         <EntityTypeShape EntityType="mAsistencia.PermisosDias" Width="1.5" PointX="7.875" PointY="9.375" />
         <AssociationConnector Association="mAsistencia.PermisosHorasTipoPermisos" />

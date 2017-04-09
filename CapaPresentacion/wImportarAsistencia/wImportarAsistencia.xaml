@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="wImportarAsistencia" Height="357.519" Width="689.098" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="cboTrabajador" HorizontalAlignment="Left" Height="27" Margin="59,43,0,0" VerticalAlignment="Top" Width="340">
+        <ComboBox x:Name="cboTrabajador" HorizontalAlignment="Left" Height="27" Margin="51,33,0,0" VerticalAlignment="Top" Width="340" SelectionChanged="cboTrabajador_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -17,8 +17,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <DatePicker HorizontalAlignment="Left" Height="26" Margin="176,139,0,0" VerticalAlignment="Top" Width="129"/>
-        <Button x:Name="btnAgregarAsistencia" Content="Agregar Asistencia" HorizontalAlignment="Left" Height="26" Margin="414,139,0,0" VerticalAlignment="Top" Width="138" Click="btnAgregarAsistencia_Click"/>
+        <Button x:Name="btnAgregarAsistencia" Content="Agregar Asistencia" HorizontalAlignment="Left" Height="26" Margin="10,291,0,0" VerticalAlignment="Top" Width="138" Click="btnAgregarAsistencia_Click"/>
+        <DataGrid x:Name="dtgListaAsistencia" HorizontalAlignment="Left" Height="170" Margin="40,89,0,0" VerticalAlignment="Top" Width="486"/>
 
     </Grid>
 </Window>

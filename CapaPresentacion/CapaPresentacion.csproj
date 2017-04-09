@@ -113,6 +113,9 @@
     <Compile Include="TipoPermisos\wListaTipoPermisos.xaml.cs">
       <DependentUpon>wListaTipoPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="wImportarAsistencia\wAsistencia.xaml.cs">
+      <DependentUpon>wAsistencia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="wImportarAsistencia\wImportarAsistencia.xaml.cs">
       <DependentUpon>wImportarAsistencia.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
     <Page Include="TipoPermisos\wListaTipoPermisos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wImportarAsistencia\wAsistencia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="wImportarAsistencia\wImportarAsistencia.xaml">
       <SubType>Designer</SubType>
