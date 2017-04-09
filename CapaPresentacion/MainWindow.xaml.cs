@@ -111,7 +111,7 @@ namespace CapaPresentacion
 
         private void mnuTrabajador_Click(object sender, RoutedEventArgs e)
         {
-            Trabajadores.wListaTrabajadores fListaTrabajadores = new Trabajadores.wListaTrabajadores();
+            caTrabajadores.wListaTrabajadores fListaTrabajadores = new caTrabajadores.wListaTrabajadores();
             fListaTrabajadores.ShowDialog();
         }
 
@@ -135,8 +135,8 @@ namespace CapaPresentacion
 
         private void mnuHorarioSemana_Click(object sender, RoutedEventArgs e)
         {
-            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
-            //fListaOficinas.ShowDialog();
+            caHorarioSemana.wListaHorarioSemana fListaHorarioSemana = new caHorarioSemana.wListaHorarioSemana();
+            fListaHorarioSemana.ShowDialog();
         }
 
         private void mnuPermisoHoras_Click(object sender, RoutedEventArgs e)

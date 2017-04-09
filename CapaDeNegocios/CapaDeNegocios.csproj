@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="blPeriodoTrabajador\blPeriodoTrabajador.cs" />
     <Compile Include="blTipoPermisos\blTipoPermisos.cs" />
     <Compile Include="blReglasTardanza\blReglasTardanza.cs" />
     <Compile Include="blEmpresa\blEmpresa.cs" />

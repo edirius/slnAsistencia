@@ -14,16 +14,16 @@ using System.Windows.Shapes;
 using CapaDeNegocios;
 using CapaEntities;
 
-namespace CapaPresentacion.HorarioSemana
+namespace CapaPresentacion.caPeriodoTrabajador
 {
     /// <summary>
     /// Lógica de interacción para wHorarioSemana.xaml
     /// </summary>
-    public partial class wHorarioSemana : Window
+    public partial class wPeriodoTrabajador : Window
     {
-        public Trabajador miHorarioSemana;
+        public PeriodoTrabajador miPeriodoTrabajador;
 
-        public wHorarioSemana()
+        public wPeriodoTrabajador()
         {
             InitializeComponent();
         }
@@ -35,19 +35,15 @@ namespace CapaPresentacion.HorarioSemana
 
         private void Iniciar()
         {
-            //txtNombres.Text = miTrabajador.Nombre;
-            //txtAPaterno.Text = miTrabajador.ApellidoPaterno;
-            //txtAMaterno.Text = miTrabajador.ApellidoPaterno;
-            //txtDNI.Text = miTrabajador.DNI;
+            //datepi.IsChecked = miPeriodoTrabajador.Lunes;
+            //chkMartes.IsChecked = miHorarioSemana.Martes;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            //miTrabajador.Nombre = txtNombres.Text;
-            //miTrabajador.ApellidoPaterno = txtAPaterno.Text;
-            //miTrabajador.ApellidoMaterno = txtAMaterno.Text;
-            //miTrabajador.DNI = txtDNI.Text;
-            //this.DialogResult = true;
+            //miHorarioSemana.Lunes = chkLunes.IsChecked.Value;
+            //miHorarioSemana.Martes = chkMartes.IsChecked.Value;
+            this.DialogResult = true;
         }
 
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)

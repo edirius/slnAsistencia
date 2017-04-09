@@ -86,14 +86,20 @@
     <Compile Include="DiasFestivos\wListaDiasFestivos.xaml.cs">
       <DependentUpon>wListaDiasFestivos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HorarioSemana\wListaHorarioSemana.xaml.cs">
+    <Compile Include="caHorarioSemana\wListaHorarioSemana.xaml.cs">
       <DependentUpon>wListaHorarioSemana.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HorarioSemana\wHorarioSemana.xaml.cs">
+    <Compile Include="caHorarioSemana\wHorarioSemana.xaml.cs">
       <DependentUpon>wHorarioSemana.xaml</DependentUpon>
     </Compile>
     <Compile Include="Oficina\wOficina.xaml.cs">
       <DependentUpon>wOficina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caPeriodoTrabajador\wPeriodoTrabajador.xaml.cs">
+      <DependentUpon>wPeriodoTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caPeriodoTrabajador\wListaPeriodoTrabajador.xaml.cs">
+      <DependentUpon>wListaPeriodoTrabajador.xaml</DependentUpon>
     </Compile>
     <Compile Include="PermisosDias\wListaPermisosDias.xaml.cs">
       <DependentUpon>wListaPermisosDias.xaml</DependentUpon>
@@ -104,10 +110,10 @@
     <Compile Include="ReglasTardanza\wListaReglasTardanzas.xaml.cs">
       <DependentUpon>wListaReglasTardanzas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Trabajadores\wTrabajadores.xaml.cs">
+    <Compile Include="caTrabajadores\wTrabajadores.xaml.cs">
       <DependentUpon>wTrabajadores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Trabajadores\wListaTrabajadores.xaml.cs">
+    <Compile Include="caTrabajadores\wListaTrabajadores.xaml.cs">
       <DependentUpon>wListaTrabajadores.xaml</DependentUpon>
     </Compile>
     <Compile Include="TipoPermisos\wListaTipoPermisos.xaml.cs">
@@ -139,11 +145,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HorarioSemana\wListaHorarioSemana.xaml">
+    <Page Include="caHorarioSemana\wListaHorarioSemana.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="HorarioSemana\wHorarioSemana.xaml">
+    <Page Include="caHorarioSemana\wHorarioSemana.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -177,6 +183,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="caPeriodoTrabajador\wPeriodoTrabajador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caPeriodoTrabajador\wListaPeriodoTrabajador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PermisosDias\wListaPermisosDias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,11 +203,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Trabajadores\wTrabajadores.xaml">
+    <Page Include="caTrabajadores\wTrabajadores.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Trabajadores\wListaTrabajadores.xaml">
+    <Page Include="caTrabajadores\wListaTrabajadores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
