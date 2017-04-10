@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/07/2017 14:10:03
+-- Date Created: 04/09/2017 21:13:38
 
 -- Generated from EDMX file: H:\Software\Proyectos\slnControlDeAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -61,11 +61,9 @@
 
 --    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_LocalOficina`;
 
---    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_HorarioDiaHorario`;
+--    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioDiaHorario`;
 
 --    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioSemanaHorarioDia`;
-
---    ALTER TABLE `HorarioSet` DROP CONSTRAINT `FK_ReglasTardanzaHorario`;
 
 --    ALTER TABLE `AsistenciaSet` DROP CONSTRAINT `FK_TrabajadorAsistencia`;
 
@@ -110,8 +108,6 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `HorarioDiaSet`;
 
     DROP TABLE IF EXISTS `HorarioSemanaSet`;
-
-    DROP TABLE IF EXISTS `ReglasTardanzaSet`;
 
     DROP TABLE IF EXISTS `PermisosHorasSet`;
 
@@ -189,8 +185,7 @@ CREATE TABLE `HorarioSet`(
 	`Entrada` datetime NOT NULL, 
 	`Salida` datetime NOT NULL, 
 	`Nombre` longtext NOT NULL, 
-	`HorarioDia_Id` int NOT NULL, 
-	`ReglasTardanza_Id` int NOT NULL);
+	`TiempoTardanza` datetime NOT NULL);
 
 ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);
 
@@ -201,7 +196,7 @@ ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);
 CREATE TABLE `HorarioDiaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Dia` longtext NOT NULL, 
-	`HorarioSemana_Id` int NOT NULL);
+	`Horario_Id` int NOT NULL);
 
 ALTER TABLE `HorarioDiaSet` ADD PRIMARY KEY (`Id`);
 
@@ -218,19 +213,10 @@ CREATE TABLE `HorarioSemanaSet`(
 	`Jueves` bool NOT NULL, 
 	`Viernes` bool NOT NULL, 
 	`Sabado` bool NOT NULL, 
-	`Domingo` bool NOT NULL);
+	`Domingo` bool NOT NULL, 
+	`HorarioDia_Id` int NOT NULL);
 
 ALTER TABLE `HorarioSemanaSet` ADD PRIMARY KEY (`Id`);
-
-
-
-
-
-CREATE TABLE `ReglasTardanzaSet`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`TiempoTardanza` datetime NOT NULL);
-
-ALTER TABLE `ReglasTardanzaSet` ADD PRIMARY KEY (`Id`);
 
 
 
@@ -352,12 +338,12 @@ CREATE INDEX `IX_FK_LocalOficina`
 
 
 
--- Creating foreign key on `HorarioDia_Id` in table 'HorarioSet'
+-- Creating foreign key on `Horario_Id` in table 'HorarioDiaSet'
 
-ALTER TABLE `HorarioSet`
+ALTER TABLE `HorarioDiaSet`
 ADD CONSTRAINT `FK_HorarioDiaHorario`
-    FOREIGN KEY (`HorarioDia_Id`)
-    REFERENCES `HorarioDiaSet`
+    FOREIGN KEY (`Horario_Id`)
+    REFERENCES `HorarioSet`
         (`Id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -365,17 +351,17 @@ ADD CONSTRAINT `FK_HorarioDiaHorario`
 -- Creating non-clustered index for FOREIGN KEY 'FK_HorarioDiaHorario'
 
 CREATE INDEX `IX_FK_HorarioDiaHorario`
-    ON `HorarioSet`
-    (`HorarioDia_Id`);
+    ON `HorarioDiaSet`
+    (`Horario_Id`);
 
 
 
--- Creating foreign key on `HorarioSemana_Id` in table 'HorarioDiaSet'
+-- Creating foreign key on `HorarioDia_Id` in table 'HorarioSemanaSet'
 
-ALTER TABLE `HorarioDiaSet`
+ALTER TABLE `HorarioSemanaSet`
 ADD CONSTRAINT `FK_HorarioSemanaHorarioDia`
-    FOREIGN KEY (`HorarioSemana_Id`)
-    REFERENCES `HorarioSemanaSet`
+    FOREIGN KEY (`HorarioDia_Id`)
+    REFERENCES `HorarioDiaSet`
         (`Id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -383,26 +369,8 @@ ADD CONSTRAINT `FK_HorarioSemanaHorarioDia`
 -- Creating non-clustered index for FOREIGN KEY 'FK_HorarioSemanaHorarioDia'
 
 CREATE INDEX `IX_FK_HorarioSemanaHorarioDia`
-    ON `HorarioDiaSet`
-    (`HorarioSemana_Id`);
-
-
-
--- Creating foreign key on `ReglasTardanza_Id` in table 'HorarioSet'
-
-ALTER TABLE `HorarioSet`
-ADD CONSTRAINT `FK_ReglasTardanzaHorario`
-    FOREIGN KEY (`ReglasTardanza_Id`)
-    REFERENCES `ReglasTardanzaSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ReglasTardanzaHorario'
-
-CREATE INDEX `IX_FK_ReglasTardanzaHorario`
-    ON `HorarioSet`
-    (`ReglasTardanza_Id`);
+    ON `HorarioSemanaSet`
+    (`HorarioDia_Id`);
 
 
 

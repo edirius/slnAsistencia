@@ -17,7 +17,6 @@ namespace CapaEntities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HorarioSemana()
         {
-            this.HorarioDia = new HashSet<HorarioDia>();
             this.PeriodoTrabajador = new HashSet<PeriodoTrabajador>();
         }
     
@@ -31,8 +30,7 @@ namespace CapaEntities
         public bool Sabado { get; set; }
         public bool Domingo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HorarioDia> HorarioDia { get; set; }
+        public virtual HorarioDia HorarioDia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PeriodoTrabajador> PeriodoTrabajador { get; set; }
     }

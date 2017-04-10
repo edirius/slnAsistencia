@@ -123,14 +123,14 @@ namespace CapaPresentacion
 
         private void mnuHorario_Click(object sender, RoutedEventArgs e)
         {
-            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
-            //fListaOficinas.ShowDialog();
+            caHorario.wListaHorario fListaHorario = new caHorario.wListaHorario();
+            fListaHorario.ShowDialog();
         }
 
         private void mnuHorarioDia_Click(object sender, RoutedEventArgs e)
         {
-            //Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
-            //fListaOficinas.ShowDialog();
+            caHorarioDia.wListaHorarioDia fListaHorarioDia = new caHorarioDia.wListaHorarioDia();
+            fListaHorarioDia.ShowDialog();
         }
 
         private void mnuHorarioSemana_Click(object sender, RoutedEventArgs e)

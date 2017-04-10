@@ -32,7 +32,6 @@ namespace CapaEntities
         public virtual DbSet<Horario> HorarioSet { get; set; }
         public virtual DbSet<HorarioDia> HorarioDiaSet { get; set; }
         public virtual DbSet<HorarioSemana> HorarioSemanaSet { get; set; }
-        public virtual DbSet<ReglasTardanza> ReglasTardanzaSet { get; set; }
         public virtual DbSet<PermisosHoras> PermisosHorasSet { get; set; }
         public virtual DbSet<TipoPermisos> TipoPermisosSet { get; set; }
         public virtual DbSet<PermisosDias> PermisosDiasSet { get; set; }

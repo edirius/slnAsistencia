@@ -1,0 +1,410 @@
+﻿<Window x:Name="wListaHorarios" x:Class="CapaPresentacion.caHorario.wListaHorario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.caHorario"
+        mc:Ignorable="d"
+        Title="Lista de Horarios" Height="522.609" Width="740.041" WindowStartupLocation="CenterScreen" Loaded="wListaHorarios_Loaded">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="283*"/>
+            <ColumnDefinition Width="450*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Lista de Horarios" HorizontalAlignment="Left" Height="27" Margin="10,10,0,0" VerticalAlignment="Top" Width="195"/>
+        <ListBox x:Name="lstListaHorarios" HorizontalAlignment="Left" Height="402" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="241" SelectionChanged="lstListaHorarios_SelectionChanged"/>
+        <Label x:Name="label1" Content="Hora de Entrada :" Grid.Column="1" HorizontalAlignment="Left" Height="31" Grid.Row="1" VerticalAlignment="Top" Width="105" Margin="0,87,0,0"/>
+        <ComboBox x:Name="cboHoraEntrada" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="79,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="63" ToolTip="Seleccione la hora">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FFF7F5F5" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="00"/>
+        </ComboBox>
+        <Label x:Name="label2" Content="Minutos:" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="147,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <ComboBox x:Name="cboMinutosEntrada" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="206,126,0,0" Grid.Row="1" VerticalAlignment="Top" Width="63">
+            <ListBoxItem Content="00"/>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="24"/>
+            <ListBoxItem Content="25"/>
+            <ListBoxItem Content="26"/>
+            <ListBoxItem Content="27"/>
+            <ListBoxItem Content="28"/>
+            <ListBoxItem Content="29"/>
+            <ListBoxItem Content="30"/>
+            <ListBoxItem Content="31"/>
+            <ListBoxItem Content="32"/>
+            <ListBoxItem Content="33"/>
+            <ListBoxItem Content="34"/>
+            <ListBoxItem Content="35"/>
+            <ListBoxItem Content="36"/>
+            <ListBoxItem Content="37"/>
+            <ListBoxItem Content="38"/>
+            <ListBoxItem Content="39"/>
+            <ListBoxItem Content="40"/>
+            <ListBoxItem Content="41"/>
+            <ListBoxItem Content="42"/>
+            <ListBoxItem Content="43"/>
+            <ListBoxItem Content="44"/>
+            <ListBoxItem Content="45"/>
+            <ListBoxItem Content="46"/>
+            <ListBoxItem Content="47"/>
+            <ListBoxItem Content="48"/>
+            <ListBoxItem Content="49"/>
+            <ListBoxItem Content="50"/>
+            <ListBoxItem Content="51"/>
+            <ListBoxItem Content="52"/>
+            <ListBoxItem Content="53"/>
+            <ListBoxItem Content="54"/>
+            <ListBoxItem Content="55"/>
+            <ListBoxItem Content="56"/>
+            <ListBoxItem Content="57"/>
+            <ListBoxItem Content="58"/>
+            <ListBoxItem Content="59"/>
+        </ComboBox>
+        <Label x:Name="label3" Content="Hora:" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="10,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <Label x:Name="label4" Content="Segundos:" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="274,126,0,0" Grid.Row="1" VerticalAlignment="Top" Width="64"/>
+        <ComboBox x:Name="cboSegundosEntrada" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="351,127,0,0" Grid.Row="1" VerticalAlignment="Top" Width="62">
+            <ListBoxItem Content="00"/>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="24"/>
+            <ListBoxItem Content="25"/>
+            <ListBoxItem Content="26"/>
+            <ListBoxItem Content="27"/>
+            <ListBoxItem Content="28"/>
+            <ListBoxItem Content="29"/>
+            <ListBoxItem Content="30"/>
+            <ListBoxItem Content="31"/>
+            <ListBoxItem Content="32"/>
+            <ListBoxItem Content="33"/>
+            <ListBoxItem Content="34"/>
+            <ListBoxItem Content="35"/>
+            <ListBoxItem Content="36"/>
+            <ListBoxItem Content="37"/>
+            <ListBoxItem Content="38"/>
+            <ListBoxItem Content="39"/>
+            <ListBoxItem Content="40"/>
+            <ListBoxItem Content="41"/>
+            <ListBoxItem Content="42"/>
+            <ListBoxItem Content="43"/>
+            <ListBoxItem Content="44"/>
+            <ListBoxItem Content="45"/>
+            <ListBoxItem Content="46"/>
+            <ListBoxItem Content="47"/>
+            <ListBoxItem Content="48"/>
+            <ListBoxItem Content="49"/>
+            <ListBoxItem Content="50"/>
+            <ListBoxItem Content="51"/>
+            <ListBoxItem Content="52"/>
+            <ListBoxItem Content="53"/>
+            <ListBoxItem Content="54"/>
+            <ListBoxItem Content="55"/>
+            <ListBoxItem Content="56"/>
+            <ListBoxItem Content="57"/>
+            <ListBoxItem Content="58"/>
+            <ListBoxItem Content="59"/>
+        </ComboBox>
+        <Label x:Name="label1_Copy" Content="Hora de Salida :" Grid.Column="1" HorizontalAlignment="Left" Height="31" Grid.Row="1" VerticalAlignment="Top" Width="105" Margin="10,180,0,0"/>
+        <ComboBox x:Name="cboHoraSalida" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="79,216,0,0" Grid.Row="1" VerticalAlignment="Top" Width="63" ToolTip="Seleccione la hora">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FFF7F5F5" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="00"/>
+        </ComboBox>
+        <Label x:Name="label2_Copy" Content="Minutos:" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="147,211,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <ComboBox x:Name="cboMinutosSalida" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="211,216,0,0" Grid.Row="1" VerticalAlignment="Top" Width="63">
+            <ListBoxItem Content="00"/>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="24"/>
+            <ListBoxItem Content="25"/>
+            <ListBoxItem Content="26"/>
+            <ListBoxItem Content="27"/>
+            <ListBoxItem Content="28"/>
+            <ListBoxItem Content="29"/>
+            <ListBoxItem Content="30"/>
+            <ListBoxItem Content="31"/>
+            <ListBoxItem Content="32"/>
+            <ListBoxItem Content="33"/>
+            <ListBoxItem Content="34"/>
+            <ListBoxItem Content="35"/>
+            <ListBoxItem Content="36"/>
+            <ListBoxItem Content="37"/>
+            <ListBoxItem Content="38"/>
+            <ListBoxItem Content="39"/>
+            <ListBoxItem Content="40"/>
+            <ListBoxItem Content="41"/>
+            <ListBoxItem Content="42"/>
+            <ListBoxItem Content="43"/>
+            <ListBoxItem Content="44"/>
+            <ListBoxItem Content="45"/>
+            <ListBoxItem Content="46"/>
+            <ListBoxItem Content="47"/>
+            <ListBoxItem Content="48"/>
+            <ListBoxItem Content="49"/>
+            <ListBoxItem Content="50"/>
+            <ListBoxItem Content="51"/>
+            <ListBoxItem Content="52"/>
+            <ListBoxItem Content="53"/>
+            <ListBoxItem Content="54"/>
+            <ListBoxItem Content="55"/>
+            <ListBoxItem Content="56"/>
+            <ListBoxItem Content="57"/>
+            <ListBoxItem Content="58"/>
+            <ListBoxItem Content="59"/>
+        </ComboBox>
+        <Label x:Name="label3_Copy" Content="Hora:" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="10,216,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <Label x:Name="label4_Copy" Content="Segundos:" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="279,211,0,0" Grid.Row="1" VerticalAlignment="Top" Width="67"/>
+        <ComboBox x:Name="cboSegundosSalida" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="351,216,0,0" Grid.Row="1" VerticalAlignment="Top" Width="62">
+            <ListBoxItem Content="00"/>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="24"/>
+            <ListBoxItem Content="25"/>
+            <ListBoxItem Content="26"/>
+            <ListBoxItem Content="27"/>
+            <ListBoxItem Content="28"/>
+            <ListBoxItem Content="29"/>
+            <ListBoxItem Content="30"/>
+            <ListBoxItem Content="31"/>
+            <ListBoxItem Content="32"/>
+            <ListBoxItem Content="33"/>
+            <ListBoxItem Content="34"/>
+            <ListBoxItem Content="35"/>
+            <ListBoxItem Content="36"/>
+            <ListBoxItem Content="37"/>
+            <ListBoxItem Content="38"/>
+            <ListBoxItem Content="39"/>
+            <ListBoxItem Content="40"/>
+            <ListBoxItem Content="41"/>
+            <ListBoxItem Content="42"/>
+            <ListBoxItem Content="43"/>
+            <ListBoxItem Content="44"/>
+            <ListBoxItem Content="45"/>
+            <ListBoxItem Content="46"/>
+            <ListBoxItem Content="47"/>
+            <ListBoxItem Content="48"/>
+            <ListBoxItem Content="49"/>
+            <ListBoxItem Content="50"/>
+            <ListBoxItem Content="51"/>
+            <ListBoxItem Content="52"/>
+            <ListBoxItem Content="53"/>
+            <ListBoxItem Content="54"/>
+            <ListBoxItem Content="55"/>
+            <ListBoxItem Content="56"/>
+            <ListBoxItem Content="57"/>
+            <ListBoxItem Content="58"/>
+            <ListBoxItem Content="59"/>
+        </ComboBox>
+        <Label x:Name="label1_Copy1" Content="Tolerancia de tardanza :" Grid.Column="1" HorizontalAlignment="Left" Height="31" Grid.Row="1" VerticalAlignment="Top" Width="147" Margin="10,273,0,0"/>
+        <Label x:Name="label2_Copy1" Content="Minutos:" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="15,316,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <ComboBox x:Name="cboMinutosTardanza" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="79,321,0,0" Grid.Row="1" VerticalAlignment="Top" Width="63">
+            <ListBoxItem Content="00"/>
+            <ListBoxItem Content="01"/>
+            <ListBoxItem Content="02"/>
+            <ListBoxItem Content="03"/>
+            <ListBoxItem Content="04"/>
+            <ListBoxItem Content="05"/>
+            <ListBoxItem Content="06"/>
+            <ListBoxItem Content="07"/>
+            <ListBoxItem Content="08"/>
+            <ListBoxItem Content="09"/>
+            <ListBoxItem Content="10"/>
+            <ListBoxItem Content="11"/>
+            <ListBoxItem Content="12"/>
+            <ListBoxItem Content="13"/>
+            <ListBoxItem Content="14"/>
+            <ListBoxItem Content="15"/>
+            <ListBoxItem Content="16"/>
+            <ListBoxItem Content="17"/>
+            <ListBoxItem Content="18"/>
+            <ListBoxItem Content="19"/>
+            <ListBoxItem Content="20"/>
+            <ListBoxItem Content="21"/>
+            <ListBoxItem Content="22"/>
+            <ListBoxItem Content="23"/>
+            <ListBoxItem Content="24"/>
+            <ListBoxItem Content="25"/>
+            <ListBoxItem Content="26"/>
+            <ListBoxItem Content="27"/>
+            <ListBoxItem Content="28"/>
+            <ListBoxItem Content="29"/>
+            <ListBoxItem Content="30"/>
+            <ListBoxItem Content="31"/>
+            <ListBoxItem Content="32"/>
+            <ListBoxItem Content="33"/>
+            <ListBoxItem Content="34"/>
+            <ListBoxItem Content="35"/>
+            <ListBoxItem Content="36"/>
+            <ListBoxItem Content="37"/>
+            <ListBoxItem Content="38"/>
+            <ListBoxItem Content="39"/>
+            <ListBoxItem Content="40"/>
+            <ListBoxItem Content="41"/>
+            <ListBoxItem Content="42"/>
+            <ListBoxItem Content="43"/>
+            <ListBoxItem Content="44"/>
+            <ListBoxItem Content="45"/>
+            <ListBoxItem Content="46"/>
+            <ListBoxItem Content="47"/>
+            <ListBoxItem Content="48"/>
+            <ListBoxItem Content="49"/>
+            <ListBoxItem Content="50"/>
+            <ListBoxItem Content="51"/>
+            <ListBoxItem Content="52"/>
+            <ListBoxItem Content="53"/>
+            <ListBoxItem Content="54"/>
+            <ListBoxItem Content="55"/>
+            <ListBoxItem Content="56"/>
+            <ListBoxItem Content="57"/>
+            <ListBoxItem Content="58"/>
+            <ListBoxItem Content="59"/>
+        </ComboBox>
+        <Button x:Name="btnAgregarHorario" Content="Agregar Horario" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="35,379,0,0" Grid.Row="1" VerticalAlignment="Top" Width="122" Click="btnAgregarHorario_Click"/>
+        <Button x:Name="btnBorrarHorario" Content="Borrar Horario" Grid.Column="1" HorizontalAlignment="Left" Height="33" Margin="253,379,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="label5" Content="Nombre :" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="15,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="59"/>
+        <TextBox x:Name="txtNombre" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="105,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="308"/>
+
+    </Grid>
+</Window>

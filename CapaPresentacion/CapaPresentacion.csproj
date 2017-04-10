@@ -77,6 +77,12 @@
     <Compile Include="Asistencia\wListaAsistencias.xaml.cs">
       <DependentUpon>wListaAsistencias.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caHorarioDia\wListaHorarioDia.xaml.cs">
+      <DependentUpon>wListaHorarioDia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caHorario\wListaHorario.xaml.cs">
+      <DependentUpon>wListaHorario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
       <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
@@ -132,6 +138,14 @@
     <Page Include="Asistencia\wListaAsistencias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caHorarioDia\wListaHorarioDia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caHorario\wListaHorario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml">
       <Generator>MSBuild:Compile</Generator>

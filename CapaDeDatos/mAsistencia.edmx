@@ -13,7 +13,6 @@
     <EntitySet Name="HorarioSet" EntityType="mAsistencia.Store.HorarioSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HorarioDiaSet" EntityType="mAsistencia.Store.HorarioDiaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HorarioSemanaSet" EntityType="mAsistencia.Store.HorarioSemanaSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReglasTardanzaSet" EntityType="mAsistencia.Store.ReglasTardanzaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PermisosHorasSet" EntityType="mAsistencia.Store.PermisosHorasSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TipoPermisosSet" EntityType="mAsistencia.Store.TipoPermisosSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PermisosDiasSet" EntityType="mAsistencia.Store.PermisosDiasSet" store:Type="Tables" Schema="dbo" />
@@ -33,10 +32,6 @@
     <AssociationSet Name="HorarioSemanaHorarioDia" Association="mAsistencia.Store.HorarioSemanaHorarioDia">
       <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
       <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
-    </AssociationSet>
-    <AssociationSet Name="ReglasTardanzaHorario" Association="mAsistencia.Store.ReglasTardanzaHorario">
-      <End Role="ReglasTardanza" EntitySet="ReglasTardanzaSet" />
-      <End Role="Horario" EntitySet="HorarioSet" />
     </AssociationSet>
     <AssociationSet Name="TrabajadorAsistencia" Association="mAsistencia.Store.TrabajadorAsistencia">
       <End Role="Trabajador" EntitySet="TrabajadorSet" />
@@ -131,8 +126,7 @@
     <Property Name="Entrada" Type="datetime" Nullable="false" />
     <Property Name="Salida" Type="datetime" Nullable="false" />
     <Property Name="Nombre" Type="longtext" Nullable="false" />
-    <Property Name="HorarioDia_Id" Type="int" Nullable="false" />
-    <Property Name="ReglasTardanza_Id" Type="int" Nullable="false" />
+    <Property Name="TiempoTardanza" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="HorarioDiaSet">
     <Key>
@@ -140,7 +134,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Dia" Type="longtext" Nullable="false" />
-    <Property Name="HorarioSemana_Id" Type="int" Nullable="false" />
+    <Property Name="Horario_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="HorarioSemanaSet">
     <Key>
@@ -155,13 +149,7 @@
     <Property Name="Viernes" Type="bool" Nullable="false" />
     <Property Name="Sabado" Type="bool" Nullable="false" />
     <Property Name="Domingo" Type="bool" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ReglasTardanzaSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TiempoTardanza" Type="datetime" Nullable="false" />
+    <Property Name="HorarioDia_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PermisosHorasSet">
     <Key>
@@ -243,38 +231,26 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="HorarioDiaHorario">
-    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="1" />
-    <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="*" />
+    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="*" />
+    <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="HorarioDia">
+      <Principal Role="Horario">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Horario">
-        <PropertyRef Name="HorarioDia_Id" />
+      <Dependent Role="HorarioDia">
+        <PropertyRef Name="Horario_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="HorarioSemanaHorarioDia">
-    <End Role="HorarioSemana" Type="mAsistencia.Store.HorarioSemanaSet" Multiplicity="1" />
-    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="*" />
+    <End Role="HorarioSemana" Type="mAsistencia.Store.HorarioSemanaSet" Multiplicity="*" />
+    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="HorarioSemana">
+      <Principal Role="HorarioDia">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="HorarioDia">
-        <PropertyRef Name="HorarioSemana_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ReglasTardanzaHorario">
-    <End Role="ReglasTardanza" Type="mAsistencia.Store.ReglasTardanzaSet" Multiplicity="1" />
-    <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ReglasTardanza">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Horario">
-        <PropertyRef Name="ReglasTardanza_Id" />
+      <Dependent Role="HorarioSemana">
+        <PropertyRef Name="HorarioDia_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -446,11 +422,6 @@
             <End Role="HorarioSemana" EntitySet="HorarioSemanaSet" />
             <End Role="HorarioDia" EntitySet="HorarioDiaSet" />
           </AssociationSet>
-          <EntitySet Name="ReglasTardanzaSet" EntityType="mAsistencia.ReglasTardanza" />
-          <AssociationSet Name="ReglasTardanzaHorario" Association="mAsistencia.ReglasTardanzaHorario">
-            <End Role="ReglasTardanza" EntitySet="ReglasTardanzaSet" />
-            <End Role="Horario" EntitySet="HorarioSet" />
-          </AssociationSet>
           <AssociationSet Name="TrabajadorAsistencia" Association="mAsistencia.TrabajadorAsistencia">
             <End Role="Trabajador" EntitySet="TrabajadorSet" />
             <End Role="Asistencia" EntitySet="AsistenciaSet" />
@@ -564,7 +535,7 @@
           <Property Name="Salida" Type="DateTime" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" />
           <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioDiaHorario" FromRole="Horario" ToRole="HorarioDia" />
-          <NavigationProperty Name="ReglasTardanza" Relationship="mAsistencia.ReglasTardanzaHorario" FromRole="Horario" ToRole="ReglasTardanza" />
+          <Property Name="TiempoTardanza" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="HorarioDia">
           <Key>
@@ -576,8 +547,8 @@
           <NavigationProperty Name="HorarioSemana" Relationship="mAsistencia.HorarioSemanaHorarioDia" FromRole="HorarioDia" ToRole="HorarioSemana" />
         </EntityType>
         <Association Name="HorarioDiaHorario">
-          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="1" />
-          <End Type="mAsistencia.Horario" Role="Horario" Multiplicity="*" />
+          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="*" />
+          <End Type="mAsistencia.Horario" Role="Horario" Multiplicity="1" />
         </Association>
         <EntityType Name="HorarioSemana">
           <Key>
@@ -596,20 +567,8 @@
           <Property Name="Domingo" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="HorarioSemanaHorarioDia">
-          <End Type="mAsistencia.HorarioSemana" Role="HorarioSemana" Multiplicity="1" />
-          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="*" />
-        </Association>
-        <EntityType Name="ReglasTardanza">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Horario" Relationship="mAsistencia.ReglasTardanzaHorario" FromRole="ReglasTardanza" ToRole="Horario" />
-          <Property Name="TiempoTardanza" Type="DateTime" Nullable="false" />
-        </EntityType>
-        <Association Name="ReglasTardanzaHorario">
-          <End Type="mAsistencia.ReglasTardanza" Role="ReglasTardanza" Multiplicity="1" />
-          <End Type="mAsistencia.Horario" Role="Horario" Multiplicity="*" />
+          <End Type="mAsistencia.HorarioSemana" Role="HorarioSemana" Multiplicity="*" />
+          <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="1" />
         </Association>
         <Association Name="TrabajadorAsistencia">
           <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
@@ -779,6 +738,7 @@
           <ScalarProperty Name="Entrada" ColumnName="Entrada" />
           <ScalarProperty Name="Salida" ColumnName="Salida" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="TiempoTardanza" ColumnName="TiempoTardanza" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -802,14 +762,6 @@
           <ScalarProperty Name="Viernes" ColumnName="Viernes" />
           <ScalarProperty Name="Sabado" ColumnName="Sabado" />
           <ScalarProperty Name="Domingo" ColumnName="Domingo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ReglasTardanzaSet">
-      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.ReglasTardanza)">
-        <MappingFragment StoreEntitySet="ReglasTardanzaSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="TiempoTardanza" ColumnName="TiempoTardanza" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -888,27 +840,19 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="HorarioDiaHorario" TypeName="mAsistencia.HorarioDiaHorario" StoreEntitySet="HorarioSet">
+    <AssociationSetMapping Name="HorarioDiaHorario" TypeName="mAsistencia.HorarioDiaHorario" StoreEntitySet="HorarioDiaSet">
+      <EndProperty Name="Horario">
+        <ScalarProperty Name="Id" ColumnName="Horario_Id" />
+      </EndProperty>
+      <EndProperty Name="HorarioDia">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HorarioSemanaHorarioDia" TypeName="mAsistencia.HorarioSemanaHorarioDia" StoreEntitySet="HorarioSemanaSet">
       <EndProperty Name="HorarioDia">
         <ScalarProperty Name="Id" ColumnName="HorarioDia_Id" />
       </EndProperty>
-      <EndProperty Name="Horario">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="HorarioSemanaHorarioDia" TypeName="mAsistencia.HorarioSemanaHorarioDia" StoreEntitySet="HorarioDiaSet">
       <EndProperty Name="HorarioSemana">
-        <ScalarProperty Name="Id" ColumnName="HorarioSemana_Id" />
-      </EndProperty>
-      <EndProperty Name="HorarioDia">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="ReglasTardanzaHorario" TypeName="mAsistencia.ReglasTardanzaHorario" StoreEntitySet="HorarioSet">
-      <EndProperty Name="ReglasTardanza">
-        <ScalarProperty Name="Id" ColumnName="ReglasTardanza_Id" />
-      </EndProperty>
-      <EndProperty Name="Horario">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

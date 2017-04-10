@@ -14,12 +14,19 @@ namespace CapaEntities
     
     public partial class Horario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Horario()
+        {
+            this.HorarioDia = new HashSet<HorarioDia>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime Entrada { get; set; }
         public System.DateTime Salida { get; set; }
         public string Nombre { get; set; }
+        public System.DateTime TiempoTardanza { get; set; }
     
-        public virtual HorarioDia HorarioDia { get; set; }
-        public virtual ReglasTardanza ReglasTardanza { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HorarioDia> HorarioDia { get; set; }
     }
 }

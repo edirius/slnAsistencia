@@ -17,14 +17,14 @@ namespace CapaEntities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HorarioDia()
         {
-            this.Horario = new HashSet<Horario>();
+            this.HorarioSemana = new HashSet<HorarioSemana>();
         }
     
         public int Id { get; set; }
         public string Dia { get; set; }
     
+        public virtual Horario Horario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Horario> Horario { get; set; }
-        public virtual HorarioSemana HorarioSemana { get; set; }
+        public virtual ICollection<HorarioSemana> HorarioSemana { get; set; }
     }
 }

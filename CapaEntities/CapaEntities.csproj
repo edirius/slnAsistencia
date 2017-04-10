@@ -95,9 +95,6 @@
     <Compile Include="Prueba.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReglasTardanza.cs">
-      <DependentUpon>mAsistencia.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoPermisos.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
