@@ -159,6 +159,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Inicio" Type="longtext" Nullable="false" />
+    <Property Name="Fin" Type="datetime" Nullable="false" />
     <Property Name="TipoPermisos_Id" Type="int" Nullable="false" />
     <Property Name="PeriodoTrabajador_Id" Type="int" Nullable="true" />
   </EntityType>
@@ -175,6 +176,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Fin" Type="datetime" Nullable="false" />
     <Property Name="TipoPermisos_Id" Type="int" Nullable="false" />
     <Property Name="PeriodoTrabajador_Id" Type="int" Nullable="true" />
   </EntityType>
@@ -614,6 +617,7 @@
           <Property Name="Inicio" Type="String" Nullable="false" />
           <NavigationProperty Name="TipoPermisos" Relationship="mAsistencia.PermisosHorasTipoPermisos" FromRole="PermisosHoras" ToRole="TipoPermisos" />
           <NavigationProperty Name="PeriodoTrabajador" Relationship="mAsistencia.PeriodoTrabajadorPermisosHoras" FromRole="PermisosHoras" ToRole="PeriodoTrabajador" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoPermisos">
           <Key>
@@ -632,6 +636,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="TipoPermisos" Relationship="mAsistencia.PermisosDiasTipoPermisos" FromRole="PermisosDias" ToRole="TipoPermisos" />
           <NavigationProperty Name="PeriodoTrabajador" Relationship="mAsistencia.PeriodoTrabajadorPermisosDias" FromRole="PermisosDias" ToRole="PeriodoTrabajador" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PermisosHorasTipoPermisos">
           <End Type="mAsistencia.PermisosHoras" Role="PermisosHoras" Multiplicity="1" />
@@ -816,6 +822,7 @@
         <MappingFragment StoreEntitySet="PermisosHorasSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Fin" ColumnName="Fin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -832,6 +839,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.PermisosDias)">
         <MappingFragment StoreEntitySet="PermisosDiasSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Fin" ColumnName="Fin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
