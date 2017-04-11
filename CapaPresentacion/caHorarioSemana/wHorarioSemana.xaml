@@ -5,18 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caHorarioSemana"
         mc:Ignorable="d"
-        Title="Horario de la Semana" Height="216.594" Width="332.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Horario de la Semana" Height="330.594" Width="476.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="316,252,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="390,252,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
         <Label x:Name="lblNombres" Content="NOMBRES" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80"/>
         <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="211"/>
-        <CheckBox x:Name="chkLunes" Content="LUNES" HorizontalAlignment="Left" Margin="95,42,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkMartes" Content="MARTES" HorizontalAlignment="Left" Margin="237,42,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkMiercoles" Content="MIERCOLES" HorizontalAlignment="Left" Margin="95,62,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkJueves" Content="JUEVES" HorizontalAlignment="Left" Margin="237,65,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkViernes" Content="VIERNES" HorizontalAlignment="Left" Margin="95,82,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkSabado" Content="SABADO" HorizontalAlignment="Left" Margin="237,85,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="chkDomingo" Content="DOMINGO" HorizontalAlignment="Left" Margin="95,102,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="163,122,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
-        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="237,122,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="205" Width="449">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="TURNO"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="LUNES"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

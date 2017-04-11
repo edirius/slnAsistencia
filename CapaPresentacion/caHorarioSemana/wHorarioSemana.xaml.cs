@@ -31,6 +31,8 @@ namespace CapaPresentacion.caHorarioSemana
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Iniciar();
+            List<string> lista = new List<string> { "C50", "C40", "C30" };
+            //dgHorarioSemanal.Items.Add(1);
         }
 
         private void Iniciar()
@@ -61,6 +63,23 @@ namespace CapaPresentacion.caHorarioSemana
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void dgHorarioSemanal_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "LUNES")
+            {
+                var cb = new DataGridComboBoxColumn();
+                cb.Header = "LUNES";
+                cb.ItemsSource = new List<string> { "C50", "C40", "C30" };
+                cb.SelectedValueBinding = new Binding("LUNES");
+                e.Column = cb;
+            }
+        }
+
+        private void dgHorarioSemanal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
