@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/11/2017 11:13:27
+-- Date Created: 04/11/2017 12:12:57
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -238,7 +238,7 @@ ALTER TABLE `PermisosHorasSet` ADD PRIMARY KEY (`Id`);
 CREATE TABLE `TipoPermisosSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Nombre` longtext NOT NULL, 
-	`Computable` longtext NOT NULL);
+	`Computable` bool NOT NULL);
 
 ALTER TABLE `TipoPermisosSet` ADD PRIMARY KEY (`Id`);
 

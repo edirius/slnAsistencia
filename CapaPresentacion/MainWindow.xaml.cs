@@ -153,7 +153,7 @@ namespace CapaPresentacion
 
         private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)
         {
-            TipoPermisos.wListaTipoPermisos fListaTipoPermisos = new TipoPermisos.wListaTipoPermisos();
+            caTipoPermisos.wListaTipoPermisos fListaTipoPermisos = new caTipoPermisos.wListaTipoPermisos();
             fListaTipoPermisos.ShowDialog();
         }
 

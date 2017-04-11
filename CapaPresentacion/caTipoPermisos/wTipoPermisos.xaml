@@ -1,0 +1,17 @@
+﻿<Window x:Class="CapaPresentacion.caTipoPermisos.wTipoPermisos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.caTipoPermisos"
+        mc:Ignorable="d"
+        Title="Tipo de Permisos" Height="130.255" Width="479.511" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Label x:Name="lblDescripcion" Content="DESCRIPCIÓN" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="89"/>
+        <TextBox x:Name="txtDescripcion" HorizontalAlignment="Left" Height="23" Margin="104,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="349"/>
+        <Label x:Name="lblComputable" Content="COMPUTABLE" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="89"/>
+        <CheckBox x:Name="chkComputable" Content="" HorizontalAlignment="Left" Margin="104,44,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="310,42,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="384,42,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
+    </Grid>
+</Window>
