@@ -26,6 +26,14 @@ namespace CapaDeNegocios.blHorarioDia
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.HorarioDiaSet.Add(miAgregarHorarioDia);
+                if (miAgregarHorarioDia.Horario.Count > 0)
+                {
+                    foreach (Horario item in miAgregarHorarioDia.Horario )
+                    {
+                        bd.HorarioSet.Attach(item);
+                    }
+                    
+                }
                 bd.SaveChanges();
             }
         }

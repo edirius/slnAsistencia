@@ -24,7 +24,7 @@ namespace CapaPresentacion.caHorarioDia
         CapaDeNegocios.blHorarioDia.blHorarioDia oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
         CapaDeNegocios.blHorario.blHorario oblHorario = new CapaDeNegocios.blHorario.blHorario();
 
-        HorarioDia miHorarioDia;
+        HorarioDia miHorarioDia = new HorarioDia();
 
         public wListaHorarioDia()
         {
@@ -43,9 +43,41 @@ namespace CapaPresentacion.caHorarioDia
             //lstHorarios.DisplayMemberPath = "Nombre";
         }
 
+        private ListViewItem GetNodetItem(DependencyObject obj)
+        {
+            if (obj != null)
+            {
+                DependencyObject parent = VisualTreeHelper.GetParent((DependencyObject)obj);
+
+                ListViewItem project = parent as ListViewItem;
+
+                return (project != null) ? project : GetNodetItem(parent);
+            }
+
+            return null;
+        }
+
         private void CheckBox_OnCheck(object sender, RoutedEventArgs e)
         {
+            Horario auxHorario;
+            ListViewItem item = GetNodetItem((DependencyObject)sender);
 
+            auxHorario = (Horario)item.DataContext;
+
+            miHorarioDia.Horario.Add(auxHorario);
+
+            MessageBox.Show(auxHorario.Nombre );
+        }
+
+        private void btnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Desea Agregar el el Horario: " + txtNombre.Text, "Agregar", MessageBoxButton.YesNo) == MessageBoxResult.Yes ) 
+            {
+                miHorarioDia.Nombre = txtNombre.Text;
+                oblHorarioDia.AgregarHorarioDia(miHorarioDia);
+                
+            }
+            
         }
     }
 }

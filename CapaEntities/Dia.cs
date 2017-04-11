@@ -12,19 +12,12 @@ namespace CapaEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class HorarioDia
+    public partial class Dia
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HorarioDia()
-        {
-            this.Horario = new HashSet<Horario>();
-        }
-    
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public string NombreDiaSemana { get; set; }
     
-        public virtual Dia Dia { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Horario> Horario { get; set; }
+        public virtual HorarioDia HorarioDia { get; set; }
+        public virtual HorarioSemana HorarioSemana { get; set; }
     }
 }

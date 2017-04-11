@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/09/2017 21:13:38
+-- Date Created: 04/11/2017 08:41:52
 
 -- Generated from EDMX file: H:\Software\Proyectos\slnControlDeAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -60,10 +60,6 @@
 
 
 --    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_LocalOficina`;
-
---    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioDiaHorario`;
-
---    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_HorarioSemanaHorarioDia`;
 
 --    ALTER TABLE `AsistenciaSet` DROP CONSTRAINT `FK_TrabajadorAsistencia`;
 
@@ -88,6 +84,14 @@
 --    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_PeriodoTrabajadorPermisosDias`;
 
 --    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_OficinaTrabajador`;
+
+--    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_DiaHorarioDia`;
+
+--    ALTER TABLE `DiaSet` DROP CONSTRAINT `FK_HorarioSemanaDia`;
+
+--    ALTER TABLE `HorarioHorarioDia` DROP CONSTRAINT `FK_HorarioHorarioDia_Horario`;
+
+--    ALTER TABLE `HorarioHorarioDia` DROP CONSTRAINT `FK_HorarioHorarioDia_HorarioDia`;
 
 
 -- --------------------------------------------------
@@ -124,6 +128,10 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `PruebaSet`;
 
     DROP TABLE IF EXISTS `PeriodoTrabajadorSet`;
+
+    DROP TABLE IF EXISTS `DiaSet`;
+
+    DROP TABLE IF EXISTS `HorarioHorarioDia`;
 
 SET foreign_key_checks = 1;
 
@@ -195,8 +203,8 @@ ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `HorarioDiaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Dia` longtext NOT NULL, 
-	`Horario_Id` int NOT NULL);
+	`Nombre` longtext NOT NULL, 
+	`Dia_Id` int);
 
 ALTER TABLE `HorarioDiaSet` ADD PRIMARY KEY (`Id`);
 
@@ -206,15 +214,7 @@ ALTER TABLE `HorarioDiaSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `HorarioSemanaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Nombre` longtext NOT NULL, 
-	`Lunes` bool NOT NULL, 
-	`Martes` bool NOT NULL, 
-	`Miercoles` bool NOT NULL, 
-	`Jueves` bool NOT NULL, 
-	`Viernes` bool NOT NULL, 
-	`Sabado` bool NOT NULL, 
-	`Domingo` bool NOT NULL, 
-	`HorarioDia_Id` int NOT NULL);
+	`Nombre` longtext NOT NULL);
 
 ALTER TABLE `HorarioSemanaSet` ADD PRIMARY KEY (`Id`);
 
@@ -313,6 +313,27 @@ ALTER TABLE `PeriodoTrabajadorSet` ADD PRIMARY KEY (`Id`);
 
 
 
+CREATE TABLE `DiaSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`NombreDiaSemana` longtext NOT NULL, 
+	`HorarioSemana_Id` int NOT NULL);
+
+ALTER TABLE `DiaSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `HorarioHorarioDia`(
+	`Horario_Id` int NOT NULL, 
+	`HorarioDia_Id` int NOT NULL);
+
+ALTER TABLE `HorarioHorarioDia` ADD PRIMARY KEY (`Horario_Id`, `HorarioDia_Id`);
+
+
+
+
+
 
 
 -- --------------------------------------------------
@@ -335,42 +356,6 @@ ADD CONSTRAINT `FK_LocalOficina`
 CREATE INDEX `IX_FK_LocalOficina`
     ON `OficinaSet`
     (`Local_Id`);
-
-
-
--- Creating foreign key on `Horario_Id` in table 'HorarioDiaSet'
-
-ALTER TABLE `HorarioDiaSet`
-ADD CONSTRAINT `FK_HorarioDiaHorario`
-    FOREIGN KEY (`Horario_Id`)
-    REFERENCES `HorarioSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HorarioDiaHorario'
-
-CREATE INDEX `IX_FK_HorarioDiaHorario`
-    ON `HorarioDiaSet`
-    (`Horario_Id`);
-
-
-
--- Creating foreign key on `HorarioDia_Id` in table 'HorarioSemanaSet'
-
-ALTER TABLE `HorarioSemanaSet`
-ADD CONSTRAINT `FK_HorarioSemanaHorarioDia`
-    FOREIGN KEY (`HorarioDia_Id`)
-    REFERENCES `HorarioDiaSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HorarioSemanaHorarioDia'
-
-CREATE INDEX `IX_FK_HorarioSemanaHorarioDia`
-    ON `HorarioSemanaSet`
-    (`HorarioDia_Id`);
 
 
 
@@ -587,6 +572,71 @@ ADD CONSTRAINT `FK_OficinaTrabajador`
 CREATE INDEX `IX_FK_OficinaTrabajador`
     ON `TrabajadorSet`
     (`OficinaActual_Id`);
+
+
+
+-- Creating foreign key on `Dia_Id` in table 'HorarioDiaSet'
+
+ALTER TABLE `HorarioDiaSet`
+ADD CONSTRAINT `FK_DiaHorarioDia`
+    FOREIGN KEY (`Dia_Id`)
+    REFERENCES `DiaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DiaHorarioDia'
+
+CREATE INDEX `IX_FK_DiaHorarioDia`
+    ON `HorarioDiaSet`
+    (`Dia_Id`);
+
+
+
+-- Creating foreign key on `HorarioSemana_Id` in table 'DiaSet'
+
+ALTER TABLE `DiaSet`
+ADD CONSTRAINT `FK_HorarioSemanaDia`
+    FOREIGN KEY (`HorarioSemana_Id`)
+    REFERENCES `HorarioSemanaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HorarioSemanaDia'
+
+CREATE INDEX `IX_FK_HorarioSemanaDia`
+    ON `DiaSet`
+    (`HorarioSemana_Id`);
+
+
+
+-- Creating foreign key on `Horario_Id` in table 'HorarioHorarioDia'
+
+ALTER TABLE `HorarioHorarioDia`
+ADD CONSTRAINT `FK_HorarioHorarioDia_Horario`
+    FOREIGN KEY (`Horario_Id`)
+    REFERENCES `HorarioSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+
+-- Creating foreign key on `HorarioDia_Id` in table 'HorarioHorarioDia'
+
+ALTER TABLE `HorarioHorarioDia`
+ADD CONSTRAINT `FK_HorarioHorarioDia_HorarioDia`
+    FOREIGN KEY (`HorarioDia_Id`)
+    REFERENCES `HorarioDiaSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HorarioHorarioDia_HorarioDia'
+
+CREATE INDEX `IX_FK_HorarioHorarioDia_HorarioDia`
+    ON `HorarioHorarioDia`
+    (`HorarioDia_Id`);
 
 
 

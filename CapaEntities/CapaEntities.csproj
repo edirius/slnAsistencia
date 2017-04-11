@@ -56,6 +56,9 @@
     <Compile Include="CronogramaVacaciones.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dia.cs">
+      <DependentUpon>mAsistencia.tt</DependentUpon>
+    </Compile>
     <Compile Include="DiaFestivo.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
