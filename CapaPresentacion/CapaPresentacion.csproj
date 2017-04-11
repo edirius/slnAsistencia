@@ -89,6 +89,9 @@
     <Compile Include="caTipoPermisos\wTipoPermisos.xaml.cs">
       <DependentUpon>wTipoPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caPermisos\wBuscarTrabajadores.xaml.cs">
+      <DependentUpon>wBuscarTrabajadores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
       <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,9 @@
     </Compile>
     <Compile Include="caPeriodoTrabajador\wListaPeriodoTrabajador.xaml.cs">
       <DependentUpon>wListaPeriodoTrabajador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caPermisos\wListaPermisos.xaml.cs">
+      <DependentUpon>wListaPermisos.xaml</DependentUpon>
     </Compile>
     <Compile Include="PermisosDias\wListaPermisosDias.xaml.cs">
       <DependentUpon>wListaPermisosDias.xaml</DependentUpon>
@@ -155,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="caTipoPermisos\wTipoPermisos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caPermisos\wBuscarTrabajadores.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -213,6 +223,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="caPeriodoTrabajador\wListaPeriodoTrabajador.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caPermisos\wListaPermisos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

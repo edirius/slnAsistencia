@@ -28,6 +28,7 @@
             <MenuItem Header="Permisos">
                 <MenuItem x:Name="mnuPermisoHoras" Header="Permiso por Hora" HorizontalAlignment="Left" Width="180" Click="mnuPermisoHoras_Click"/>
                 <MenuItem x:Name="mnuPermisoDias" Header="Permiso por Dia" HorizontalAlignment="Left" Width="180" Click="mnuPermisoDias_Click"/>
+                <MenuItem x:Name="mnuPermisos" Header="Permisos" HorizontalAlignment="Left" Width="180" Click="mnuPermisos_Click"/>
                 <Separator HorizontalAlignment="Left" Height="1" Width="180"/>
                 <MenuItem x:Name="mnuTipoPermisos" Header="Tipo de Permisos" HorizontalAlignment="Left" Width="180" Click="mnuTipoPermisos_Click"/>
             </MenuItem>
