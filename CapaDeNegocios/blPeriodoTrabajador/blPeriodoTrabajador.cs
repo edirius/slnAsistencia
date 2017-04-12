@@ -14,7 +14,9 @@ namespace CapaDeNegocios.blPeriodoTrabajador
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet select d;
+                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet
+                                                                          where d.Trabajador.Id == miTrabajador.Id
+                                                                          select d;
                 return consultaPeriodoTrabajador.ToList();
             }
         }
@@ -23,6 +25,9 @@ namespace CapaDeNegocios.blPeriodoTrabajador
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
+                bd.TrabajadorSet.Attach(miAgregarPeriodoTrabajador.Trabajador);
+                bd.OficinaSet.Attach(miAgregarPeriodoTrabajador.Oficina);
+                bd.HorarioSemanaSet.Attach(miAgregarPeriodoTrabajador.HorarioSemana);
                 bd.PeriodoTrabajadorSet.Add(miAgregarPeriodoTrabajador);
                 bd.SaveChanges();
             }

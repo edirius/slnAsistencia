@@ -10,12 +10,12 @@
         <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="163,122,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
         <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="237,122,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
         <Label x:Name="label" Content="OFICINA" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboOficina" HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="172"/>
+        <ComboBox x:Name="cboOficinas" HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="cboOficinas_SelectionChanged"/>
         <Label x:Name="label_Copy" Content="HORARIO SEMANAL" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboHorarioSemana" HorizontalAlignment="Left" Margin="134,37,0,0" VerticalAlignment="Top" Width="172"/>
+        <ComboBox x:Name="cboHorarioSemana" HorizontalAlignment="Left" Margin="134,37,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="cboHorarioSemana_SelectionChanged"/>
         <Label x:Name="label_Copy1" Content="FECHA INICIO" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="134,64,0,0" VerticalAlignment="Top" Width="172"/>
+        <DatePicker x:Name="dtpInicio" HorizontalAlignment="Left" Margin="134,64,0,0" VerticalAlignment="Top" Width="172"/>
         <Label x:Name="label_Copy2" Content="FECHA FIN" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="134,93,0,0" VerticalAlignment="Top" Width="172"/>
+        <DatePicker x:Name="dtpFin"  HorizontalAlignment="Left" Margin="134,93,0,0" VerticalAlignment="Top" Width="172"/>
     </Grid>
 </Window>

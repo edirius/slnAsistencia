@@ -139,18 +139,6 @@ namespace CapaPresentacion
             fListaHorarioSemana.ShowDialog();
         }
 
-        private void mnuPermisoHoras_Click(object sender, RoutedEventArgs e)
-        {
-            PermisosHoras.wListaPermisosHoras fListaPermisosHoras = new PermisosHoras.wListaPermisosHoras();
-            fListaPermisosHoras.ShowDialog();
-        }
-
-        private void mnuPermisoDias_Click(object sender, RoutedEventArgs e)
-        {
-            PermisosDias.wListaPermisosDias fListaPermisosDias = new PermisosDias.wListaPermisosDias();
-            fListaPermisosDias.ShowDialog();
-        }
-
         private void mnuPermisos_Click(object sender, RoutedEventArgs e)
         {
             caPermisos.wListaPermisos fListaPermisos = new caPermisos.wListaPermisos();

@@ -135,6 +135,7 @@ namespace CapaPresentacion.caTrabajadores
                 }
                 caPeriodoTrabajador.wListaPeriodoTrabajador fPeriodoTrabajador = new caPeriodoTrabajador.wListaPeriodoTrabajador();
                 fPeriodoTrabajador.txtTrabajador.Text = miTrabajador.Nombre + ' ' + miTrabajador.ApellidoPaterno + ' ' + miTrabajador.ApellidoMaterno;
+                fPeriodoTrabajador.miTrabajador = miTrabajador;
                 if (fPeriodoTrabajador.ShowDialog() == true)
                 {
                     //oblTrabajador.ModificarTrabajador(fPeriodoTrabajador.miTrabajador);

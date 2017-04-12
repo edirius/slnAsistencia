@@ -8,8 +8,8 @@
         Title="Sistema Control de Asistencia" Height="1148.684" Width="828.783" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="68*"/>
-            <ColumnDefinition Width="753*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Menu x:Name="menu" Height="38" Margin="0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem Header="Menu Principal">
@@ -26,9 +26,7 @@
                 <MenuItem x:Name="mnuHorarioSemana" Header="Horario Semana" HorizontalAlignment="Left" Width="170" Click="mnuHorarioSemana_Click"/>
             </MenuItem>
             <MenuItem Header="Permisos">
-                <MenuItem x:Name="mnuPermisoHoras" Header="Permiso por Hora" HorizontalAlignment="Left" Width="180" Click="mnuPermisoHoras_Click"/>
-                <MenuItem x:Name="mnuPermisoDias" Header="Permiso por Dia" HorizontalAlignment="Left" Width="180" Click="mnuPermisoDias_Click"/>
-                <MenuItem x:Name="mnuPermisos" Header="Permisos" HorizontalAlignment="Left" Width="180" Click="mnuPermisos_Click"/>
+                <MenuItem x:Name="mnuPermisos" Header="Asignar Permisos" HorizontalAlignment="Left" Width="180" Click="mnuPermisos_Click"/>
                 <Separator HorizontalAlignment="Left" Height="1" Width="180"/>
                 <MenuItem x:Name="mnuTipoPermisos" Header="Tipo de Permisos" HorizontalAlignment="Left" Width="180" Click="mnuTipoPermisos_Click"/>
             </MenuItem>

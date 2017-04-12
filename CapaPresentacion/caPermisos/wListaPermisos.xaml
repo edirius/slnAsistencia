@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caPermisos"
         mc:Ignorable="d"
-        Title="Permisos" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Title="Permisos" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
+        <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Height="38" Margin="172,350,0,0" VerticalAlignment="Top" Width="69" Click="btnNuevo_Click"/>
+        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="38" Margin="246,350,0,0" VerticalAlignment="Top" Width="69" Click="btnModificar_Click"/>
+        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="320,350,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,350,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
+        <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="406,13,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click"/>
         <Label x:Name="label" Content="TRABAJADOR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="84"/>
-        <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="99,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="295"/>
-        <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="399,13,0,0" VerticalAlignment="Top" Width="75"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="303" Width="464"/>
+        <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="99,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
+        <DataGrid x:Name="dgPermisos" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="303" Width="453"/>
     </Grid>
 </Window>

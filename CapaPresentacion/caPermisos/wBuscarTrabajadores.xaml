@@ -5,17 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caPermisos"
         mc:Ignorable="d"
-        Title="Buscar Trabajadores" Height="448.747" Width="501.868" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
-    <Grid Loaded="Grid_Loaded">
-        <Label x:Name="lblLocal" Content="LOCAL" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="69"/>
-        <ComboBox x:Name="cboLocales" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top" Width="390" SelectionChanged="cbolocales_SelectionChanged"/>
-        <Label x:Name="lblOficinas" Content="OFICINA" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="69"/>
-        <ComboBox x:Name="cboOficinas" HorizontalAlignment="Left" Margin="84,37,0,0" VerticalAlignment="Top" Width="390" SelectionChanged="cbooficinas_SelectionChanged"/>
-        <DataGrid x:Name="dgTrabajadores" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Height="290" Width="464" SelectionChanged="dgTrabajadores_SelectionChanged" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True"/>
-        <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Height="38" Margin="183,359,0,0" VerticalAlignment="Top" Width="69" Click="btnNuevo_Click"/>
-        <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="38" Margin="257,359,0,0" VerticalAlignment="Top" Width="69" Click="btnModificar_Click"/>
-        <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="331,359,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="405,359,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
-        <Button x:Name="btnPeriodo" Content="PERIODOS" HorizontalAlignment="Left" Height="38" Margin="109,359,0,0" VerticalAlignment="Top" Width="69" Click="btnPeriodo_Click"/>
+        Title="Buscar Trabajadores" Height="448.747" Width="501.868" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <DataGrid x:Name="dgTrabajadores" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Height="290" Width="464" SelectionChanged="dgTrabajadores_SelectionChanged" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True" MouseDoubleClick="dgTrabajadores_MouseDoubleClick"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="331,359,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="405,359,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click" RenderTransformOrigin="0.64,4.674"/>
     </Grid>
 </Window>

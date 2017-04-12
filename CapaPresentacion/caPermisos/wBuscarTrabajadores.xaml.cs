@@ -21,11 +21,7 @@ namespace CapaPresentacion.caPermisos
     /// </summary>
     public partial class wBuscarTrabajadores : Window
     {
-        public Local miLocal = new Local();
-        public CapaEntities.Oficina miOficina = new CapaEntities.Oficina();
         public Trabajador miTrabajador = new Trabajador();
-        CapaDeNegocios.blLocal.blLocal oblLocal = new CapaDeNegocios.blLocal.blLocal();
-        CapaDeNegocios.blOficina.blOficina oblOficina = new CapaDeNegocios.blOficina.blOficina();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
 
         public wBuscarTrabajadores()
@@ -33,27 +29,19 @@ namespace CapaPresentacion.caPermisos
             InitializeComponent();
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarLocales();
+            CargarTrabajadores();
         }
 
-        private void cbolocales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (cboLocales.DisplayMemberPath != "")
-            {
-                miLocal.Id = Convert.ToInt32(cboLocales.SelectedValue);
-                CargarOficinas();
-            }
+            DialogResult = true;
         }
 
-        private void cbooficinas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
         {
-            if (cboOficinas.DisplayMemberPath != "")
-            {
-                miOficina.Id = Convert.ToInt32(cboOficinas.SelectedValue);
-                CargarTrabajadores();
-            }
+            DialogResult = false;
         }
 
         private void dgTrabajadores_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,109 +49,14 @@ namespace CapaPresentacion.caPermisos
             miTrabajador = (Trabajador)dgTrabajadores.SelectedItem;
         }
 
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        private void dgTrabajadores_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            try
-            {
-                if (miOficina.Id == 0)
-                {
-                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADA UN A OFICINA.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-                caTrabajadores.wTrabajadores fTrabajadores = new caTrabajadores.wTrabajadores();
-                fTrabajadores.miTrabajador = new Trabajador();
-                fTrabajadores.miTrabajador.OficinaActual = miOficina;
-                if (fTrabajadores.ShowDialog() == true)
-                {
-                    oblTrabajador.AgregarTrabajador(fTrabajadores.miTrabajador);
-                }
-                CargarTrabajadores();
-            }
-            catch
-            { }
-        }
-
-        private void btnModificar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (miTrabajador.Id == 0)
-                {
-                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-                caTrabajadores.wTrabajadores fTrabajadores = new caTrabajadores.wTrabajadores();
-                fTrabajadores.miTrabajador = miTrabajador;
-                if (fTrabajadores.ShowDialog() == true)
-                {
-                    oblTrabajador.ModificarTrabajador(fTrabajadores.miTrabajador);
-                }
-                CargarTrabajadores();
-            }
-            catch
-            { }
-        }
-
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (miTrabajador.Id == 0)
-                {
-                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                oblTrabajador.EliminarTrabajador(miTrabajador);
-                CargarTrabajadores();
-            }
-            catch
-            { }
-        }
-
-        private void btnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void btnPeriodo_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (miTrabajador.Id == 0)
-                {
-                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-                caPeriodoTrabajador.wListaPeriodoTrabajador fPeriodoTrabajador = new caPeriodoTrabajador.wListaPeriodoTrabajador();
-                fPeriodoTrabajador.txtTrabajador.Text = miTrabajador.Nombre + ' ' + miTrabajador.ApellidoPaterno + ' ' + miTrabajador.ApellidoMaterno;
-                if (fPeriodoTrabajador.ShowDialog() == true)
-                {
-                    //oblTrabajador.ModificarTrabajador(fPeriodoTrabajador.miTrabajador);
-                }
-                CargarTrabajadores();
-            }
-            catch
-            { }
-        }
-
-        private void CargarLocales()
-        {
-            cboLocales.ItemsSource = oblLocal.ListarLocales();
-            cboLocales.DisplayMemberPath = "Nombre";
-            cboLocales.SelectedValuePath = "Id";
-            cboLocales.SelectedIndex = -1;
-        }
-
-        private void CargarOficinas()
-        {
-            cboOficinas.ItemsSource = oblOficina.ListarOficinas(miLocal);
-            cboOficinas.DisplayMemberPath = "Nombre";
-            cboOficinas.SelectedValuePath = "Id";
-            cboOficinas.SelectedIndex = -1;
+            DialogResult = true;
         }
 
         private void CargarTrabajadores()
         {
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores(miOficina);
+            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
             dgTrabajadores.ItemsSource = ListaTrabajadores;
             if (dgTrabajadores.Items.Count > 0)
             {

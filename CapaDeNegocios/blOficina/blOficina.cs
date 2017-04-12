@@ -18,13 +18,19 @@ namespace CapaDeNegocios.blOficina
                 var consultaOficinas = from d in bd.OficinaSet.Include("OficinasHijas")
                                                         where (d.Local.Id == miLocal.Id) /*&& (d.Oficina2 == null)*/
                                                         select d;
-
-               
                 return  consultaOficinas.ToList() ;
             }
         }
 
-       
+        public ICollection<Oficina> ListarOficinas()
+        {
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                var consultaOficinas = from d in bd.OficinaSet.Include("OficinasHijas")
+                                       select d;
+                return consultaOficinas.ToList();
+            }
+        }
 
         public void AgregarOficina(Oficina miAgregarOficina)
         {

@@ -39,7 +39,6 @@ namespace CapaPresentacion.caPeriodoTrabajador
         private void dgHorarioSemana_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             miPeriodoTrabajador = (PeriodoTrabajador)dgPeriodoTrabajador.SelectedItem;
-
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -48,13 +47,18 @@ namespace CapaPresentacion.caPeriodoTrabajador
             {
                 caPeriodoTrabajador.wPeriodoTrabajador fPeriodoTrabajador = new caPeriodoTrabajador.wPeriodoTrabajador();
                 fPeriodoTrabajador.miPeriodoTrabajador = new PeriodoTrabajador();
+                fPeriodoTrabajador.miPeriodoTrabajador.Inicio = DateTime.Today;
+                fPeriodoTrabajador.miPeriodoTrabajador.Fin = DateTime.Today;
                 if (fPeriodoTrabajador.ShowDialog() == true)
                 {
+                    fPeriodoTrabajador.miPeriodoTrabajador.Trabajador = miTrabajador;
+                    fPeriodoTrabajador.miPeriodoTrabajador.Oficina = fPeriodoTrabajador.miOficina;
+                    fPeriodoTrabajador.miPeriodoTrabajador.HorarioSemana = fPeriodoTrabajador.miHorarioSemana;
                     oblPeriodoTrabajador.AgregarPeriodoTrabajador(fPeriodoTrabajador.miPeriodoTrabajador);
                 }
                 CargarPeriodoTrabajador();
             }
-            catch
+            catch (Exception m)
             { }
         }
 

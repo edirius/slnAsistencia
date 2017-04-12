@@ -22,6 +22,10 @@ namespace CapaPresentacion.caPeriodoTrabajador
     public partial class wPeriodoTrabajador : Window
     {
         public PeriodoTrabajador miPeriodoTrabajador;
+        public CapaEntities.Oficina miOficina = new CapaEntities.Oficina();
+        public CapaEntities.HorarioSemana miHorarioSemana = new HorarioSemana();
+        CapaDeNegocios.blOficina.blOficina oblOficina = new CapaDeNegocios.blOficina.blOficina();
+        CapaDeNegocios.blHorarioSemana.blHorarioSemana oblHorarioSemana = new CapaDeNegocios.blHorarioSemana.blHorarioSemana();
 
         public wPeriodoTrabajador()
         {
@@ -30,25 +34,59 @@ namespace CapaPresentacion.caPeriodoTrabajador
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CargarOficinas();
+            CargarHorarioSemana();
             Iniciar();
         }
 
         private void Iniciar()
         {
-            //datepi.IsChecked = miPeriodoTrabajador.Lunes;
-            //chkMartes.IsChecked = miHorarioSemana.Martes;
+            dtpInicio.SelectedDate = miPeriodoTrabajador.Inicio;
+            dtpFin.SelectedDate = miPeriodoTrabajador.Fin;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            //miHorarioSemana.Lunes = chkLunes.IsChecked.Value;
-            //miHorarioSemana.Martes = chkMartes.IsChecked.Value;
+            miPeriodoTrabajador.Inicio = dtpInicio.DisplayDate;
+            miPeriodoTrabajador.Fin = dtpFin.DisplayDate;
             this.DialogResult = true;
         }
 
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void cboOficinas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboOficinas.DisplayMemberPath != "")
+            {
+                miOficina.Id = Convert.ToInt32(cboOficinas.SelectedValue);
+            }
+        }
+
+        private void cboHorarioSemana_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboHorarioSemana.DisplayMemberPath != "")
+            {
+                miHorarioSemana.Id = Convert.ToInt32(cboHorarioSemana.SelectedValue);
+            }
+        }
+
+        private void CargarHorarioSemana()
+        {
+            cboHorarioSemana.ItemsSource = oblHorarioSemana.ListarHorarioSemanas();
+            cboHorarioSemana.DisplayMemberPath = "Nombre";
+            cboHorarioSemana.SelectedValuePath = "Id";
+            cboHorarioSemana.SelectedIndex = -1;
+        }
+
+        private void CargarOficinas()
+        {
+            cboOficinas.ItemsSource = oblOficina.ListarOficinas();
+            cboOficinas.DisplayMemberPath = "Nombre";
+            cboOficinas.SelectedValuePath = "Id";
+            cboOficinas.SelectedIndex = -1;
         }
     }
 }
