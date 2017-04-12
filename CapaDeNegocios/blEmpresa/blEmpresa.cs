@@ -10,7 +10,6 @@ namespace CapaDeNegocios.blEmpresa
 {
     public class blEmpresa
     {
-
         public ICollection<Empresa> ListarEmpresas()
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

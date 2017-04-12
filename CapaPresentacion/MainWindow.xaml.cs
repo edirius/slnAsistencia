@@ -151,9 +151,15 @@ namespace CapaPresentacion
             fListaPermisosDias.ShowDialog();
         }
 
+        private void mnuPermisos_Click(object sender, RoutedEventArgs e)
+        {
+            caPermisos.wListaPermisos fListaPermisos = new caPermisos.wListaPermisos();
+            fListaPermisos.ShowDialog();
+        }
+
         private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)
         {
-            TipoPermisos.wListaTipoPermisos fListaTipoPermisos = new TipoPermisos.wListaTipoPermisos();
+            caTipoPermisos.wListaTipoPermisos fListaTipoPermisos = new caTipoPermisos.wListaTipoPermisos();
             fListaTipoPermisos.ShowDialog();
         }
 

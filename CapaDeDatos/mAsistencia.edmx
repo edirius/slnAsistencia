@@ -169,7 +169,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="longtext" Nullable="false" />
-    <Property Name="Computable" Type="longtext" Nullable="false" />
+    <Property Name="Computable" Type="bool" Nullable="false" />
   </EntityType>
   <EntityType Name="PermisosDiasSet">
     <Key>
@@ -627,7 +627,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" />
           <NavigationProperty Name="PermisosHoras" Relationship="mAsistencia.PermisosHorasTipoPermisos" FromRole="TipoPermisos" ToRole="PermisosHoras" />
           <NavigationProperty Name="PermisosDias" Relationship="mAsistencia.PermisosDiasTipoPermisos" FromRole="TipoPermisos" ToRole="PermisosDias" />
-          <Property Name="Computable" Type="String" Nullable="false" />
+          <Property Name="Computable" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PermisosDias">
           <Key>
@@ -640,11 +640,11 @@
           <Property Name="Fin" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PermisosHorasTipoPermisos">
-          <End Type="mAsistencia.PermisosHoras" Role="PermisosHoras" Multiplicity="1" />
+          <End Type="mAsistencia.PermisosHoras" Role="PermisosHoras" Multiplicity="*" />
           <End Type="mAsistencia.TipoPermisos" Role="TipoPermisos" Multiplicity="1" />
         </Association>
         <Association Name="PermisosDiasTipoPermisos">
-          <End Type="mAsistencia.PermisosDias" Role="PermisosDias" Multiplicity="1" />
+          <End Type="mAsistencia.PermisosDias" Role="PermisosDias" Multiplicity="*" />
           <End Type="mAsistencia.TipoPermisos" Role="TipoPermisos" Multiplicity="1" />
         </Association>
         <EntityType Name="DiaFestivo">

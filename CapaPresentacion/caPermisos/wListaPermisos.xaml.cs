@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CapaPresentacion.TipoPermisos
+namespace CapaPresentacion.caPermisos
 {
     /// <summary>
-    /// Lógica de interacción para wListaTipoPermisos.xaml
+    /// Lógica de interacción para wListaPermisos.xaml
     /// </summary>
-    public partial class wListaTipoPermisos : Window
+    public partial class wListaPermisos : Window
     {
-        public wListaTipoPermisos()
+        public wListaPermisos()
         {
             InitializeComponent();
         }

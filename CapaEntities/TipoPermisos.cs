@@ -14,11 +14,20 @@ namespace CapaEntities
     
     public partial class TipoPermisos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TipoPermisos()
+        {
+            this.PermisosHoras = new HashSet<PermisosHoras>();
+            this.PermisosDias = new HashSet<PermisosDias>();
+        }
+    
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Computable { get; set; }
+        public bool Computable { get; set; }
     
-        public virtual PermisosHoras PermisosHoras { get; set; }
-        public virtual PermisosDias PermisosDias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PermisosHoras> PermisosHoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PermisosDias> PermisosDias { get; set; }
     }
 }
