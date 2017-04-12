@@ -37,6 +37,7 @@ namespace CapaPresentacion.caHorarioSemana
         private void dgHorarioSemana_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             miHorarioSemana = (CapaEntities.HorarioSemana)dgHorarioSemana.SelectedItem;
+            
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -45,6 +46,17 @@ namespace CapaPresentacion.caHorarioSemana
             {
                 caHorarioSemana.wHorarioSemana fHorarioSemana = new caHorarioSemana.wHorarioSemana();
                 fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
+                string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+
+                for (int i = 0; i < 7; i++)
+                {
+                    Dia auxDia = new Dia();
+                    auxDia.HorarioSemana = fHorarioSemana.miHorarioSemana;
+                    auxDia.NombreDiaSemana = DiasSemana[i];
+                    fHorarioSemana.miHorarioSemana.Dia.Add(auxDia);
+                } 
+                
+
                 if (fHorarioSemana.ShowDialog() == true)
                 {
                     oblHorarioSemana.AgregarHorarioSemana(fHorarioSemana.miHorarioSemana);

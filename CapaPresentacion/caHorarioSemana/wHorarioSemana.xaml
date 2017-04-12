@@ -11,10 +11,15 @@
         <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="390,252,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
         <Label x:Name="lblNombres" Content="NOMBRES" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80"/>
         <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="211"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="205" Width="449">
+        <DataGrid x:Name="dtgListaDias" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="205" Width="449">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="TURNO"/>
-                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="LUNES"/>
+                
+                <DataGridComboBoxColumn x:Name="cboHorarios" Header="Seleccione Horario" SelectedValueBinding="{Binding Nombre}" 
+    DisplayMemberPath="Name" 
+    SelectedValuePath="ID">
+                    
+                </DataGridComboBoxColumn>
+               
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

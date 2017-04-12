@@ -15,10 +15,13 @@
             <ColumnDefinition Width="241*"/>
             <ColumnDefinition Width="398*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="lstHorariosDia" HorizontalAlignment="Left" Height="258" Margin="26,27,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2">
+        <ListView x:Name="lstHorariosDia" HorizontalAlignment="Left" Height="258" Margin="26,27,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2" SelectionChanged="lstHorariosDia_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn
+                        Header="Horarios Dia"
+             DisplayMemberBinding="{Binding Path=Nombre}"
+                    />
                 </GridView>
             </ListView.View>
         </ListView>
