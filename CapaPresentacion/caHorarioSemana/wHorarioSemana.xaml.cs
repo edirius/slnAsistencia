@@ -22,7 +22,7 @@ namespace CapaPresentacion.caHorarioSemana
     public partial class wHorarioSemana : Window
     {
         public CapaEntities.HorarioSemana miHorarioSemana;
-
+        CapaDeNegocios.blHorarioDia.blHorarioDia  oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
         public wHorarioSemana()
         {
             InitializeComponent();
@@ -38,13 +38,9 @@ namespace CapaPresentacion.caHorarioSemana
         private void Iniciar()
         {
             txtNombres.Text = miHorarioSemana.Nombre;
-            //chkLunes.IsChecked = miHorarioSemana.Lunes;
-            //chkMartes.IsChecked = miHorarioSemana.Martes;
-            //chkMiercoles.IsChecked = miHorarioSemana.Miercoles;
-            //chkJueves.IsChecked = miHorarioSemana.Jueves;
-            //chkViernes.IsChecked = miHorarioSemana.Viernes;
-            //chkSabado.IsChecked = miHorarioSemana.Sabado;
-            //chkDomingo.IsChecked = miHorarioSemana.Domingo;
+            dtgListaDias.ItemsSource = miHorarioSemana.Dia;
+            cboHorarios.ItemsSource = oblHorarioDia.ListarHorarioDias();
+            cboHorarios.DisplayMemberPath = "Nombre";
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
@@ -67,14 +63,14 @@ namespace CapaPresentacion.caHorarioSemana
 
         private void dgHorarioSemanal_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "LUNES")
-            {
-                var cb = new DataGridComboBoxColumn();
-                cb.Header = "LUNES";
-                cb.ItemsSource = new List<string> { "C50", "C40", "C30" };
-                cb.SelectedValueBinding = new Binding("LUNES");
-                e.Column = cb;
-            }
+            //if (e.PropertyName == "LUNES")
+            //{
+            //    var cb = new DataGridComboBoxColumn();
+            //    cb.Header = "LUNES";
+            //    cb.ItemsSource = new List<string> { "C50", "C40", "C30" };
+            //    cb.SelectedValueBinding = new Binding("LUNES");
+            //    e.Column = cb;
+            //}
         }
 
         private void dgHorarioSemanal_SelectionChanged(object sender, SelectionChangedEventArgs e)
