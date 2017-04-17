@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 using CapaDeNegocios;
 using CapaEntities;
 
@@ -47,8 +48,13 @@ namespace CapaPresentacion.caPermisos
                 //}
                 caPermisos.wPermisos fPermisos = new wPermisos();
                 fPermisos.miPermiso = new PermisosDias();
+                fPermisos.miPermiso.Inicio = DateTime.Today;
+                fPermisos.miPermiso.Fin = DateTime.Today;
+                fPermisos.Owner = this.Owner;
                 if (fPermisos.ShowDialog() == true)
                 {
+                    fPermisos.miPermiso.TipoPermisos = fPermisos.miTipoPermisos;
+                    fPermisos.miPermiso.PeriodoTrabajador = miPeriodoTrabajador;
                     oblPermisos.AgregarPermisosDias(fPermisos.miPermiso);
                 }
                 CargarPermisos();
@@ -59,38 +65,39 @@ namespace CapaPresentacion.caPermisos
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (miTrabajador.Id == 0)
-            //    {
-            //        MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-            //        return;
-            //    }
-            //    caTrabajadores.wTrabajadores fTrabajadores = new caTrabajadores.wTrabajadores();
-            //    fTrabajadores.miTrabajador = miTrabajador;
-            //    if (fTrabajadores.ShowDialog() == true)
-            //    {
-            //        oblTrabajador.ModificarTrabajador(fTrabajadores.miTrabajador);
-            //    }
-            //    CargarTrabajadores();
-            //}
-            //catch
-            //{ }
+            try
+            {
+                if (miPermisos.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN PERMISO DEL TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                caPermisos.wPermisos fPermisos = new caPermisos.wPermisos();
+                fPermisos.miPermiso = miPermisos;
+                fPermisos.Owner = this.Owner;
+                if (fPermisos.ShowDialog() == true)
+                {
+                    oblPermisos.ModificarPermisosDias(fPermisos.miPermiso);
+                }
+                CargarPermisos();
+            }
+            catch
+            { }
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (miTrabajador.Id == 0)
-            //    {
-            //        MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-            //    }
-            //    oblTrabajador.EliminarTrabajador(miTrabajador);
-            //    CargarTrabajadores();
-            //}
-            //catch
-            //{ }
+            try
+            {
+                if (miPermisos.Id == 0)
+                {
+                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN PERMISO DEL TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                oblPermisos.EliminarPermisosDias(miPermisos);
+                CargarPermisos();
+            }
+            catch
+            { }
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -114,17 +121,24 @@ namespace CapaPresentacion.caPermisos
             { }
         }
 
+        private void dgPermisos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            miPermisos = (PermisosDias)dgPermisos.SelectedItem;
+        }
+
         private void CargarPeriodoTrabajador(Trabajador miTrabajador)
         {
             ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
-            //cboOficinas.DisplayMemberPath = "Nombre";
-            //cboOficinas.SelectedValuePath = "Id";
-            //cboOficinas.SelectedIndex = -1;
+            foreach (PeriodoTrabajador name in ListaPeriodoTrabajador)
+            {
+                miPeriodoTrabajador = name;
+            }
         }
 
         private void CargarPermisos()
         {
-
+            ICollection<PermisosDias> ListaPermisoDias = oblPermisos.ListarPermisosDias();
+            dgPermisos.ItemsSource = ListaPermisoDias;
         }
     }
 }

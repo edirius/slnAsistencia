@@ -38,18 +38,14 @@ namespace CapaPresentacion.caPermisos
 
         private void Iniciar()
         {
-            //txtNombres.Text = miTrabajador.Nombre;
-            //txtAPaterno.Text = miTrabajador.ApellidoPaterno;
-            //txtAMaterno.Text = miTrabajador.ApellidoPaterno;
-            //txtDNI.Text = miTrabajador.DNI;
+            dtpInicio.SelectedDate = miPermiso.Inicio;
+            dtpFin.SelectedDate = miPermiso.Fin;
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            //miTrabajador.Nombre = txtNombres.Text;
-            //miTrabajador.ApellidoPaterno = txtAPaterno.Text;
-            //miTrabajador.ApellidoMaterno = txtAMaterno.Text;
-            //miTrabajador.DNI = txtDNI.Text;
+            miPermiso.Inicio = dtpInicio.DisplayDate;
+            miPermiso.Fin = dtpFin.DisplayDate;
             this.DialogResult = true;
         }
 

@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="caRecordAsistencia\wListaRecordAsistencia.xaml.cs">
+      <DependentUpon>wListaRecordAsistencia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caTipoPermisos\wListaTipoPermisos.xaml.cs">
       <DependentUpon>wListaTipoPermisos.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
     <Page Include="AgenciaAgraria\wAgenciaAgraria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caRecordAsistencia\wListaRecordAsistencia.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="caTipoPermisos\wListaTipoPermisos.xaml">
       <Generator>MSBuild:Compile</Generator>

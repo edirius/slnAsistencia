@@ -64,6 +64,10 @@
     <Compile Include="blDiaFestivo\blDiaFestivo.cs" />
     <Compile Include="blAsistencia\blAsistencia.cs" />
     <Compile Include="blTrabajador\blTrabajador.cs" />
+    <Compile Include="cblAsistenciaAnual\blAsistenciaAnual.cs" />
+    <Compile Include="cblAsistenciaAnual\cAsistenciaDia.cs" />
+    <Compile Include="cblAsistenciaAnual\cAsistenciaMeses.cs" />
+    <Compile Include="cblAsistenciaAnual\cAsistenciaAnual.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="cReglaNegociosException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -121,6 +121,13 @@ namespace CapaPresentacion
             fListaAsistencias.ShowDialog();
         }
 
+        private void mnuRecordAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            caRecordAsistencia.wListaRecordAsistencia fListaRecordAsistencia = new caRecordAsistencia.wListaRecordAsistencia();
+            fListaRecordAsistencia.Owner = this;
+            fListaRecordAsistencia.Show();
+        }
+
         private void mnuHorario_Click(object sender, RoutedEventArgs e)
         {
             caHorario.wListaHorario fListaHorario = new caHorario.wListaHorario();
@@ -142,7 +149,8 @@ namespace CapaPresentacion
         private void mnuPermisos_Click(object sender, RoutedEventArgs e)
         {
             caPermisos.wListaPermisos fListaPermisos = new caPermisos.wListaPermisos();
-            fListaPermisos.ShowDialog();
+            fListaPermisos.Owner = this;
+            fListaPermisos.Show();
         }
 
         private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)

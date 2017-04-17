@@ -7,19 +7,25 @@
       <Diagram DiagramId="de127c92affc4d5cb995c64aa0726cb6" Name="Diagram1" >
         <EntityTypeShape EntityType="mAsistencia.Trabajador" Width="1.5" PointX="0.5" PointY="7.5" />
         <EntityTypeShape EntityType="mAsistencia.Oficina" Width="1.5" PointX="3.125" PointY="5" />
-        <EntityTypeShape EntityType="mAsistencia.Asistencia" Width="1.5" PointX="2.625" PointY="11.75" />
+        <EntityTypeShape EntityType="mAsistencia.Asistencia" Width="1.5" PointX="2.5" PointY="11.125" />
         <EntityTypeShape EntityType="mAsistencia.Local" Width="1.5" PointX="2.875" PointY="2.75" />
         <AssociationConnector Association="mAsistencia.LocalOficina" />
         <EntityTypeShape EntityType="mAsistencia.Horario" Width="1.5" PointX="10.25" PointY="0.5" />
         <EntityTypeShape EntityType="mAsistencia.HorarioDia" Width="1.5" PointX="7.125" PointY="0.5" />
         <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="7.125" PointY="5.375" />
-        <AssociationConnector Association="mAsistencia.TrabajadorAsistencia" />
+        <AssociationConnector Association="mAsistencia.TrabajadorAsistencia" ManuallyRouted="true" >
+          <ConnectorPoint PointX="0.53125" PointY="10.2494921875" />
+          <ConnectorPoint PointX="0.53125" PointY="11.28125" />
+          <ConnectorPoint PointX="1.2291666666666667" PointY="11.28125" />
+          <ConnectorPoint PointX="1.3958333333333333" PointY="11.28125" />
+          <ConnectorPoint PointX="2.5" PointY="11.28125" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7.875" PointY="7.5" />
         <EntityTypeShape EntityType="mAsistencia.TipoPermisos" Width="1.5" PointX="10.5" PointY="7.375" />
         <EntityTypeShape EntityType="mAsistencia.PermisosDias" Width="1.5" PointX="7.875" PointY="9.625" />
         <AssociationConnector Association="mAsistencia.PermisosHorasTipoPermisos" />
         <AssociationConnector Association="mAsistencia.PermisosDiasTipoPermisos" />
-        <EntityTypeShape EntityType="mAsistencia.DiaFestivo" Width="1.5" PointX="2.875" PointY="13.5" />
+        <EntityTypeShape EntityType="mAsistencia.DiaFestivo" Width="1.5" PointX="0.5" PointY="13.875" />
         <EntityTypeShape EntityType="mAsistencia.CronogramaVacaciones" Width="1.5" PointX="0.625" PointY="11.5" />
         <AssociationConnector Association="mAsistencia.TrabajadorCronogramaVacaciones" />
         <AssociationConnector Association="mAsistencia.OficinaOficina" />

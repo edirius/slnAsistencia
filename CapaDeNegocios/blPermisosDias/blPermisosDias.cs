@@ -25,6 +25,8 @@ namespace CapaDeNegocios.blPermisosDias
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
+                bd.TipoPermisosSet.Attach(miAgregarPermisosDias.TipoPermisos);
+                bd.PeriodoTrabajadorSet.Attach(miAgregarPermisosDias.PeriodoTrabajador);
                 bd.PermisosDiasSet.Add(miAgregarPermisosDias);
                 bd.SaveChanges();
             }
@@ -37,6 +39,9 @@ namespace CapaDeNegocios.blPermisosDias
                 PermisosDias auxiliar = (from c in bd.PermisosDiasSet
                                        where c.Id == miModificarPermisosDias.Id
                                        select c).FirstOrDefault();
+                auxiliar.Id = miModificarPermisosDias.Id;
+                auxiliar.Inicio = miModificarPermisosDias.Inicio;
+                auxiliar.Fin = miModificarPermisosDias.Fin;
                 bd.SaveChanges();
             }
         }

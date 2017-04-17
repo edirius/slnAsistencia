@@ -17,7 +17,7 @@ namespace CapaDeNegocios.blTrabajador
                 IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
                                                               where d.OficinaActual.Id  == miOficina.Id
                                                               select d;
-                return consultaTrabajadores.ToList() ;
+                return consultaTrabajadores.ToList();
             }
         }
 
