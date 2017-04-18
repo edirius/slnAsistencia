@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caRecordAsistencia"
         mc:Ignorable="d"
-        Title="Permisos" Height="437.594" Width="491.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Permisos" Height="419.594" Width="489.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,350,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,328,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
         <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="406,13,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click"/>
-        <DataGrid x:Name="dgRecordAsistencia" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Height="272" Width="453"/>
+        <DataGrid x:Name="dgRecordAsistencia" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Height="250" Width="453" IsReadOnly="True"/>
         <Label x:Name="label" Content="TRABAJADOR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="99,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
         <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="84"/>

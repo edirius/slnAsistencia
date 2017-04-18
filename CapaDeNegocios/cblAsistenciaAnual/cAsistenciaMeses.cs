@@ -10,10 +10,10 @@ namespace CapaDeNegocios.cblAsistenciaAnual
     {
         public cAsistenciaMeses()
         {
-            this.miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
+            AsistenciaDias = new List<cAsistenciaDia>();
         }
         public string nombreMes { get; set; }
         public cAsistenciaAnual miAsistenciaAnual { get; set; }
-        public ICollection<cAsistenciaDia> AsistenciaDias { get; set; }
+        public List<cAsistenciaDia> AsistenciaDias { get; set; }
     }
 }

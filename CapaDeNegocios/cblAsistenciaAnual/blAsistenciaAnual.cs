@@ -21,95 +21,89 @@ namespace CapaDeNegocios.cblAsistenciaAnual
                 cAsistenciaAnual miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
                 foreach (Asistencia item in consultaAsistencia)
                 {
-                    if (item.PicadoReloj.Month == 0)
+                    if (item.PicadoReloj.Month == 1)
                     {
-                        foreach (cAsistenciaMeses item2 in miAsistenciaAnual.AsistenciaMeses)
-                        {
-                            if (item2.nombreMes == "Enero")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if(item2.nombreMes == "Febrero")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Marzo")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Abril")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Mayo")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Junio")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Julio")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Agosto")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Setiembre")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Octubre")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Noviembre")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                            else if (item2.nombreMes == "Diciembre")
-                            {
-                                cAsistenciaDia auxiliardia = new cAsistenciaDia();
-                                auxiliardia.fecha = item.PicadoReloj;
-                                auxiliardia.asistencia = true;
-                                item2.AsistenciaDias.Add(auxiliardia);
-                            }
-                        }
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[0].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 2)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[1].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 3)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[2].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 4)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 5)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[4].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 6)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[5].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 7)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[6].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 8)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[7].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 9)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[8].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 10)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[9].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 11)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[10].AsistenciaDias.Add(auxiliardia);
+                    }
+                    else if (item.PicadoReloj.Month == 12)
+                    {
+                        cAsistenciaDia auxiliardia = new cAsistenciaDia();
+                        auxiliardia.fecha = item.PicadoReloj;
+                        auxiliardia.asistencia = true;
+                        miAsistenciaAnual.AsistenciaMeses[11].AsistenciaDias.Add(auxiliardia);
                     }
                 }
                 return miAsistenciaAnual;

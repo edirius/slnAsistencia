@@ -10,6 +10,7 @@ namespace CapaDeNegocios.cblAsistenciaAnual
     {
         public cAsistenciaAnual()
         {
+            AsistenciaMeses = new List<cAsistenciaMeses>(); 
             cAsistenciaMeses Enero = new cblAsistenciaAnual.cAsistenciaMeses();
             Enero.nombreMes = "Enero";
             Enero.miAsistenciaAnual = this;
@@ -60,6 +61,6 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             AsistenciaMeses.Add(Diciembre);
         }
         public blTrabajador.blTrabajador miTrabajador { get; set; }
-        public ICollection<cAsistenciaMeses> AsistenciaMeses { get; set; }
+        public List<cAsistenciaMeses> AsistenciaMeses { get; set; }
     }
 }
