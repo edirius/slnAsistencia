@@ -25,6 +25,8 @@ namespace CapaPresentacion.caRecordAsistencia
         int sMes;
         public Trabajador miTrabajador = new Trabajador();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
+        public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
+        CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wListaRecordAsistencia()
         {
@@ -119,33 +121,77 @@ namespace CapaPresentacion.caRecordAsistencia
             }
             else
             {
-                DibujarDataGrid();
+                //DibujarDataGrid();
             }
 
-            DateTime auxiliar;
-            DateTime fechinicio = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
-            int diasMes = System.DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
-            CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual miRecordAsistencia = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
-            CapaDeNegocios.cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = miRecordAsistencia.LlenarAsistencia(miTrabajador);
-            bool[] miAsistencia = new bool[31];
-            int columna = 0;
-            //if (sMes == 4)
+            ////DateTime auxiliar;
+            ////DateTime fechinicio = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
+            ////int diasMes = System.DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
+            //CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual miRecordAsistencia = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+            //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = miRecordAsistencia.LlenarAsistencia(miTrabajador, miPeriodoTrabajador);
+            ////bool[] miAsistencia = new bool[31];
+            ////int columna = 0;
+            //if (sMes == 1)
             //{
-            //    foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia dia in miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias)
-            //    {
-            //        miAsistencia[columna] = dia.asistencia;
-            //        columna += 1;
-            //        //for (int i = 0; i < diasMes; i++)
-            //        //{
-            //        //    auxiliar = fechinicio.AddDays(i);
-            //        //    if (auxiliar.Date == dia.fecha.Date)
-            //        //    {
-            //        //        miAsistencia[0, i] = dia.asistencia;
-            //        //    }
-            //        //}
-            //    }
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[0].AsistenciaDias;
+            //    //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia dia in miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias)
+            //    //{
+            //    //    miAsistencia[columna] = dia.asistencia;
+            //    //    columna += 1;
+            //    //    //for (int i = 0; i < diasMes; i++)
+            //    //    //{
+            //    //    //    auxiliar = fechinicio.AddDays(i);
+            //    //    //    if (auxiliar.Date == dia.fecha.Date)
+            //    //    //    {
+            //    //    //        miAsistencia[0, i] = dia.asistencia;
+            //    //    //    }
+            //    //    //}
+            //    //}
             //}
-            //dgRecordAsistencia.ItemsSource = new Array(miAsistencia);
+            //else if (sMes == 2)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[1].AsistenciaDias;
+            //}
+            //else if (sMes == 3)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[2].AsistenciaDias;
+            //}
+            //else if (sMes == 4)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias;
+            //}
+            //else if (sMes == 5)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[4].AsistenciaDias;
+            //}
+            //else if (sMes == 6)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[5].AsistenciaDias;
+            //}
+            //else if (sMes == 7)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[6].AsistenciaDias;
+            //}
+            //else if (sMes == 8)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[7].AsistenciaDias;
+            //}
+            //else if (sMes == 9)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[8].AsistenciaDias;
+            //}
+            //else if (sMes == 10)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[9].AsistenciaDias;
+            //}
+            //else if (sMes == 11)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[10].AsistenciaDias;
+            //}
+            //else if (sMes == 12)
+            //{
+            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[11].AsistenciaDias;
+            //}
         }
 
         //private void BuscarTodos()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CapaEntities;
 
 namespace CapaDeNegocios.cblAsistenciaAnual
 {
@@ -60,7 +61,13 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             Enero.miAsistenciaAnual = this;
             AsistenciaMeses.Add(Diciembre);
         }
-        public blTrabajador.blTrabajador miTrabajador { get; set; }
+        public Trabajador miTrabajador { get; set; }
+        public DateTime fechaInicioPeriodo { get; set; }
+        public DateTime fechaFinPeriodo { get; set; }
+        public int diasLaborados { set; get; }
+        public int diasPermisosComputables { set; get; }
+        public int diasPermisosNoComputables { set; get; }
+        public int totalDiasComputables { set; get; }
         public List<cAsistenciaMeses> AsistenciaMeses { get; set; }
     }
 }

@@ -98,6 +98,9 @@
     <Compile Include="caPermisos\wPermisos.xaml.cs">
       <DependentUpon>wPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caVacaciones\wVacaciones.xaml.cs">
+      <DependentUpon>wVacaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
       <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="caPermisos\wPermisos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caVacaciones\wVacaciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
