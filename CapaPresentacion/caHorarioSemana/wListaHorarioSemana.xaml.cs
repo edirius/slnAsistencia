@@ -44,7 +44,7 @@ namespace CapaPresentacion.caHorarioSemana
         {
             try
             {
-                caHorarioSemana.wHorarioSemana fHorarioSemana = new caHorarioSemana.wHorarioSemana();
+                caHorarioSemana.wHorarioDelaSemana fHorarioSemana = new caHorarioSemana.wHorarioDelaSemana();
                 fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
                 string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 

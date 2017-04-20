@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="caHorarioSemana\wHorarioDelaSemana.xaml.cs">
+      <DependentUpon>wHorarioDelaSemana.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caRecordAsistencia\wListaRecordAsistencia.xaml.cs">
       <DependentUpon>wListaRecordAsistencia.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
       <DependentUpon>wImportarAsistencia.xaml</DependentUpon>
     </Compile>
     <Page Include="AgenciaAgraria\wAgenciaAgraria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caHorarioSemana\wHorarioDelaSemana.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
