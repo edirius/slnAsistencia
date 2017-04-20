@@ -5,16 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caVacaciones"
         mc:Ignorable="d"
-        Title="Vacaciones" Height="419.594" Width="489.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Vacaciones" Height="292.594" Width="489.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,328,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,213,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
         <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="406,13,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click"/>
         <Label x:Name="label" Content="TRABAJADOR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="99,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
-        <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="84"/>
-        <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="99,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged"/>
-        <Label x:Name="label2" Content="MES" HorizontalAlignment="Left" Margin="244,42,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboMes" HorizontalAlignment="Left" Margin="281,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboMes_SelectionChanged"/>
-        <DatePicker HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Height="250" Width="453"/>
+        <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,357,0,0" VerticalAlignment="Top" Width="84" Visibility="Hidden"/>
+        <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="99,357,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged" Visibility="Hidden"/>
+        <Label x:Name="label2" Content="MES" HorizontalAlignment="Left" Margin="244,357,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <ComboBox x:Name="cboMes" HorizontalAlignment="Left" Margin="281,357,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboMes_SelectionChanged" Visibility="Hidden"/>
+        <Calendar HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="DÍAS LABORADOS" HorizontalAlignment="Left" Margin="194,42,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtDiasLaborados" HorizontalAlignment="Left" Height="23" Margin="376,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
+        <Label x:Name="label_Copy1" Content="PERMISOS COMPUTABLES" HorizontalAlignment="Left" Margin="194,73,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtPermisosComputables" HorizontalAlignment="Left" Height="23" Margin="376,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
+        <Label x:Name="label_Copy2" Content="PERMISOS NO COMPUTABLES" HorizontalAlignment="Left" Margin="194,101,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtPermisosNoComputables" HorizontalAlignment="Left" Height="23" Margin="376,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
+        <Label x:Name="label_Copy3" Content="TOTAL DÍAS LABORADOS" HorizontalAlignment="Left" Margin="194,129,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtTotalDiaslaborados" HorizontalAlignment="Left" Height="23" Margin="376,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
+        <Label x:Name="label_Copy4" Content="VACACIONES ADELANTADAS" HorizontalAlignment="Left" Margin="194,157,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtVacacionesAdelantadas" HorizontalAlignment="Left" Height="23" Margin="376,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
+        <Label x:Name="label_Copy5" Content="VACACIONES DISPONIBLES" HorizontalAlignment="Left" Margin="194,185,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="txtVacacionesDisponibles" HorizontalAlignment="Left" Height="23" Margin="376,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
     </Grid>
 </Window>

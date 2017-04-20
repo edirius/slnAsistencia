@@ -10,18 +10,16 @@ namespace CapaDeNegocios.cblVacaciones
 {
     public class blVacaciones
     {
-        public void CalculoDiasAsistencia(Trabajador miTrabajador, cblAsistenciaAnual.cPeriodoTrabajador miPeriodoTrabajador)
+        public cVacaciones CalculoDiasAsistencia(cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador)
         {
-            cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new cblAsistenciaAnual.blAsistenciaAnual();
-            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
-            List<cblAsistenciaAnual.cAsistenciaAnual> miListaAsistenciaAnual = new List<cblAsistenciaAnual.cAsistenciaAnual>();
             cblVacaciones.cVacaciones miVacaciones = new cblVacaciones.cVacaciones();
-            miListaAsistenciaAnual = oblAsistenciaAnual.CalcularPeriodos(miTrabajador, miPeriodoTrabajador);
-            miAsistenciaAnual = miListaAsistenciaAnual[miListaAsistenciaAnual.Count - 1];
+            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
+            //List<cblAsistenciaAnual.cAsistenciaAnual> miListaAsistenciaAnual = new List<cblAsistenciaAnual.cAsistenciaAnual>();
+            miAsistenciaAnual = miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1];
 
             for (int i = 0; i < 12; i++)
             {
-                foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.AsistenciaMeses[i].AsistenciaDias)
+                foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.miListaAsistenciaMeses[i].miListaAsistenciaDias)
                 {
                     if (item.asistencia == true)
                     {
@@ -47,6 +45,7 @@ namespace CapaDeNegocios.cblVacaciones
             {
                 miVacaciones.diasVacacionesDisponibles = 30 - miVacaciones.diasVacacionesAdelantadas;
             }
+            return miVacaciones;
         }
     }
 }

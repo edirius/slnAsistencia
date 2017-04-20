@@ -11,7 +11,7 @@ namespace CapaDeNegocios.cblAsistenciaAnual
     {
         public DateTime fecha { get; set; }
         public bool asistencia { get; set; }
-        public cAsistenciaMeses miAsistenciaMeses {get; set;}
         public PermisosDias miPermiso { get; set; }
+        public cAsistenciaMeses miAsistenciaMeses {get; set;}
     }
 }

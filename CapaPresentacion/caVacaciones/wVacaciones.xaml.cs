@@ -24,7 +24,9 @@ namespace CapaPresentacion.caVacaciones
     {
         int sMes;
         public Trabajador miTrabajador = new Trabajador();
+        public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
+        CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wVacaciones()
         {
@@ -53,8 +55,9 @@ namespace CapaPresentacion.caVacaciones
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
                     miTrabajador = fTrabajadores.miTrabajador;
+                    CargarPeriodoTrabajador(miTrabajador);
                 }
-                //CargarRecordAsistencia();
+                CargarRecordAsistencia();
             }
             catch (Exception m)
             { }
@@ -72,6 +75,52 @@ namespace CapaPresentacion.caVacaciones
                 sMes = Convert.ToInt32(cboMes.SelectedValue);
             }
             //CargarRecordAsistencia();
+        }
+        private void CargarRecordAsistencia()
+        {
+            try
+            {
+                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+                CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
+                CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones = oblVacaciones.CalculoDiasAsistencia(miAsistenciaPeriodoTrabajador);
+
+                txtDiasLaborados.Text = miVacaciones.diasLaborados.ToString();
+                txtPermisosComputables.Text = miVacaciones.diasPermisosComputables.ToString();
+                txtPermisosNoComputables.Text = miVacaciones.diasPermisosNoComputables.ToString();
+                txtTotalDiaslaborados.Text = miVacaciones.totalDiasComputables.ToString();
+                txtVacacionesAdelantadas.Text = miVacaciones.diasVacacionesAdelantadas.ToString();
+                txtVacacionesDisponibles.Text = miVacaciones.diasVacacionesDisponibles.ToString();
+
+                if (sMes == 1)
+                {
+                    //dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[0].AsistenciaDias;
+                    //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia dia in miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias)
+                    //{
+                    //    miAsistencia[columna] = dia.asistencia;
+                    //    columna += 1;
+                    //    //for (int i = 0; i < diasMes; i++)
+                    //    //{
+                    //    //    auxiliar = fechinicio.AddDays(i);
+                    //    //    if (auxiliar.Date == dia.fecha.Date)
+                    //    //    {
+                    //    //        miAsistencia[0, i] = dia.asistencia;
+                    //    //    }
+                    //    //}
+                    //}
+                }
+            }
+            catch (Exception m)
+            { }
+        }
+
+        private void CargarPeriodoTrabajador(Trabajador miTrabajador)
+        {
+            ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
+            foreach (PeriodoTrabajador name in ListaPeriodoTrabajador)
+            {
+                miPeriodoTrabajador = name;
+            }
         }
 
         private void CargarAños()
