@@ -182,5 +182,12 @@ namespace CapaPresentacion
             wImportarAsistencia.wImportarAsistencia fImportarAsistencia = new wImportarAsistencia.wImportarAsistencia();
             fImportarAsistencia.ShowDialog();
         }
+
+        private void mnuVacaciones_Click(object sender, RoutedEventArgs e)
+        {
+            caVacaciones.wVacaciones fVacaciones = new caVacaciones.wVacaciones();
+            fVacaciones.Owner = this;
+            fVacaciones.ShowDialog();
+        }
     }
 }

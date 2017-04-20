@@ -37,6 +37,7 @@
                 <MenuItem x:Name="mnuReglasTardanza" Header="Reglas de Tardanza" HorizontalAlignment="Left" Width="215" Click="mnuReglasTardanza_Click"/>
             </MenuItem>
             <MenuItem x:Name="mnuImportarAsistencia" Header="Importar Asistencia" Click="mnuImportarAsistencia_Click"/>
+            <MenuItem x:Name="mnuVacaciones" Header="Vacaciones" Click="mnuVacaciones_Click"/>
         </Menu>
     </Grid>
 </Window>
