@@ -35,9 +35,7 @@ namespace CapaPresentacion.caVacaciones
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarAños();
-            CargarMeses();
-            cboMes.Text = DateTime.Today.ToString("MMMM").ToUpper();
+
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -63,19 +61,6 @@ namespace CapaPresentacion.caVacaciones
             { }
         }
 
-        private void cboAño_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //CargarRecordAsistencia();
-        }
-
-        private void cboMes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cboMes.DisplayMemberPath != "")
-            {
-                sMes = Convert.ToInt32(cboMes.SelectedValue);
-            }
-            //CargarRecordAsistencia();
-        }
         private void CargarRecordAsistencia()
         {
             try
@@ -92,22 +77,14 @@ namespace CapaPresentacion.caVacaciones
                 txtVacacionesAdelantadas.Text = miVacaciones.diasVacacionesAdelantadas.ToString();
                 txtVacacionesDisponibles.Text = miVacaciones.diasVacacionesDisponibles.ToString();
 
-                if (sMes == 1)
+                Calendario.SelectedDates.Clear();
+                for (int i = 0; i < 12; i++)
                 {
-                    //dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[0].AsistenciaDias;
-                    //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia dia in miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias)
-                    //{
-                    //    miAsistencia[columna] = dia.asistencia;
-                    //    columna += 1;
-                    //    //for (int i = 0; i < diasMes; i++)
-                    //    //{
-                    //    //    auxiliar = fechinicio.AddDays(i);
-                    //    //    if (auxiliar.Date == dia.fecha.Date)
-                    //    //    {
-                    //    //        miAsistencia[0, i] = dia.asistencia;
-                    //    //    }
-                    //    //}
-                    //}
+                    foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1].miListaAsistenciaMeses[i].miListaAsistenciaDias)
+                    {
+                        DateTime auxiliar = item.fecha;
+                        Calendario.SelectedDates.Add(auxiliar.Date);
+                    }
                 }
             }
             catch (Exception m)
@@ -121,43 +98,6 @@ namespace CapaPresentacion.caVacaciones
             {
                 miPeriodoTrabajador = name;
             }
-        }
-
-        private void CargarAños()
-        {
-            for (int i = DateTime.Now.Year; i >= 2000; i--)
-            {
-                cboAño.Items.Add(i);
-            }
-            cboAño.Text = Convert.ToString(DateTime.Now.Year);
-        }
-
-        private void CargarMeses()
-        {
-            List<ComboData> dsMeses = new List<ComboData>();
-            dsMeses.Add(new ComboData { Id = 1, Nombre = "ENERO" });
-            dsMeses.Add(new ComboData { Id = 2, Nombre = "FEBRERO" });
-            dsMeses.Add(new ComboData { Id = 3, Nombre = "MARZO" });
-            dsMeses.Add(new ComboData { Id = 4, Nombre = "ABRIL" });
-            dsMeses.Add(new ComboData { Id = 5, Nombre = "MAYO" });
-            dsMeses.Add(new ComboData { Id = 6, Nombre = "JUNIO" });
-            dsMeses.Add(new ComboData { Id = 7, Nombre = "JULIO" });
-            dsMeses.Add(new ComboData { Id = 8, Nombre = "AGOSTO" });
-            dsMeses.Add(new ComboData { Id = 9, Nombre = "SETIEMBRE" });
-            dsMeses.Add(new ComboData { Id = 10, Nombre = "OCTUBRE" });
-            dsMeses.Add(new ComboData { Id = 11, Nombre = "NOVIEMBRE" });
-            dsMeses.Add(new ComboData { Id = 12, Nombre = "DICIEMBRE" });
-
-            cboMes.ItemsSource = dsMeses;
-            cboMes.DisplayMemberPath = "Nombre";
-            cboMes.SelectedValuePath = "Id";
-            cboMes.SelectedIndex = -1;
-        }
-
-        public class ComboData
-        {
-            public int Id { get; set; }
-            public string Nombre { get; set; }
         }
     }
 }

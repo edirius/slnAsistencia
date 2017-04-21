@@ -162,5 +162,10 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             }
             return auxiliar;
         }
+
+        public void calculo()
+        {
+
+        }
     }
 }

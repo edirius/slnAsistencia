@@ -11,11 +11,7 @@
         <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="406,13,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click"/>
         <Label x:Name="label" Content="TRABAJADOR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="84"/>
         <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="99,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="False"/>
-        <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,357,0,0" VerticalAlignment="Top" Width="84" Visibility="Hidden"/>
-        <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="99,357,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged" Visibility="Hidden"/>
-        <Label x:Name="label2" Content="MES" HorizontalAlignment="Left" Margin="244,357,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <ComboBox x:Name="cboMes" HorizontalAlignment="Left" Margin="281,357,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboMes_SelectionChanged" Visibility="Hidden"/>
-        <Calendar HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="Calendario" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" SelectionMode="MultipleRange"/>
         <Label x:Name="label_Copy" Content="DÍAS LABORADOS" HorizontalAlignment="Left" Margin="194,42,0,0" VerticalAlignment="Top" Width="177"/>
         <TextBox x:Name="txtDiasLaborados" HorizontalAlignment="Left" Height="23" Margin="376,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87" IsEnabled="False"/>
         <Label x:Name="label_Copy1" Content="PERMISOS COMPUTABLES" HorizontalAlignment="Left" Margin="194,73,0,0" VerticalAlignment="Top" Width="177"/>
