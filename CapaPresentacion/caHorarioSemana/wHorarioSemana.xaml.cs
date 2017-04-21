@@ -23,6 +23,7 @@ namespace CapaPresentacion.caHorarioSemana
     {
         public CapaEntities.HorarioSemana miHorarioSemana;
         CapaDeNegocios.blHorarioDia.blHorarioDia  oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
+        public IEnumerable<HorarioDia> miListaHorarioDia;
         public wHorarioSemana()
         {
             InitializeComponent();
@@ -31,16 +32,16 @@ namespace CapaPresentacion.caHorarioSemana
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Iniciar();
-            List<string> lista = new List<string> { "C50", "C40", "C30" };
-            //dgHorarioSemanal.Items.Add(1);
+           
         }
 
         private void Iniciar()
         {
             txtNombres.Text = miHorarioSemana.Nombre;
             dtgListaDias.ItemsSource = miHorarioSemana.Dia;
-            cboHorarios.ItemsSource = oblHorarioDia.ListarHorarioDias();
-            cboHorarios.DisplayMemberPath = "Nombre";
+            miListaHorarioDia = oblHorarioDia.ListarHorarioDias();
+            cboHorariosDias.ItemsSource = miListaHorarioDia;
+            //cboHorarios.DisplayMemberPath = "Nombre";
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
