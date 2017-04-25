@@ -33,10 +33,10 @@ namespace CapaPresentacion.caHorarioSemana
         public void Iniciar()
         {
             txtNombres.Text = miHorarioSemana.Nombre;
-            dtgListaDias.ItemsSource = miHorarioSemana.Dia;
+            //dtgListaDias.ItemsSource = miHorarioSemana.Dia;
             miListaHorarioDia = oblHorarioDia.ListarHorarioDias();
             Dia midia;
-            midia.
+            //midia.
             //cboHorariosDias.ItemsSource = miListaHorarioDia;
         }
 

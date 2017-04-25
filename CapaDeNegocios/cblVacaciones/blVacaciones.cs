@@ -13,11 +13,9 @@ namespace CapaDeNegocios.cblVacaciones
         public cVacaciones CalculoDiasAsistencia(cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador)
         {
             cblVacaciones.cVacaciones miVacaciones = new cblVacaciones.cVacaciones();
-            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
-            //List<cblAsistenciaAnual.cAsistenciaAnual> miListaAsistenciaAnual = new List<cblAsistenciaAnual.cAsistenciaAnual>();
-            miAsistenciaAnual = miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1];
-
-            for (int i = 0; i < 12; i++)
+            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1];
+            int nroMeses = Math.Abs((miAsistenciaAnual.fechaFin.Month - miAsistenciaAnual.fechaInicio.Month) + 12 * (miAsistenciaAnual.fechaFin.Year - miAsistenciaAnual.fechaInicio.Year));
+            for (int i = 0; i <= nroMeses; i++)
             {
                 foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.miListaAsistenciaMeses[i].miListaAsistenciaDias)
                 {
@@ -38,7 +36,8 @@ namespace CapaDeNegocios.cblVacaciones
                     }
                 }
             }
-            miVacaciones.totalDiasComputables = miVacaciones.diasPermisosComputables + miVacaciones.diasPermisosComputables;
+            miVacaciones.totalDiasComputables = miVacaciones.diasLaborados + miVacaciones.diasPermisosNoComputables;
+            miVacaciones.diasVacacionesAdelantadas = miVacaciones.diasPermisosComputables;
             ///
 
             if (miVacaciones.totalDiasComputables >= 210)

@@ -19,7 +19,7 @@
             <MenuItem Header="Asistencia">
                 <MenuItem x:Name="mnuTrabajador" Header="Trabajadores" HorizontalAlignment="Left" Width="155" Click="mnuTrabajador_Click"/>
                 <MenuItem x:Name="mnuAsistencia" Header="Asistencia" HorizontalAlignment="Left" Width="155" Click="mnuAsistencia_Click"/>
-                <MenuItem x:Name="mnuRecordAsistencia" Header="Record Asistencia" HorizontalAlignment="Left" Width="155" Click="mnuRecordAsistencia_Click"/>
+                <MenuItem x:Name="mnuRecordAsistencia" Header="Record Asistencia" HorizontalAlignment="Left" Width="181" Click="mnuRecordAsistencia_Click" Margin="0,0,-26,0"/>
             </MenuItem>
             <MenuItem Header="Horario">
                 <MenuItem x:Name="mnuHorario" Header="Horario" HorizontalAlignment="Left" Width="170" Click="mnuHorario_Click"/>

@@ -13,7 +13,6 @@ namespace CapaDeNegocios.cblAsistenciaAnual
         {
             miListaAsistenciaAnual = new List<cAsistenciaAnual>();
         }
-        public Trabajador miTrabajador { get; set; }
         public List<cAsistenciaAnual> miListaAsistenciaAnual { get; set; }
     }
 }
