@@ -14,7 +14,7 @@ namespace CapaDeNegocios.blPeriodoTrabajador
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet
+                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet.Include("Trabajador")
                                                                           where d.Trabajador.Id == miTrabajador.Id
                                                                           select d;
                 return consultaPeriodoTrabajador.ToList();

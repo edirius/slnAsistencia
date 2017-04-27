@@ -52,6 +52,9 @@
     <Compile Include="Asistencia.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
+    <Compile Include="AsistenciaPeriodoLaborado.cs">
+      <DependentUpon>mAsistencia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="CronogramaVacaciones.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
@@ -102,6 +105,9 @@
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Trabajador.cs">
+      <DependentUpon>mAsistencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vacaciones.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -19,6 +19,7 @@ namespace CapaEntities
         {
             this.PermisosHoras = new HashSet<PermisosHoras>();
             this.PermisosDias = new HashSet<PermisosDias>();
+            this.AsistenciaPeriodoLaborado = new HashSet<AsistenciaPeriodoLaborado>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace CapaEntities
         public virtual ICollection<PermisosHoras> PermisosHoras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PermisosDias> PermisosDias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AsistenciaPeriodoLaborado> AsistenciaPeriodoLaborado { get; set; }
     }
 }

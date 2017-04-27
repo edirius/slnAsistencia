@@ -67,8 +67,9 @@
     <Compile Include="cblAsistenciaAnual\blAsistenciaAnual.cs" />
     <Compile Include="cblAsistenciaAnual\cAsistenciaDia.cs" />
     <Compile Include="cblAsistenciaAnual\cAsistenciaMeses.cs" />
-    <Compile Include="cblAsistenciaAnual\cAsistenciaAnual.cs" />
+    <Compile Include="cblAsistenciaAnual\cAsistenciaPeriodoLaborado.cs" />
     <Compile Include="cblAsistenciaAnual\cAsistenciaPeriodoTrabajador.cs" />
+    <Compile Include="cblAsistenciaPeriodoLaborado\blAsistenciaPeriodoLaborado.cs" />
     <Compile Include="cblVacaciones\blVacaciones.cs" />
     <Compile Include="cblVacaciones\cVacaciones.cs" />
     <Compile Include="Class1.cs" />

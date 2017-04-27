@@ -22,9 +22,13 @@ namespace CapaPresentacion.caVacaciones
     /// </summary>
     public partial class wVacaciones : Window
     {
-        int sMes;
+        public CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = new CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador();
+        public CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones = new CapaDeNegocios.cblVacaciones.cVacaciones();
         public Trabajador miTrabajador = new Trabajador();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
+        CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+        CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
+        CapaDeNegocios.cblAsistenciaPeriodoLaborado.blAsistenciaPeriodoLaborado oblAsistenciaPeriodoLaborado = new CapaDeNegocios.cblAsistenciaPeriodoLaborado.blAsistenciaPeriodoLaborado();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
@@ -36,6 +40,40 @@ namespace CapaPresentacion.caVacaciones
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnAsignarVacaciones_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count == 0)
+                {
+                    MessageBox.Show("EL TRABAJADOR TIENE QUE TENER UN PERIODO ACTIVO", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                AsistenciaPeriodoLaborado miAsistenciaPeriodoLaborado = new AsistenciaPeriodoLaborado();
+                miAsistenciaPeriodoLaborado.PeriodoTrabajador = miPeriodoTrabajador;
+                miAsistenciaPeriodoLaborado.Inicio = dtpInicio.DisplayDate;
+                miAsistenciaPeriodoLaborado.Fin = dtpFin.DisplayDate;
+                oblAsistenciaPeriodoLaborado.AgregarAsistenciaPeriodoLaborado(miAsistenciaPeriodoLaborado);
+                caVacaciones.wMensaje fMensaje = new caVacaciones.wMensaje();
+                if (fMensaje.ShowDialog() == true)
+                {
+                    if (fMensaje.rbtAsignar.IsChecked == true)
+                    {
+                        Vacaciones miVacacion = new Vacaciones();
+                        miVacacion.AsistenciaPeriodoLaborado = miAsistenciaPeriodoLaborado;
+                        miVacacion.Inicio = miVacaciones.fechaMinimaInicioVacaciones.ToString();
+                        miVacacion.Fin = miVacaciones.fechaMinimaInicioVacaciones.ToString();
+                        miVacacion.DiasVacacionesAdelantadas = miVacaciones.diasVacacionesAdelantadas.ToString();
+                        miVacacion.DiasVacacionesDisponibles = miVacaciones.diasVacacionesDisponibles.ToString();
+                        oblVacaciones.AgregarVacaciones(miVacacion);
+                    }
+                }
+            }
+            catch (Exception m)
+            { }
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -65,22 +103,24 @@ namespace CapaPresentacion.caVacaciones
         {
             try
             {
-                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
-                CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
-                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
-                CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones = oblVacaciones.CalculoDiasAsistencia(miAsistenciaPeriodoTrabajador);
+                miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
+                miVacaciones = oblVacaciones.CalculoDiasAsistenciaAnual(miAsistenciaPeriodoTrabajador);
 
+                dtpInicio.SelectedDate = miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1].fechaInicio;
+                dtpFin.SelectedDate = miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1].fechaFin;
+                Calendario.DisplayDateStart = dtpInicio.DisplayDate;
+                Calendario.DisplayDateEnd = dtpFin.DisplayDate;
                 txtDiasLaborados.Text = miVacaciones.diasLaborados.ToString();
                 txtPermisosComputables.Text = miVacaciones.diasPermisosComputables.ToString();
                 txtPermisosNoComputables.Text = miVacaciones.diasPermisosNoComputables.ToString();
-                txtTotalDiaslaborados.Text = miVacaciones.totalDiasComputables.ToString();
+                txtTotalDiaslaborados.Text = miVacaciones.diasTotalComputables.ToString();
                 txtVacacionesAdelantadas.Text = miVacaciones.diasVacacionesAdelantadas.ToString();
                 txtVacacionesDisponibles.Text = miVacaciones.diasVacacionesDisponibles.ToString();
 
                 Calendario.SelectedDates.Clear();
                 for (int i = 0; i < 12; i++)
                 {
-                    foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1].miListaAsistenciaMeses[i].miListaAsistenciaDias)
+                    foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1].miListaAsistenciaMeses[i].miListaAsistenciaDias)
                     {
                         DateTime auxiliar = item.fecha;
                         Calendario.SelectedDates.Add(auxiliar.Date);

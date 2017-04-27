@@ -1,0 +1,14 @@
+﻿<Window x:Class="CapaPresentacion.caVacaciones.wMensaje"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.caVacaciones"
+        mc:Ignorable="d"
+        Title="Mensaje" Height="110.594" Width="309.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <RadioButton x:Name="rbtAsignar" Content="Asignar Vacaciones" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbtAcumular" Content="Acumular Vacaciones" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="29" Margin="239,30,0,0" VerticalAlignment="Top" Width="38" Click="btnOK_Click"/>
+    </Grid>
+</Window>

@@ -11,8 +11,8 @@ namespace CapaDeNegocios.cblAsistenciaAnual
     {
         public cAsistenciaPeriodoTrabajador()
         {
-            miListaAsistenciaAnual = new List<cAsistenciaAnual>();
+            miListaAsistenciaPeriodoLaborado = new List<cAsistenciaPeriodoLaborado>();
         }
-        public List<cAsistenciaAnual> miListaAsistenciaAnual { get; set; }
+        public List<cAsistenciaPeriodoLaborado> miListaAsistenciaPeriodoLaborado { get; set; }
     }
 }
