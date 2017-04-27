@@ -8,6 +8,10 @@ namespace CapaDeNegocios.cblVacaciones
 {
     public class cVacaciones
     {
+        public cVacaciones()
+        {
+
+        }
         public DateTime fechaMinimaInicioVacaciones { set; get; }
         public int diasLaborados { set; get; }
         public int diasPermisosComputables { set; get; }
@@ -15,5 +19,6 @@ namespace CapaDeNegocios.cblVacaciones
         public int totalDiasComputables { set; get; }
         public int diasVacacionesAdelantadas { set; get; }
         public int diasVacacionesDisponibles { set; get; }
+        public bool vacacionesEfectuadas { set; get; }
     }
 }

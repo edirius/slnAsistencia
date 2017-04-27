@@ -24,7 +24,9 @@ namespace CapaPresentacion.caVacaciones
     {
         int sMes;
         public Trabajador miTrabajador = new Trabajador();
+        public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
         CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
+        CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wVacaciones()
         {
@@ -33,9 +35,7 @@ namespace CapaPresentacion.caVacaciones
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarAños();
-            CargarMeses();
-            cboMes.Text = DateTime.Today.ToString("MMMM").ToUpper();
+
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
@@ -53,62 +53,51 @@ namespace CapaPresentacion.caVacaciones
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
                     miTrabajador = fTrabajadores.miTrabajador;
+                    CargarPeriodoTrabajador(miTrabajador);
                 }
-                //CargarRecordAsistencia();
+                CargarRecordAsistencia();
             }
             catch (Exception m)
             { }
         }
 
-        private void cboAño_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CargarRecordAsistencia()
         {
-            //CargarRecordAsistencia();
-        }
-
-        private void cboMes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cboMes.DisplayMemberPath != "")
+            try
             {
-                sMes = Convert.ToInt32(cboMes.SelectedValue);
+                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+                CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
+                CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones = oblVacaciones.CalculoDiasAsistencia(miAsistenciaPeriodoTrabajador);
+
+                txtDiasLaborados.Text = miVacaciones.diasLaborados.ToString();
+                txtPermisosComputables.Text = miVacaciones.diasPermisosComputables.ToString();
+                txtPermisosNoComputables.Text = miVacaciones.diasPermisosNoComputables.ToString();
+                txtTotalDiaslaborados.Text = miVacaciones.totalDiasComputables.ToString();
+                txtVacacionesAdelantadas.Text = miVacaciones.diasVacacionesAdelantadas.ToString();
+                txtVacacionesDisponibles.Text = miVacaciones.diasVacacionesDisponibles.ToString();
+
+                Calendario.SelectedDates.Clear();
+                for (int i = 0; i < 12; i++)
+                {
+                    foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1].miListaAsistenciaMeses[i].miListaAsistenciaDias)
+                    {
+                        DateTime auxiliar = item.fecha;
+                        Calendario.SelectedDates.Add(auxiliar.Date);
+                    }
+                }
             }
-            //CargarRecordAsistencia();
+            catch (Exception m)
+            { }
         }
 
-        private void CargarAños()
+        private void CargarPeriodoTrabajador(Trabajador miTrabajador)
         {
-            for (int i = DateTime.Now.Year; i >= 2000; i--)
+            ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
+            foreach (PeriodoTrabajador name in ListaPeriodoTrabajador)
             {
-                cboAño.Items.Add(i);
+                miPeriodoTrabajador = name;
             }
-            cboAño.Text = Convert.ToString(DateTime.Now.Year);
-        }
-
-        private void CargarMeses()
-        {
-            List<ComboData> dsMeses = new List<ComboData>();
-            dsMeses.Add(new ComboData { Id = 1, Nombre = "ENERO" });
-            dsMeses.Add(new ComboData { Id = 2, Nombre = "FEBRERO" });
-            dsMeses.Add(new ComboData { Id = 3, Nombre = "MARZO" });
-            dsMeses.Add(new ComboData { Id = 4, Nombre = "ABRIL" });
-            dsMeses.Add(new ComboData { Id = 5, Nombre = "MAYO" });
-            dsMeses.Add(new ComboData { Id = 6, Nombre = "JUNIO" });
-            dsMeses.Add(new ComboData { Id = 7, Nombre = "JULIO" });
-            dsMeses.Add(new ComboData { Id = 8, Nombre = "AGOSTO" });
-            dsMeses.Add(new ComboData { Id = 9, Nombre = "SETIEMBRE" });
-            dsMeses.Add(new ComboData { Id = 10, Nombre = "OCTUBRE" });
-            dsMeses.Add(new ComboData { Id = 11, Nombre = "NOVIEMBRE" });
-            dsMeses.Add(new ComboData { Id = 12, Nombre = "DICIEMBRE" });
-
-            cboMes.ItemsSource = dsMeses;
-            cboMes.DisplayMemberPath = "Nombre";
-            cboMes.SelectedValuePath = "Id";
-            cboMes.SelectedIndex = -1;
-        }
-
-        public class ComboData
-        {
-            public int Id { get; set; }
-            public string Nombre { get; set; }
         }
     }
 }

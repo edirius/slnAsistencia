@@ -10,18 +10,14 @@ namespace CapaDeNegocios.cblVacaciones
 {
     public class blVacaciones
     {
-        public void CalculoDiasAsistencia(Trabajador miTrabajador, cblAsistenciaAnual.cPeriodoTrabajador miPeriodoTrabajador)
+        public cVacaciones CalculoDiasAsistencia(cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador)
         {
-            cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new cblAsistenciaAnual.blAsistenciaAnual();
-            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = new cblAsistenciaAnual.cAsistenciaAnual();
-            List<cblAsistenciaAnual.cAsistenciaAnual> miListaAsistenciaAnual = new List<cblAsistenciaAnual.cAsistenciaAnual>();
             cblVacaciones.cVacaciones miVacaciones = new cblVacaciones.cVacaciones();
-            miListaAsistenciaAnual = oblAsistenciaAnual.CalcularPeriodos(miTrabajador, miPeriodoTrabajador);
-            miAsistenciaAnual = miListaAsistenciaAnual[miListaAsistenciaAnual.Count - 1];
-
-            for (int i = 0; i < 12; i++)
+            cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual[miAsistenciaPeriodoTrabajador.miListaAsistenciaAnual.Count - 1];
+            int nroMeses = Math.Abs((miAsistenciaAnual.fechaFin.Month - miAsistenciaAnual.fechaInicio.Month) + 12 * (miAsistenciaAnual.fechaFin.Year - miAsistenciaAnual.fechaInicio.Year));
+            for (int i = 0; i <= nroMeses; i++)
             {
-                foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.AsistenciaMeses[i].AsistenciaDias)
+                foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.miListaAsistenciaMeses[i].miListaAsistenciaDias)
                 {
                     if (item.asistencia == true)
                     {
@@ -40,13 +36,15 @@ namespace CapaDeNegocios.cblVacaciones
                     }
                 }
             }
-            miVacaciones.totalDiasComputables = miVacaciones.diasPermisosComputables + miVacaciones.diasPermisosComputables;
+            miVacaciones.totalDiasComputables = miVacaciones.diasLaborados + miVacaciones.diasPermisosNoComputables;
+            miVacaciones.diasVacacionesAdelantadas = miVacaciones.diasPermisosComputables;
             ///
 
             if (miVacaciones.totalDiasComputables >= 210)
             {
                 miVacaciones.diasVacacionesDisponibles = 30 - miVacaciones.diasVacacionesAdelantadas;
             }
+            return miVacaciones;
         }
     }
 }
