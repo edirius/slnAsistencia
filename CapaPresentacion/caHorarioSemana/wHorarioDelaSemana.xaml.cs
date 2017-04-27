@@ -23,7 +23,15 @@ namespace CapaPresentacion.caHorarioSemana
     {
         public CapaEntities.HorarioSemana miHorarioSemana;
         CapaDeNegocios.blHorarioDia.blHorarioDia oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
-        public IEnumerable<HorarioDia> miListaHorarioDia;
+        public ICollection<HorarioDia> HorarioDiaLunes;
+        public ICollection<HorarioDia> HorarioDiaMartes;
+        public ICollection<HorarioDia> HorarioDiaMiercoles;
+        public ICollection<HorarioDia> HorarioDiaJueves;
+        public ICollection<HorarioDia> HorarioDiaViernes;
+        public ICollection<HorarioDia> HorarioDiaSabado;
+        public ICollection<HorarioDia> HorarioDiaDomingo;
+
+
 
         public wHorarioDelaSemana()
         {
@@ -33,11 +41,38 @@ namespace CapaPresentacion.caHorarioSemana
         public void Iniciar()
         {
             txtNombres.Text = miHorarioSemana.Nombre;
-            dtgListaDias.ItemsSource = miHorarioSemana.Dia;
-            miListaHorarioDia = oblHorarioDia.ListarHorarioDias();
-            Dia midia;
-            midia.
-            //cboHorariosDias.ItemsSource = miListaHorarioDia;
+            HorarioDia auxHorario = new HorarioDia();
+            auxHorario.Nombre = "SIN HORARIO";
+            
+            HorarioDiaLunes = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaLunes.Add(auxHorario);
+            HorarioDiaMartes = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaMartes.Add(auxHorario);
+            HorarioDiaMiercoles = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaMiercoles.Add(auxHorario);
+            HorarioDiaJueves = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaJueves.Add(auxHorario);
+            HorarioDiaViernes = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaViernes.Add(auxHorario);
+            HorarioDiaSabado = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaSabado.Add(auxHorario);
+            HorarioDiaDomingo = oblHorarioDia.ListarHorarioDias();
+            HorarioDiaDomingo.Add(auxHorario);
+            cboLunes.ItemsSource = HorarioDiaLunes;
+            cboLunes.DisplayMemberPath = "Nombre";
+            cboMartes.ItemsSource = HorarioDiaMartes;
+            cboMartes.DisplayMemberPath = "Nombre";
+            cboMiercoles.ItemsSource = HorarioDiaMiercoles;
+            cboMiercoles.DisplayMemberPath = "Nombre";
+            cboJueves.ItemsSource = HorarioDiaMiercoles;
+            cboJueves.DisplayMemberPath = "Nombre";
+            cboViernes.ItemsSource = HorarioDiaJueves;
+            cboViernes.DisplayMemberPath = "Nombre";
+            cboSabado.ItemsSource = HorarioDiaViernes;
+            cboSabado.DisplayMemberPath = "Nombre";
+            cboDomingo.ItemsSource = HorarioDiaSabado;
+            cboDomingo.DisplayMemberPath = "Nombre";
+           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -47,7 +82,7 @@ namespace CapaPresentacion.caHorarioSemana
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)

@@ -5,18 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caHorarioSemana"
         mc:Ignorable="d"
-        Title="wHorarioDelaSemana" Height="377.82" Width="515.414" Loaded="Window_Loaded">
-    <Grid>
+        Title="Horario De la Semana" Height="526.465" Width="515.414" Loaded="Window_Loaded">
+    <Grid Margin="0,0,0,1">
         <Grid.Resources>
             <CollectionViewSource x:Key="source2" Source="{Binding miHorarioSemana, Mode=OneTime}"/>
         </Grid.Resources>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="316,252,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
-        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="390,252,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="178*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="251,31,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click" RenderTransformOrigin="0.639,-0.165" Grid.Row="8"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="382,31,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click" Grid.Row="8"/>
         <Label x:Name="lblNombres" Content="NOMBRES" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="211"/>
-        <StackPanel Margin="0,60,46,56">
-          
+        <TextBox x:Name="txtNombres" HorizontalAlignment="Left" Height="23" Margin="95,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
 
-        </StackPanel>
+        <Label x:Name="label" Content="Lunes :" HorizontalAlignment="Left" Height="27" Margin="28,18,0,34" Width="108" Grid.Row="1" Grid.RowSpan="2"/>
+        <ComboBox x:Name="cboLunes" HorizontalAlignment="Left" Height="34" Margin="114,6,0,2" Width="127" Grid.Row="1"/>
+        <Label x:Name="label1" Content="Martes :" HorizontalAlignment="Left" Height="32" Margin="28,8,0,37" Width="108" Grid.Row="2" Grid.RowSpan="2"/>
+        <Label x:Name="label2" Content="Miercoles" HorizontalAlignment="Left" Height="33" Margin="28,9,0,37" Width="108" Grid.Row="3" Grid.RowSpan="2"/>
+        <Label x:Name="label3" Content="Jueves :" HorizontalAlignment="Left" Height="35" Margin="28,7,0,35" Width="108" Grid.Row="4" Grid.RowSpan="2"/>
+        <Label x:Name="label4" Content="Viernes :" HorizontalAlignment="Left" Height="27" Margin="28,8,0,3" Width="108" Grid.Row="5"/>
+        <Label x:Name="label5" Content="Sabado :" HorizontalAlignment="Left" Height="32" Margin="28,2,0,1" Width="81" Grid.Row="6"/>
+        <Label x:Name="label6" Content="Domingo :" HorizontalAlignment="Left" Height="26" Margin="21,10,0,15.88" Width="93" Grid.Row="7"/>
+        <ComboBox x:Name="cboMartes" HorizontalAlignment="Left" Height="32" Margin="114,3,0,0" VerticalAlignment="Top" Width="127" Grid.Row="2"/>
+        <ComboBox x:Name="cboMiercoles" HorizontalAlignment="Left" Height="32" Margin="114,3,0,0" VerticalAlignment="Top" Width="127" Grid.Row="3"/>
+        <ComboBox x:Name="cboJueves" HorizontalAlignment="Left" Height="32" Margin="114,5,0,0" VerticalAlignment="Top" Width="127" Grid.Row="4"/>
+        <ComboBox x:Name="cboViernes" HorizontalAlignment="Left" Height="32" Margin="114,3,0,0" VerticalAlignment="Top" Width="127" Grid.Row="5"/>
+        <ComboBox x:Name="cboSabado" HorizontalAlignment="Left" Height="32" Margin="114,2,0,0" VerticalAlignment="Top" Width="127" Grid.Row="6"/>
+        <ComboBox x:Name="cboDomingo" HorizontalAlignment="Left" Height="32" Margin="114,4,0,0" VerticalAlignment="Top" Width="127" Grid.Row="7"/>
+
+
+
     </Grid>
 </Window>
