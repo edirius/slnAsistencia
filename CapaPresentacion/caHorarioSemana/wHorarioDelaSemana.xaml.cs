@@ -154,7 +154,7 @@ namespace CapaPresentacion.caHorarioSemana
                     item.HorarioDia = null;
                 }
             }
-
+            miHorarioSemana.Nombre = txtNombres.Text;
             DialogResult = true;
         }
 
