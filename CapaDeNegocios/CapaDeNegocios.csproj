@@ -68,10 +68,10 @@
     <Compile Include="cblAsistenciaAnual\cAsistenciaDia.cs" />
     <Compile Include="cblAsistenciaAnual\cAsistenciaMeses.cs" />
     <Compile Include="cblAsistenciaAnual\cAsistenciaPeriodoLaborado.cs" />
-    <Compile Include="cblAsistenciaAnual\cAsistenciaPeriodoTrabajador.cs" />
-    <Compile Include="cblAsistenciaPeriodoLaborado\blAsistenciaPeriodoLaborado.cs" />
-    <Compile Include="cblVacaciones\blVacaciones.cs" />
-    <Compile Include="cblVacaciones\cVacaciones.cs" />
+    <Compile Include="cblAsistenciaAnual\ccPeriodoTrabajador.cs" />
+    <Compile Include="blAsistenciaPeriodoLaborado\blAsistenciaPeriodoLaborado.cs" />
+    <Compile Include="blVacaciones\blVacaciones.cs" />
+    <Compile Include="cblAsistenciaAnual\ccVacaciones.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="cReglaNegociosException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

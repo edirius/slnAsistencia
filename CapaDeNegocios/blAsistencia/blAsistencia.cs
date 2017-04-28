@@ -10,7 +10,6 @@ namespace CapaDeNegocios.blAsistencia
 {
     public class blAsistencia
     {
-
         public ICollection<Asistencia> ListarAsistencias(Trabajador miTrabajador)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

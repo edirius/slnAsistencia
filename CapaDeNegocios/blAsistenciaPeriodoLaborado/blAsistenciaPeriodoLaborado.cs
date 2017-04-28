@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CapaEntities;
 using CapaDeDatos;
 
-namespace CapaDeNegocios.cblAsistenciaPeriodoLaborado
+namespace CapaDeNegocios.blAsistenciaPeriodoLaborado
 {
     public class blAsistenciaPeriodoLaborado
     {

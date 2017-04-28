@@ -15,10 +15,10 @@ namespace CapaEntities
     public partial class Vacaciones
     {
         public int Id { get; set; }
-        public string Inicio { get; set; }
-        public string Fin { get; set; }
-        public string DiasVacacionesAdelantadas { get; set; }
-        public string DiasVacacionesDisponibles { get; set; }
+        public System.DateTime Inicio { get; set; }
+        public System.DateTime Fin { get; set; }
+        public int DiasVacacionesAdelantadas { get; set; }
+        public int DiasVacacionesDisponibles { get; set; }
     
         public virtual AsistenciaPeriodoLaborado AsistenciaPeriodoLaborado { get; set; }
     }
