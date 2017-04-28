@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/11/2017 12:12:57
+-- Date Created: 04/26/2017 12:41:59
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -322,6 +322,32 @@ CREATE TABLE `DiaSet`(
 	`HorarioSemana_Id` int NOT NULL);
 
 ALTER TABLE `DiaSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `AsistenciaPeriodoLaboradoSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Inicio` datetime NOT NULL, 
+	`Fin` datetime NOT NULL, 
+	`PeriodoTrabajador_Id` int NOT NULL);
+
+ALTER TABLE `AsistenciaPeriodoLaboradoSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `VacacionesSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Inicio` longtext NOT NULL, 
+	`Fin` longtext NOT NULL, 
+	`DiasVacacionesAdelantadas` longtext NOT NULL, 
+	`DiasVacacionesDisponibles` longtext NOT NULL, 
+	`AsistenciaPeriodoLaborado_Id` int NOT NULL);
+
+ALTER TABLE `VacacionesSet` ADD PRIMARY KEY (`Id`);
 
 
 
@@ -640,6 +666,42 @@ ADD CONSTRAINT `FK_HorarioHorarioDia_HorarioDia`
 CREATE INDEX `IX_FK_HorarioHorarioDia_HorarioDia`
     ON `HorarioHorarioDia`
     (`HorarioDia_Id`);
+
+
+
+-- Creating foreign key on `PeriodoTrabajador_Id` in table 'AsistenciaPeriodoLaboradoSet'
+
+ALTER TABLE `AsistenciaPeriodoLaboradoSet`
+ADD CONSTRAINT `FK_PeriodoTrabajadorAsistenciaPeriodoLaborado`
+    FOREIGN KEY (`PeriodoTrabajador_Id`)
+    REFERENCES `PeriodoTrabajadorSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PeriodoTrabajadorAsistenciaPeriodoLaborado'
+
+CREATE INDEX `IX_FK_PeriodoTrabajadorAsistenciaPeriodoLaborado`
+    ON `AsistenciaPeriodoLaboradoSet`
+    (`PeriodoTrabajador_Id`);
+
+
+
+-- Creating foreign key on `AsistenciaPeriodoLaborado_Id` in table 'VacacionesSet'
+
+ALTER TABLE `VacacionesSet`
+ADD CONSTRAINT `FK_AsistenciaPeriodoLaboradoVacaciones`
+    FOREIGN KEY (`AsistenciaPeriodoLaborado_Id`)
+    REFERENCES `AsistenciaPeriodoLaboradoSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AsistenciaPeriodoLaboradoVacaciones'
+
+CREATE INDEX `IX_FK_AsistenciaPeriodoLaboradoVacaciones`
+    ON `VacacionesSet`
+    (`AsistenciaPeriodoLaborado_Id`);
 
 
 

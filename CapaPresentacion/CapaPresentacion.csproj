@@ -101,6 +101,9 @@
     <Compile Include="caPermisos\wPermisos.xaml.cs">
       <DependentUpon>wPermisos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caVacaciones\wMensaje.xaml.cs">
+      <DependentUpon>wMensaje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caVacaciones\wVacaciones.xaml.cs">
       <DependentUpon>wVacaciones.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="caPermisos\wPermisos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caVacaciones\wMensaje.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

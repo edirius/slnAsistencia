@@ -10,7 +10,6 @@ namespace CapaDeNegocios.blPermisosDias
 {
     public class blPermisosDias
     {
-
         public ICollection<PermisosDias> ListarPermisosDias()
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

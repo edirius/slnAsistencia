@@ -24,8 +24,8 @@ namespace CapaPresentacion.caRecordAsistencia
     {
         int sMes;
         public Trabajador miTrabajador = new Trabajador();
-        CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
+        CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wListaRecordAsistencia()
@@ -55,6 +55,7 @@ namespace CapaPresentacion.caRecordAsistencia
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
                     miTrabajador = fTrabajadores.miTrabajador;
+                    CargarPeriodoTrabajador(miTrabajador);
                 }
                 CargarRecordAsistencia();
             }
@@ -115,83 +116,51 @@ namespace CapaPresentacion.caRecordAsistencia
 
         private void CargarRecordAsistencia()
         {
-            if (cboMes.Text == "" || cboAño.Text == "" || txtTrabajador.Text == "")
+            try
             {
-                return;
-            }
-            else
-            {
-                //DibujarDataGrid();
-            }
+                if (cboMes.Text == "" || cboAño.Text == "")
+                {
+                    return;
+                }
+                else
+                {
+                    int dias_mes = DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
+                    Calendario.DisplayDateStart = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
+                    Calendario.DisplayDateEnd = Convert.ToDateTime(dias_mes + "/" + sMes + "/" + cboAño.Text);
+                }
+                if (txtTrabajador.Text == "")
+                {
+                    return;
+                }
 
-            ////DateTime auxiliar;
-            ////DateTime fechinicio = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
-            ////int diasMes = System.DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
-            //CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual miRecordAsistencia = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
-            //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaAnual miAsistenciaAnual = miRecordAsistencia.LlenarAsistencia(miTrabajador, miPeriodoTrabajador);
-            ////bool[] miAsistencia = new bool[31];
-            ////int columna = 0;
-            //if (sMes == 1)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[0].AsistenciaDias;
-            //    //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia dia in miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias)
-            //    //{
-            //    //    miAsistencia[columna] = dia.asistencia;
-            //    //    columna += 1;
-            //    //    //for (int i = 0; i < diasMes; i++)
-            //    //    //{
-            //    //    //    auxiliar = fechinicio.AddDays(i);
-            //    //    //    if (auxiliar.Date == dia.fecha.Date)
-            //    //    //    {
-            //    //    //        miAsistencia[0, i] = dia.asistencia;
-            //    //    //    }
-            //    //    //}
-            //    //}
-            //}
-            //else if (sMes == 2)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[1].AsistenciaDias;
-            //}
-            //else if (sMes == 3)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[2].AsistenciaDias;
-            //}
-            //else if (sMes == 4)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[3].AsistenciaDias;
-            //}
-            //else if (sMes == 5)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[4].AsistenciaDias;
-            //}
-            //else if (sMes == 6)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[5].AsistenciaDias;
-            //}
-            //else if (sMes == 7)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[6].AsistenciaDias;
-            //}
-            //else if (sMes == 8)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[7].AsistenciaDias;
-            //}
-            //else if (sMes == 9)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[8].AsistenciaDias;
-            //}
-            //else if (sMes == 10)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[9].AsistenciaDias;
-            //}
-            //else if (sMes == 11)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[10].AsistenciaDias;
-            //}
-            //else if (sMes == 12)
-            //{
-            //    dgRecordAsistencia.ItemsSource = miAsistenciaAnual.AsistenciaMeses[11].AsistenciaDias;
-            //}
+                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+                CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblVacaciones.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, miAsistenciaPeriodoTrabajador);
+
+                txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
+                txtPermisos.Text = miAsistenciaMeses.diasPermisos.ToString();
+                txtFaltas.Text = miAsistenciaMeses.diasFaltas.ToString();
+                txtTotalDias.Text = miAsistenciaMeses.diasTotal.ToString();
+
+                Calendario.SelectedDates.Clear();
+                foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaMeses.miListaAsistenciaDias)
+                {
+                    DateTime auxiliar = item.fecha;
+                    Calendario.SelectedDates.Add(auxiliar.Date);
+                }
+            }
+            catch (Exception m)
+            { }
+        }
+
+        private void CargarPeriodoTrabajador(Trabajador miTrabajador)
+        {
+            ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
+            foreach (PeriodoTrabajador name in ListaPeriodoTrabajador)
+            {
+                miPeriodoTrabajador = name;
+            }
         }
 
         //private void BuscarTodos()
@@ -264,60 +233,60 @@ namespace CapaPresentacion.caRecordAsistencia
         //    }
         //}
 
-        private void DibujarDataGrid()
-        {
-            //dgRecordAsistencia.Columns.Clear();
-            //dgRecordAsistencia.Items.Clear();
-            DateTime auxiliar;
-            DateTime fechinicio = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
-            int diasMes = System.DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
-            for (int i = 0; i < diasMes; i++)
-            {
-                auxiliar = fechinicio.AddDays(i);
-                DataGridCheckBoxColumn col = new DataGridCheckBoxColumn();
-                //col.con = "col" + i.ToString();
-                string auxiliarDiaSemana = "";
-                switch (auxiliar.DayOfWeek)
-                {
-                    case DayOfWeek.Monday:
-                        auxiliarDiaSemana = "L " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Tuesday:
-                        auxiliarDiaSemana = "M " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Wednesday:
-                        auxiliarDiaSemana = "M " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Friday:
-                        auxiliarDiaSemana = "V " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Thursday:
-                        auxiliarDiaSemana = "J " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Saturday:
-                        auxiliarDiaSemana = "S " + auxiliar.Day;
-                        break;
-                    case DayOfWeek.Sunday:
-                        auxiliarDiaSemana = "D " + auxiliar.Day;
-                        break;
-                    default:
-                        break;
-                }
-                col.Header = auxiliarDiaSemana;
-                col.Width = 40;
-                dgRecordAsistencia.Columns.Add(col);
-            }
-            //dgRecordAsistencia.Items.Add(1);
-            //DataGridViewTextBoxColumn TotalDias = new DataGridViewTextBoxColumn();
-            //TotalDias.Name = "txtTotalDias";
-            //TotalDias.HeaderText = "Total Dias";
-            //TotalDias.Width = 40;
-            //dgvDetalleTareo.Columns.Add(TotalDias);
-            //DataGridViewTextBoxColumn TotalHoras = new DataGridViewTextBoxColumn();
-            //TotalHoras.Name = "txtTotalHoras";
-            //TotalHoras.HeaderText = "Total Horas";
-            //TotalHoras.Width = 40;
-            //dgvDetalleTareo.Columns.Add(TotalHoras);
-        }
+        //private void DibujarDataGrid()
+        //{
+        //    //dgRecordAsistencia.Columns.Clear();
+        //    //dgRecordAsistencia.Items.Clear();
+        //    DateTime auxiliar;
+        //    DateTime fechinicio = Convert.ToDateTime("01/" + sMes + "/" + cboAño.Text);
+        //    int diasMes = System.DateTime.DaysInMonth(Convert.ToInt32(cboAño.Text), sMes);
+        //    for (int i = 0; i < diasMes; i++)
+        //    {
+        //        auxiliar = fechinicio.AddDays(i);
+        //        DataGridCheckBoxColumn col = new DataGridCheckBoxColumn();
+        //        //col.con = "col" + i.ToString();
+        //        string auxiliarDiaSemana = "";
+        //        switch (auxiliar.DayOfWeek)
+        //        {
+        //            case DayOfWeek.Monday:
+        //                auxiliarDiaSemana = "L " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Tuesday:
+        //                auxiliarDiaSemana = "M " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Wednesday:
+        //                auxiliarDiaSemana = "M " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Friday:
+        //                auxiliarDiaSemana = "V " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Thursday:
+        //                auxiliarDiaSemana = "J " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Saturday:
+        //                auxiliarDiaSemana = "S " + auxiliar.Day;
+        //                break;
+        //            case DayOfWeek.Sunday:
+        //                auxiliarDiaSemana = "D " + auxiliar.Day;
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        col.Header = auxiliarDiaSemana;
+        //        col.Width = 40;
+        //        dgRecordAsistencia.Columns.Add(col);
+        //    }
+        //    //dgRecordAsistencia.Items.Add(1);
+        //    //DataGridViewTextBoxColumn TotalDias = new DataGridViewTextBoxColumn();
+        //    //TotalDias.Name = "txtTotalDias";
+        //    //TotalDias.HeaderText = "Total Dias";
+        //    //TotalDias.Width = 40;
+        //    //dgvDetalleTareo.Columns.Add(TotalDias);
+        //    //DataGridViewTextBoxColumn TotalHoras = new DataGridViewTextBoxColumn();
+        //    //TotalHoras.Name = "txtTotalHoras";
+        //    //TotalHoras.HeaderText = "Total Horas";
+        //    //TotalHoras.Width = 40;
+        //    //dgvDetalleTareo.Columns.Add(TotalHoras);
+        //}
     }
 }
