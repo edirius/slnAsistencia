@@ -13,10 +13,7 @@ namespace CapaDeNegocios.cblAsistenciaAnual
         {
             miListaAsistenciaMeses = new List<cAsistenciaMeses>();
         }
-        public DateTime fechaInicio { get; set; }
-        public DateTime fechaFin { get; set; }
         public List<cAsistenciaMeses> miListaAsistenciaMeses { get; set; }
-        public cAsistenciaPeriodoTrabajador miPeriodoTrabajador { get; set; }
-        public CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones { get; set; }
+        public AsistenciaPeriodoLaborado miAsistenciaPeriodoLaborado{ get; set; }
     }
 }

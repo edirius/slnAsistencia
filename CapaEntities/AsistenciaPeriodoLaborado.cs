@@ -17,6 +17,9 @@ namespace CapaEntities
         public int Id { get; set; }
         public System.DateTime Inicio { get; set; }
         public System.DateTime Fin { get; set; }
+        public int DiasLaborados { get; set; }
+        public int DiasPermisosComputables { get; set; }
+        public int DiasPermisosNoComputables { get; set; }
     
         public virtual PeriodoTrabajador PeriodoTrabajador { get; set; }
         public virtual Vacaciones Vacaciones { get; set; }

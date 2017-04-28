@@ -154,7 +154,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="longtext" Nullable="false" />
-    <Property Name="Dia_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="HorarioSemanaSet">
     <Key>
@@ -239,6 +238,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NombreDiaSemana" Type="longtext" Nullable="false" />
+    <Property Name="HorarioDia_Id" Type="int" Nullable="true" />
     <Property Name="HorarioSemana_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AsistenciaPeriodoLaboradoSet">
@@ -248,6 +248,9 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Inicio" Type="datetime" Nullable="false" />
     <Property Name="Fin" Type="datetime" Nullable="false" />
+    <Property Name="DiasLaborados" Type="int" Nullable="false" />
+    <Property Name="DiasPermisosComputables" Type="int" Nullable="false" />
+    <Property Name="DiasPermisosNoComputables" Type="int" Nullable="false" />
     <Property Name="PeriodoTrabajador_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="VacacionesSet">
@@ -255,10 +258,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Inicio" Type="longtext" Nullable="false" />
-    <Property Name="Fin" Type="longtext" Nullable="false" />
-    <Property Name="DiasVacacionesAdelantadas" Type="longtext" Nullable="false" />
-    <Property Name="DiasVacacionesDisponibles" Type="longtext" Nullable="false" />
+    <Property Name="Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Fin" Type="datetime" Nullable="false" />
+    <Property Name="DiasVacacionesAdelantadas" Type="int" Nullable="false" />
+    <Property Name="DiasVacacionesDisponibles" Type="int" Nullable="false" />
     <Property Name="AsistenciaPeriodoLaborado_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="HorarioHorarioDia">
@@ -426,14 +429,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="DiaHorarioDia">
-    <End Role="Dia" Type="mAsistencia.Store.DiaSet" Multiplicity="0..1" />
-    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="*" />
+    <End Role="Dia" Type="mAsistencia.Store.DiaSet" Multiplicity="*" />
+    <End Role="HorarioDia" Type="mAsistencia.Store.HorarioDiaSet" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="Dia">
+      <Principal Role="HorarioDia">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="HorarioDia">
-        <PropertyRef Name="Dia_Id" />
+      <Dependent Role="Dia">
+        <PropertyRef Name="HorarioDia_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -803,7 +806,7 @@
           <NavigationProperty Name="HorarioSemana" Relationship="mAsistencia.HorarioSemanaDia" FromRole="Dia" ToRole="HorarioSemana" />
         </EntityType>
         <Association Name="DiaHorarioDia">
-          <End Type="mAsistencia.Dia" Role="Dia" Multiplicity="0..1" />
+          <End Type="mAsistencia.Dia" Role="Dia" Multiplicity="*" />
           <End Type="mAsistencia.HorarioDia" Role="HorarioDia" Multiplicity="0..1" />
         </Association>
         <Association Name="HorarioSemanaDia">
@@ -823,6 +826,9 @@
           <Property Name="Fin" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="PeriodoTrabajador" Relationship="mAsistencia.PeriodoTrabajadorAsistenciaPeriodoLaborado" FromRole="AsistenciaPeriodoLaborado" ToRole="PeriodoTrabajador" />
           <NavigationProperty Name="Vacaciones" Relationship="mAsistencia.AsistenciaPeriodoLaboradoVacaciones" FromRole="AsistenciaPeriodoLaborado" ToRole="Vacaciones" />
+          <Property Name="DiasLaborados" Type="Int32" Nullable="false" />
+          <Property Name="DiasPermisosComputables" Type="Int32" Nullable="false" />
+          <Property Name="DiasPermisosNoComputables" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="PeriodoTrabajadorAsistenciaPeriodoLaborado">
           <End Type="mAsistencia.PeriodoTrabajador" Role="PeriodoTrabajador" Multiplicity="1" />
@@ -834,10 +840,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="AsistenciaPeriodoLaborado" Relationship="mAsistencia.AsistenciaPeriodoLaboradoVacaciones" FromRole="Vacaciones" ToRole="AsistenciaPeriodoLaborado" />
-          <Property Name="Inicio" Type="String" Nullable="false" />
-          <Property Name="Fin" Type="String" Nullable="false" />
-          <Property Name="DiasVacacionesAdelantadas" Type="String" Nullable="false" />
-          <Property Name="DiasVacacionesDisponibles" Type="String" Nullable="false" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" />
+          <Property Name="DiasVacacionesAdelantadas" Type="Int32" Nullable="false" />
+          <Property Name="DiasVacacionesDisponibles" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="AsistenciaPeriodoLaboradoVacaciones">
           <End Type="mAsistencia.AsistenciaPeriodoLaborado" Role="AsistenciaPeriodoLaborado" Multiplicity="1" />
@@ -995,6 +1001,9 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Inicio" ColumnName="Inicio" />
           <ScalarProperty Name="Fin" ColumnName="Fin" />
+          <ScalarProperty Name="DiasLaborados" ColumnName="DiasLaborados" />
+          <ScalarProperty Name="DiasPermisosComputables" ColumnName="DiasPermisosComputables" />
+          <ScalarProperty Name="DiasPermisosNoComputables" ColumnName="DiasPermisosNoComputables" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1116,14 +1125,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DiaHorarioDia" TypeName="mAsistencia.DiaHorarioDia" StoreEntitySet="HorarioDiaSet">
-      <EndProperty Name="Dia">
-        <ScalarProperty Name="Id" ColumnName="Dia_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="DiaHorarioDia" TypeName="mAsistencia.DiaHorarioDia" StoreEntitySet="DiaSet">
       <EndProperty Name="HorarioDia">
+        <ScalarProperty Name="Id" ColumnName="HorarioDia_Id" />
+      </EndProperty>
+      <EndProperty Name="Dia">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
-      <Condition ColumnName="Dia_Id" IsNull="false" />
+      <Condition ColumnName="HorarioDia_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="HorarioSemanaDia" TypeName="mAsistencia.HorarioSemanaDia" StoreEntitySet="DiaSet">
       <EndProperty Name="HorarioSemana">

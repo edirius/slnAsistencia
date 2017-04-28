@@ -7,12 +7,14 @@ using CapaEntities;
 
 namespace CapaDeNegocios.cblAsistenciaAnual
 {
-    public class cAsistenciaPeriodoTrabajador
+    public class ccPeriodoTrabajador
     {
-        public cAsistenciaPeriodoTrabajador()
+        public ccPeriodoTrabajador()
         {
             miListaAsistenciaPeriodoLaborado = new List<cAsistenciaPeriodoLaborado>();
         }
+        public DateTime Inicio { get; set; }
+        public DateTime Fin { get; set; }
         public List<cAsistenciaPeriodoLaborado> miListaAsistenciaPeriodoLaborado { get; set; }
     }
 }

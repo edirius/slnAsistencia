@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/26/2017 12:41:59
+-- Date Created: 04/28/2017 17:24:38
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -93,6 +93,10 @@
 
 --    ALTER TABLE `HorarioHorarioDia` DROP CONSTRAINT `FK_HorarioHorarioDia_HorarioDia`;
 
+--    ALTER TABLE `AsistenciaPeriodoLaboradoSet` DROP CONSTRAINT `FK_PeriodoTrabajadorAsistenciaPeriodoLaborado`;
+
+--    ALTER TABLE `VacacionesSet` DROP CONSTRAINT `FK_AsistenciaPeriodoLaboradoVacaciones`;
+
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -130,6 +134,10 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `PeriodoTrabajadorSet`;
 
     DROP TABLE IF EXISTS `DiaSet`;
+
+    DROP TABLE IF EXISTS `AsistenciaPeriodoLaboradoSet`;
+
+    DROP TABLE IF EXISTS `VacacionesSet`;
 
     DROP TABLE IF EXISTS `HorarioHorarioDia`;
 
@@ -203,8 +211,7 @@ ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `HorarioDiaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Nombre` longtext NOT NULL, 
-	`Dia_Id` int);
+	`Nombre` longtext NOT NULL);
 
 ALTER TABLE `HorarioDiaSet` ADD PRIMARY KEY (`Id`);
 
@@ -319,6 +326,7 @@ ALTER TABLE `PeriodoTrabajadorSet` ADD PRIMARY KEY (`Id`);
 CREATE TABLE `DiaSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`NombreDiaSemana` longtext NOT NULL, 
+	`HorarioDia_Id` int, 
 	`HorarioSemana_Id` int NOT NULL);
 
 ALTER TABLE `DiaSet` ADD PRIMARY KEY (`Id`);
@@ -331,6 +339,9 @@ CREATE TABLE `AsistenciaPeriodoLaboradoSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Inicio` datetime NOT NULL, 
 	`Fin` datetime NOT NULL, 
+	`DiasLaborados` int NOT NULL, 
+	`DiasPermisosComputables` int NOT NULL, 
+	`DiasPermisosNoComputables` int NOT NULL, 
 	`PeriodoTrabajador_Id` int NOT NULL);
 
 ALTER TABLE `AsistenciaPeriodoLaboradoSet` ADD PRIMARY KEY (`Id`);
@@ -341,10 +352,10 @@ ALTER TABLE `AsistenciaPeriodoLaboradoSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `VacacionesSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Inicio` longtext NOT NULL, 
-	`Fin` longtext NOT NULL, 
-	`DiasVacacionesAdelantadas` longtext NOT NULL, 
-	`DiasVacacionesDisponibles` longtext NOT NULL, 
+	`Inicio` datetime NOT NULL, 
+	`Fin` datetime NOT NULL, 
+	`DiasVacacionesAdelantadas` int NOT NULL, 
+	`DiasVacacionesDisponibles` int NOT NULL, 
 	`AsistenciaPeriodoLaborado_Id` int NOT NULL);
 
 ALTER TABLE `VacacionesSet` ADD PRIMARY KEY (`Id`);
@@ -604,12 +615,12 @@ CREATE INDEX `IX_FK_OficinaTrabajador`
 
 
 
--- Creating foreign key on `Dia_Id` in table 'HorarioDiaSet'
+-- Creating foreign key on `HorarioDia_Id` in table 'DiaSet'
 
-ALTER TABLE `HorarioDiaSet`
+ALTER TABLE `DiaSet`
 ADD CONSTRAINT `FK_DiaHorarioDia`
-    FOREIGN KEY (`Dia_Id`)
-    REFERENCES `DiaSet`
+    FOREIGN KEY (`HorarioDia_Id`)
+    REFERENCES `HorarioDiaSet`
         (`Id`)
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -617,8 +628,8 @@ ADD CONSTRAINT `FK_DiaHorarioDia`
 -- Creating non-clustered index for FOREIGN KEY 'FK_DiaHorarioDia'
 
 CREATE INDEX `IX_FK_DiaHorarioDia`
-    ON `HorarioDiaSet`
-    (`Dia_Id`);
+    ON `DiaSet`
+    (`HorarioDia_Id`);
 
 
 

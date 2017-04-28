@@ -133,22 +133,22 @@ namespace CapaPresentacion.caRecordAsistencia
                     return;
                 }
 
-                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
-                CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
-                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
-                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblVacaciones.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, miAsistenciaPeriodoTrabajador);
+                //CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+                //CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
+                //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
+                //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblVacaciones.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, miAsistenciaPeriodoTrabajador);
 
-                txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
-                txtPermisos.Text = miAsistenciaMeses.diasPermisos.ToString();
-                txtFaltas.Text = miAsistenciaMeses.diasFaltas.ToString();
-                txtTotalDias.Text = miAsistenciaMeses.diasTotal.ToString();
+                //txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
+                //txtPermisos.Text = miAsistenciaMeses.diasPermisos.ToString();
+                //txtFaltas.Text = miAsistenciaMeses.diasFaltas.ToString();
+                //txtTotalDias.Text = miAsistenciaMeses.diasTotal.ToString();
 
-                Calendario.SelectedDates.Clear();
-                foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaMeses.miListaAsistenciaDias)
-                {
-                    DateTime auxiliar = item.fecha;
-                    Calendario.SelectedDates.Add(auxiliar.Date);
-                }
+                //Calendario.SelectedDates.Clear();
+                //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaMeses.miListaAsistenciaDias)
+                //{
+                //    DateTime auxiliar = item.fecha;
+                //    Calendario.SelectedDates.Add(auxiliar.Date);
+                //}
             }
             catch (Exception m)
             { }

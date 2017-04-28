@@ -43,9 +43,9 @@
         <AssociationConnector Association="mAsistencia.DiaHorarioDia" />
         <AssociationConnector Association="mAsistencia.HorarioSemanaDia" />
         <AssociationConnector Association="mAsistencia.HorarioHorarioDia" />
-        <EntityTypeShape EntityType="mAsistencia.AsistenciaPeriodoLaborado" Width="2" PointX="4.5" PointY="11.75" />
+        <EntityTypeShape EntityType="mAsistencia.AsistenciaPeriodoLaborado" Width="2.375" PointX="4.5" PointY="11.625" />
         <AssociationConnector Association="mAsistencia.PeriodoTrabajadorAsistenciaPeriodoLaborado" />
-        <EntityTypeShape EntityType="mAsistencia.Vacaciones" Width="2.125" PointX="4.5" PointY="14.625" />
+        <EntityTypeShape EntityType="mAsistencia.Vacaciones" Width="2.125" PointX="4.5" PointY="15" />
         <AssociationConnector Association="mAsistencia.AsistenciaPeriodoLaboradoVacaciones" />
       </Diagram>
     </edmx:Diagrams>
