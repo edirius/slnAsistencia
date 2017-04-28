@@ -72,7 +72,45 @@ namespace CapaPresentacion.caHorarioSemana
             cboSabado.DisplayMemberPath = "Nombre";
             cboDomingo.ItemsSource = HorarioDiaSabado;
             cboDomingo.DisplayMemberPath = "Nombre";
-           
+
+            foreach (Dia item in miHorarioSemana.Dia)
+            {
+                if (item.NombreDiaSemana !=null)
+                {
+                    switch (item.NombreDiaSemana)
+                    {
+                        case "Lunes":
+                            cboLunes.SelectedItem = item.HorarioDia;
+                            break;
+                        case "Martes":
+                            cboMartes.SelectedItem = item.HorarioDia;
+                            break;
+                        case "Miercoles":
+                            cboMiercoles.SelectedItem =  item.HorarioDia;
+                            break;
+                        case "Jueves":
+                            cboJueves.SelectedItem  =  item.HorarioDia;
+                            break;
+                        case "Viernes":
+                            cboViernes.SelectedItem =  item.HorarioDia;
+                            break;
+                        case "Sabado":
+                            cboSabado.SelectedItem =  item.HorarioDia;
+                            break;
+                        case "Domingo":
+                            cboDomingo.SelectedItem =  item.HorarioDia;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+
+                }
+                
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -82,7 +120,42 @@ namespace CapaPresentacion.caHorarioSemana
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            
+            foreach (Dia item in miHorarioSemana.Dia )
+            {
+                switch (item.NombreDiaSemana )
+                {
+                    case "Lunes":
+                        item.HorarioDia = (HorarioDia ) cboLunes.SelectedItem;
+                        break;
+                    case "Martes":
+                        item.HorarioDia = (HorarioDia)cboMartes.SelectedItem;
+                        break;
+                    case "Miercoles":
+                        item.HorarioDia = (HorarioDia)cboMiercoles.SelectedItem;
+                        break;
+                    case "Jueves":
+                        item.HorarioDia = (HorarioDia)cboJueves.SelectedItem;
+                        break;
+                    case "Viernes":
+                        item.HorarioDia = (HorarioDia)cboViernes.SelectedItem;
+                        break;
+                    case "Sabado":
+                        item.HorarioDia = (HorarioDia)cboSabado.SelectedItem;
+                        break;
+                    case "Domingo":
+                        item.HorarioDia = (HorarioDia)cboDomingo.SelectedItem;
+                        break;
+                    
+                    default:
+                        break;
+                }
+                if (item.HorarioDia.Nombre == "SIN HORARIO")
+                {
+                    item.HorarioDia = null;
+                }
+            }
+
+            DialogResult = true;
         }
 
         private void btnCANCELAR_Click(object sender, RoutedEventArgs e)

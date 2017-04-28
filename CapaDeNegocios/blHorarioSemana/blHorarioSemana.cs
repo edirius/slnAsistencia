@@ -23,15 +23,30 @@ namespace CapaDeNegocios.blHorarioSemana
 
         public void AgregarHorarioSemana(HorarioSemana miAgregarHorarioSemana)
         {
+            CapaDeNegocios.blDia.blDia oblDia = new blDia.blDia();
+
+           
+
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
+                foreach (Dia item in miAgregarHorarioSemana.Dia)
+                {
+                    bd.DiaSet.Attach(item);
+                }
+
                 bd.HorarioSemanaSet.Add(miAgregarHorarioSemana);
+                
                 bd.SaveChanges();
+            }
+            foreach (Dia item in miAgregarHorarioSemana.Dia)
+            {
+                oblDia.AgregarDia(item);
             }
         }
 
         public void ModificarHorarioSemana(HorarioSemana miModificarHorarioSemana)
         {
+            
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 HorarioSemana auxiliar = (from c in bd.HorarioSemanaSet
