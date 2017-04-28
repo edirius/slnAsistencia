@@ -42,13 +42,12 @@ namespace CapaPresentacion.caHorarioSemana
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           
                 caHorarioSemana.wHorarioDelaSemana fHorarioSemana = new caHorarioSemana.wHorarioDelaSemana();
                 fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
                 string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     Dia auxDia = new Dia();
                     auxDia.HorarioSemana = fHorarioSemana.miHorarioSemana;
@@ -62,9 +61,8 @@ namespace CapaPresentacion.caHorarioSemana
                     oblHorarioSemana.AgregarHorarioSemana(fHorarioSemana.miHorarioSemana);
                 }
                 CargarHorarioSemana();
-            }
-            catch
-            { }
+            
+            
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
