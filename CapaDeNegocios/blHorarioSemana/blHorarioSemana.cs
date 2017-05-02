@@ -28,10 +28,10 @@ namespace CapaDeNegocios.blHorarioSemana
 
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                foreach (Dia item in miAgregarHorarioSemana.Dia)
-                {
-                    bd.DiaSet.Attach(item);
-                }
+                //foreach (Dia item in miAgregarHorarioSemana.Dia)
+                //{
+                //    bd.DiaSet.Attach(item);
+                //}
 
                 bd.HorarioSemanaSet.Add(miAgregarHorarioSemana);
                 
