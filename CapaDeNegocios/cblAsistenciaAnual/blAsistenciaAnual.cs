@@ -87,27 +87,30 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             return miVacaciones;
         }
 
-        //public bool AsignarVacaciones(CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodo, CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado miAsistenciaAnual, CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones)
-        //{
-        //    if (miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count >= 3)
-        //    {
-        //        if (miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count - 2].miVacaciones.vacacionesEfectuadas == false && miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count - 3].miVacaciones.vacacionesEfectuadas == false && miVacaciones.vacacionesEfectuadas == false)
-        //        {
-        //            throw new cReglaNegociosException("No se puede postergar xq ya existen 2 periodos acumulados.");
-        //        }
-        //        else
-        //        {
-        //            miAsistenciaAnual.miVacaciones = miVacaciones;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        miAsistenciaAnual.miVacaciones = miVacaciones;
-        //    }
-        //    return true;
-        //}
+        public bool AsignarVacaciones(PeriodoTrabajador miPeriodoTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        {
+            bool rpta = false;
+            int nro_vacacionesacumulados = 0;
+            foreach (AsistenciaPeriodoLaborado item in miPeriodoTrabajador.AsistenciaPeriodoLaborado.OrderBy(x => x.Id))
+            {
+                if (item.Vacaciones == null)
+                {
+                    nro_vacacionesacumulados += 1;
+                }
+            }
 
-        public cAsistenciaPeriodoLaborado LlenarAsistenciaPeriodoLaborado(Trabajador miTrabajador, PeriodoTrabajador miPeriodoTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+            if (nro_vacacionesacumulados >= 2)
+            {
+                throw new cReglaNegociosException("No se puede acumular las vacaciones, el trabajador ya tiene 2 vacaciones acumuladas.");
+            }
+            else
+            {
+                rpta = true;
+            }
+            return rpta;
+        }
+
+        public cAsistenciaPeriodoLaborado LlenarAsistenciaPeriodoLaborado(PeriodoTrabajador miPeriodoTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
         {
             micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado = new AsistenciaPeriodoLaborado();
             micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador = miPeriodoTrabajador;
@@ -124,12 +127,23 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             }
 
             if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date >= DateTime.Today.Date)
-            { micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = DateTime.Today.Date; }
+            {
+                micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = DateTime.Today.Date;
+            }
             else
-            { micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date; }
+            {
+                if (DateTime.IsLeapYear(micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Year))
+                {
+                    micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(365).Date;
+                }
+                else
+                {
+                    micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date;
+                }
+            }
             micAsistenciaPeriodoLaborado = CrearMeses(micAsistenciaPeriodoLaborado);
-            micAsistenciaPeriodoLaborado = LlenarAsistencia(miTrabajador, micAsistenciaPeriodoLaborado);
-            micAsistenciaPeriodoLaborado = LlenarPermisos(miTrabajador, micAsistenciaPeriodoLaborado);
+            micAsistenciaPeriodoLaborado = LlenarAsistencia(miPeriodoTrabajador.Trabajador, micAsistenciaPeriodoLaborado);
+            micAsistenciaPeriodoLaborado = LlenarPermisos(miPeriodoTrabajador.Trabajador, micAsistenciaPeriodoLaborado);
             //while (miPeriodoTrabajador.AsistenciaPeriodoLaborado[miPeriodoTrabajador.AsistenciaPeriodoLaborado.Count - 1].fechaFin.Date < DateTime.Today.Date)
             //{
             //cAsistenciaPeriodoLaborado auxiliar = new cAsistenciaPeriodoLaborado();

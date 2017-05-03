@@ -23,9 +23,7 @@ namespace CapaPresentacion.caRecordAsistencia
     public partial class wListaRecordAsistencia : Window
     {
         int sMes;
-        public Trabajador miTrabajador = new Trabajador();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
-        CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wListaRecordAsistencia()
@@ -54,8 +52,7 @@ namespace CapaPresentacion.caRecordAsistencia
                 if (fTrabajadores.ShowDialog() == true)
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
-                    miTrabajador = fTrabajadores.miTrabajador;
-                    CargarPeriodoTrabajador(miTrabajador);
+                    CargarPeriodoTrabajador(fTrabajadores.miTrabajador);
                 }
                 CargarRecordAsistencia();
             }
@@ -135,7 +132,7 @@ namespace CapaPresentacion.caRecordAsistencia
 
                 CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado = new CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado();
-                micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miTrabajador, miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
+                micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblAsistenciaAnual.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, micAsistenciaPeriodoLaborado);
 
                 txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
