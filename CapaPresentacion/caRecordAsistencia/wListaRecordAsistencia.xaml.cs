@@ -132,7 +132,7 @@ namespace CapaPresentacion.caRecordAsistencia
 
                 CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado = new CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado();
-                micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
+                //micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblAsistenciaAnual.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, micAsistenciaPeriodoLaborado);
 
                 txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
