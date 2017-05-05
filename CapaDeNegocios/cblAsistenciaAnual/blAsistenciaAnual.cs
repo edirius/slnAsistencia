@@ -10,24 +10,165 @@ namespace CapaDeNegocios.cblAsistenciaAnual
 {
     public class blAsistenciaAnual
     {
-        public cAsistenciaPeriodoLaborado CalcularAsistenciaPeriodoTrabajador(Trabajador miTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+
+
+        public bool AcumularVacaciones(AsistenciaPeriodoLaborado miAsistenciaPeriodoLaborado)
         {
-            if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date >= DateTime.Today.Date)
-            { micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = DateTime.Today.Date; }
+            bool rpta = false;
+            if (CantidadVacacionesAcumuladas(miAsistenciaPeriodoLaborado) == 0)
+            {
+                rpta = true;
+            }
             else
-            { micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date; }
+            {
+                throw new cReglaNegociosException("No se puede acumular las vacaciones, el trabajador tiene vacaciones acumuladas.");
+            }
+            return rpta;
+        }
+
+        public int CantidadVacacionesAcumuladas(AsistenciaPeriodoLaborado miAsistenciaPeriodoLaborado)
+        {
+            int nro_vacacionesacumulados = 0;
+            foreach (AsistenciaPeriodoLaborado item in miAsistenciaPeriodoLaborado.PeriodoTrabajador.AsistenciaPeriodoLaborado.OrderBy(x => x.Id))
+            {
+                if (item.Vacaciones == null)
+                {
+                    nro_vacacionesacumulados += 1;
+                }
+            }
+            return nro_vacacionesacumulados;
+        }
+
+        public cAsistenciaPeriodoLaborado CalculoDiasAsistenciaPeriodoLaborado(cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        {
+            int nroMeses = Math.Abs((micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Month - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Month) + 12 * (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Year - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Year));
+            for (int i = 0; i <= nroMeses; i++)
+            {
+                foreach (cblAsistenciaAnual.cAsistenciaDia item in micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].miListaAsistenciaDias)
+                {
+                    if (item.asistencia == true)
+                    {
+                        micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasLaborados += 1;
+                    }
+                    if (item.miPermiso != null)
+                    {
+                        if (item.miPermiso.TipoPermisos.Computable == true)
+                        {
+                            micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasPermisosComputables += 1;
+                        }
+                        else
+                        {
+                            micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasPermisosNoComputables += 1;
+                        }
+                    }
+                }
+            }
+            return micAsistenciaPeriodoLaborado;
+        }
+
+        public CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses CalculoDiasAsistenciaMeses(int Año, int Mes, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        {
+            cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = new cblAsistenciaAnual.cAsistenciaMeses();
+            int nroMeses = Math.Abs((micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Month - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Month) + 12 * (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Year - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Year));
+            for (int i = 0; i <= nroMeses; i++)
+            {
+                if (Año == micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].nombreAño && Convert.ToDateTime("01/" + Mes + "/" + Año).ToString("MMMM") == micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].nombreMes)
+                {
+                    foreach (cblAsistenciaAnual.cAsistenciaDia item in micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].miListaAsistenciaDias)
+                    {
+                        if (item.asistencia == true)
+                        {
+                            micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasLaborados += 1;
+                        }
+                        if (item.miPermiso != null)
+                        {
+                            if (item.miPermiso.TipoPermisos.Computable == false)
+                            {
+                                micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasPermisos += 1;
+                            }
+                            else
+                            {
+                                micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasFaltas += 1;
+                            }
+                        }
+                    }
+                    micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasTotal = micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasLaborados + micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i].diasPermisos;
+                    miAsistenciaMeses = micAsistenciaPeriodoLaborado.miListaAsistenciaMeses[i];
+                }
+            }
+            return miAsistenciaMeses;
+        }
+
+        public Vacaciones CalcularVacaciones(cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        {
+            Vacaciones miVacaciones = new Vacaciones();
+            //if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasLaborados + micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasPermisosNoComputables >= 210)
+            //{
+            miVacaciones.Inicio = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.AddDays(1);
+            miVacaciones.Fin = miVacaciones.Inicio.AddDays(30);
+            miVacaciones.DiasVacacionesAdelantadas = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.DiasPermisosComputables;
+            miVacaciones.DiasVacacionesDisponibles = 30 - miVacaciones.DiasVacacionesAdelantadas;
+            miVacaciones.AsistenciaPeriodoLaborado = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado;
+            //}
+            //else
+            //{
+            //    throw new cReglaNegociosException("No se puede calcular las vacaciones, xq no cumple con el requisito de dias Laborados.");
+            //}
+            return miVacaciones;
+        }
+
+        public cAsistenciaPeriodoLaborado LlenarAsistenciaPeriodoLaborado(cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        {
+            if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Id == 0)
+            {
+                if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador.AsistenciaPeriodoLaborado.Count == 0)
+                {
+                    micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador.Inicio.Date;
+                }
+                else
+                {
+                    foreach (AsistenciaPeriodoLaborado item in micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador.AsistenciaPeriodoLaborado.OrderBy(x => x.Id))
+                    {
+                        micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio = item.Fin.AddDays(1).Date;
+                    }
+                }
+
+                if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date >= DateTime.Today.Date)
+                {
+                    micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = DateTime.Today.Date;
+                }
+                else
+                {
+                    if (DateTime.IsLeapYear(micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Year))
+                    {
+                        if (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Month <= 2)
+                        {
+                            micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(365).Date;
+                        }
+                        else
+                        {
+                            micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date;
+                        }
+                    }
+                    else
+                    {
+                        micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin = micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.AddDays(364).Date;
+                    }
+                }
+            }
             micAsistenciaPeriodoLaborado = CrearMeses(micAsistenciaPeriodoLaborado);
-            micAsistenciaPeriodoLaborado = LlenarAsistencia(miTrabajador, micAsistenciaPeriodoLaborado);
-            micAsistenciaPeriodoLaborado = LlenarPermisos(miTrabajador, micAsistenciaPeriodoLaborado);
+            micAsistenciaPeriodoLaborado = LlenarAsistencia(micAsistenciaPeriodoLaborado);
+            micAsistenciaPeriodoLaborado = LlenarPermisos( micAsistenciaPeriodoLaborado);
+
             //while (miPeriodoTrabajador.AsistenciaPeriodoLaborado[miPeriodoTrabajador.AsistenciaPeriodoLaborado.Count - 1].fechaFin.Date < DateTime.Today.Date)
             //{
-                //cAsistenciaPeriodoLaborado auxiliar = new cAsistenciaPeriodoLaborado();
-                //auxiliar.Inicio = miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1].fechaFin.AddDays(1).Date;
-                //auxiliar.Fin = auxiliar.Inicio.AddDays(364).Date;
-                ////auxiliar = CrearMeses(auxiliar);
-                ////auxiliar = LlenarAsistencia(miTrabajador, auxiliar);
-                ////auxiliar = LlenarPermisos(miTrabajador, auxiliar);
-                //miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Add(auxiliar);
+            //cAsistenciaPeriodoLaborado auxiliar = new cAsistenciaPeriodoLaborado();
+            //auxiliar.Inicio = miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1].fechaFin.AddDays(1).Date;
+            //auxiliar.Fin = auxiliar.Inicio.AddDays(364).Date;
+            ////auxiliar = CrearMeses(auxiliar);
+            ////auxiliar = LlenarAsistencia(miTrabajador, auxiliar);
+            ////auxiliar = LlenarPermisos(miTrabajador, auxiliar);
+            //miPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Add(auxiliar);
             //}
             return micAsistenciaPeriodoLaborado;
         }
@@ -169,12 +310,12 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             return micAsistenciaPeriodoLaborado;
         }
 
-        public cAsistenciaPeriodoLaborado LlenarAsistencia(Trabajador miTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        public cAsistenciaPeriodoLaborado LlenarAsistencia(cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
-                                                            where d.Trabajador.Id == miTrabajador.Id
+                                                            where d.Trabajador.Id == micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador.Trabajador.Id
                                                             && d.PicadoReloj >= micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio
                                                             && d.PicadoReloj <= micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin
                                                             select d;
@@ -198,12 +339,12 @@ namespace CapaDeNegocios.cblAsistenciaAnual
             }
         }
 
-        public cAsistenciaPeriodoLaborado LlenarPermisos(Trabajador miTrabajador, cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
+        public cAsistenciaPeriodoLaborado LlenarPermisos(cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet.Include("TipoPermisos")
-                                                            where d.PeriodoTrabajador.Trabajador.Id == miTrabajador.Id
+                                                            where d.PeriodoTrabajador.Trabajador.Id == micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador.Trabajador.Id
                                                             select d;
 
                 int nroMeses = Math.Abs((micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Month - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Month) + 12 * (micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Fin.Year - micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.Inicio.Year));
@@ -229,87 +370,5 @@ namespace CapaDeNegocios.cblAsistenciaAnual
                 return micAsistenciaPeriodoLaborado;
             }
         }
-
-        //public CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses CalculoDiasAsistenciaMeses(int Año, int Mes, cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador)
-        //{
-        //    cblAsistenciaAnual.cAsistenciaPeriodoLaborado miAsistenciaAnual = miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodoTrabajador.miListaAsistenciaPeriodoLaborado.Count - 1];
-        //    cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = new cblAsistenciaAnual.cAsistenciaMeses();
-
-        //    int nroMeses = Math.Abs((miAsistenciaAnual.fechaFin.Month - miAsistenciaAnual.fechaInicio.Month) + 12 * (miAsistenciaAnual.fechaFin.Year - miAsistenciaAnual.fechaInicio.Year));
-        //    for (int i = 0; i <= nroMeses; i++)
-        //    {
-        //        if (Año == miAsistenciaAnual.miListaAsistenciaMeses[i].nombreAño && Convert.ToDateTime("01/" + Mes + "/" + Año).ToString("MMMM") == miAsistenciaAnual.miListaAsistenciaMeses[i].nombreMes)
-        //        {
-        //            foreach (cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaAnual.miListaAsistenciaMeses[i].miListaAsistenciaDias)
-        //            {
-        //                if (item.asistencia == true)
-        //                {
-        //                    miAsistenciaAnual.miListaAsistenciaMeses[i].diasLaborados += 1;
-        //                }
-        //                if (item.miPermiso != null)
-        //                {
-        //                    if (item.miPermiso.TipoPermisos.Computable == false)
-        //                    {
-        //                        miAsistenciaAnual.miListaAsistenciaMeses[i].diasPermisos += 1;
-        //                    }
-        //                    else
-        //                    {
-        //                        miAsistenciaAnual.miListaAsistenciaMeses[i].diasFaltas += 1;
-        //                    }
-        //                }
-        //            }
-        //            miAsistenciaAnual.miListaAsistenciaMeses[i].diasTotal = miAsistenciaAnual.miListaAsistenciaMeses[i].diasLaborados + miAsistenciaAnual.miListaAsistenciaMeses[i].diasPermisos;
-        //            miAsistenciaMeses = miAsistenciaAnual.miListaAsistenciaMeses[i];
-        //        }
-        //    }
-        //    return miAsistenciaMeses;
-        //}
-
-        public cAsistenciaPeriodoLaborado CalculoDiasAsistenciaAnual(cAsistenciaPeriodoLaborado micAsistenciaPeriodoTrabajador)
-        {
-            int nroMeses = Math.Abs((micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.Fin.Month - micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.Inicio.Month) + 12 * (micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.Fin.Year - micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.Inicio.Year));
-            for (int i = 0; i <= nroMeses; i++)
-            {
-                foreach (cblAsistenciaAnual.cAsistenciaDia item in micAsistenciaPeriodoTrabajador.miListaAsistenciaMeses[i].miListaAsistenciaDias)
-                {
-                    if (item.asistencia == true)
-                    {
-                        micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.DiasLaborados += 1;
-                    }
-                    if (item.miPermiso != null)
-                    {
-                        if (item.miPermiso.TipoPermisos.Computable == true)
-                        {
-                            micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.DiasPermisosComputables += 1;
-                        }
-                        else
-                        {
-                            micAsistenciaPeriodoTrabajador.miAsistenciaPeriodoLaborado.DiasPermisosNoComputables += 1;
-                        }
-                    }
-                }
-            }
-            return micAsistenciaPeriodoTrabajador;
-        }
-
-        //public bool AsignarVacaciones(CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodo, CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado miAsistenciaAnual, CapaDeNegocios.cblVacaciones.cVacaciones miVacaciones)
-        //{
-        //    if (miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count >= 3)
-        //    {
-        //        if (miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count - 2].miVacaciones.vacacionesEfectuadas == false && miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado[miAsistenciaPeriodo.miListaAsistenciaPeriodoLaborado.Count - 3].miVacaciones.vacacionesEfectuadas == false && miVacaciones.vacacionesEfectuadas == false)
-        //        {
-        //            throw new cReglaNegociosException("No se puede postergar xq ya existen 2 periodos acumulados.");
-        //        }
-        //        else
-        //        {
-        //            miAsistenciaAnual.miVacaciones = miVacaciones;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        miAsistenciaAnual.miVacaciones = miVacaciones;
-        //    }
-        //    return true;
-        //}
     }
 }

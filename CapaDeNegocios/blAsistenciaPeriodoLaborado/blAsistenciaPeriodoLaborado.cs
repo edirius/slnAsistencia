@@ -25,6 +25,7 @@ namespace CapaDeNegocios.blAsistenciaPeriodoLaborado
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 bd.PeriodoTrabajadorSet.Attach(miAgregarAsistenciaPeriodoLaborado.PeriodoTrabajador);
+                bd.VacacionesSet.Attach(miAgregarAsistenciaPeriodoLaborado.Vacaciones);
                 bd.AsistenciaPeriodoLaboradoSet.Add(miAgregarAsistenciaPeriodoLaborado);
                 bd.SaveChanges();
             }

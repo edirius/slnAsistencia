@@ -1,0 +1,13 @@
+﻿<Window x:Class="CapaPresentacion.caVacaciones.wAPeriodoLaboradoAnteriores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.caVacaciones"
+        mc:Ignorable="d"
+        Title="Periodos Laborados Anteriores" Height="372.594" Width="402.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="29" Margin="329,292,0,0" VerticalAlignment="Top" Width="38" Click="btnOK_Click"/>
+        <DataGrid x:Name="dgAPeriodoLaborado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="277" Width="357" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True" SelectionChanged="dgAPeriodoLaborado_SelectionChanged" MouseDoubleClick="dgAPeriodoLaborado_MouseDoubleClick"/>
+    </Grid>
+</Window>

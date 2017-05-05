@@ -23,9 +23,7 @@ namespace CapaPresentacion.caRecordAsistencia
     public partial class wListaRecordAsistencia : Window
     {
         int sMes;
-        public Trabajador miTrabajador = new Trabajador();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
-        CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wListaRecordAsistencia()
@@ -54,8 +52,7 @@ namespace CapaPresentacion.caRecordAsistencia
                 if (fTrabajadores.ShowDialog() == true)
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
-                    miTrabajador = fTrabajadores.miTrabajador;
-                    CargarPeriodoTrabajador(miTrabajador);
+                    CargarPeriodoTrabajador(fTrabajadores.miTrabajador);
                 }
                 CargarRecordAsistencia();
             }
@@ -133,22 +130,22 @@ namespace CapaPresentacion.caRecordAsistencia
                     return;
                 }
 
-                //CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
-                //CapaDeNegocios.cblVacaciones.blVacaciones oblVacaciones = new CapaDeNegocios.cblVacaciones.blVacaciones();
-                //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoTrabajador miAsistenciaPeriodoTrabajador = oblAsistenciaAnual.CalcularAsistenciaPeriodoTrabajador(miTrabajador, miPeriodoTrabajador);
-                //CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblVacaciones.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, miAsistenciaPeriodoTrabajador);
+                CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado = new CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado();
+                //micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
+                CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblAsistenciaAnual.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, micAsistenciaPeriodoLaborado);
 
-                //txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
-                //txtPermisos.Text = miAsistenciaMeses.diasPermisos.ToString();
-                //txtFaltas.Text = miAsistenciaMeses.diasFaltas.ToString();
-                //txtTotalDias.Text = miAsistenciaMeses.diasTotal.ToString();
+                txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();
+                txtPermisos.Text = miAsistenciaMeses.diasPermisos.ToString();
+                txtFaltas.Text = miAsistenciaMeses.diasFaltas.ToString();
+                txtTotalDias.Text = miAsistenciaMeses.diasTotal.ToString();
 
-                //Calendario.SelectedDates.Clear();
-                //foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaMeses.miListaAsistenciaDias)
-                //{
-                //    DateTime auxiliar = item.fecha;
-                //    Calendario.SelectedDates.Add(auxiliar.Date);
-                //}
+                Calendario.SelectedDates.Clear();
+                foreach (CapaDeNegocios.cblAsistenciaAnual.cAsistenciaDia item in miAsistenciaMeses.miListaAsistenciaDias)
+                {
+                    DateTime auxiliar = item.fecha;
+                    Calendario.SelectedDates.Add(auxiliar.Date);
+                }
             }
             catch (Exception m)
             { }
