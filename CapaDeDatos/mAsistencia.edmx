@@ -24,6 +24,7 @@
     <EntitySet Name="DiaSet" EntityType="mAsistencia.Store.DiaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AsistenciaPeriodoLaboradoSet" EntityType="mAsistencia.Store.AsistenciaPeriodoLaboradoSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VacacionesSet" EntityType="mAsistencia.Store.VacacionesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleCronogramaVacacionesSet" EntityType="mAsistencia.Store.DetalleCronogramaVacacionesSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HorarioHorarioDia" EntityType="mAsistencia.Store.HorarioHorarioDia" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="LocalOficina" Association="mAsistencia.Store.LocalOficina">
       <End Role="Local" EntitySet="LocalSet" />
@@ -40,10 +41,6 @@
     <AssociationSet Name="PermisosDiasTipoPermisos" Association="mAsistencia.Store.PermisosDiasTipoPermisos">
       <End Role="PermisosDias" EntitySet="PermisosDiasSet" />
       <End Role="TipoPermisos" EntitySet="TipoPermisosSet" />
-    </AssociationSet>
-    <AssociationSet Name="TrabajadorCronogramaVacaciones" Association="mAsistencia.Store.TrabajadorCronogramaVacaciones">
-      <End Role="Trabajador" EntitySet="TrabajadorSet" />
-      <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
     </AssociationSet>
     <AssociationSet Name="OficinaOficina" Association="mAsistencia.Store.OficinaOficina">
       <End Role="Oficina" EntitySet="OficinaSet" />
@@ -100,6 +97,14 @@
     <AssociationSet Name="AsistenciaPeriodoLaboradoVacaciones" Association="mAsistencia.Store.AsistenciaPeriodoLaboradoVacaciones">
       <End Role="AsistenciaPeriodoLaborado" EntitySet="AsistenciaPeriodoLaboradoSet" />
       <End Role="Vacaciones" EntitySet="VacacionesSet" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorDetalleCronogramaVacaciones" Association="mAsistencia.Store.TrabajadorDetalleCronogramaVacaciones">
+      <End Role="Trabajador" EntitySet="TrabajadorSet" />
+      <End Role="DetalleCronogramaVacaciones" EntitySet="DetalleCronogramaVacacionesSet" />
+    </AssociationSet>
+    <AssociationSet Name="CronogramaVacacionesDetalleCronogramaVacaciones" Association="mAsistencia.Store.CronogramaVacacionesDetalleCronogramaVacaciones">
+      <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
+      <End Role="DetalleCronogramaVacaciones" EntitySet="DetalleCronogramaVacacionesSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TrabajadorSet">
@@ -204,9 +209,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Anio" Type="smallint" Nullable="false" />
-    <Property Name="Inicio" Type="datetime" Nullable="false" />
-    <Property Name="Fin" Type="datetime" Nullable="false" />
-    <Property Name="Trabajador_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="EmpresaSet">
     <Key>
@@ -264,6 +266,16 @@
     <Property Name="DiasVacacionesDisponibles" Type="int" Nullable="false" />
     <Property Name="AsistenciaPeriodoLaborado_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="DetalleCronogramaVacacionesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Fin" Type="datetime" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="false" />
+    <Property Name="CronogramaVacaciones_Id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="HorarioHorarioDia">
     <Key>
       <PropertyRef Name="Horario_Id" />
@@ -317,18 +329,6 @@
       </Principal>
       <Dependent Role="PermisosDias">
         <PropertyRef Name="TipoPermisos_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TrabajadorCronogramaVacaciones">
-    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="1" />
-    <End Role="CronogramaVacaciones" Type="mAsistencia.Store.CronogramaVacacionesSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Trabajador">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CronogramaVacaciones">
-        <PropertyRef Name="Trabajador_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -476,6 +476,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="TrabajadorDetalleCronogramaVacaciones">
+    <End Role="Trabajador" Type="mAsistencia.Store.TrabajadorSet" Multiplicity="1" />
+    <End Role="DetalleCronogramaVacaciones" Type="mAsistencia.Store.DetalleCronogramaVacacionesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleCronogramaVacaciones">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CronogramaVacacionesDetalleCronogramaVacaciones">
+    <End Role="CronogramaVacaciones" Type="mAsistencia.Store.CronogramaVacacionesSet" Multiplicity="1" />
+    <End Role="DetalleCronogramaVacaciones" Type="mAsistencia.Store.DetalleCronogramaVacacionesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CronogramaVacaciones">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleCronogramaVacaciones">
+        <PropertyRef Name="CronogramaVacaciones_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HorarioHorarioDia_Horario">
     <End Role="Horario" Type="mAsistencia.Store.HorarioSet" Multiplicity="1" />
     <End Role="HorarioHorarioDia" Type="mAsistencia.Store.HorarioHorarioDia" Multiplicity="*" />
@@ -533,10 +557,6 @@
           </AssociationSet>
           <EntitySet Name="DiaFestivoSet" EntityType="mAsistencia.DiaFestivo" />
           <EntitySet Name="CronogramaVacacionesSet" EntityType="mAsistencia.CronogramaVacaciones" />
-          <AssociationSet Name="TrabajadorCronogramaVacaciones" Association="mAsistencia.TrabajadorCronogramaVacaciones">
-            <End Role="Trabajador" EntitySet="TrabajadorSet" />
-            <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
-          </AssociationSet>
           <AssociationSet Name="OficinaOficina" Association="mAsistencia.OficinaOficina">
             <End Role="Oficina" EntitySet="OficinaSet" />
             <End Role="Oficina1" EntitySet="OficinaSet" />
@@ -595,6 +615,15 @@
             <End Role="AsistenciaPeriodoLaborado" EntitySet="AsistenciaPeriodoLaboradoSet" />
             <End Role="Vacaciones" EntitySet="VacacionesSet" />
           </AssociationSet>
+          <EntitySet Name="DetalleCronogramaVacacionesSet" EntityType="mAsistencia.DetalleCronogramaVacaciones" />
+          <AssociationSet Name="TrabajadorDetalleCronogramaVacaciones" Association="mAsistencia.TrabajadorDetalleCronogramaVacaciones">
+            <End Role="Trabajador" EntitySet="TrabajadorSet" />
+            <End Role="DetalleCronogramaVacaciones" EntitySet="DetalleCronogramaVacacionesSet" />
+          </AssociationSet>
+          <AssociationSet Name="CronogramaVacacionesDetalleCronogramaVacaciones" Association="mAsistencia.CronogramaVacacionesDetalleCronogramaVacaciones">
+            <End Role="CronogramaVacaciones" EntitySet="CronogramaVacacionesSet" />
+            <End Role="DetalleCronogramaVacaciones" EntitySet="DetalleCronogramaVacacionesSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Trabajador">
           <Key>
@@ -606,9 +635,9 @@
           <Property Name="ApellidoMaterno" Type="String" Nullable="false" />
           <Property Name="DNI" Type="String" Nullable="false" />
           <NavigationProperty Name="Asistencia" Relationship="mAsistencia.TrabajadorAsistencia" FromRole="Trabajador" ToRole="Asistencia" />
-          <NavigationProperty Name="CronogramaVacaciones" Relationship="mAsistencia.TrabajadorCronogramaVacaciones" FromRole="Trabajador" ToRole="CronogramaVacaciones" />
           <NavigationProperty Name="Periodo" Relationship="mAsistencia.TrabajadorPeriodo" FromRole="Trabajador" ToRole="Periodo" />
           <NavigationProperty Name="OficinaActual" Relationship="mAsistencia.OficinaTrabajador" FromRole="Trabajador" ToRole="Oficina" />
+          <NavigationProperty Name="DetalleCronogramaVacaciones" Relationship="mAsistencia.TrabajadorDetalleCronogramaVacaciones" FromRole="Trabajador" ToRole="DetalleCronogramaVacaciones" />
         </EntityType>
         <EntityType Name="Oficina">
           <Key>
@@ -727,15 +756,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Anio" Type="Int16" Nullable="false" />
-          <Property Name="Inicio" Type="DateTime" Nullable="false" />
-          <Property Name="Fin" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorCronogramaVacaciones" FromRole="CronogramaVacaciones" ToRole="Trabajador" />
+          <Property Name="Anio" Nullable="false" Type="Int16" />
+          <NavigationProperty Name="DetalleCronogramaVacaciones" Relationship="mAsistencia.CronogramaVacacionesDetalleCronogramaVacaciones" FromRole="CronogramaVacaciones" ToRole="DetalleCronogramaVacaciones" />
         </EntityType>
-        <Association Name="TrabajadorCronogramaVacaciones">
-          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
-          <End Type="mAsistencia.CronogramaVacaciones" Role="CronogramaVacaciones" Multiplicity="*" />
-        </Association>
         <Association Name="OficinaOficina">
           <End Type="mAsistencia.Oficina" Role="Oficina" Multiplicity="0..1" />
           <End Type="mAsistencia.Oficina" Role="Oficina1" Multiplicity="*" />
@@ -849,6 +872,24 @@
           <End Type="mAsistencia.AsistenciaPeriodoLaborado" Role="AsistenciaPeriodoLaborado" Multiplicity="1" />
           <End Type="mAsistencia.Vacaciones" Role="Vacaciones" Multiplicity="0..1" />
         </Association>
+        <EntityType Name="DetalleCronogramaVacaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="mAsistencia.TrabajadorDetalleCronogramaVacaciones" FromRole="DetalleCronogramaVacaciones" ToRole="Trabajador" />
+          <NavigationProperty Name="CronogramaVacaciones" Relationship="mAsistencia.CronogramaVacacionesDetalleCronogramaVacaciones" FromRole="DetalleCronogramaVacaciones" ToRole="CronogramaVacaciones" />
+        </EntityType>
+        <Association Name="TrabajadorDetalleCronogramaVacaciones">
+          <End Type="mAsistencia.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="mAsistencia.DetalleCronogramaVacaciones" Role="DetalleCronogramaVacaciones" Multiplicity="*" />
+        </Association>
+        <Association Name="CronogramaVacacionesDetalleCronogramaVacaciones">
+          <End Type="mAsistencia.CronogramaVacaciones" Role="CronogramaVacaciones" Multiplicity="1" />
+          <End Type="mAsistencia.DetalleCronogramaVacaciones" Role="DetalleCronogramaVacaciones" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -958,8 +999,6 @@
         <MappingFragment StoreEntitySet="CronogramaVacacionesSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Anio" ColumnName="Anio" />
-          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
-          <ScalarProperty Name="Fin" ColumnName="Fin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1018,6 +1057,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DetalleCronogramaVacacionesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.DetalleCronogramaVacaciones)">
+        <MappingFragment StoreEntitySet="DetalleCronogramaVacacionesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+          <ScalarProperty Name="Fin" ColumnName="Fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="LocalOficina" TypeName="mAsistencia.LocalOficina" StoreEntitySet="OficinaSet">
       <EndProperty Name="Local">
         <ScalarProperty Name="Id" ColumnName="Local_Id" />
@@ -1047,14 +1095,6 @@
         <ScalarProperty Name="Id" ColumnName="TipoPermisos_Id" />
       </EndProperty>
       <EndProperty Name="PermisosDias">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="TrabajadorCronogramaVacaciones" TypeName="mAsistencia.TrabajadorCronogramaVacaciones" StoreEntitySet="CronogramaVacacionesSet">
-      <EndProperty Name="Trabajador">
-        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
-      </EndProperty>
-      <EndProperty Name="CronogramaVacaciones">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
@@ -1163,6 +1203,22 @@
         <ScalarProperty Name="Id" ColumnName="AsistenciaPeriodoLaborado_Id" />
       </EndProperty>
       <EndProperty Name="Vacaciones">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrabajadorDetalleCronogramaVacaciones" TypeName="mAsistencia.TrabajadorDetalleCronogramaVacaciones" StoreEntitySet="DetalleCronogramaVacacionesSet">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="DetalleCronogramaVacaciones">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CronogramaVacacionesDetalleCronogramaVacaciones" TypeName="mAsistencia.CronogramaVacacionesDetalleCronogramaVacaciones" StoreEntitySet="DetalleCronogramaVacacionesSet">
+      <EndProperty Name="CronogramaVacaciones">
+        <ScalarProperty Name="Id" ColumnName="CronogramaVacaciones_Id" />
+      </EndProperty>
+      <EndProperty Name="DetalleCronogramaVacaciones">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

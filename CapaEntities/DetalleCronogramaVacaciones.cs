@@ -12,18 +12,13 @@ namespace CapaEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class CronogramaVacaciones
+    public partial class DetalleCronogramaVacaciones
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CronogramaVacaciones()
-        {
-            this.DetalleCronogramaVacaciones = new HashSet<DetalleCronogramaVacaciones>();
-        }
-    
         public int Id { get; set; }
-        public short Anio { get; set; }
+        public System.DateTime Inicio { get; set; }
+        public System.DateTime Fin { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleCronogramaVacaciones> DetalleCronogramaVacaciones { get; set; }
+        public virtual Trabajador Trabajador { get; set; }
+        public virtual CronogramaVacaciones CronogramaVacaciones { get; set; }
     }
 }

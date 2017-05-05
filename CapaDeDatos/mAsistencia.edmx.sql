@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 04/28/2017 17:24:38
+-- Date Created: 05/05/2017 15:05:00
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -85,7 +85,7 @@
 
 --    ALTER TABLE `TrabajadorSet` DROP CONSTRAINT `FK_OficinaTrabajador`;
 
---    ALTER TABLE `HorarioDiaSet` DROP CONSTRAINT `FK_DiaHorarioDia`;
+--    ALTER TABLE `DiaSet` DROP CONSTRAINT `FK_DiaHorarioDia`;
 
 --    ALTER TABLE `DiaSet` DROP CONSTRAINT `FK_HorarioSemanaDia`;
 
@@ -279,10 +279,7 @@ ALTER TABLE `DiaFestivoSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `CronogramaVacacionesSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Anio` smallint NOT NULL, 
-	`Inicio` datetime NOT NULL, 
-	`Fin` datetime NOT NULL, 
-	`Trabajador_Id` int NOT NULL);
+	`Anio` smallint NOT NULL);
 
 ALTER TABLE `CronogramaVacacionesSet` ADD PRIMARY KEY (`Id`);
 
@@ -359,6 +356,19 @@ CREATE TABLE `VacacionesSet`(
 	`AsistenciaPeriodoLaborado_Id` int NOT NULL);
 
 ALTER TABLE `VacacionesSet` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `DetalleCronogramaVacacionesSet`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Inicio` datetime NOT NULL, 
+	`Fin` datetime NOT NULL, 
+	`Trabajador_Id` int NOT NULL, 
+	`CronogramaVacaciones_Id` int NOT NULL);
+
+ALTER TABLE `DetalleCronogramaVacacionesSet` ADD PRIMARY KEY (`Id`);
 
 
 
@@ -450,24 +460,6 @@ ADD CONSTRAINT `FK_PermisosDiasTipoPermisos`
 CREATE INDEX `IX_FK_PermisosDiasTipoPermisos`
     ON `PermisosDiasSet`
     (`TipoPermisos_Id`);
-
-
-
--- Creating foreign key on `Trabajador_Id` in table 'CronogramaVacacionesSet'
-
-ALTER TABLE `CronogramaVacacionesSet`
-ADD CONSTRAINT `FK_TrabajadorCronogramaVacaciones`
-    FOREIGN KEY (`Trabajador_Id`)
-    REFERENCES `TrabajadorSet`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorCronogramaVacaciones'
-
-CREATE INDEX `IX_FK_TrabajadorCronogramaVacaciones`
-    ON `CronogramaVacacionesSet`
-    (`Trabajador_Id`);
 
 
 
@@ -713,6 +705,42 @@ ADD CONSTRAINT `FK_AsistenciaPeriodoLaboradoVacaciones`
 CREATE INDEX `IX_FK_AsistenciaPeriodoLaboradoVacaciones`
     ON `VacacionesSet`
     (`AsistenciaPeriodoLaborado_Id`);
+
+
+
+-- Creating foreign key on `Trabajador_Id` in table 'DetalleCronogramaVacacionesSet'
+
+ALTER TABLE `DetalleCronogramaVacacionesSet`
+ADD CONSTRAINT `FK_TrabajadorDetalleCronogramaVacaciones`
+    FOREIGN KEY (`Trabajador_Id`)
+    REFERENCES `TrabajadorSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TrabajadorDetalleCronogramaVacaciones'
+
+CREATE INDEX `IX_FK_TrabajadorDetalleCronogramaVacaciones`
+    ON `DetalleCronogramaVacacionesSet`
+    (`Trabajador_Id`);
+
+
+
+-- Creating foreign key on `CronogramaVacaciones_Id` in table 'DetalleCronogramaVacacionesSet'
+
+ALTER TABLE `DetalleCronogramaVacacionesSet`
+ADD CONSTRAINT `FK_CronogramaVacacionesDetalleCronogramaVacaciones`
+    FOREIGN KEY (`CronogramaVacaciones_Id`)
+    REFERENCES `CronogramaVacacionesSet`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CronogramaVacacionesDetalleCronogramaVacaciones'
+
+CREATE INDEX `IX_FK_CronogramaVacacionesDetalleCronogramaVacaciones`
+    ON `DetalleCronogramaVacacionesSet`
+    (`CronogramaVacaciones_Id`);
 
 
 

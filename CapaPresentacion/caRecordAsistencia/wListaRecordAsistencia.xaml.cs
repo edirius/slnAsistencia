@@ -47,7 +47,7 @@ namespace CapaPresentacion.caRecordAsistencia
         {
             try
             {
-                caPermisos.wBuscarTrabajadores fTrabajadores = new caPermisos.wBuscarTrabajadores();
+                caTrabajadores.wBuscarTrabajadores fTrabajadores = new caTrabajadores.wBuscarTrabajadores();
                 fTrabajadores.Owner = this.Owner;
                 if (fTrabajadores.ShowDialog() == true)
                 {
@@ -132,7 +132,9 @@ namespace CapaPresentacion.caRecordAsistencia
 
                 CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual oblAsistenciaAnual = new CapaDeNegocios.cblAsistenciaAnual.blAsistenciaAnual();
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado micAsistenciaPeriodoLaborado = new CapaDeNegocios.cblAsistenciaAnual.cAsistenciaPeriodoLaborado();
-                //micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(miPeriodoTrabajador, micAsistenciaPeriodoLaborado);
+                micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado = new AsistenciaPeriodoLaborado();
+                micAsistenciaPeriodoLaborado.miAsistenciaPeriodoLaborado.PeriodoTrabajador = miPeriodoTrabajador;
+                micAsistenciaPeriodoLaborado = oblAsistenciaAnual.LlenarAsistenciaPeriodoLaborado(micAsistenciaPeriodoLaborado);
                 CapaDeNegocios.cblAsistenciaAnual.cAsistenciaMeses miAsistenciaMeses = oblAsistenciaAnual.CalculoDiasAsistenciaMeses(Convert.ToInt32(cboAño.Text), sMes, micAsistenciaPeriodoLaborado);
 
                 txtDiasLaborados.Text = miAsistenciaMeses.diasLaborados.ToString();

@@ -44,8 +44,8 @@ namespace CapaPresentacion.caPermisos
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            miPermiso.Inicio = dtpInicio.DisplayDate;
-            miPermiso.Fin = dtpFin.DisplayDate;
+            miPermiso.Inicio = Convert.ToDateTime(dtpInicio.Text);
+            miPermiso.Fin = Convert.ToDateTime(dtpFin.Text);
             this.DialogResult = true;
         }
 

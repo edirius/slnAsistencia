@@ -18,8 +18,8 @@ namespace CapaEntities
         public Trabajador()
         {
             this.Asistencia = new HashSet<Asistencia>();
-            this.CronogramaVacaciones = new HashSet<CronogramaVacaciones>();
             this.Periodo = new HashSet<PeriodoTrabajador>();
+            this.DetalleCronogramaVacaciones = new HashSet<DetalleCronogramaVacaciones>();
         }
     
         public int Id { get; set; }
@@ -31,9 +31,9 @@ namespace CapaEntities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CronogramaVacaciones> CronogramaVacaciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PeriodoTrabajador> Periodo { get; set; }
         public virtual Oficina OficinaActual { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetalleCronogramaVacaciones> DetalleCronogramaVacaciones { get; set; }
     }
 }
