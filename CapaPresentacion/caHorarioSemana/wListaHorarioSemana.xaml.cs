@@ -47,7 +47,7 @@ namespace CapaPresentacion.caHorarioSemana
                 fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
                 string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     Dia auxDia = new Dia();
                     auxDia.HorarioSemana = fHorarioSemana.miHorarioSemana;
