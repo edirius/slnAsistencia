@@ -60,17 +60,17 @@ namespace CapaPresentacion.caHorarioSemana
             HorarioDiaDomingo.Add(auxHorario);
             cboLunes.ItemsSource = HorarioDiaLunes;
             cboLunes.DisplayMemberPath = "Nombre";
-            cboMartes.ItemsSource = HorarioDiaMartes;
+            cboMartes.ItemsSource = HorarioDiaLunes;
             cboMartes.DisplayMemberPath = "Nombre";
-            cboMiercoles.ItemsSource = HorarioDiaMiercoles;
+            cboMiercoles.ItemsSource = HorarioDiaLunes;
             cboMiercoles.DisplayMemberPath = "Nombre";
-            cboJueves.ItemsSource = HorarioDiaMiercoles;
+            cboJueves.ItemsSource = HorarioDiaLunes;
             cboJueves.DisplayMemberPath = "Nombre";
-            cboViernes.ItemsSource = HorarioDiaJueves;
+            cboViernes.ItemsSource = HorarioDiaLunes;
             cboViernes.DisplayMemberPath = "Nombre";
-            cboSabado.ItemsSource = HorarioDiaViernes;
+            cboSabado.ItemsSource = HorarioDiaLunes;
             cboSabado.DisplayMemberPath = "Nombre";
-            cboDomingo.ItemsSource = HorarioDiaSabado;
+            cboDomingo.ItemsSource = HorarioDiaLunes;
             cboDomingo.DisplayMemberPath = "Nombre";
 
             foreach (Dia item in miHorarioSemana.Dia)

@@ -28,19 +28,37 @@ namespace CapaDeNegocios.blHorarioSemana
 
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                //foreach (Dia item in miAgregarHorarioSemana.Dia)
-                //{
-                //    bd.DiaSet.Attach(item);
-                //}
+                HorarioDia auxHorarioDia;
+                foreach (Dia item in miAgregarHorarioSemana.Dia)
+                {
+                    if (item.HorarioDia != null)
+                    {
+                        //auxHorarioDia = bd.HorarioDiaSet.Find(item.HorarioDia.Id);
+                        //bool isDetached = bd.Entry(auxHorarioDia).State == System.Data.Entity.EntityState.Detached ;
+                        //if (isDetached)
+                        //{
+                            bd.HorarioDiaSet.Attach(item.HorarioDia); //  .Entry(item.HorarioDia).State = System.Data.Entity.EntityState.Unchanged;
+                        //}
+                        
+                        //HorarioDia auxDia = bd.HorarioDiaSet.Find(item.HorarioDia.Id);
+
+                        //if (auxDia == null)
+                        //{
+                        //    bd.HorarioDiaSet.Attach(item.HorarioDia);
+                        //}
+                    }
+                   
+                    
+                }
 
                 bd.HorarioSemanaSet.Add(miAgregarHorarioSemana);
                 
                 bd.SaveChanges();
             }
-            foreach (Dia item in miAgregarHorarioSemana.Dia)
-            {
-                oblDia.AgregarDia(item);
-            }
+            //foreach (Dia item in miAgregarHorarioSemana.Dia)
+            //{
+            //    oblDia.AgregarDia(item);
+            //}
         }
 
         public void ModificarHorarioSemana(HorarioSemana miModificarHorarioSemana)
