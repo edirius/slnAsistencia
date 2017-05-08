@@ -14,7 +14,7 @@ namespace CapaDeNegocios.blHorarioSemana
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<HorarioSemana> consultaHorarioSemanas = from d in bd.HorarioSemanaSet
+                IQueryable<HorarioSemana> consultaHorarioSemanas = from d in bd.HorarioSemanaSet.Include("Dia").Include("Dia.HorarioDia")
                                                              select d;
                 return consultaHorarioSemanas.ToList() ;
             }
@@ -23,42 +23,18 @@ namespace CapaDeNegocios.blHorarioSemana
         public void AgregarHorarioSemana(HorarioSemana miAgregarHorarioSemana)
         {
             CapaDeNegocios.blDia.blDia oblDia = new blDia.blDia();
-
-           
-
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                HorarioDia auxHorarioDia;
                 foreach (Dia item in miAgregarHorarioSemana.Dia)
                 {
                     if (item.HorarioDia != null)
                     {
-                        //auxHorarioDia = bd.HorarioDiaSet.Find(item.HorarioDia.Id);
-                        //bool isDetached = bd.Entry(auxHorarioDia).State == System.Data.Entity.EntityState.Detached ;
-                        //if (isDetached)
-                        //{
-                            bd.HorarioDiaSet.Attach(item.HorarioDia); //  .Entry(item.HorarioDia).State = System.Data.Entity.EntityState.Unchanged;
-                        //}
-                        
-                        //HorarioDia auxDia = bd.HorarioDiaSet.Find(item.HorarioDia.Id);
-
-                        //if (auxDia == null)
-                        //{
-                        //    bd.HorarioDiaSet.Attach(item.HorarioDia);
-                        //}
+                           bd.HorarioDiaSet.Attach(item.HorarioDia);
                     }
-                   
-                    
                 }
-
                 bd.HorarioSemanaSet.Add(miAgregarHorarioSemana);
-                
                 bd.SaveChanges();
             }
-            //foreach (Dia item in miAgregarHorarioSemana.Dia)
-            //{
-            //    oblDia.AgregarDia(item);
-            //}
         }
 
         public void ModificarHorarioSemana(HorarioSemana miModificarHorarioSemana)
@@ -66,10 +42,20 @@ namespace CapaDeNegocios.blHorarioSemana
             
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                HorarioSemana auxiliar = (from c in bd.HorarioSemanaSet
+                HorarioSemana auxiliar = (from c in bd.HorarioSemanaSet.Include("Dia").Include("Dia.HorarioDia") 
                                        where c.Id == miModificarHorarioSemana.Id
                                        select c).FirstOrDefault();
                 auxiliar.Nombre = miModificarHorarioSemana.Nombre;
+                foreach (Dia item in auxiliar.Dia)
+                {
+                    foreach (Dia item2 in miModificarHorarioSemana.Dia)
+                    {
+                        if (item.NombreDiaSemana == item2.NombreDiaSemana )
+                        {
+                            item.Id = item2.Id;
+                        }
+                    }
+                }
                 bd.SaveChanges();
             }
         }

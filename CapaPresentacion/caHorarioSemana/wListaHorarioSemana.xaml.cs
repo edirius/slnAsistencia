@@ -69,18 +69,21 @@ namespace CapaPresentacion.caHorarioSemana
         {
             try
             {
-                if (miHorarioSemana.Id == 0)
+                if (dgHorarioSemana.SelectedItem != null)
                 {
-                    MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN HORARIO DE SEMANA.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
+
+                    caHorarioSemana.wHorarioDelaSemana fHorarioSemana = new caHorarioSemana.wHorarioDelaSemana();
+                    fHorarioSemana.miHorarioSemana = (HorarioSemana) dgHorarioSemana.SelectedItem;
+                    if (fHorarioSemana.ShowDialog() == true)
+                    {
+                        oblHorarioSemana.ModificarHorarioSemana(fHorarioSemana.miHorarioSemana);
+                    }
+                    CargarHorarioSemana();
                 }
-                caHorarioSemana.wHorarioSemana fHorarioSemana = new caHorarioSemana.wHorarioSemana();
-                fHorarioSemana.miHorarioSemana = miHorarioSemana;
-                if (fHorarioSemana.ShowDialog() == true)
+                else
                 {
-                    oblHorarioSemana.ModificarHorarioSemana(fHorarioSemana.miHorarioSemana);
+                    MessageBox.Show("Seleccione un horario para modificar.", "Horario no encontrado");
                 }
-                CargarHorarioSemana();
             }
             catch
             { }
