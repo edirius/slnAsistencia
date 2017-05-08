@@ -10,13 +10,12 @@ namespace CapaDeNegocios.blCronogramaVacaciones
 {
     public class blCronogramaVacaciones
     {
-
         public ICollection<CronogramaVacaciones> ListarCronogramaVacaciones()
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<CronogramaVacaciones> consultaCronogramaVacaciones = from d in bd.CronogramaVacacionesSet
-                                                             select d;
+                                                                                select d;
                 return consultaCronogramaVacaciones.ToList() ;
             }
         }
@@ -38,8 +37,6 @@ namespace CapaDeNegocios.blCronogramaVacaciones
                                        where c.Id == miModificarCronogramaVacaciones.Id
                                        select c).FirstOrDefault();
                 auxiliar.Anio = miModificarCronogramaVacaciones.Anio;
-                auxiliar.Inicio = miModificarCronogramaVacaciones.Inicio;
-                auxiliar.Fin = miModificarCronogramaVacaciones.Fin;
                 bd.SaveChanges();
             }
         }

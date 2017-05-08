@@ -1,9 +1,9 @@
-﻿<Window x:Class="CapaPresentacion.caPermisos.wBuscarTrabajadores"
+﻿<Window x:Class="CapaPresentacion.caTrabajadores.wBuscarTrabajadores"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CapaPresentacion.caPermisos"
+        xmlns:local="clr-namespace:CapaPresentacion.caTrabajadores"
         mc:Ignorable="d"
         Title="Buscar Trabajadores" Height="448.747" Width="501.868" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>

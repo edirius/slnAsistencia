@@ -161,7 +161,8 @@ namespace CapaPresentacion
 
         private void mnuCronogramaVacaciones_Click(object sender, RoutedEventArgs e)
         {
-            CronogramaVacaciones.wListaCronogramaVacaciones fListaCronogramaVacaciones = new CronogramaVacaciones.wListaCronogramaVacaciones();
+            caCronogramaVacaciones.wListaCronogramaVacaciones fListaCronogramaVacaciones = new caCronogramaVacaciones.wListaCronogramaVacaciones();
+            fListaCronogramaVacaciones.Owner = this;
             fListaCronogramaVacaciones.ShowDialog();
         }
 

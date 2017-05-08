@@ -1,0 +1,17 @@
+﻿<Window x:Class="CapaPresentacion.caCronogramaVacaciones.wDetalleCronogramaVacaciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CapaPresentacion.caCronogramaVacaciones"
+        mc:Ignorable="d"
+        Title="Asignar Cronograma Vacaciones" Height="114.997" Width="430.511" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="254,26,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="328,26,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click"/>
+        <Label x:Name="label_Copy2" Content="INICIO" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dtpInicio" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="172" SelectedDateChanged="dtpInicio_SelectedDateChanged"/>
+        <Label x:Name="label_Copy3" Content="FIN" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="45"/>
+        <DatePicker x:Name="dtpFin"  HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" Width="172" SelectedDateChanged="dtpFin_SelectedDateChanged"/>
+    </Grid>
+</Window>

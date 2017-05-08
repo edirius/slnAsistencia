@@ -43,5 +43,6 @@ namespace CapaEntities
         public virtual DbSet<Dia> DiaSet { get; set; }
         public virtual DbSet<AsistenciaPeriodoLaborado> AsistenciaPeriodoLaboradoSet { get; set; }
         public virtual DbSet<Vacaciones> VacacionesSet { get; set; }
+        public virtual DbSet<DetalleCronogramaVacaciones> DetalleCronogramaVacacionesSet { get; set; }
     }
 }

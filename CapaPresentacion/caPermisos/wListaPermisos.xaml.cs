@@ -109,7 +109,7 @@ namespace CapaPresentacion.caPermisos
         {
             try
             {
-                caPermisos.wBuscarTrabajadores fTrabajadores = new wBuscarTrabajadores();
+                caTrabajadores.wBuscarTrabajadores fTrabajadores = new caTrabajadores.wBuscarTrabajadores();
                 if (fTrabajadores.ShowDialog() == true)
                 {
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;

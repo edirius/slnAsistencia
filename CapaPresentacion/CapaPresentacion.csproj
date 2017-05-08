@@ -74,8 +74,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="caCronogramaVacaciones\wDetalleCronogramaVacaciones.xaml.cs">
+      <DependentUpon>wDetalleCronogramaVacaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caHorarioSemana\wHorarioDelaSemana.xaml.cs">
       <DependentUpon>wHorarioDelaSemana.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caCronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
+      <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caCronogramaVacaciones\wCronogramaVacaciones.xaml.cs">
+      <DependentUpon>wCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="caRecordAsistencia\wListaRecordAsistencia.xaml.cs">
       <DependentUpon>wListaRecordAsistencia.xaml</DependentUpon>
@@ -95,7 +104,7 @@
     <Compile Include="caTipoPermisos\wTipoPermisos.xaml.cs">
       <DependentUpon>wTipoPermisos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="caPermisos\wBuscarTrabajadores.xaml.cs">
+    <Compile Include="caTrabajadores\wBuscarTrabajadores.xaml.cs">
       <DependentUpon>wBuscarTrabajadores.xaml</DependentUpon>
     </Compile>
     <Compile Include="caPermisos\wPermisos.xaml.cs">
@@ -112,9 +121,6 @@
     </Compile>
     <Compile Include="caVacaciones\wVacaciones.xaml.cs">
       <DependentUpon>wVacaciones.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml.cs">
-      <DependentUpon>wListaCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="DiasFestivos\wDiaFestivo.xaml.cs">
       <DependentUpon>wDiaFestivo.xaml</DependentUpon>
@@ -159,9 +165,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="caCronogramaVacaciones\wDetalleCronogramaVacaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="caHorarioSemana\wHorarioDelaSemana.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caCronogramaVacaciones\wListaCronogramaVacaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caCronogramaVacaciones\wCronogramaVacaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="caRecordAsistencia\wListaRecordAsistencia.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -187,7 +205,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="caPermisos\wBuscarTrabajadores.xaml">
+    <Page Include="caTrabajadores\wBuscarTrabajadores.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -208,10 +226,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="caVacaciones\wVacaciones.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="CronogramaVacaciones\wListaCronogramaVacaciones.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

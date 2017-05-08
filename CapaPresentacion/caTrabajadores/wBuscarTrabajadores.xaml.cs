@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using CapaDeNegocios;
 using CapaEntities;
 
-namespace CapaPresentacion.caPermisos
+namespace CapaPresentacion.caTrabajadores
 {
     /// <summary>
     /// Lógica de interacción para wBuscarTrabajadores.xaml
