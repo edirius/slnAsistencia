@@ -141,7 +141,7 @@ namespace CapaPresentacion.caCronogramaVacaciones
 
         private void dgCronogramaVacaciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //miCronogramaVacaciones = (CronogramaVacaciones)dgCronogramaVacaciones.SelectedItem;
+            Trabajador mi = (Trabajador)dgCronogramaVacaciones.SelectedItem;
         }
 
         private void CargarCronogramaVacaciones()
@@ -155,7 +155,12 @@ namespace CapaPresentacion.caCronogramaVacaciones
         private void CargarDetalleCronogramaVacaciones()
         {
             ICollection<DetalleCronogramaVacaciones> ListaDetalleCronogramaVacaciones = oblDetalleCronogramaVacaciones.ListarDetalleCronogramaVacaciones(miCronogramaVacaciones);
-            dgCronogramaVacaciones.ItemsSource = ListaDetalleCronogramaVacaciones;
+            List<Trabajador> ListaTrabajadores = new List<Trabajador>();
+            foreach (DetalleCronogramaVacaciones item in ListaDetalleCronogramaVacaciones)
+            {
+                ListaTrabajadores.Add(item.Trabajador);
+            }
+            dgCronogramaVacaciones.ItemsSource = ListaTrabajadores;
         }
     }
 }

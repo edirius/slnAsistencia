@@ -12,5 +12,6 @@
         <DatePicker x:Name="dtpInicio" HorizontalAlignment="Left" Margin="76,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dtpInicio_SelectedDateChanged"/>
         <Label x:Name="label_Copy7" Content="F. FIN" HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" Width="46"/>
         <DatePicker x:Name="dtpFin"  HorizontalAlignment="Left" Margin="277,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dtpFin_SelectedDateChanged"/>
+        <TextBox x:Name="txtCronogramaVacaciones" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" HorizontalContentAlignment="Center" Foreground="#FFF50C0C" IsEnabled="False"/>
     </Grid>
 </Window>

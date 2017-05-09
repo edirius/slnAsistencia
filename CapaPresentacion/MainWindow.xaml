@@ -38,6 +38,9 @@
             </MenuItem>
             <MenuItem x:Name="mnuImportarAsistencia" Header="Importar Asistencia" Click="mnuImportarAsistencia_Click"/>
             <MenuItem x:Name="mnuVacaciones" Header="Vacaciones" Click="mnuVacaciones_Click"/>
+            <MenuItem Header="Reportes">
+                <MenuItem x:Name="mnuTardanzas" Header="Tardanzas" HorizontalAlignment="Left" Width="175" Click="mnuTardanzas_Click"/>
+            </MenuItem>
         </Menu>
     </Grid>
 </Window>

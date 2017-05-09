@@ -10,6 +10,16 @@ namespace CapaDeNegocios.blCronogramaVacaciones
 {
     public class blDetalleCronogramaVacaciones
     {
+        public ICollection<DetalleCronogramaVacaciones> ListarDetalleCronogramaVacaciones(Trabajador miTrabajador)
+        {
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<DetalleCronogramaVacaciones> consultaDetalleCronogramaVacaciones = from d in bd.DetalleCronogramaVacacionesSet.Include("CronogramaVacaciones")
+                                                                                              where d.Trabajador.Id == miTrabajador.Id
+                                                                                              select d;
+                return consultaDetalleCronogramaVacaciones.ToList();
+            }
+        }
 
         public ICollection<DetalleCronogramaVacaciones> ListarDetalleCronogramaVacaciones(CronogramaVacaciones miCronogramaVacaciones)
         {

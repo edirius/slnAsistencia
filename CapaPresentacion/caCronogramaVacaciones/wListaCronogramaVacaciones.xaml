@@ -12,7 +12,7 @@
         <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="320,350,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
         <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,350,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
         <Button x:Name="btnTrabajador" Content="Agregar Trabajadores" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Width="143" Click="btnTrabajador_Click" Height="27"/>
-        <DataGrid x:Name="dgCronogramaVacaciones" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="303" Width="453" IsReadOnly="True" SelectionChanged="dgCronogramaVacaciones_SelectionChanged"/>
+        <DataGrid x:Name="dgCronogramaVacaciones" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="303" Width="453" IsReadOnly="True" SelectionChanged="dgCronogramaVacaciones_SelectionChanged" CanUserAddRows="False"/>
         <Label x:Name="label" Content="AÑO" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="44"/>
         <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged"/>
     </Grid>

@@ -108,6 +108,7 @@ namespace CapaPresentacion.caVacaciones
                             caVacaciones.wAsignarVacaciones fAsignarVacaciones = new caVacaciones.wAsignarVacaciones();
                             fAsignarVacaciones.Owner = this.Owner;
                             fAsignarVacaciones.miVacaciones = miVacaciones;
+                            fAsignarVacaciones.miTrabajador = miPeriodoTrabajador.Trabajador;
                             if (fAsignarVacaciones.ShowDialog() == true)
                             {
                                 if (miAsistenciaPeriodoLaborado.Id == 0)

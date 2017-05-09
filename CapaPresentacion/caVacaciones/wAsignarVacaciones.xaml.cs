@@ -21,6 +21,7 @@ namespace CapaPresentacion.caVacaciones
     public partial class wAsignarVacaciones : Window
     {
         public Vacaciones miVacaciones = new Vacaciones();
+        public Trabajador miTrabajador = new Trabajador();
 
         public wAsignarVacaciones()
         {
@@ -32,6 +33,7 @@ namespace CapaPresentacion.caVacaciones
             dtpInicio.DisplayDateStart = miVacaciones.Inicio;
             dtpInicio.SelectedDate = miVacaciones.Inicio;
             //dtpFin.SelectedDate = miVacaciones.Fin;
+            CargarDetalleCronogramaVacaciones();
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
@@ -51,6 +53,24 @@ namespace CapaPresentacion.caVacaciones
         private void dtpFin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void CargarDetalleCronogramaVacaciones()
+        {
+            CapaDeNegocios.blCronogramaVacaciones.blDetalleCronogramaVacaciones oblDetalleCronogramaVacaciones = new CapaDeNegocios.blCronogramaVacaciones.blDetalleCronogramaVacaciones();
+            ICollection<DetalleCronogramaVacaciones> ListaDetalleCronogramaVacaciones = oblDetalleCronogramaVacaciones.ListarDetalleCronogramaVacaciones(miTrabajador);
+            foreach (DetalleCronogramaVacaciones item in ListaDetalleCronogramaVacaciones)
+            {
+                if (item.CronogramaVacaciones.Anio == miVacaciones.AsistenciaPeriodoLaborado.Inicio.Year)
+                {
+                    txtCronogramaVacaciones.Text = "Cronograma Vacacional : " + item.Inicio.Date.ToString() + " - " + item.Fin.Date.ToString();
+                }
+            }
+
+            if (txtCronogramaVacaciones.Text == "")
+            {
+                txtCronogramaVacaciones.Text = "No existe cronograma vacacional, para el periodo laboral actual.";
+            }
         }
     }
 }

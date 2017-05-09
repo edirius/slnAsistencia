@@ -190,5 +190,12 @@ namespace CapaPresentacion
             fVacaciones.Owner = this;
             fVacaciones.ShowDialog();
         }
+
+        private void mnuTardanzas_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wTardanzas fTardanzas = new caReportes.wTardanzas();
+            fTardanzas.Owner = this;
+            fTardanzas.ShowDialog();
+        }
     }
 }
