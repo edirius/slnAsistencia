@@ -10,8 +10,6 @@ namespace CapaDeNegocios.cblAsistenciaAnual
 {
     public class blAsistenciaAnual
     {
-
-
         public bool AcumularVacaciones(AsistenciaPeriodoLaborado miAsistenciaPeriodoLaborado)
         {
             bool rpta = false;

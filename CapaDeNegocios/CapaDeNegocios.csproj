@@ -74,6 +74,7 @@
     <Compile Include="blAsistenciaPeriodoLaborado\blAsistenciaPeriodoLaborado.cs" />
     <Compile Include="blVacaciones\blVacaciones.cs" />
     <Compile Include="cblAsistenciaAnual\ccVacaciones.cs" />
+    <Compile Include="cblReportes\blReporteAsistencia.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="cReglaNegociosException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

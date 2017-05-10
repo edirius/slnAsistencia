@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caReportes"
         mc:Ignorable="d"
-        Title="wTardanzas" Height="391" Width="442">
+        Title="Reporte de Asistencia" Height="391" Width="442" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="label" Content="FECHA" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpFecha" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="243" Width="401"/>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="347,289,0,0" VerticalAlignment="Top" Width="64" Height="42"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="347,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnSalir_Click"/>
+        <Button x:Name="btnImprimir" Content="Imprimir" HorizontalAlignment="Left" Margin="278,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnImprimir_Click"/>
+        <Label x:Name="label" Content="INICIO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dpInicio" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy" Content="FIN" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dpFin" HorizontalAlignment="Left" Margin="266,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dgTrabajadores" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="243" Width="401" IsReadOnly="True"/>
     </Grid>
 </Window>
