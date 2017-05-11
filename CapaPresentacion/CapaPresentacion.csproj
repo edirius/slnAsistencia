@@ -89,8 +89,8 @@
     <Compile Include="caRecordAsistencia\wListaRecordAsistencia.xaml.cs">
       <DependentUpon>wListaRecordAsistencia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="caReportes\wTardanzas.xaml.cs">
-      <DependentUpon>wTardanzas.xaml</DependentUpon>
+    <Compile Include="caReportes\wAsistencia.xaml.cs">
+      <DependentUpon>wAsistencia.xaml</DependentUpon>
     </Compile>
     <Compile Include="caTipoPermisos\wListaTipoPermisos.xaml.cs">
       <DependentUpon>wListaTipoPermisos.xaml</DependentUpon>
@@ -188,7 +188,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="caReportes\wTardanzas.xaml">
+    <Page Include="caReportes\wAsistencia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,17 +17,18 @@ using CapaDeNegocios;
 namespace CapaPresentacion.caReportes
 {
     /// <summary>
-    /// Lógica de interacción para wTardanzas.xaml
+    /// Lógica de interacción para wAsistencia.xaml
     /// </summary>
-    public partial class wTardanzas : Window
+    public partial class wAsistencia : Window
     {
-        public wTardanzas()
+        public wAsistencia()
         {
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            dpInicio.SelectedDate = DateTime.Today;
             CargarTrabajadores();
         }
 
@@ -41,7 +42,10 @@ namespace CapaPresentacion.caReportes
                     miListaTrabajadores.Add((Trabajador)dgTrabajadores.Items[i]);
                 }
                 CapaDeNegocios.cblReportes.blReporteAsistencia miReporteAsistencia = new CapaDeNegocios.cblReportes.blReporteAsistencia();
-                miReporteAsistencia.ReporteAsistencia(miListaTrabajadores, Convert.ToDateTime(dpInicio.Text), Convert.ToDateTime(dpFin.Text));
+                miReporteAsistencia.miListaTrabajadores = miListaTrabajadores;
+                miReporteAsistencia.miFechaInicio = Convert.ToDateTime(dpInicio.Text);
+                miReporteAsistencia.miFechaFin = Convert.ToDateTime(dpFin.Text);
+                miReporteAsistencia.Iniciar();
             }
             catch
             { }
@@ -50,6 +54,17 @@ namespace CapaPresentacion.caReportes
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void dpInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dpFin.DisplayDateStart = dpInicio.SelectedDate;
+            dpFin.SelectedDate = dpInicio.SelectedDate;
+        }
+
+        private void dpFin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void CargarTrabajadores()

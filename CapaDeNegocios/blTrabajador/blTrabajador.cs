@@ -26,7 +26,6 @@ namespace CapaDeNegocios.blTrabajador
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
-                                                              
                                                               select d;
                 return consultaTrabajadores.ToList();
             }

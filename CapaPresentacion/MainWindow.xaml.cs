@@ -193,9 +193,9 @@ namespace CapaPresentacion
 
         private void mnuTardanzas_Click(object sender, RoutedEventArgs e)
         {
-            caReportes.wTardanzas fTardanzas = new caReportes.wTardanzas();
-            fTardanzas.Owner = this;
-            fTardanzas.ShowDialog();
+            caReportes.wAsistencia fAsistencia = new caReportes.wAsistencia();
+            fAsistencia.Owner = this;
+            fAsistencia.ShowDialog();
         }
     }
 }
