@@ -41,40 +41,69 @@ namespace CapaDeNegocios.cblReportes
         public void ReporteAsistencia()
         {
             int contador = 0;
+            int nro_filas = 0;
             foreach (Trabajador item in miListaTrabajadores)
             {
+                PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
                 //List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, miFechaInicio, miFechaFin);
                 //List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, miFechaInicio, miFechaFin);
-                //PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
-                //List<Dia> miHorarioDia = CargarHorario(miPeridodTrabajador);
 
-                contador += 1;
-                oHoja.Range["A" + (5 + contador).ToString()].Formula = contador;
-                oHoja.Range["B" + (5 + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
-                oHoja.Range["E" + (5 + contador).ToString()].Formula = item.DNI.ToString();//DNI
-                //oHoja.Range["G" + (5 + contador).ToString()].Formula = item.Sexo.ToString();//SEXO
+                nro_filas += 1;
+                oHoja.Range["A" + (6 + contador).ToString()].Formula = nro_filas;
+                oHoja.Range["B" + (6 + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
+                oHoja.Range["E" + (6 + contador).ToString()].Formula = item.DNI.ToString();//DNI
 
-                //for (int i = 0; i <= 40; i++)
-                //{
-                //    DateTime auxiliar = miFechaInicio.AddDays(i);
-
-                //}
-
-                if (contador < miListaTrabajadores.Count)
+                int nro_fechas = 0;
+                for (int i = 0; i <= (miFechaFin - miFechaInicio).Days; i++)
                 {
+                    nro_fechas += 1;
+                    DateTime auxiliar = miFechaInicio.AddDays(i);
+                    oHoja.Range["G" + (6 + contador).ToString()].Formula = auxiliar.Date.ToString();//SEXO
+
+                    List<Horario> miListaHorario = CargarListaHorario(miPeridodTrabajador, auxiliar);
+                    List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, auxiliar);
+                    int nro_horario = 0;
+                    foreach (Horario item2 in miListaHorario.OrderBy(x => x.Id))
+                    {
+                        nro_horario += 1;
+                        oHoja.Range["H" + (6 + contador).ToString()].Formula = item2.Nombre;
+                        oHoja.Range["I" + (6 + contador).ToString()].Formula = item2.Entrada;
+                        oHoja.Range["K" + (6 + contador).ToString()].Formula = item2.Salida;
+
+                        foreach (Asistencia item3 in miAsistenciaTrabajador.OrderBy(x => x.Id))
+                        {
+                            oHoja.Range["J" + (6 + contador).ToString()].Formula = item3.PicadoReloj;
+                        }
+
+                        if (nro_horario < miListaHorario.Count)
+                        {
+                            contador += 1;
+                            oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
+                        }
+                    }
+
+                    if (nro_fechas < (miFechaFin - miFechaInicio).Days)
+                    {
+                        contador += 1;
+                        oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
+                    }
+                }
+
+                if (nro_filas < miListaTrabajadores.Count)
+                {
+                    contador += 1;
                     oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
                 }
             }
         }
 
-        public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFechaInicio, DateTime miFechaFin)
+        public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFecha)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
                                                             where d.Trabajador.Id == miTrabajador.Id
-                                                            && d.PicadoReloj >= miFechaInicio
-                                                            && d.PicadoReloj <= miFechaFin
+                                                            && d.PicadoReloj == miFecha
                                                             select d;
                 return consultaAsistencia.ToList();
             }
@@ -93,14 +122,22 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public List<Dia> CargarHorario(PeriodoTrabajador miPeriodoTrabajador)
+        public List<Horario> CargarListaHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
         {
+            List<Horario> miHorario = new List<Horario>();
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("HorarioDia.Horario")
                                                      where d.HorarioSemana.Id == miPeriodoTrabajador.HorarioSemana.Id
                                                      select d;
-                return consultaHorarioDia.ToList();
+                foreach (Dia item in consultaHorarioDia)
+                {
+                    if ((miFecha.ToString("dddd")).ToUpper() == item.NombreDiaSemana.ToUpper() && item.HorarioDia != null)
+                    {
+                        miHorario = item.HorarioDia.Horario.ToList();
+                    }
+                }
+                return miHorario;
             }
         }
 
