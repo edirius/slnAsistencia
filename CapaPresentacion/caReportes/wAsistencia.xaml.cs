@@ -47,7 +47,7 @@ namespace CapaPresentacion.caReportes
                 miReporteAsistencia.miFechaFin = Convert.ToDateTime(dpFin.Text);
                 miReporteAsistencia.Iniciar();
             }
-            catch
+            catch (Exception m)
             { }
         }
 

@@ -25,6 +25,8 @@ namespace CapaEntities
         public System.DateTime Salida { get; set; }
         public string Nombre { get; set; }
         public System.DateTime TiempoTardanza { get; set; }
+        public System.DateTime FinPicadoEntrada { get; set; }
+        public System.DateTime FinPicadoSalida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HorarioDia> HorarioDia { get; set; }

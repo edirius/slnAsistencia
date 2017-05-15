@@ -45,8 +45,6 @@ namespace CapaDeNegocios.cblReportes
             foreach (Trabajador item in miListaTrabajadores)
             {
                 PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
-                //List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, miFechaInicio, miFechaFin);
-                //List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, miFechaInicio, miFechaFin);
 
                 nro_filas += 1;
                 oHoja.Range["A" + (6 + contador).ToString()].Formula = nro_filas;
@@ -62,18 +60,16 @@ namespace CapaDeNegocios.cblReportes
 
                     List<Horario> miListaHorario = CargarListaHorario(miPeridodTrabajador, auxiliar);
                     List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, auxiliar);
+                    List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, auxiliar);
                     int nro_horario = 0;
                     foreach (Horario item2 in miListaHorario.OrderBy(x => x.Id))
                     {
                         nro_horario += 1;
                         oHoja.Range["H" + (6 + contador).ToString()].Formula = item2.Nombre;
                         oHoja.Range["I" + (6 + contador).ToString()].Formula = item2.Entrada;
+                        oHoja.Range["J" + (6 + contador).ToString()].Formula = ENTRADA(item2, miAsistenciaTrabajador, miPermisoDiasTrabajador);
                         oHoja.Range["K" + (6 + contador).ToString()].Formula = item2.Salida;
-
-                        foreach (Asistencia item3 in miAsistenciaTrabajador.OrderBy(x => x.Id))
-                        {
-                            oHoja.Range["J" + (6 + contador).ToString()].Formula = item3.PicadoReloj;
-                        }
+                        oHoja.Range["L" + (6 + contador).ToString()].Formula = SALIDA(item2, miAsistenciaTrabajador, miPermisoDiasTrabajador);
 
                         if (nro_horario < miListaHorario.Count)
                         {
@@ -82,7 +78,7 @@ namespace CapaDeNegocios.cblReportes
                         }
                     }
 
-                    if (nro_fechas < (miFechaFin - miFechaInicio).Days)
+                    if (nro_fechas <= (miFechaFin - miFechaInicio).Days)
                     {
                         contador += 1;
                         oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
@@ -97,48 +93,40 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFecha)
+        public string ENTRADA(Horario miHorario, List<Asistencia> miAsistenciaTrabajador, List<PermisosDias> miPermisoDiasTrabajador)
         {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            DateTime Hora = DateTime.Today;
+            foreach (Asistencia item in miAsistenciaTrabajador)
             {
-                IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
-                                                            where d.Trabajador.Id == miTrabajador.Id
-                                                            && d.PicadoReloj == miFecha
-                                                            select d;
-                return consultaAsistencia.ToList();
-            }
-        }
-
-        public List<PermisosDias> LlenarPermisos(Trabajador miTrabajador, DateTime miFechaInicio, DateTime miFechaFin)
-        {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet
-                                                            where d.PeriodoTrabajador.Trabajador.Id == miTrabajador.Id
-                                                            && d.Inicio >= miFechaInicio
-                                                            && d.Inicio <= miFechaFin
-                                                            select d;
-                return consultaPermisos.ToList();
-            }
-        }
-
-        public List<Horario> CargarListaHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
-        {
-            List<Horario> miHorario = new List<Horario>();
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("HorarioDia.Horario")
-                                                     where d.HorarioSemana.Id == miPeriodoTrabajador.HorarioSemana.Id
-                                                     select d;
-                foreach (Dia item in consultaHorarioDia)
+                if (item.PicadoReloj.TimeOfDay <= miHorario.Entrada.TimeOfDay)
                 {
-                    if ((miFecha.ToString("dddd")).ToUpper() == item.NombreDiaSemana.ToUpper() && item.HorarioDia != null)
-                    {
-                        miHorario = item.HorarioDia.Horario.ToList();
-                    }
+
+                    Hora = item.PicadoReloj;
                 }
-                return miHorario;
+                else
+                {
+
+                }
             }
+            return Hora.TimeOfDay.ToString();
+        }
+
+        public string SALIDA(Horario miHorario, List<Asistencia> miAsistenciaTrabajador, List<PermisosDias> miPermisoDiasTrabajador)
+        {
+            DateTime Hora = DateTime.Today;
+            foreach (Asistencia item in miAsistenciaTrabajador)
+            {
+                if (item.PicadoReloj.TimeOfDay >= miHorario.Salida.TimeOfDay)
+                {
+
+                    Hora = item.PicadoReloj;
+                }
+                else
+                {
+
+                }
+            }
+            return Hora.TimeOfDay.ToString();
         }
 
         public PeriodoTrabajador CargarPeriodoTrabajador(Trabajador miTrabajador)
@@ -154,6 +142,68 @@ namespace CapaDeNegocios.cblReportes
                     miPeriodoTrabajador = item;
                 }
                 return miPeriodoTrabajador;
+            }
+        }
+
+        public List<Horario> CargarListaHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
+        {
+            List<Horario> miHorario = new List<Horario>();
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("HorarioDia.Horario")
+                                                     where d.HorarioSemana.Id == miPeriodoTrabajador.HorarioSemana.Id
+                                                     select d;
+                foreach (Dia item in consultaHorarioDia)
+                {
+                    if ((QuitarAcento(miFecha.ToString("dddd"))).ToUpper() == item.NombreDiaSemana.ToUpper() && item.HorarioDia != null)
+                    {
+                        miHorario = item.HorarioDia.Horario.ToList();
+                    }
+                }
+                return miHorario;
+            }
+        }
+
+        public string QuitarAcento(string miTexto)
+        {
+            string normalizedString = miTexto.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+            for (int i = 0; i < normalizedString.Length; i++)
+            {
+                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(normalizedString[i]);
+                }
+            }
+            return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+
+        public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFecha)
+        {
+            DateTime x = miFecha.AddDays(-1);
+            DateTime xx = miFecha.AddDays(1);
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
+                                                            where d.Trabajador.Id == miTrabajador.Id
+                                                            && d.PicadoReloj > x
+                                                            && d.PicadoReloj < xx
+                                                            select d;
+                return consultaAsistencia.ToList();
+            }
+        }
+
+        public List<PermisosDias> LlenarPermisos(Trabajador miTrabajador, DateTime miFecha)
+        {
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet
+                                                            where d.PeriodoTrabajador.Trabajador.Id == miTrabajador.Id
+                                                            && d.Inicio >= miFecha
+                                                            && d.Inicio <= miFecha
+                                                            select d;
+                return consultaPermisos.ToList();
             }
         }
     }

@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 05/05/2017 15:05:00
+-- Date Created: 05/15/2017 10:34:02
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -66,8 +66,6 @@
 --    ALTER TABLE `PermisosHorasSet` DROP CONSTRAINT `FK_PermisosHorasTipoPermisos`;
 
 --    ALTER TABLE `PermisosDiasSet` DROP CONSTRAINT `FK_PermisosDiasTipoPermisos`;
-
---    ALTER TABLE `CronogramaVacacionesSet` DROP CONSTRAINT `FK_TrabajadorCronogramaVacaciones`;
 
 --    ALTER TABLE `OficinaSet` DROP CONSTRAINT `FK_OficinaOficina`;
 
@@ -96,6 +94,10 @@
 --    ALTER TABLE `AsistenciaPeriodoLaboradoSet` DROP CONSTRAINT `FK_PeriodoTrabajadorAsistenciaPeriodoLaborado`;
 
 --    ALTER TABLE `VacacionesSet` DROP CONSTRAINT `FK_AsistenciaPeriodoLaboradoVacaciones`;
+
+--    ALTER TABLE `DetalleCronogramaVacacionesSet` DROP CONSTRAINT `FK_TrabajadorDetalleCronogramaVacaciones`;
+
+--    ALTER TABLE `DetalleCronogramaVacacionesSet` DROP CONSTRAINT `FK_CronogramaVacacionesDetalleCronogramaVacaciones`;
 
 
 -- --------------------------------------------------
@@ -138,6 +140,8 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `AsistenciaPeriodoLaboradoSet`;
 
     DROP TABLE IF EXISTS `VacacionesSet`;
+
+    DROP TABLE IF EXISTS `DetalleCronogramaVacacionesSet`;
 
     DROP TABLE IF EXISTS `HorarioHorarioDia`;
 
@@ -201,7 +205,9 @@ CREATE TABLE `HorarioSet`(
 	`Entrada` datetime NOT NULL, 
 	`Salida` datetime NOT NULL, 
 	`Nombre` longtext NOT NULL, 
-	`TiempoTardanza` datetime NOT NULL);
+	`TiempoTardanza` datetime NOT NULL, 
+	`FinPicadoEntrada` datetime NOT NULL, 
+	`FinPicadoSalida` datetime NOT NULL);
 
 ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);
 

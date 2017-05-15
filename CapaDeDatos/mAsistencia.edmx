@@ -152,6 +152,8 @@
     <Property Name="Salida" Type="datetime" Nullable="false" />
     <Property Name="Nombre" Type="longtext" Nullable="false" />
     <Property Name="TiempoTardanza" Type="datetime" Nullable="false" />
+    <Property Name="FinPicadoEntrada" Type="datetime" Nullable="false" />
+    <Property Name="FinPicadoSalida" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="HorarioDiaSet">
     <Key>
@@ -682,6 +684,8 @@
           <Property Name="Nombre" Type="String" Nullable="false" />
           <Property Name="TiempoTardanza" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioHorarioDia" FromRole="Horario" ToRole="HorarioDia" />
+          <Property Name="FinPicadoEntrada" Type="DateTime" Nullable="false" />
+          <Property Name="FinPicadoSalida" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="HorarioDia">
           <Key>
@@ -939,6 +943,8 @@
           <ScalarProperty Name="Salida" ColumnName="Salida" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="TiempoTardanza" ColumnName="TiempoTardanza" />
+          <ScalarProperty Name="FinPicadoEntrada" ColumnName="FinPicadoEntrada" />
+          <ScalarProperty Name="FinPicadoSalida" ColumnName="FinPicadoSalida" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
