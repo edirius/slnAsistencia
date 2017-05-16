@@ -148,11 +148,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="longtext" Nullable="false" />
     <Property Name="Entrada" Type="datetime" Nullable="false" />
     <Property Name="Salida" Type="datetime" Nullable="false" />
-    <Property Name="Nombre" Type="longtext" Nullable="false" />
-    <Property Name="TiempoTardanza" Type="datetime" Nullable="false" />
+    <Property Name="Tolerancia" Type="datetime" Nullable="false" />
+    <Property Name="InicioPicadoEntrada" Type="datetime" Nullable="false" />
     <Property Name="FinPicadoEntrada" Type="datetime" Nullable="false" />
+    <Property Name="InicioPicadoSalida" Type="datetime" Nullable="false" />
     <Property Name="FinPicadoSalida" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="HorarioDiaSet">
@@ -679,12 +681,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
           <Property Name="Entrada" Type="DateTime" Nullable="false" />
           <Property Name="Salida" Type="DateTime" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" />
-          <Property Name="TiempoTardanza" Type="DateTime" Nullable="false" />
+          <Property Name="Tolerancia" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="HorarioDia" Relationship="mAsistencia.HorarioHorarioDia" FromRole="Horario" ToRole="HorarioDia" />
+          <Property Name="InicioPicadoEntrada" Type="DateTime" Nullable="false" />
           <Property Name="FinPicadoEntrada" Type="DateTime" Nullable="false" />
+          <Property Name="InicioPicadoSalida" Type="DateTime" Nullable="false" />
           <Property Name="FinPicadoSalida" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="HorarioDia">
@@ -939,11 +943,13 @@
       <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.Horario)">
         <MappingFragment StoreEntitySet="HorarioSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Entrada" ColumnName="Entrada" />
           <ScalarProperty Name="Salida" ColumnName="Salida" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="TiempoTardanza" ColumnName="TiempoTardanza" />
+          <ScalarProperty Name="Tolerancia" ColumnName="Tolerancia" />
+          <ScalarProperty Name="InicioPicadoEntrada" ColumnName="InicioPicadoEntrada" />
           <ScalarProperty Name="FinPicadoEntrada" ColumnName="FinPicadoEntrada" />
+          <ScalarProperty Name="InicioPicadoSalida" ColumnName="InicioPicadoSalida" />
           <ScalarProperty Name="FinPicadoSalida" ColumnName="FinPicadoSalida" />
         </MappingFragment>
       </EntityTypeMapping>

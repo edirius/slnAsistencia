@@ -37,9 +37,9 @@ namespace CapaDeNegocios.blHorario
                 Horario auxiliar = (from c in bd.HorarioSet
                                        where c.Id == miModificarHorario.Id
                                        select c).FirstOrDefault();
+                auxiliar.Nombre = miModificarHorario.Nombre;
                 auxiliar.Entrada = miModificarHorario.Entrada;
                 auxiliar.Salida = miModificarHorario.Salida;
-                auxiliar.Nombre = miModificarHorario.Nombre;
                 bd.SaveChanges();
             }
         }

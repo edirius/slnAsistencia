@@ -44,7 +44,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 05/15/2017 10:34:02
+-- Date Created: 05/16/2017 16:05:08
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
@@ -202,11 +202,13 @@ ALTER TABLE `LocalSet` ADD PRIMARY KEY (`Id`);
 
 CREATE TABLE `HorarioSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Nombre` longtext NOT NULL, 
 	`Entrada` datetime NOT NULL, 
 	`Salida` datetime NOT NULL, 
-	`Nombre` longtext NOT NULL, 
-	`TiempoTardanza` datetime NOT NULL, 
+	`Tolerancia` datetime NOT NULL, 
+	`InicioPicadoEntrada` datetime NOT NULL, 
 	`FinPicadoEntrada` datetime NOT NULL, 
+	`InicioPicadoSalida` datetime NOT NULL, 
 	`FinPicadoSalida` datetime NOT NULL);
 
 ALTER TABLE `HorarioSet` ADD PRIMARY KEY (`Id`);

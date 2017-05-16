@@ -21,11 +21,13 @@ namespace CapaEntities
         }
     
         public int Id { get; set; }
+        public string Nombre { get; set; }
         public System.DateTime Entrada { get; set; }
         public System.DateTime Salida { get; set; }
-        public string Nombre { get; set; }
-        public System.DateTime TiempoTardanza { get; set; }
+        public System.DateTime Tolerancia { get; set; }
+        public System.DateTime InicioPicadoEntrada { get; set; }
         public System.DateTime FinPicadoEntrada { get; set; }
+        public System.DateTime InicioPicadoSalida { get; set; }
         public System.DateTime FinPicadoSalida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
