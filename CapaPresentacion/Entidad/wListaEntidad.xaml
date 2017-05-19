@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.Entidad"
         mc:Ignorable="d"
-        Title="Entidad" Height="323.684" Width="574.06" Loaded="Window_Loaded">
+        Title="Entidad" Height="323.684" Width="574.06" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="241*"/>

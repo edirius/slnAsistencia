@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caRecordAsistencia"
         mc:Ignorable="d"
-        Title="Permisos" Height="290.594" Width="489.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Asistencia del Trabajador" Height="290.594" Width="489.729" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="394,203,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
         <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="406,13,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click"/>

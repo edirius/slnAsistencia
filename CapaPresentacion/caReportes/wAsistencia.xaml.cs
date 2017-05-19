@@ -72,11 +72,27 @@ namespace CapaPresentacion.caReportes
             CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
             ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
             dgTrabajadores.ItemsSource = ListaTrabajadores;
+            dgTrabajadores.Columns[5].Visibility = Visibility.Collapsed;
+            dgTrabajadores.Columns[6].Visibility = Visibility.Collapsed;
+            dgTrabajadores.Columns[7].Visibility = Visibility.Collapsed;
+            dgTrabajadores.Columns[8].Visibility = Visibility.Collapsed;
+            //AgregarColumnasDataGrig();
             if (dgTrabajadores.Items.Count > 0)
             {
                 object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
                 dgTrabajadores.SelectedItem = item;
             }
+        }
+
+        private void AgregarColumnasDataGrig()
+        {
+            DataGridCheckBoxColumn Check = new DataGridCheckBoxColumn();//creamos un objeto check
+            {
+                //Check. = "☑";//le damos un nombre de cabecera
+                dgTrabajadores.Columns.Add(Check);//agregamos los check a cada items
+            }
+            dgTrabajadores.Columns[9].Width = 30;
+            dgTrabajadores.IsReadOnly = false;
         }
     }
 }

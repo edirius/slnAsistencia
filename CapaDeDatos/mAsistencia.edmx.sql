@@ -44,13 +44,17 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 05/16/2017 16:05:08
+-- Date Created: 05/18/2017 14:48:00
 
 -- Generated from EDMX file: D:\SITEMAS\slnAsistencia\CapaDeDatos\mAsistencia.edmx
 -- Target version: 3.0.0.0
 
 -- --------------------------------------------------
 
+
+DROP DATABASE IF EXISTS `bdasistencia`;
+CREATE DATABASE `bdasistencia`;
+USE `bdasistencia`;
 
 
 -- --------------------------------------------------

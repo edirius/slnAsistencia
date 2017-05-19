@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caHorario"
         mc:Ignorable="d"
-        Title="Lista de Horarios" Height="439.785" Width="717.865" WindowStartupLocation="CenterScreen" Loaded="wListaHorarios_Loaded">
+        Title="Lista de Horarios" Height="439.785" Width="717.865" WindowStartupLocation="CenterScreen" Loaded="wListaHorarios_Loaded" ShowInTaskbar="False">
     <Grid Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="47"/>
