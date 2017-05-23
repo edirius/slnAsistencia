@@ -11,7 +11,7 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Menu x:Name="menu" Height="38" Margin="0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <Menu x:Name="menu" Height="38" Margin="3,0,-3,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem Header="Menu Principal">
                 <MenuItem x:Name="mnuEntidad" Header="Lista Agencias" HorizontalAlignment="Left" Width="175" Click="mnuEntidad_Click"/>
                 <MenuItem x:Name="mnuOficina" Header="Lista Oficinas" HorizontalAlignment="Left" Width="175" Click="mnuOficina_Click"/>
@@ -46,7 +46,8 @@
             </MenuItem>
             <MenuItem Header="Reportes">
                 <MenuItem x:Name="mnuAsistenciaMeses" Header="Asistencia Meses" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuAsistenciaMeses_Click"/>
-                <MenuItem x:Name="mnuTardanzas" Header="Reporte de Asistencia" HorizontalAlignment="Left" Width="202" Click="mnuTardanzas_Click" Margin="0,0,-27,0"/>
+                <MenuItem x:Name="mnuTardanzas" Header="Reporte de Asistencia" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuTardanzas_Click"/>
+                <MenuItem x:Name="mnuRVacaciones" Header="Reporte de Vacaciones" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuRVacaciones_Click"/>
             </MenuItem>
         </Menu>
     </Grid>

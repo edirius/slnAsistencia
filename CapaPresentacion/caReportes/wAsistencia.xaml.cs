@@ -42,10 +42,7 @@ namespace CapaPresentacion.caReportes
                     miListaTrabajadores.Add((Trabajador)dgTrabajadores.Items[i]);
                 }
                 CapaDeNegocios.cblReportes.blReporteAsistencia miReporteAsistencia = new CapaDeNegocios.cblReportes.blReporteAsistencia();
-                miReporteAsistencia.miListaTrabajadores = miListaTrabajadores;
-                miReporteAsistencia.miFechaInicio = Convert.ToDateTime(dpInicio.Text);
-                miReporteAsistencia.miFechaFin = Convert.ToDateTime(dpFin.Text);
-                miReporteAsistencia.Iniciar();
+                miReporteAsistencia.ReporteAsistencia(miListaTrabajadores, Convert.ToDateTime(dpInicio.Text), Convert.ToDateTime(dpFin.Text));
             }
             catch (Exception m)
             { }

@@ -17,10 +17,6 @@ namespace CapaDeNegocios.cblReportes
         private Microsoft.Office.Interop.Excel.Worksheet oHoja;
         public string rutaarchivo = AppDomain.CurrentDomain.BaseDirectory + "Asistencia.xltx";
 
-        public List<Trabajador> miListaTrabajadores;
-        public DateTime miFechaInicio;
-        public DateTime miFechaFin;
-
         public void Iniciar()
         {
             //if (File.Exists(@rutaarchivo))
@@ -35,11 +31,11 @@ namespace CapaDeNegocios.cblReportes
             //{
             //    throw new Exception("La plantilla Tareo.xltx no se encuentra en la ruta");
             //}
-            ReporteAsistencia();
         }
 
-        public void ReporteAsistencia()
+        public void ReporteAsistencia(List<Trabajador> miListaTrabajadores, DateTime miFechaInicio, DateTime miFechaFin)
         {
+            Iniciar();
             int contador = 0;
             int nro_filas = 0;
             foreach (Trabajador item in miListaTrabajadores)
@@ -52,7 +48,7 @@ namespace CapaDeNegocios.cblReportes
                 oHoja.Range["E" + (6 + contador).ToString()].Formula = item.DNI.ToString();//DNI
 
                 int nro_fechas = 0;
-                for (int i = 0; i <= (miFechaFin - miFechaInicio).Days; i++)
+                for (int i = 0; i < (miFechaFin - miFechaInicio).Days; i++)
                 {
                     nro_fechas += 1;
                     DateTime auxiliar = miFechaInicio.AddDays(i);

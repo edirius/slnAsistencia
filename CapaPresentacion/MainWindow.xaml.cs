@@ -214,5 +214,12 @@ namespace CapaPresentacion
             fAsistenciaMeses.Owner = this;
             fAsistenciaMeses.ShowDialog();
         }
+
+        private void mnuRVacaciones_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wVacaciones fVacaciones = new caReportes.wVacaciones();
+            fVacaciones.Owner = this;
+            fVacaciones.ShowDialog();
+        }
     }
 }
