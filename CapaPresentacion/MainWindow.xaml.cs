@@ -119,9 +119,7 @@ namespace CapaPresentacion
 
         private void mnuAsistencia_Click(object sender, RoutedEventArgs e)
         {
-            Asistencia.wListaAsistencias fListaAsistencias = new Asistencia.wListaAsistencias();
-            fListaAsistencias.Owner = this;
-            fListaAsistencias.ShowDialog();
+
         }
 
         private void mnuRecordAsistencia_Click(object sender, RoutedEventArgs e)
@@ -220,6 +218,13 @@ namespace CapaPresentacion
             caReportes.wVacaciones fVacaciones = new caReportes.wVacaciones();
             fVacaciones.Owner = this;
             fVacaciones.ShowDialog();
+        }
+
+        private void mnuCargarAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            Asistencia.wCargarAsistencias fCargarAsistencias = new Asistencia.wCargarAsistencias();
+            fCargarAsistencias.Owner = this;
+            fCargarAsistencias.ShowDialog();
         }
     }
 }

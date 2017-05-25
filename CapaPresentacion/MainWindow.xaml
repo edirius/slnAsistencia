@@ -29,6 +29,7 @@
                 <MenuItem x:Name="mnuRecordAsistencia" Header="Record Asistencia" HorizontalAlignment="Left" Width="181" Click="mnuRecordAsistencia_Click" Margin="0,0,-26,0"/>
                 <Separator HorizontalAlignment="Left" Height="1" Width="180"/>
                 <MenuItem x:Name="mnuImportarAsistencia" Header="Importar Asistencia" Click="mnuImportarAsistencia_Click"/>
+                <MenuItem x:Name="mnuCargarAsistencia" Header="Cargar Asistencia" Click="mnuCargarAsistencia_Click"/>
             </MenuItem>
             <MenuItem Header="Permisos">
                 <MenuItem x:Name="mnuPermisos" Header="Asignar Permisos" HorizontalAlignment="Left" Width="180" Click="mnuPermisos_Click"/>
