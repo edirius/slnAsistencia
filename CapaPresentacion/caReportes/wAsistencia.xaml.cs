@@ -73,7 +73,7 @@ namespace CapaPresentacion.caReportes
             dgTrabajadores.Columns[6].Visibility = Visibility.Collapsed;
             dgTrabajadores.Columns[7].Visibility = Visibility.Collapsed;
             dgTrabajadores.Columns[8].Visibility = Visibility.Collapsed;
-            //AgregarColumnasDataGrig();
+            AgregarColumnasDataGrig();
             if (dgTrabajadores.Items.Count > 0)
             {
                 object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];

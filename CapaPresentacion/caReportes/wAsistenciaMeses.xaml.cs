@@ -45,6 +45,10 @@ namespace CapaPresentacion.caReportes
                 List<Trabajador> miListaTrabajadores = new List<Trabajador>();
                 for (int i = 0; i < dgTrabajadores.Items.Count; i++)
                 {
+                    //bool estado = false;
+                    //string miFechaPicado = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[9]); ;
+                    //var estado = (dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
+
                     miListaTrabajadores.Add((Trabajador)dgTrabajadores.Items[i]);
                 }
                 CapaDeNegocios.cblReportes.blReporteAsistenciaMeses miReporteAsistenciaMeses = new CapaDeNegocios.cblReportes.blReporteAsistenciaMeses();
