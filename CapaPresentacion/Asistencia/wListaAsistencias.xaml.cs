@@ -97,21 +97,29 @@ namespace CapaPresentacion.Asistencia
 
         private void btnCargar_Click(object sender, RoutedEventArgs e)
         {
-            CapaEntities.Asistencia miAsistencia = new CapaEntities.Asistencia();
-            CapaDeNegocios.blAsistencia.blAsistencia oblAsistencia = new CapaDeNegocios.blAsistencia.blAsistencia();
-            for (int i = 0; i < dgExcel.Items.Count; i++)
+            try
             {
-                int miDNI = 0;
-                string miFechaPicado = "";
-                miDNI = Convert.ToInt32((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[0]);
-                miFechaPicado = Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[1]);
+                CapaEntities.Asistencia miAsistencia = new CapaEntities.Asistencia();
+                CapaDeNegocios.blAsistencia.blAsistencia oblAsistencia = new CapaDeNegocios.blAsistencia.blAsistencia();
+                for (int i = 0; i < dgExcel.Items.Count; i++)
+                {
+                    int miDNI = 0;
+                    string miFechaPicado = "";
+                    if (Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[0]) != "" && Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[1]) != "")
+                    {
+                        miDNI = Convert.ToInt32((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[0]);
+                        miFechaPicado = Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[1]);
 
-                string xx = miFechaPicado.Substring(0, 19) + " " + miFechaPicado.Substring(19, 2);
-                miAsistencia.Trabajador = Seleccionar_Trabajador(miDNI);
-                miAsistencia.PicadoReloj = Convert.ToDateTime(xx);
-                //miAsistencia.PicadoReloj = Seleccionar_Fecha(miFechaPicado);
-                oblAsistencia.AgregarAsistencia(miAsistencia);
+                        string xx = miFechaPicado.Substring(0, 19) + " " + miFechaPicado.Substring(19, 2);
+                        miAsistencia.Trabajador = Seleccionar_Trabajador(miDNI);
+                        miAsistencia.PicadoReloj = Convert.ToDateTime(xx);
+                        //miAsistencia.PicadoReloj = Seleccionar_Fecha(miFechaPicado);
+                        oblAsistencia.AgregarAsistencia(miAsistencia);
+                    }
+                }
             }
+            catch (Exception m)
+            { }
         }
 
         private Trabajador Seleccionar_Trabajador(int miDNI)

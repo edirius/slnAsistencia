@@ -98,6 +98,9 @@
     <Compile Include="caReportes\wAsistencia.xaml.cs">
       <DependentUpon>wAsistencia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caReportes\wAcuTardanzasMeses.xaml.cs">
+      <DependentUpon>wAcuTardanzasMeses.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caReportes\wVacaciones.xaml.cs">
       <DependentUpon>wVacaciones.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
     <Page Include="caReportes\wAsistencia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caReportes\wAcuTardanzasMeses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="caReportes\wVacaciones.xaml">
       <Generator>MSBuild:Compile</Generator>

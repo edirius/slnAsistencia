@@ -9,13 +9,13 @@ using miExcel = Microsoft.Office.Interop.Excel;
 
 namespace CapaDeNegocios.cblReportes
 {
-    public class blReporteVacaciones
+    public class blControlVacaciones
     {
         private Microsoft.Office.Interop.Excel.Application oExcel;
         private object oMissing;
         private Microsoft.Office.Interop.Excel.Workbook oLibro;
         private Microsoft.Office.Interop.Excel.Worksheet oHoja;
-        public string rutaarchivo = AppDomain.CurrentDomain.BaseDirectory + "ControlVacaciones.xltx";
+        public string rutaarchivo = AppDomain.CurrentDomain.BaseDirectory + "R_ControlVacaciones.xltx";
 
         int mEne; int mFeb; int mMar; int mAbr; int mMay; int mJun; int mJul; int mAgo; int mSet; int mOct; int mNov; int mDic;
         int mAcumulado;

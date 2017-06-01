@@ -1,11 +1,11 @@
-﻿<Window x:Class="CapaPresentacion.caReportes.wAsistenciaMeses"
+﻿<Window x:Class="CapaPresentacion.caReportes.wAcuTardanzasMeses"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caReportes"
         mc:Ignorable="d"
-        Title="Reporte Asistencia de Meses" Height="387.823" Width="450.4" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Reporte Acumulacion de Tardanzas por Meses" Height="387.823" Width="450.4" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="47"/>
         <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged"/>

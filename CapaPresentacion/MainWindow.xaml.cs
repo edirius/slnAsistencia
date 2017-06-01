@@ -199,7 +199,7 @@ namespace CapaPresentacion
             fVacaciones.ShowDialog();
         }
 
-        private void mnuTardanzas_Click(object sender, RoutedEventArgs e)
+        private void mnuAsistenciaGeneral_Click(object sender, RoutedEventArgs e)
         {
             caReportes.wAsistencia fAsistencia = new caReportes.wAsistencia();
             fAsistencia.Owner = this;
@@ -211,6 +211,13 @@ namespace CapaPresentacion
             caReportes.wAsistenciaMeses fAsistenciaMeses = new caReportes.wAsistenciaMeses();
             fAsistenciaMeses.Owner = this;
             fAsistenciaMeses.ShowDialog();
+        }
+
+        private void mnuAcuTardanzasMeses_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wAcuTardanzasMeses fAcuTardanzasMeses = new caReportes.wAcuTardanzasMeses();
+            fAcuTardanzasMeses.Owner = this;
+            fAcuTardanzasMeses.ShowDialog();
         }
 
         private void mnuRVacaciones_Click(object sender, RoutedEventArgs e)

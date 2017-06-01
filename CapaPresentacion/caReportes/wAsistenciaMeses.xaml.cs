@@ -43,15 +43,22 @@ namespace CapaPresentacion.caReportes
             try
             {
                 List<Trabajador> miListaTrabajadores = new List<Trabajador>();
-                for (int i = 0; i < dgTrabajadores.Items.Count; i++)
+                for (int i = 0; i < dgTrabajadores.Items.Count - 1; i++)
                 {
-                    //bool estado = false;
-                    //string miFechaPicado = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[9]); ;
-                    //var estado = (dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[0];
-
-                    miListaTrabajadores.Add((Trabajador)dgTrabajadores.Items[i]);
+                    bool Activo = false;
+                    Activo = Convert.ToBoolean((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[5]);
+                    if (Activo == true)
+                    {
+                        Trabajador auxTrabajador = new Trabajador();
+                        auxTrabajador.Id = Convert.ToInt32((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[0]);
+                        auxTrabajador.Nombre = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[1]);
+                        auxTrabajador.ApellidoPaterno = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[2]);
+                        auxTrabajador.ApellidoMaterno = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[3]);
+                        auxTrabajador.DNI = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[4]);
+                        miListaTrabajadores.Add(auxTrabajador);
+                    }
                 }
-                CapaDeNegocios.cblReportes.blReporteAsistenciaMeses miReporteAsistenciaMeses = new CapaDeNegocios.cblReportes.blReporteAsistenciaMeses();
+                CapaDeNegocios.cblReportes.blAsistenciaMeses miReporteAsistenciaMeses = new CapaDeNegocios.cblReportes.blAsistenciaMeses();
                 miReporteAsistenciaMeses.Asistencia_Meses(miListaTrabajadores, sAño, sMes);
             }
             catch (Exception m)
@@ -67,7 +74,7 @@ namespace CapaPresentacion.caReportes
         {
             //if (cboAño.DisplayMemberPath != "")
             //{
-            sAño = Convert.ToInt32(cboAño.Text);
+            sAño = Convert.ToInt32(cboAño.SelectedValue);
             //}
         }
 
@@ -120,28 +127,32 @@ namespace CapaPresentacion.caReportes
         {
             CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
             ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
-            dgTrabajadores.ItemsSource = ListaTrabajadores;
-            dgTrabajadores.Columns[5].Visibility = Visibility.Collapsed;
-            dgTrabajadores.Columns[6].Visibility = Visibility.Collapsed;
-            dgTrabajadores.Columns[7].Visibility = Visibility.Collapsed;
-            dgTrabajadores.Columns[8].Visibility = Visibility.Collapsed;
-            //AgregarColumnasDataGrig();
+
+            System.Data.DataTable oData = new System.Data.DataTable();
+            oData.Columns.Add("ID", typeof(int));
+            oData.Columns.Add("NOMBRE");
+            oData.Columns.Add("A_PATERNO");
+            oData.Columns.Add("A_MATERNO");
+            oData.Columns.Add("DNI");
+            oData.Columns.Add("chk", typeof(bool));
+            foreach (Trabajador item in ListaTrabajadores)
+            {
+                var row = oData.NewRow();
+                row["ID"] = item.Id;
+                row["NOMBRE"] = item.Nombre;
+                row["A_PATERNO"] = item.ApellidoPaterno;
+                row["A_MATERNO"] = item.ApellidoMaterno;
+                row["DNI"] = item.DNI;
+                row["chk"] = false;
+                oData.Rows.Add(row);
+            }
+            dgTrabajadores.ItemsSource = oData.DefaultView;
+
             if (dgTrabajadores.Items.Count > 0)
             {
                 object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
                 dgTrabajadores.SelectedItem = item;
             }
-        }
-
-        private void AgregarColumnasDataGrig()
-        {
-            DataGridCheckBoxColumn Check = new DataGridCheckBoxColumn();//creamos un objeto check
-            {
-                //Check. = "☑";//le damos un nombre de cabecera
-                dgTrabajadores.Columns.Add(Check);//agregamos los check a cada items
-            }
-            dgTrabajadores.Columns[9].Width = 30;
-            dgTrabajadores.IsReadOnly = false;
         }
     }
 }

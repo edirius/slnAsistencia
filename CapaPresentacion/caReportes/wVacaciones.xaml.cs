@@ -44,7 +44,7 @@ namespace CapaPresentacion.caReportes
                 {
                     miListaTrabajadores.Add((Trabajador)dgTrabajadores.Items[i]);
                 }
-                CapaDeNegocios.cblReportes.blReporteVacaciones miReporteVacaciones = new CapaDeNegocios.cblReportes.blReporteVacaciones();
+                CapaDeNegocios.cblReportes.blControlVacaciones miReporteVacaciones = new CapaDeNegocios.cblReportes.blControlVacaciones();
                 miReporteVacaciones.Control_Vacaciones(miListaTrabajadores, sAño);
             }
             catch (Exception m)

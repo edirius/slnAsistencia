@@ -10,13 +10,13 @@ using miExcel = Microsoft.Office.Interop.Excel;
 
 namespace CapaDeNegocios.cblReportes
 {
-    public class blReporteAsistenciaMeses
+    public class blAsistenciaMeses
     {
         private Microsoft.Office.Interop.Excel.Application oExcel;
         private object oMissing;
         private Microsoft.Office.Interop.Excel.Workbook oLibro;
         private Microsoft.Office.Interop.Excel.Worksheet oHoja;
-        public string rutaarchivo = AppDomain.CurrentDomain.BaseDirectory + "AsistenciaMeses.xltx";
+        public string rutaarchivo = AppDomain.CurrentDomain.BaseDirectory + "R_AsistenciaMeses.xltx";
 
         int mAsi; int mPer; int mTar; int mFal;
 

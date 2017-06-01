@@ -18,19 +18,13 @@
         <ListView x:Name="lstHorariosDia" HorizontalAlignment="Left" Height="258" Margin="26,27,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2" SelectionChanged="lstHorariosDia_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn
-                        Header="Horarios Dia"
-             DisplayMemberBinding="{Binding Path=Nombre}"
-                    />
+                    <GridViewColumn Header="Horarios Dia" DisplayMemberBinding="{Binding Path=Nombre}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label x:Name="label" Content="Nombre :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,25,0,0" Grid.Column="1"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="26" Margin="89,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Grid.Column="1"/>
-
-
-        <ListView x:Name="lstHorarios" HorizontalAlignment="Left" Height="208" Margin="19,10,0,0" VerticalAlignment="Top" Width="296" Grid.Column="1" Grid.Row="1"
-        		>
+        <ListView x:Name="lstHorarios" HorizontalAlignment="Left" Height="208" Margin="19,10,0,0" VerticalAlignment="Top" Width="296" Grid.Column="1" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -38,21 +32,14 @@
                         <TextBlock Text="{Binding Nombre}" />
                     </StackPanel>
                 </DataTemplate>
-
             </ListView.ItemTemplate>
             <!--<ListView.View>
-
                 <GridView>
-
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>-->
-
         </ListView>
         <Button x:Name="btnAgregar" Content="Agregar" HorizontalAlignment="Left" Height="41" Margin="38,293,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118" Grid.Column="1" Click="btnAgregar_Click"/>
         <Button x:Name="btnEliminar" Content="Eliminar" Grid.Column="1" HorizontalAlignment="Left" Height="41" Margin="249,293,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118"/>
-
-
-
     </Grid>
 </Window>
