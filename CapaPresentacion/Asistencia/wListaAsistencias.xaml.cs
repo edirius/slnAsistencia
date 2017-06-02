@@ -75,6 +75,10 @@ namespace CapaPresentacion.Asistencia
                     string strData = "";
                     for (colCnt = 1; colCnt <= excelRange.Columns.Count; colCnt++)
                     {
+                        if (rowCnt == 767)
+                        {
+
+                        }
                         try
                         {
                             strCellData = Convert.ToString((excelRange.Cells[rowCnt, colCnt] as Microsoft.Office.Interop.Excel.Range).Value);
@@ -82,7 +86,7 @@ namespace CapaPresentacion.Asistencia
                         }
                         catch (Exception ex)
                         {
-                            douCellData = (excelRange.Cells[rowCnt, colCnt] as Microsoft.Office.Interop.Excel.Range).Value2;
+                            douCellData = (excelRange.Cells[rowCnt, colCnt] as Microsoft.Office.Interop.Excel.Range).Value;
                             strData += douCellData.ToString() + "|";
                         }
                     }
@@ -101,25 +105,47 @@ namespace CapaPresentacion.Asistencia
             {
                 CapaEntities.Asistencia miAsistencia = new CapaEntities.Asistencia();
                 CapaDeNegocios.blAsistencia.blAsistencia oblAsistencia = new CapaDeNegocios.blAsistencia.blAsistencia();
+                int miDNI = 0;
+                string miFechaPicado = "";
+                Trabajador miTrabajador;
+                DateTime miNuevaFechaPicado;
                 for (int i = 0; i < dgExcel.Items.Count; i++)
                 {
-                    int miDNI = 0;
-                    string miFechaPicado = "";
+                    miDNI = 0;
+                    miFechaPicado = "";
+                    miNuevaFechaPicado = new DateTime();
                     if (Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[0]) != "" && Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[1]) != "")
                     {
                         miDNI = Convert.ToInt32((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[0]);
                         miFechaPicado = Convert.ToString((dgExcel.Items[i] as System.Data.DataRowView).Row.ItemArray[1]);
 
-                        string xx = miFechaPicado.Substring(0, 19) + " " + miFechaPicado.Substring(19, 2);
-                        miAsistencia.Trabajador = Seleccionar_Trabajador(miDNI);
-                        miAsistencia.PicadoReloj = Convert.ToDateTime(xx);
-                        //miAsistencia.PicadoReloj = Seleccionar_Fecha(miFechaPicado);
-                        oblAsistencia.AgregarAsistencia(miAsistencia);
+                        if (i == 765)
+                        {
+
+                        }
+                        miTrabajador = Seleccionar_Trabajador(miDNI);
+                        if (miFechaPicado.Length == 21)
+                        {
+                            miNuevaFechaPicado = Convert.ToDateTime(miFechaPicado.Substring(0, 19) + " " + miFechaPicado.Substring(19, 2));
+                        }
+                        else
+                        {
+                            miNuevaFechaPicado = Convert.ToDateTime(miFechaPicado);
+                        }
+                        if (miTrabajador.Id != 0 && miTrabajador.DNI != null)
+                        {
+                            miAsistencia.Trabajador = miTrabajador;
+                            miAsistencia.PicadoReloj = miNuevaFechaPicado;
+                            //miAsistencia.PicadoReloj = Seleccionar_Fecha(miFechaPicado);
+                            oblAsistencia.AgregarAsistencia(miAsistencia);
+                        }
                     }
                 }
             }
             catch (Exception m)
-            { }
+            {
+                System.Windows.Forms.MessageBox.Show("OCURRIO UN PROBLEMA AL SUBIR LA ASISTENCIA.", "GESTIÓN DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private Trabajador Seleccionar_Trabajador(int miDNI)
