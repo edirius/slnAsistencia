@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDeNegocios", "CapaDeNegocios\CapaDeNegocios.csproj", "{6164324A-2260-4566-A8AC-15DB34B98549}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaPresentacion", "CapaPresentacion\CapaPresentacion.csproj", "{B78F9AF5-EB9C-4939-AEDF-CD7749CA4041}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDeDatos", "CapaDeDatos\CapaDeDatos.csproj", "{E1A9E3C2-5277-4FDE-A67B-5B48258EA621}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalador", "Instalador\Instalador.vdproj", "{56A0DC8E-24FF-4714-B006-B3E5B0840CBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,8 @@ Global
 		{E1A9E3C2-5277-4FDE-A67B-5B48258EA621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A9E3C2-5277-4FDE-A67B-5B48258EA621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A9E3C2-5277-4FDE-A67B-5B48258EA621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A0DC8E-24FF-4714-B006-B3E5B0840CBC}.Debug|Any CPU.ActiveCfg = Debug
+		{56A0DC8E-24FF-4714-B006-B3E5B0840CBC}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
