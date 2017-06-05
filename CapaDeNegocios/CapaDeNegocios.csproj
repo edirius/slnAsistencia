@@ -77,6 +77,11 @@
     <Compile Include="blAsistenciaPeriodoLaborado\blAsistenciaPeriodoLaborado.cs" />
     <Compile Include="blVacaciones\blVacaciones.cs" />
     <Compile Include="cblAsistenciaAnual\ccVacaciones.cs" />
+    <Compile Include="cblReportesAsistencia\blExportarExcelReporteAsistencia.cs" />
+    <Compile Include="cblReportesAsistencia\blReporteAsistencia.cs" />
+    <Compile Include="cblReportesAsistencia\cDetalleAsistenciaXDia.cs" />
+    <Compile Include="cblReportesAsistencia\cDetalleReporteAsistenciaXTrabajador.cs" />
+    <Compile Include="cblReportesAsistencia\cReporteAsistencia.cs" />
     <Compile Include="cblReportes\blReporteAsistencia.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="cReglaNegociosException.cs" />
