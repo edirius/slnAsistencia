@@ -11,25 +11,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CapaEntities;
+using System.Data;
 using CapaDeNegocios;
+using CapaEntities;
 
 namespace CapaPresentacion.caReportes
 {
     /// <summary>
-    /// Lógica de interacción para wAsistencia.xaml
+    /// Lógica de interacción para wAsistenciaMeses.xaml
     /// </summary>
-    public partial class wAsistencia : Window
+    public partial class wAsistenciaMeses : Window
     {
+        int sAño;
+        int sMes;
 
-        public wAsistencia()
+        public wAsistenciaMeses()
         {
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dpInicio.SelectedDate = DateTime.Today;
+            CargarAños();
+            CargarMeses();
+            cboMes.Text = DateTime.Today.ToString("MMMM").ToUpper();
             CargarTrabajadores();
         }
 
@@ -53,8 +58,8 @@ namespace CapaPresentacion.caReportes
                         miListaTrabajadores.Add(auxTrabajador);
                     }
                 }
-                CapaDeNegocios.cblReportes.blAsistenciaGeneral miReporteAsistencia = new CapaDeNegocios.cblReportes.blAsistenciaGeneral();
-                miReporteAsistencia.ReporteAsistencia(miListaTrabajadores, Convert.ToDateTime(dpInicio.Text), Convert.ToDateTime(dpFin.Text));
+                CapaDeNegocios.cblReportes.blAsistenciaMeses miReporteAsistenciaMeses = new CapaDeNegocios.cblReportes.blAsistenciaMeses();
+                miReporteAsistenciaMeses.Asistencia_Meses(miListaTrabajadores, sAño, sMes);
             }
             catch (Exception m)
             { }
@@ -65,15 +70,57 @@ namespace CapaPresentacion.caReportes
             Close();
         }
 
-        private void dpInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void cboAño_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dpFin.DisplayDateStart = dpInicio.SelectedDate;
-            dpFin.SelectedDate = dpInicio.SelectedDate;
+            //if (cboAño.DisplayMemberPath != "")
+            //{
+            sAño = Convert.ToInt32(cboAño.SelectedValue);
+            //}
         }
 
-        private void dpFin_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void cboMes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cboMes.DisplayMemberPath != "")
+            {
+                sMes = Convert.ToInt32(cboMes.SelectedValue);
+            }
+        }
 
+        private void CargarAños()
+        {
+            for (int i = DateTime.Now.Year; i >= 2000; i--)
+            {
+                cboAño.Items.Add(i);
+            }
+            cboAño.Text = Convert.ToString(DateTime.Now.Year);
+        }
+
+        private void CargarMeses()
+        {
+            List<ComboData> dsMeses = new List<ComboData>();
+            dsMeses.Add(new ComboData { Id = 1, Nombre = "ENERO" });
+            dsMeses.Add(new ComboData { Id = 2, Nombre = "FEBRERO" });
+            dsMeses.Add(new ComboData { Id = 3, Nombre = "MARZO" });
+            dsMeses.Add(new ComboData { Id = 4, Nombre = "ABRIL" });
+            dsMeses.Add(new ComboData { Id = 5, Nombre = "MAYO" });
+            dsMeses.Add(new ComboData { Id = 6, Nombre = "JUNIO" });
+            dsMeses.Add(new ComboData { Id = 7, Nombre = "JULIO" });
+            dsMeses.Add(new ComboData { Id = 8, Nombre = "AGOSTO" });
+            dsMeses.Add(new ComboData { Id = 9, Nombre = "SETIEMBRE" });
+            dsMeses.Add(new ComboData { Id = 10, Nombre = "OCTUBRE" });
+            dsMeses.Add(new ComboData { Id = 11, Nombre = "NOVIEMBRE" });
+            dsMeses.Add(new ComboData { Id = 12, Nombre = "DICIEMBRE" });
+
+            cboMes.ItemsSource = dsMeses;
+            cboMes.DisplayMemberPath = "Nombre";
+            cboMes.SelectedValuePath = "Id";
+            cboMes.SelectedIndex = -1;
+        }
+
+        public class ComboData
+        {
+            public int Id { get; set; }
+            public string Nombre { get; set; }
         }
 
         private void CargarTrabajadores()

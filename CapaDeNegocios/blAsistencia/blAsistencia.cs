@@ -25,8 +25,8 @@ namespace CapaDeNegocios.blAsistencia
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                bd.AsistenciaSet.Add(miAgregarAsistencia);
                 bd.TrabajadorSet.Attach(miAgregarAsistencia.Trabajador); 
+                bd.AsistenciaSet.Add(miAgregarAsistencia);
                 bd.SaveChanges();
             }
         }

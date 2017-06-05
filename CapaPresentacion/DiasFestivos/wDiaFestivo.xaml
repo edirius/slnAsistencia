@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.DiasFestivos"
         mc:Ignorable="d"
-        Title="Dia Festivo" Height="400.376" Width="446.617" Loaded="Window_Loaded">
+        Title="Dia Festivo" Height="400.376" Width="446.617" Loaded="Window_Loaded" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="Nombre:" HorizontalAlignment="Left" Height="25" Margin="21,31,0,0" VerticalAlignment="Top" Width="88"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="25" Margin="126,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253"/>

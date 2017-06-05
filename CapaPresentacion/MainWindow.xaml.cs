@@ -99,26 +99,27 @@ namespace CapaPresentacion
         {
             Entidad.wListaEntidad fListaEntidad = new Entidad.wListaEntidad();
             fListaEntidad.miEntidad = miEntidad;
+            fListaEntidad.Owner = this;
             fListaEntidad.ShowDialog();
         }
 
         private void mnuOficina_Click(object sender, RoutedEventArgs e)
         {
             Oficina.wListaOficinas fListaOficinas = new Oficina.wListaOficinas();
-            //fListaOficinas.MD
+            fListaOficinas.Owner = this;
             fListaOficinas.Show();
         }
 
         private void mnuTrabajador_Click(object sender, RoutedEventArgs e)
         {
             caTrabajadores.wListaTrabajadores fListaTrabajadores = new caTrabajadores.wListaTrabajadores();
+            fListaTrabajadores.Owner = this;
             fListaTrabajadores.ShowDialog();
         }
 
         private void mnuAsistencia_Click(object sender, RoutedEventArgs e)
         {
-            Asistencia.wListaAsistencias fListaAsistencias = new Asistencia.wListaAsistencias();
-            fListaAsistencias.ShowDialog();
+
         }
 
         private void mnuRecordAsistencia_Click(object sender, RoutedEventArgs e)
@@ -131,18 +132,21 @@ namespace CapaPresentacion
         private void mnuHorario_Click(object sender, RoutedEventArgs e)
         {
             caHorario.wListaHorario fListaHorario = new caHorario.wListaHorario();
+            fListaHorario.Owner = this;
             fListaHorario.ShowDialog();
         }
 
         private void mnuHorarioDia_Click(object sender, RoutedEventArgs e)
         {
             caHorarioDia.wListaHorarioDia fListaHorarioDia = new caHorarioDia.wListaHorarioDia();
+            fListaHorarioDia.Owner = this;
             fListaHorarioDia.ShowDialog();
         }
 
         private void mnuHorarioSemana_Click(object sender, RoutedEventArgs e)
         {
             caHorarioSemana.wListaHorarioSemana fListaHorarioSemana = new caHorarioSemana.wListaHorarioSemana();
+            fListaHorarioSemana.Owner = this;
             fListaHorarioSemana.ShowDialog();
         }
 
@@ -156,6 +160,7 @@ namespace CapaPresentacion
         private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)
         {
             caTipoPermisos.wListaTipoPermisos fListaTipoPermisos = new caTipoPermisos.wListaTipoPermisos();
+            fListaTipoPermisos.Owner = this;
             fListaTipoPermisos.ShowDialog();
         }
 
@@ -169,18 +174,21 @@ namespace CapaPresentacion
         private void mnuDiasFestivos_Click(object sender, RoutedEventArgs e)
         {
             DiasFestivos.wListaDiasFestivos fListaDiasFestivos = new DiasFestivos.wListaDiasFestivos();
+            fListaDiasFestivos.Owner = this;
             fListaDiasFestivos.ShowDialog();
         }
 
         private void mnuReglasTardanza_Click(object sender, RoutedEventArgs e)
         {
             ReglasTardanza.wListaReglasTardanzas fListaReglasTardanzas = new ReglasTardanza.wListaReglasTardanzas();
+            fListaReglasTardanzas.Owner = this;
             fListaReglasTardanzas.ShowDialog();
         }
 
         private void mnuImportarAsistencia_Click(object sender, RoutedEventArgs e)
         {
             wImportarAsistencia.wImportarAsistencia fImportarAsistencia = new wImportarAsistencia.wImportarAsistencia();
+            fImportarAsistencia.Owner = this;
             fImportarAsistencia.ShowDialog();
         }
 
@@ -191,11 +199,39 @@ namespace CapaPresentacion
             fVacaciones.ShowDialog();
         }
 
-        private void mnuTardanzas_Click(object sender, RoutedEventArgs e)
+        private void mnuAsistenciaGeneral_Click(object sender, RoutedEventArgs e)
         {
             caReportes.wAsistencia fAsistencia = new caReportes.wAsistencia();
             fAsistencia.Owner = this;
             fAsistencia.ShowDialog();
+        }
+
+        private void mnuAsistenciaMeses_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wAsistenciaMeses fAsistenciaMeses = new caReportes.wAsistenciaMeses();
+            fAsistenciaMeses.Owner = this;
+            fAsistenciaMeses.ShowDialog();
+        }
+
+        private void mnuAcuTardanzasMeses_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wAcuTardanzasMeses fAcuTardanzasMeses = new caReportes.wAcuTardanzasMeses();
+            fAcuTardanzasMeses.Owner = this;
+            fAcuTardanzasMeses.ShowDialog();
+        }
+
+        private void mnuRVacaciones_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wVacaciones fVacaciones = new caReportes.wVacaciones();
+            fVacaciones.Owner = this;
+            fVacaciones.ShowDialog();
+        }
+
+        private void mnuCargarAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            Asistencia.wCargarAsistencias fCargarAsistencias = new Asistencia.wCargarAsistencias();
+            fCargarAsistencias.Owner = this;
+            fCargarAsistencias.ShowDialog();
         }
     }
 }

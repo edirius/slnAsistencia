@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="mAsistencia.Trabajador" Width="1.5" PointX="0.5" PointY="7.5" />
         <EntityTypeShape EntityType="mAsistencia.Oficina" Width="1.5" PointX="3.125" PointY="5" />
         <EntityTypeShape EntityType="mAsistencia.Asistencia" Width="1.5" PointX="2.5" PointY="11" />
-        <EntityTypeShape EntityType="mAsistencia.Local" Width="1.5" PointX="2.875" PointY="2.75" />
+        <EntityTypeShape EntityType="mAsistencia.Local" Width="1.5" PointX="3.125" PointY="2.75" />
         <AssociationConnector Association="mAsistencia.LocalOficina" />
         <EntityTypeShape EntityType="mAsistencia.Horario" Width="1.5" PointX="10.25" PointY="0.5" />
         <EntityTypeShape EntityType="mAsistencia.HorarioDia" Width="1.5" PointX="7.125" PointY="0.5" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="mAsistencia.DiaFestivo" Width="1.5" PointX="9.625" PointY="12.75" />
         <EntityTypeShape EntityType="mAsistencia.CronogramaVacaciones" Width="1.5" PointX="0.5" PointY="13.625" />
         <AssociationConnector Association="mAsistencia.OficinaOficina" />
-        <EntityTypeShape EntityType="mAsistencia.Empresa" Width="1.5" PointX="2.875" PointY="0.5" />
+        <EntityTypeShape EntityType="mAsistencia.Empresa" Width="1.5" PointX="3.125" PointY="0.5" />
         <AssociationConnector Association="mAsistencia.EmpresaLocal" />
         <EntityTypeShape EntityType="mAsistencia.Prueba" Width="1.5" PointX="1.125" PointY="5" />
         <EntityTypeShape EntityType="mAsistencia.PeriodoTrabajador" Width="2" PointX="4.5" PointY="8.375" />

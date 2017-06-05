@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.wImportarAsistencia"
         mc:Ignorable="d"
-        Title="wImportarAsistencia" Height="357.519" Width="689.098" Loaded="Window_Loaded">
+        Title="wImportarAsistencia" Height="357.519" Width="689.098" Loaded="Window_Loaded" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox x:Name="cboTrabajador" HorizontalAlignment="Left" Height="27" Margin="51,33,0,0" VerticalAlignment="Top" Width="340" SelectionChanged="cboTrabajador_SelectionChanged">
             <ComboBox.ItemTemplate>

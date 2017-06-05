@@ -40,9 +40,7 @@ namespace CapaPresentacion.caHorarioDia
         {
             lstHorariosDia.ItemsSource = oblHorarioDia.ListarHorarioDias();
             lstHorariosDia.DisplayMemberPath = "Nombre";
-
             lstHorarios.ItemsSource = oblHorario.ListarHorarios();
-            
         }
 
         private ListViewItem GetNodetItem(DependencyObject obj)
@@ -55,7 +53,6 @@ namespace CapaPresentacion.caHorarioDia
 
                 return (project != null) ? project : GetNodetItem(parent);
             }
-
             return null;
         }
 
@@ -63,11 +60,8 @@ namespace CapaPresentacion.caHorarioDia
         {
             Horario auxHorario;
             ListViewItem item = GetNodetItem((DependencyObject)sender);
-
             auxHorario = (Horario)item.DataContext;
-
             miHorarioDia.Horario.Add(auxHorario);
-
             MessageBox.Show(auxHorario.Nombre );
         }
 
@@ -77,9 +71,7 @@ namespace CapaPresentacion.caHorarioDia
             {
                 miHorarioDia.Nombre = txtNombre.Text;
                 oblHorarioDia.AgregarHorarioDia(miHorarioDia);
-                
             }
-            
         }
 
         private void lstHorariosDia_SelectionChanged(object sender, SelectionChangedEventArgs e)
