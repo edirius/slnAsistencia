@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data;
 using CapaDeNegocios;
 using CapaEntities;
 
@@ -24,6 +23,7 @@ namespace CapaPresentacion.caReportes
     {
         int sAño;
         int sMes;
+        System.Data.DataTable oDataTrabajadores = new System.Data.DataTable();
 
         public wAsistenciaMeses()
         {
@@ -43,18 +43,18 @@ namespace CapaPresentacion.caReportes
             try
             {
                 List<Trabajador> miListaTrabajadores = new List<Trabajador>();
-                for (int i = 0; i < dgTrabajadores.Items.Count - 1; i++)
+                foreach (System.Data.DataRowView item in dgTrabajadores.Items)
                 {
                     bool Activo = false;
-                    Activo = Convert.ToBoolean((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[5]);
+                    Activo = Convert.ToBoolean(item.Row.ItemArray[dgTrabajadores.Columns.Count - 1]);
                     if (Activo == true)
                     {
                         Trabajador auxTrabajador = new Trabajador();
-                        auxTrabajador.Id = Convert.ToInt32((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[0]);
-                        auxTrabajador.Nombre = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[1]);
-                        auxTrabajador.ApellidoPaterno = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[2]);
-                        auxTrabajador.ApellidoMaterno = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[3]);
-                        auxTrabajador.DNI = Convert.ToString((dgTrabajadores.Items[i] as System.Data.DataRowView).Row.ItemArray[4]);
+                        auxTrabajador.Id = Convert.ToInt32(item.Row.ItemArray[0]);
+                        auxTrabajador.Nombre = Convert.ToString(item.Row.ItemArray[1]);
+                        auxTrabajador.ApellidoPaterno = Convert.ToString(item.Row.ItemArray[2]);
+                        auxTrabajador.ApellidoMaterno = Convert.ToString(item.Row.ItemArray[3]);
+                        auxTrabajador.DNI = Convert.ToString(item.Row.ItemArray[4]);
                         miListaTrabajadores.Add(auxTrabajador);
                     }
                 }
@@ -125,34 +125,96 @@ namespace CapaPresentacion.caReportes
 
         private void CargarTrabajadores()
         {
-            CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
-
-            System.Data.DataTable oData = new System.Data.DataTable();
-            oData.Columns.Add("ID", typeof(int));
-            oData.Columns.Add("NOMBRE");
-            oData.Columns.Add("A_PATERNO");
-            oData.Columns.Add("A_MATERNO");
-            oData.Columns.Add("DNI");
-            oData.Columns.Add("chk", typeof(bool));
-            foreach (Trabajador item in ListaTrabajadores)
+            try
             {
-                var row = oData.NewRow();
-                row["ID"] = item.Id;
-                row["NOMBRE"] = item.Nombre;
-                row["A_PATERNO"] = item.ApellidoPaterno;
-                row["A_MATERNO"] = item.ApellidoMaterno;
-                row["DNI"] = item.DNI;
-                row["chk"] = false;
-                oData.Rows.Add(row);
+                CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
+                ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
+
+                oDataTrabajadores = new System.Data.DataTable();
+                oDataTrabajadores.Columns.Add("ID", typeof(int));
+                oDataTrabajadores.Columns.Add("NOMBRE");
+                oDataTrabajadores.Columns.Add("APATERNO");
+                oDataTrabajadores.Columns.Add("AMATERNO");
+                oDataTrabajadores.Columns.Add("DNI");
+                oDataTrabajadores.Columns.Add("CHK", typeof(bool));
+                foreach (Trabajador item in ListaTrabajadores)
+                {
+                    var row = oDataTrabajadores.NewRow();
+                    row["ID"] = item.Id;
+                    row["NOMBRE"] = item.Nombre;
+                    row["APATERNO"] = item.ApellidoPaterno;
+                    row["AMATERNO"] = item.ApellidoMaterno;
+                    row["DNI"] = item.DNI;
+                    row["CHK"] = false;
+                    oDataTrabajadores.Rows.Add(row);
+                }
+                dgTrabajadores.DataContext = oDataTrabajadores.DefaultView;
+
+                if (dgTrabajadores.Items.Count > 0)
+                {
+                    object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
+                    dgTrabajadores.SelectedItem = item;
+                }
             }
-            dgTrabajadores.ItemsSource = oData.DefaultView;
+            catch (Exception m)
+            { }
+        }
 
-            if (dgTrabajadores.Items.Count > 0)
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (System.Data.DataRow dr in oDataTrabajadores.Rows)
             {
-                object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
-                dgTrabajadores.SelectedItem = item;
+                dr["CHK"] = true;
             }
         }
+
+        private void UnCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (System.Data.DataRow dr in oDataTrabajadores.Rows)
+            {
+                dr["CHK"] = false;
+            }
+        }
+
+        private void Chk_Checked(object sender, RoutedEventArgs e)
+        {
+            int i = dgTrabajadores.SelectedIndex;
+            System.Data.DataRow dr = oDataTrabajadores.Rows[i];
+            if (Convert.ToBoolean(dr["CHK"]) == false)
+            {
+                dr["CHK"] = true;
+            }
+            else
+            {
+                dr["CHK"] = false;
+            }
+        }
+
+        //private void AgregarColumnasDataGrig()
+        //{
+        //    try
+        //    {
+        //        Binding binding = new Binding("SelectAll");
+        //        binding.Mode = BindingMode.TwoWay;
+        //        binding.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor);
+        //        binding.RelativeSource.AncestorType = GetType();
+
+        //        CheckBox headerCheckBox = new CheckBox();
+        //        //headerCheckBox.Content = "Is Selected";
+        //        headerCheckBox.SetBinding(CheckBox.IsCheckedProperty, binding);
+        //        headerCheckBox.Click += new RoutedEventHandler(CheckBox_Click);
+
+        //        DataGridCheckBoxColumn checkBoxColumn = new DataGridCheckBoxColumn();
+        //        checkBoxColumn.Header = headerCheckBox;
+        //        //checkBoxColumn.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+        //        checkBoxColumn.Binding = new Binding("IsSelected");
+        //        //checkBoxColumn.Binding = new Binding(e.PropertyName);
+        //        checkBoxColumn.IsThreeState = true;
+
+        //        dgTrabajadores.Columns.Insert(0, checkBoxColumn);
+        //    }
+        //    catch (Exception m)
+        //    { }
+        //}
     }
 }

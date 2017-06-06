@@ -82,7 +82,7 @@ namespace CapaPresentacion.caReportes
             dgTrabajadores.Columns[6].Visibility = Visibility.Collapsed;
             dgTrabajadores.Columns[7].Visibility = Visibility.Collapsed;
             dgTrabajadores.Columns[8].Visibility = Visibility.Collapsed;
-            //AgregarColumnasDataGrig();
+            AgregarColumnasDataGrig();
             if (dgTrabajadores.Items.Count > 0)
             {
                 object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
@@ -92,13 +92,22 @@ namespace CapaPresentacion.caReportes
 
         private void AgregarColumnasDataGrig()
         {
-            DataGridCheckBoxColumn Check = new DataGridCheckBoxColumn();//creamos un objeto check
-            {
-                //Check. = "☑";//le damos un nombre de cabecera
-                dgTrabajadores.Columns.Add(Check);//agregamos los check a cada items
-            }
-            dgTrabajadores.Columns[9].Width = 30;
-            dgTrabajadores.IsReadOnly = false;
+            Binding binding = new Binding("DataContext.SelectAll");
+            binding.Mode = BindingMode.TwoWay;
+            binding.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor);
+            binding.RelativeSource.AncestorType = GetType();
+
+            CheckBox headerCheckBox = new CheckBox();
+            //headerCheckBox.Content = "Is Selected";
+            headerCheckBox.SetBinding(CheckBox.IsCheckedProperty, binding);
+
+            DataGridCheckBoxColumn checkBoxColumn = new DataGridCheckBoxColumn();
+            checkBoxColumn.Header = headerCheckBox;
+            //checkBoxColumn.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            checkBoxColumn.Binding = new Binding("IsSelected");
+            checkBoxColumn.IsThreeState = true;
+
+            dgTrabajadores.Columns.Insert(dgTrabajadores.Columns.Count, checkBoxColumn);
         }
     }
 }

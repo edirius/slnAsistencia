@@ -55,12 +55,12 @@ namespace CapaDeNegocios.cblReportesAsistencia
                     {
                         //No tiene Horario
                         oHoja.Range[letras[columna] + fila.ToString()].Value = "Dia Libre";
-                        
+
                     }
                     else
                     {
                         //Verificando que tiene asistencias
-                        
+
                         if (auxDetalleAsistenciaXDia.ListaAsistencia == null)
                         {
                             //Tiene horario pero no tiene permisos
@@ -95,7 +95,7 @@ namespace CapaDeNegocios.cblReportesAsistencia
                                 oHoja.Range[letras[columna] + fila.ToString()].Value = "Permiso";
                                 columna += 1;
                             }
-                            
+
                         }
                         else
                         {
@@ -106,8 +106,8 @@ namespace CapaDeNegocios.cblReportesAsistencia
                                 {
 
                                     //Verificando que esta dentro del rango del inicio y fin del picado
-                                    if (auxAsistencia.PicadoReloj.TimeOfDay  >= auxHorario.InicioPicadoEntrada.TimeOfDay &&
-                                        auxAsistencia.PicadoReloj.TimeOfDay  <= auxHorario.FinPicadoEntrada.TimeOfDay )
+                                    if (auxAsistencia.PicadoReloj.TimeOfDay >= auxHorario.InicioPicadoEntrada.TimeOfDay &&
+                                        auxAsistencia.PicadoReloj.TimeOfDay <= auxHorario.FinPicadoEntrada.TimeOfDay)
                                     {
                                         oHoja.Range[letras[columna] + fila.ToString()].Value = auxHorario.Entrada;
                                         columna += 1;
@@ -116,8 +116,8 @@ namespace CapaDeNegocios.cblReportesAsistencia
                                     }
                                     else
                                     {
-                                        if (auxAsistencia.PicadoReloj.TimeOfDay >= auxHorario.InicioPicadoEntrada.TimeOfDay  &&
-                                        auxAsistencia.PicadoReloj.TimeOfDay  <= auxHorario.FinPicadoEntrada.TimeOfDay )
+                                        if (auxAsistencia.PicadoReloj.TimeOfDay >= auxHorario.InicioPicadoEntrada.TimeOfDay &&
+                                        auxAsistencia.PicadoReloj.TimeOfDay <= auxHorario.FinPicadoEntrada.TimeOfDay)
                                         {
                                             oHoja.Range[letras[columna] + fila.ToString()].Value = auxHorario.Salida;
                                             columna += 1;
@@ -125,21 +125,11 @@ namespace CapaDeNegocios.cblReportesAsistencia
                                             columna += 1;
                                         }
                                     }
-
                                 }
                             }
-
                         }
-                    }    
-
-                        
-                       
                     }
-
-                   
-                    
-                 
-                    
+                }
             }
         }
     }

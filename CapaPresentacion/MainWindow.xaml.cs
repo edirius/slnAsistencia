@@ -192,6 +192,13 @@ namespace CapaPresentacion
             fImportarAsistencia.ShowDialog();
         }
 
+        private void mnuCargarAsistencia_Click(object sender, RoutedEventArgs e)
+        {
+            Asistencia.wCargarAsistencias fCargarAsistencias = new Asistencia.wCargarAsistencias();
+            fCargarAsistencias.Owner = this;
+            fCargarAsistencias.ShowDialog();
+        }
+
         private void mnuVacaciones_Click(object sender, RoutedEventArgs e)
         {
             caVacaciones.wVacaciones fVacaciones = new caVacaciones.wVacaciones();
@@ -201,9 +208,9 @@ namespace CapaPresentacion
 
         private void mnuAsistenciaGeneral_Click(object sender, RoutedEventArgs e)
         {
-            caReportes.wAsistencia fAsistencia = new caReportes.wAsistencia();
-            fAsistencia.Owner = this;
-            fAsistencia.ShowDialog();
+            caReportes.wAsistenciaGeneral fAsistenciaGeneral = new caReportes.wAsistenciaGeneral();
+            fAsistenciaGeneral.Owner = this;
+            fAsistenciaGeneral.ShowDialog();
         }
 
         private void mnuAsistenciaMeses_Click(object sender, RoutedEventArgs e)
@@ -227,11 +234,11 @@ namespace CapaPresentacion
             fVacaciones.ShowDialog();
         }
 
-        private void mnuCargarAsistencia_Click(object sender, RoutedEventArgs e)
+        private void mnuRAsistencia_Click(object sender, RoutedEventArgs e)
         {
-            Asistencia.wCargarAsistencias fCargarAsistencias = new Asistencia.wCargarAsistencias();
-            fCargarAsistencias.Owner = this;
-            fCargarAsistencias.ShowDialog();
+            caReporteAsistencia.wReporteAsistencia fRAsistencia = new caReporteAsistencia.wReporteAsistencia();
+            fRAsistencia.Owner = this;
+            fRAsistencia.ShowDialog();
         }
     }
 }

@@ -98,8 +98,8 @@
     <Compile Include="caReporteAsistencia\wReporteAsistencia.xaml.cs">
       <DependentUpon>wReporteAsistencia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="caReportes\wAsistencia.xaml.cs">
-      <DependentUpon>wAsistencia.xaml</DependentUpon>
+    <Compile Include="caReportes\wAsistenciaGeneral.xaml.cs">
+      <DependentUpon>wAsistenciaGeneral.xaml</DependentUpon>
     </Compile>
     <Compile Include="caReportes\wAcuTardanzasMeses.xaml.cs">
       <DependentUpon>wAcuTardanzasMeses.xaml</DependentUpon>
@@ -210,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="caReportes\wAsistencia.xaml">
+    <Page Include="caReportes\wAsistenciaGeneral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,18 +1,18 @@
-﻿<Window x:Class="CapaPresentacion.caReportes.wAsistenciaMeses"
+﻿<Window x:Class="CapaPresentacion.caReportes.wAsistenciaGeneral"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caReportes"
         mc:Ignorable="d"
-        Title="Reporte Asistencia de Meses" Height="389.823" Width="446.4" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Title="Reporte de Asistencia" Height="391" Width="442.256" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
-        <Label x:Name="label1" Content="AÑO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="47"/>
-        <ComboBox x:Name="cboAño" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cboAño_SelectionChanged"/>
-        <Label x:Name="label2" Content="MES" HorizontalAlignment="Left" Margin="244,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cboMes" HorizontalAlignment="Left" Margin="282,10,0,0" VerticalAlignment="Top" Width="129" SelectionChanged="cboMes_SelectionChanged"/>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="347,293,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnSalir_Click"/>
-        <Button x:Name="btnImprimir" Content="Imprimir" HorizontalAlignment="Left" Margin="278,293,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnImprimir_Click"/>
+        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="347,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnSalir_Click"/>
+        <Button x:Name="btnImprimir" Content="Imprimir" HorizontalAlignment="Left" Margin="278,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnImprimir_Click"/>
+        <Label x:Name="label" Content="INICIO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dpInicio" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dpInicio_SelectedDateChanged"/>
+        <Label x:Name="label_Copy" Content="FIN" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dpFin" HorizontalAlignment="Left" Margin="266,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dpFin_SelectedDateChanged"/>
         <DataGrid x:Name="dgTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" AlternationCount="1" SelectionMode="Single" ItemsSource="{Binding Path=Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="11,40,19,74">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID" Width="0.7*" IsReadOnly="True"/>
