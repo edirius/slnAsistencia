@@ -26,40 +26,27 @@ namespace CapaDeNegocios.cblReportesAsistencia
                 DateTime auxFecha = auxReporte.FechaInicio;
                 for (int i = 0; i <= dias; i++)
                 {
-                    
                     //creando nuevo detalleAsistencia por dia para el objeto detalleReporteAsistencia
                     cDetalleAsistenciaXDia auxDetalleAsistenciaXDia = new cDetalleAsistenciaXDia();
                     auxDetalleAsistenciaXDia.Dia = auxFecha;
-
                     //llenando las Asistencias para la fecha
                     auxDetalleAsistenciaXDia.ListaAsistencia = LlenarAsistencia(auxTrabajador, auxFecha);
-
                     //llenando los horarios
                     auxDetalleAsistenciaXDia.ListaHorario = TraerHorarioSemana(auxFecha.DayOfWeek, auxTrabajador, auxFecha);
-
                     //llenando los permisos
                     auxDetalleAsistenciaXDia.ListaPermisos = TraerListaPermisosDias(auxFecha, auxTrabajador);
-
                     //llenando los permisosHoras
                     auxDetalleAsistenciaXDia.ListaPermisosHoras = TraerListaPermisosHoras(auxFecha, auxTrabajador);
-
                     //llenando los dias festivos
                     auxDetalleAsistenciaXDia.ListaDiaFestivo = TraerListaDiaFestivo(auxFecha); 
                     auxFecha = auxFecha.AddDays(1);
-
-                    
-
                     
                     auxDetalleReporteAsistenciaXTrabajador.detallesAsistenciasXDia.Add(auxDetalleAsistenciaXDia);
-                      
                 }
                 auxReporte.detallesReporteAsistenciaXTrabajador.Add(auxDetalleReporteAsistenciaXTrabajador);
             }
-
             return auxReporte;
         }
-
-       
 
         public List<Horario> TraerHorarioSemana(DayOfWeek DiaSemana, Trabajador miTrabajador, DateTime Fecha)
         {
@@ -132,8 +119,6 @@ namespace CapaDeNegocios.cblReportesAsistencia
                         }
                        
                     }
-
-                   
                     return auxListaHorarios;
                 }
                    else
@@ -155,17 +140,16 @@ namespace CapaDeNegocios.cblReportesAsistencia
                 if (consultaPeriodo.Count() > 0)
                 {
                     IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet
-                                                              where (consultaPeriodo.FirstOrDefault().Trabajador.Id == auxTrabajador.Id
-                                                              && auxFecha > d.Inicio 
-                                                              && auxFecha < d.Fin) 
-                                                              select d;
+                                                                where (consultaPeriodo.FirstOrDefault().Trabajador.Id == auxTrabajador.Id
+                                                                && auxFecha > d.Inicio
+                                                                && auxFecha < d.Fin)
+                                                                select d;
                     return consultaPermisos.ToList();
                 }
-               else
+                else
                 {
                     return null;
                 }
-                
             }
         }
 
@@ -174,17 +158,16 @@ namespace CapaDeNegocios.cblReportesAsistencia
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 IQueryable<DiaFestivo> consultaDiaFestivo = from d in bd.DiaFestivoSet
-                                                                 where 
-                                                                 auxFecha.Year == d.Dia.Year && 
-                                                                 auxFecha.Month ==  d.Dia.Month &&
-                                                                 auxFecha.Day == d.Dia.Day 
-                                                                 select d;
-                    
-                if (consultaDiaFestivo.Count() > 0 )
+                                                            where
+                                                            auxFecha.Year == d.Dia.Year &&
+                                                            auxFecha.Month == d.Dia.Month &&
+                                                            auxFecha.Day == d.Dia.Day
+                                                            select d;
+                if (consultaDiaFestivo.Count() > 0)
                 {
                     return consultaDiaFestivo.ToList();
                 }
-            
+
                 else
                 {
                     return null;
@@ -204,10 +187,10 @@ namespace CapaDeNegocios.cblReportesAsistencia
                 if (consultaPeriodo.Count() > 0)
                 {
                     IQueryable<PermisosHoras> consultaPermisos = from d in bd.PermisosHorasSet
-                                                                where (consultaPeriodo.FirstOrDefault().Trabajador.Id == auxTrabajador.Id
-                                                                && auxFecha > d.Fin
-                                                                && auxFecha < d.Fin)
-                                                                select d;
+                                                                 where (consultaPeriodo.FirstOrDefault().Trabajador.Id == auxTrabajador.Id
+                                                                 && auxFecha > d.Fin
+                                                                 && auxFecha < d.Fin)
+                                                                 select d;
                     return consultaPermisos.ToList();
                 }
                 else
@@ -263,19 +246,20 @@ namespace CapaDeNegocios.cblReportesAsistencia
 
         //    return auxDetalleHorario; 
         //}
+
         public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFecha)
-    {
-        DateTime x = miFecha.AddDays(-1);
-        DateTime xx = miFecha.AddDays(1);
-        using (mAsistenciaContainer bd = new mAsistenciaContainer())
         {
-            IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
-                                                        where d.Trabajador.Id == miTrabajador.Id
-                                                        && d.PicadoReloj > x
-                                                        && d.PicadoReloj < xx
-                                                        select d;
-            return consultaAsistencia.ToList();
+            DateTime x = miFecha.AddDays(-1);
+            DateTime xx = miFecha.AddDays(1);
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Asistencia> consultaAsistencia = from d in bd.AsistenciaSet
+                                                            where d.Trabajador.Id == miTrabajador.Id
+                                                            && d.PicadoReloj > x
+                                                            && d.PicadoReloj < xx
+                                                            select d;
+                return consultaAsistencia.ToList();
+            }
         }
-    }
    }
 }

@@ -5,29 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caReportes"
         mc:Ignorable="d"
-        Title="Reporte de Asistencia" Height="391" Width="442.256" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+        Title="Reporte de Asistencia" Height="400" Width="450" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
-        <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Margin="347,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnSalir_Click"/>
-        <Button x:Name="btnImprimir" Content="Imprimir" HorizontalAlignment="Left" Margin="278,289,0,0" VerticalAlignment="Top" Width="64" Height="42" Click="btnImprimir_Click"/>
-        <Label x:Name="label" Content="INICIO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpInicio" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dpInicio_SelectedDateChanged"/>
-        <Label x:Name="label_Copy" Content="FIN" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpFin" HorizontalAlignment="Left" Margin="266,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dpFin_SelectedDateChanged"/>
-        <DataGrid x:Name="dgTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" AlternationCount="1" SelectionMode="Single" ItemsSource="{Binding Path=Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="11,40,19,74">
+        <Label x:Name="label" Content="INICIO" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="25" Width="45"/>
+        <DatePicker x:Name="dpInicio" HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dpInicio_SelectedDateChanged" Height="25" Width="150"/>
+        <Label x:Name="label_Copy" Content="FIN" HorizontalAlignment="Right" Margin="0,10,170,0" VerticalAlignment="Top" Height="25" Width="45"/>
+        <DatePicker x:Name="dpFin" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" SelectedDateChanged="dpFin_SelectedDateChanged" Width="150" Height="25"/>
+        <Button x:Name="btnSalir" Content="Salir" Margin="0,0,10,10" Width="70" Height="50" Click="btnSalir_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Button x:Name="btnImprimir" Content="Imprimir" HorizontalAlignment="Right" Margin="0,0,85,10" VerticalAlignment="Bottom" Width="70" Height="50" Click="btnImprimir_Click"/>
+        <DataGrid x:Name="dgTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="10,40,10,65">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID" Width="0.7*" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Path=NOMBRE}" Header="NOMBRE" Width="1.5*" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Path=APATERNO}" Header="A. PATERNO" Width="1.5*" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Path=AMATERNO}" Header="A. MATERNO" Width="1.5*" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Path=DNI}" Header="DNI" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="0.7*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE}" Header="NOMBRE" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding APATERNO}" Header="A. PATERNO" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding AMATERNO}" Header="A. MATERNO" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding DNI}" Header="DNI" Width="1.5*" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
                         <CheckBox Checked="CheckBox_Checked" Unchecked="UnCheckBox_Checked"/>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <!--<CheckBox Checked="Select_Checked" Unchecked="UnSelec_Checked" IsChecked="{Binding Path=CHK}" HorizontalAlignment="Center"/>-->
-                            <CheckBox Click="Chk_Checked" IsChecked="{Binding Path=CHK}" HorizontalAlignment="Center"/>
+                            <CheckBox Click="Chk_Checked" IsChecked="{Binding CHK}" HorizontalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

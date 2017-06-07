@@ -22,6 +22,8 @@ namespace CapaPresentacion.caReporteAsistencia
     /// </summary>
     public partial class wReporteAsistencia : Window
     {
+        System.Data.DataTable oDataTrabajadores = new System.Data.DataTable();
+
         public wReporteAsistencia()
         {
             InitializeComponent();
@@ -29,24 +31,34 @@ namespace CapaPresentacion.caReporteAsistencia
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Iniciar();
+            dtpFechaInicio.SelectedDate = DateTime.Today;
+            CargarTrabajadores();
         }
 
-        private void Iniciar()
+        private void dtpFechaInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
-            dtgListaTrabajadores.ItemsSource = ListaTrabajadores;
-            dtpFechaInicio.SelectedDate = DateTime.Today;
-            
+            dtpFechaFin.DisplayDateStart = dtpFechaInicio.SelectedDate;
         }
 
         private void btnExportarExcel_Click(object sender, RoutedEventArgs e)
         {
-            CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
+            List<Trabajador> ListaTrabajadores = new List<Trabajador>();
+            foreach (System.Data.DataRowView item in dtgListaTrabajadores.Items)
+            {
+                bool Activo = false;
+                Activo = Convert.ToBoolean(item.Row.ItemArray[5]);
+                if (Activo == true)
+                {
+                    Trabajador auxTrabajador = new Trabajador();
+                    auxTrabajador.Id = Convert.ToInt32(item.Row.ItemArray[0]);
+                    auxTrabajador.Nombre = Convert.ToString(item.Row.ItemArray[1]);
+                    auxTrabajador.ApellidoPaterno = Convert.ToString(item.Row.ItemArray[2]);
+                    auxTrabajador.ApellidoMaterno = Convert.ToString(item.Row.ItemArray[3]);
+                    auxTrabajador.DNI = Convert.ToString(item.Row.ItemArray[4]);
+                    ListaTrabajadores.Add(auxTrabajador);
+                }
+            }
 
-            
             CapaDeNegocios.cblReportesAsistencia.blReporteAsistencia oblReporteAsistencia = new CapaDeNegocios.cblReportesAsistencia.blReporteAsistencia();
             CapaDeNegocios.cblReportesAsistencia.cReporteAsistencia oReporteAsistencia = new CapaDeNegocios.cblReportesAsistencia.cReporteAsistencia();
             SaveFileDialog saveFileDialog  = new SaveFileDialog();
@@ -58,14 +70,68 @@ namespace CapaPresentacion.caReporteAsistencia
                 oReporteAsistencia = oblReporteAsistencia.LlenarReporteAsistencia(ListaTrabajadores, dtpFechaInicio.SelectedDate.Value, dtpFechaFin.SelectedDate.Value);
                 oblExportarExcelReporteAsistencia.ImprimirReporteAsistencia(oReporteAsistencia);
             }
-
-           
         }
 
-        private void dtpFechaInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void CargarTrabajadores()
         {
-            dtpFechaFin.DisplayDateStart = dtpFechaInicio.SelectedDate;
+            CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
+            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
 
+            oDataTrabajadores = new System.Data.DataTable();
+            oDataTrabajadores.Columns.Add("ID", typeof(int));
+            oDataTrabajadores.Columns.Add("NOMBRE");
+            oDataTrabajadores.Columns.Add("APATERNO");
+            oDataTrabajadores.Columns.Add("AMATERNO");
+            oDataTrabajadores.Columns.Add("DNI");
+            oDataTrabajadores.Columns.Add("CHK", typeof(bool));
+            foreach (Trabajador item in ListaTrabajadores)
+            {
+                var row = oDataTrabajadores.NewRow();
+                row["ID"] = item.Id;
+                row["NOMBRE"] = item.Nombre;
+                row["APATERNO"] = item.ApellidoPaterno;
+                row["AMATERNO"] = item.ApellidoMaterno;
+                row["DNI"] = item.DNI;
+                row["CHK"] = false;
+                oDataTrabajadores.Rows.Add(row);
+            }
+            dtgListaTrabajadores.ItemsSource = oDataTrabajadores.DefaultView;
+
+            if (dtgListaTrabajadores.Items.Count > 0)
+            {
+                object item = dtgListaTrabajadores.Items[dtgListaTrabajadores.Items.Count - 1];
+                dtgListaTrabajadores.SelectedItem = item;
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (System.Data.DataRow dr in oDataTrabajadores.Rows)
+            {
+                dr["CHK"] = true;
+            }
+        }
+
+        private void UnCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (System.Data.DataRow dr in oDataTrabajadores.Rows)
+            {
+                dr["CHK"] = false;
+            }
+        }
+
+        private void Chk_Checked(object sender, RoutedEventArgs e)
+        {
+            int i = dtgListaTrabajadores.SelectedIndex;
+            System.Data.DataRow dr = oDataTrabajadores.Rows[i];
+            if (Convert.ToBoolean(dr["CHK"]) == false)
+            {
+                dr["CHK"] = true;
+            }
+            else
+            {
+                dr["CHK"] = false;
+            }
         }
     }
 }

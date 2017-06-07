@@ -39,7 +39,6 @@ namespace CapaDeNegocios.cblReportesAsistencia
             fila += 1;
             foreach (cDetalleReporteAsistenciaXTrabajador item in miReporteAsistencia.detallesReporteAsistenciaXTrabajador)
             {
-
                 oHoja.Range[letras[columna] + fila.ToString()].Value = item.miTrabajador.Nombre + " " + item.miTrabajador.ApellidoPaterno + " " + item.miTrabajador.ApellidoMaterno;
                 columna += 1;
                 oHoja.Range[letras[columna] + fila.ToString()].Value = item.miTrabajador.DNI;
@@ -55,12 +54,10 @@ namespace CapaDeNegocios.cblReportesAsistencia
                     {
                         //No tiene Horario
                         oHoja.Range[letras[columna] + fila.ToString()].Value = "Dia Libre";
-
                     }
                     else
                     {
                         //Verificando que tiene asistencias
-
                         if (auxDetalleAsistenciaXDia.ListaAsistencia == null)
                         {
                             //Tiene horario pero no tiene permisos

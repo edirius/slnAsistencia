@@ -138,5 +138,32 @@ namespace CapaPresentacion.caReportes
                 dr["CHK"] = false;
             }
         }
+
+        //private void AgregarColumnasDataGrig()
+        //{
+        //    try
+        //    {
+        //        Binding binding = new Binding("SelectAll");
+        //        binding.Mode = BindingMode.TwoWay;
+        //        binding.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor);
+        //        binding.RelativeSource.AncestorType = GetType();
+
+        //        CheckBox headerCheckBox = new CheckBox();
+        //        //headerCheckBox.Content = "Is Selected";
+        //        headerCheckBox.SetBinding(CheckBox.IsCheckedProperty, binding);
+        //        headerCheckBox.Click += new RoutedEventHandler(CheckBox_Click);
+
+        //        DataGridCheckBoxColumn checkBoxColumn = new DataGridCheckBoxColumn();
+        //        checkBoxColumn.Header = headerCheckBox;
+        //        //checkBoxColumn.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+        //        checkBoxColumn.Binding = new Binding("IsSelected");
+        //        //checkBoxColumn.Binding = new Binding(e.PropertyName);
+        //        checkBoxColumn.IsThreeState = true;
+
+        //        dgTrabajadores.Columns.Insert(0, checkBoxColumn);
+        //    }
+        //    catch (Exception m)
+        //    { }
+        //}
     }
 }
