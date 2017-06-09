@@ -17,7 +17,7 @@ namespace CapaEntities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Horario()
         {
-            this.HorarioDia = new HashSet<HorarioDia>();
+            this.Dia = new HashSet<Dia>();
         }
     
         public int Id { get; set; }
@@ -29,8 +29,10 @@ namespace CapaEntities
         public System.DateTime FinPicadoEntrada { get; set; }
         public System.DateTime InicioPicadoSalida { get; set; }
         public System.DateTime FinPicadoSalida { get; set; }
+        public System.DateTime InicioPicadoRefrigerio { get; set; }
+        public System.DateTime FinPicadoRefrigerio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HorarioDia> HorarioDia { get; set; }
+        public virtual ICollection<Dia> Dia { get; set; }
     }
 }

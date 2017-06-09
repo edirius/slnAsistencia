@@ -74,9 +74,6 @@
     <Compile Include="Horario.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>
-    <Compile Include="HorarioDia.cs">
-      <DependentUpon>mAsistencia.tt</DependentUpon>
-    </Compile>
     <Compile Include="HorarioSemana.cs">
       <DependentUpon>mAsistencia.tt</DependentUpon>
     </Compile>

@@ -11,54 +11,54 @@ namespace CapaDeNegocios.blHorarioDia
     public class blHorarioDia
     {
 
-        public ICollection<HorarioDia> ListarHorarioDias()
-        {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                IQueryable<HorarioDia> consultaHorarioDias = from d in bd.HorarioDiaSet
-                                                             select d;
-                return consultaHorarioDias.ToList() ;
-            }
-        }
+        //public ICollection<HorarioDia> ListarHorarioDias()
+        //{
+        //    using (mAsistenciaContainer bd = new mAsistenciaContainer())
+        //    {
+        //        IQueryable<HorarioDia> consultaHorarioDias = from d in bd.HorarioDiaSet
+        //                                                     select d;
+        //        return consultaHorarioDias.ToList() ;
+        //    }
+        //}
 
-        public void AgregarHorarioDia(HorarioDia miAgregarHorarioDia)
-        {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                bd.HorarioDiaSet.Add(miAgregarHorarioDia);
-                if (miAgregarHorarioDia.Horario.Count > 0)
-                {
-                    foreach (Horario item in miAgregarHorarioDia.Horario )
-                    {
-                        bd.HorarioSet.Attach(item);
-                    }
+        //public void AgregarHorarioDia(HorarioDia miAgregarHorarioDia)
+        //{
+        //    using (mAsistenciaContainer bd = new mAsistenciaContainer())
+        //    {
+        //        bd.HorarioDiaSet.Add(miAgregarHorarioDia);
+        //        if (miAgregarHorarioDia.Horario.Count > 0)
+        //        {
+        //            foreach (Horario item in miAgregarHorarioDia.Horario )
+        //            {
+        //                bd.HorarioSet.Attach(item);
+        //            }
                     
-                }
-                bd.SaveChanges();
-            }
-        }
+        //        }
+        //        bd.SaveChanges();
+        //    }
+        //}
 
-        public void ModificarHorarioDia(HorarioDia miModificarHorarioDia)
-        {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                HorarioDia auxiliar = (from c in bd.HorarioDiaSet
-                                       where c.Id == miModificarHorarioDia.Id
-                                       select c).FirstOrDefault();
-                auxiliar.Dia = miModificarHorarioDia.Dia;
-                bd.SaveChanges();
-            }
-        }
+        //public void ModificarHorarioDia(HorarioDia miModificarHorarioDia)
+        //{
+        //    using (mAsistenciaContainer bd = new mAsistenciaContainer())
+        //    {
+        //        HorarioDia auxiliar = (from c in bd.HorarioDiaSet
+        //                               where c.Id == miModificarHorarioDia.Id
+        //                               select c).FirstOrDefault();
+        //        auxiliar.Dia = miModificarHorarioDia.Dia;
+        //        bd.SaveChanges();
+        //    }
+        //}
 
-        public void EliminarHorarioDia(HorarioDia miEliminarHorarioDia)
-        {
-            using (mAsistenciaContainer bd = new mAsistenciaContainer())
-            {
-                HorarioDia auxiliar = (from c in bd.HorarioDiaSet
-                                       where c.Id == miEliminarHorarioDia.Id
-                                       select c).FirstOrDefault();
-                bd.HorarioDiaSet.Remove(auxiliar);
-            }
-        }
+        //public void EliminarHorarioDia(HorarioDia miEliminarHorarioDia)
+        //{
+        //    using (mAsistenciaContainer bd = new mAsistenciaContainer())
+        //    {
+        //        HorarioDia auxiliar = (from c in bd.HorarioDiaSet
+        //                               where c.Id == miEliminarHorarioDia.Id
+        //                               select c).FirstOrDefault();
+        //        bd.HorarioDiaSet.Remove(auxiliar);
+        //    }
+        //}
     }
 }

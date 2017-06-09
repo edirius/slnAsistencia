@@ -61,14 +61,9 @@ namespace CapaDeNegocios.cblReportes
                 {
                     DateTime auxiliar = miFechaInicio.AddDays(dia);
 
-                    Horario miHorario = new Horario();
-                    List<Horario> miListaHorario = CargarListaHorario(miPeriodoTrabajador, auxiliar);
+                    Horario miHorario = CargarHorario(miPeriodoTrabajador, auxiliar);
                     List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, auxiliar);
                     List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, auxiliar);
-                    foreach (Horario item2 in miListaHorario.OrderByDescending(x => x.Id))
-                    {
-                        miHorario = item2;
-                    }
 
                     string Control_Asistencia = CONTROL_ASISTENCIA(miHorario, miAsistenciaTrabajador, miPermisoDiasTrabajador);
                     if (dia + 1 == 1) { dia_celda = "G"; }
@@ -257,19 +252,19 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public List<Horario> CargarListaHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
+        public Horario CargarHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
         {
-            List<Horario> miHorario = new List<Horario>();
+            Horario miHorario = new Horario();
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("HorarioDia.Horario")
+                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("Horario")
                                                      where d.HorarioSemana.Id == miPeriodoTrabajador.HorarioSemana.Id
                                                      select d;
                 foreach (Dia item in consultaHorarioDia)
                 {
-                    if ((QuitarAcento(miFecha.ToString("dddd"))).ToUpper() == item.NombreDiaSemana.ToUpper() && item.HorarioDia != null)
+                    if ((QuitarAcento(miFecha.ToString("dddd"))).ToUpper() == item.NombreDiaSemana.ToUpper() && item.Horario != null)
                     {
-                        miHorario = item.HorarioDia.Horario.ToList();
+                        miHorario = item.Horario;
                     }
                 }
                 return miHorario;

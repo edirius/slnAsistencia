@@ -21,7 +21,7 @@
             </MenuItem>
             <MenuItem Header="Horario">
                 <MenuItem x:Name="mnuHorario" Header="Turno" HorizontalAlignment="Left" Width="170" Click="mnuHorario_Click"/>
-                <MenuItem x:Name="mnuHorarioDia" Header="Horario Dia" HorizontalAlignment="Left" Width="170" Click="mnuHorarioDia_Click"/>
+                <!--<MenuItem x:Name="mnuHorarioDia" Header="Horario Dia" HorizontalAlignment="Left" Width="170" Click="mnuHorarioDia_Click"/>-->
                 <MenuItem x:Name="mnuHorarioSemana" Header="Horario Semana" HorizontalAlignment="Left" Width="170" Click="mnuHorarioSemana_Click"/>
             </MenuItem>
             <MenuItem Header="Asistencia">

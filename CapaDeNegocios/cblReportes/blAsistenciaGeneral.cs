@@ -38,65 +38,66 @@ namespace CapaDeNegocios.cblReportes
             Iniciar();
             int contador = 0;
             int nro_filas = 0;
+            int celda_inicio = 10;
             foreach (Trabajador item in miListaTrabajadores)
             {
                 PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
 
                 nro_filas += 1;
-                oHoja.Range["A" + (6 + contador).ToString()].Formula = nro_filas;
-                oHoja.Range["B" + (6 + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
-                oHoja.Range["E" + (6 + contador).ToString()].Formula = item.DNI.ToString();//DNI
+                oHoja.Range["A6"].Formula = "INFORME DE ASISTENCIA GENERAL DE " + miFechaInicio.Date + " HASTA " + miFechaFin.Date;
+                oHoja.Range["A" + (celda_inicio + contador).ToString()].Formula = nro_filas;
+                oHoja.Range["B" + (celda_inicio + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
+                oHoja.Range["E" + (celda_inicio + contador).ToString()].Formula = item.DNI.ToString();//DNI
 
                 int nro_fechas = 0;
                 for (int i = 0; i < (miFechaFin - miFechaInicio).Days; i++)
                 {
                     nro_fechas += 1;
                     DateTime auxiliar = miFechaInicio.AddDays(i);
-                    oHoja.Range["G" + (6 + contador).ToString()].Formula = auxiliar.Date.ToString();//SEXO
-
-                    List<Horario> miListaHorario = CargarListaHorario(miPeridodTrabajador, auxiliar);
+                    Horario miHorario = CargarHorario(miPeridodTrabajador, auxiliar);
                     List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, auxiliar);
                     List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, auxiliar);
-                    int nro_horario = 0;
-                    foreach (Horario item2 in miListaHorario.OrderBy(x => x.Id))
-                    {
-                        nro_horario += 1;
-                        string H_Entrada = ENTRADA(item2, miAsistenciaTrabajador);
-                        string H_Salida = SALIDA(item2, miAsistenciaTrabajador);
-                        TimeSpan Tardanza = TARDANZA(item2, H_Entrada);
-                        int Permiso = miPermisoDiasTrabajador.Count;
-                        int Falta = FALTA(item2, H_Entrada, Permiso);
-                        oHoja.Range["H" + (6 + contador).ToString()].Formula = item2.Nombre;
-                        oHoja.Range["I" + (6 + contador).ToString()].Formula = item2.Entrada.TimeOfDay.ToString();
-                        oHoja.Range["J" + (6 + contador).ToString()].Formula = H_Entrada;
-                        oHoja.Range["K" + (6 + contador).ToString()].Formula = item2.Salida.TimeOfDay.ToString();
-                        oHoja.Range["L" + (6 + contador).ToString()].Formula = H_Salida;
-                        oHoja.Range["M" + (6 + contador).ToString()].Formula = Tardanza.ToString();
-                        oHoja.Range["N" + (6 + contador).ToString()].Formula = Permiso.ToString();
-                        oHoja.Range["O" + (6 + contador).ToString()].Formula = Falta.ToString();
-                        //if (Falta == 1)
-                        //{
-                        //    oHoja.Range["O" + (6 + contador).ToString()].Interior.ColorIndex = 3;
-                        //}
 
-                        if (nro_horario < miListaHorario.Count)
-                        {
-                            contador += 1;
-                            oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
-                        }
-                    }
+                    string Dia = (QuitarAcento(auxiliar.ToString("dddd"))).ToUpper();
+                    string HEntrada = ENTRADA(miHorario, miAsistenciaTrabajador);
+                    string HSalida = SALIDA(miHorario, miAsistenciaTrabajador);
+                    string RInicio = "";
+                    string RFin = "";
+                    TimeSpan Tardanza = TARDANZA(miHorario, HEntrada);
+                    int Permiso = miPermisoDiasTrabajador.Count;
+                    int Falta = FALTA(miHorario, HEntrada, Permiso);
+
+                    string fecha = auxiliar.Date.ToString();
+                    oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = auxiliar.Date.ToString();
+                    oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
+                    oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
+                    oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
+                    oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
+                    oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = miHorario.InicioPicadoRefrigerio.TimeOfDay.ToString();
+                    oHoja.Range["L" + (celda_inicio + contador).ToString()].Formula = RInicio;
+                    oHoja.Range["M" + (celda_inicio + contador).ToString()].Formula = miHorario.FinPicadoRefrigerio.TimeOfDay.ToString();
+                    oHoja.Range["N" + (celda_inicio + contador).ToString()].Formula = RFin;
+                    oHoja.Range["O" + (celda_inicio + contador).ToString()].Formula = miHorario.Salida.TimeOfDay.ToString();
+                    oHoja.Range["P" + (celda_inicio + contador).ToString()].Formula = HSalida;
+                    oHoja.Range["Q" + (celda_inicio + contador).ToString()].Formula = Tardanza.ToString();
+                    oHoja.Range["R" + (celda_inicio + contador).ToString()].Formula = Permiso.ToString();
+                    oHoja.Range["S" + (celda_inicio + contador).ToString()].Formula = Falta.ToString();
+                    //if (Falta == 1)
+                    //{
+                    //    oHoja.Range["O" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 3;
+                    //}
 
                     if (nro_fechas <= (miFechaFin - miFechaInicio).Days)
                     {
                         contador += 1;
-                        oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
+                        oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
                     }
                 }
 
                 if (nro_filas < miListaTrabajadores.Count)
                 {
                     contador += 1;
-                    oHoja.Range[(6 + contador).ToString() + ":" + (6 + contador).ToString()].Insert();
+                    oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
                 }
             }
         }
@@ -179,19 +180,19 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public List<Horario> CargarListaHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
+        public Horario CargarHorario(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
         {
-            List<Horario> miHorario = new List<Horario>();
+            Horario miHorario = new Horario();
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("HorarioDia.Horario")
+                IQueryable<Dia> consultaHorarioDia = from d in bd.DiaSet.Include("Horario")
                                                      where d.HorarioSemana.Id == miPeriodoTrabajador.HorarioSemana.Id
                                                      select d;
                 foreach (Dia item in consultaHorarioDia)
                 {
-                    if ((QuitarAcento(miFecha.ToString("dddd"))).ToUpper() == item.NombreDiaSemana.ToUpper() && item.HorarioDia != null)
+                    if ((QuitarAcento(miFecha.ToString("dddd"))).ToUpper() == item.NombreDiaSemana.ToUpper() && item.Horario != null)
                     {
-                        miHorario = item.HorarioDia.Horario.ToList();
+                        miHorario = item.Horario;
                     }
                 }
                 return miHorario;

@@ -24,7 +24,7 @@ namespace CapaPresentacion.caHorarioDia
         CapaDeNegocios.blHorarioDia.blHorarioDia oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
         CapaDeNegocios.blHorario.blHorario oblHorario = new CapaDeNegocios.blHorario.blHorario();
 
-        HorarioDia miHorarioDia = new HorarioDia();
+        //HorarioDia miHorarioDia = new HorarioDia();
 
         public wListaHorarioDia()
         {
@@ -38,9 +38,9 @@ namespace CapaPresentacion.caHorarioDia
 
         private void Iniciar()
         {
-            lstHorariosDia.ItemsSource = oblHorarioDia.ListarHorarioDias();
-            lstHorariosDia.DisplayMemberPath = "Nombre";
-            lstHorarios.ItemsSource = oblHorario.ListarHorarios();
+            //lstHorariosDia.ItemsSource = oblHorarioDia.ListarHorarioDias();
+            //lstHorariosDia.DisplayMemberPath = "Nombre";
+            //lstHorarios.ItemsSource = oblHorario.ListarHorarios();
         }
 
         private ListViewItem GetNodetItem(DependencyObject obj)
@@ -58,30 +58,30 @@ namespace CapaPresentacion.caHorarioDia
 
         private void CheckBox_OnCheck(object sender, RoutedEventArgs e)
         {
-            Horario auxHorario;
-            ListViewItem item = GetNodetItem((DependencyObject)sender);
-            auxHorario = (Horario)item.DataContext;
-            miHorarioDia.Horario.Add(auxHorario);
-            MessageBox.Show(auxHorario.Nombre );
+            //Horario auxHorario;
+            //ListViewItem item = GetNodetItem((DependencyObject)sender);
+            //auxHorario = (Horario)item.DataContext;
+            //miHorarioDia.Horario.Add(auxHorario);
+            //MessageBox.Show(auxHorario.Nombre );
         }
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Desea Agregar el el Horario: " + txtNombre.Text, "Agregar", MessageBoxButton.YesNo) == MessageBoxResult.Yes ) 
-            {
-                miHorarioDia.Nombre = txtNombre.Text;
-                oblHorarioDia.AgregarHorarioDia(miHorarioDia);
-            }
+            //if (MessageBox.Show("Desea Agregar el el Horario: " + txtNombre.Text, "Agregar", MessageBoxButton.YesNo) == MessageBoxResult.Yes ) 
+            //{
+            //    miHorarioDia.Nombre = txtNombre.Text;
+            //    oblHorarioDia.AgregarHorarioDia(miHorarioDia);
+            //}
         }
 
         private void lstHorariosDia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            HorarioDia auxHorarioDia = new HorarioDia();
-            if (lstHorariosDia.SelectedItem != null)
-            {
-                auxHorarioDia = (HorarioDia)lstHorariosDia.SelectedItem;
-                txtNombre.Text = auxHorarioDia.Nombre;
-            }
+            //HorarioDia auxHorarioDia = new HorarioDia();
+            //if (lstHorariosDia.SelectedItem != null)
+            //{
+            //    auxHorarioDia = (HorarioDia)lstHorariosDia.SelectedItem;
+            //    txtNombre.Text = auxHorarioDia.Nombre;
+            //}
         }
     }
 }

@@ -67,56 +67,56 @@ namespace CapaDeNegocios.cblReportesAsistencia
 
                     foreach (Dia auxDia in auxHorarioSemana.Dia)
                     {
-                        if (auxDia.HorarioDia != null)
-                        {
-                            switch (DiaSemana)
-                            {
-                                case DayOfWeek.Sunday:
-                                    if (auxDia.NombreDiaSemana == "Domingo")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Monday:
-                                    if (auxDia.NombreDiaSemana == "Lunes")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Tuesday:
-                                    if (auxDia.NombreDiaSemana == "Martes")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Wednesday:
-                                    if (auxDia.NombreDiaSemana == "Miercoles")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Thursday:
-                                    if (auxDia.NombreDiaSemana == "Jueves")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Friday:
-                                    if (auxDia.NombreDiaSemana == "Viernes")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                case DayOfWeek.Saturday:
-                                    if (auxDia.NombreDiaSemana == "Sabado")
-                                    {
-                                        auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
+                        //if (auxDia.HorarioDia != null)
+                        //{
+                        //    switch (DiaSemana)
+                        //    {
+                        //        case DayOfWeek.Sunday:
+                        //            if (auxDia.NombreDiaSemana == "Domingo")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Monday:
+                        //            if (auxDia.NombreDiaSemana == "Lunes")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Tuesday:
+                        //            if (auxDia.NombreDiaSemana == "Martes")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Wednesday:
+                        //            if (auxDia.NombreDiaSemana == "Miercoles")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Thursday:
+                        //            if (auxDia.NombreDiaSemana == "Jueves")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Friday:
+                        //            if (auxDia.NombreDiaSemana == "Viernes")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        case DayOfWeek.Saturday:
+                        //            if (auxDia.NombreDiaSemana == "Sabado")
+                        //            {
+                        //                auxListaHorarios = auxDia.HorarioDia.Horario.ToList();
+                        //            }
+                        //            break;
+                        //        default:
+                        //            break;
+                        //    }
+                        //}
                        
                     }
                     return auxListaHorarios;

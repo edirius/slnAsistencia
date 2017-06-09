@@ -37,32 +37,27 @@ namespace CapaPresentacion.caHorarioSemana
         private void dgHorarioSemana_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             miHorarioSemana = (CapaEntities.HorarioSemana)dgHorarioSemana.SelectedItem;
-            
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-           
-                caHorarioSemana.wHorarioDelaSemana fHorarioSemana = new caHorarioSemana.wHorarioDelaSemana();
-                fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
-                string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+            caHorarioSemana.wHorarioDelaSemana fHorarioSemana = new caHorarioSemana.wHorarioDelaSemana();
+            fHorarioSemana.miHorarioSemana = new CapaEntities.HorarioSemana();
+            string[] DiasSemana = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
 
-                for (int i = 0; i < 7; i++)
-                {
-                    Dia auxDia = new Dia();
-                    auxDia.HorarioSemana = fHorarioSemana.miHorarioSemana;
-                    auxDia.NombreDiaSemana = DiasSemana[i];
-                    fHorarioSemana.miHorarioSemana.Dia.Add(auxDia);
-                } 
-                
+            for (int i = 0; i < 7; i++)
+            {
+                Dia auxDia = new Dia();
+                auxDia.HorarioSemana = fHorarioSemana.miHorarioSemana;
+                auxDia.NombreDiaSemana = DiasSemana[i];
+                fHorarioSemana.miHorarioSemana.Dia.Add(auxDia);
+            }
 
-                if (fHorarioSemana.ShowDialog() == true)
-                {
-                    oblHorarioSemana.AgregarHorarioSemana(fHorarioSemana.miHorarioSemana);
-                }
-                CargarHorarioSemana();
-            
-            
+            if (fHorarioSemana.ShowDialog() == true)
+            {
+                oblHorarioSemana.AgregarHorarioSemana(fHorarioSemana.miHorarioSemana);
+            }
+            CargarHorarioSemana();
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)

@@ -23,7 +23,7 @@ namespace CapaPresentacion.caHorarioSemana
     {
         public CapaEntities.HorarioSemana miHorarioSemana;
         CapaDeNegocios.blHorarioDia.blHorarioDia  oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
-        public IEnumerable<HorarioDia> miListaHorarioDia;
+        //public IEnumerable<HorarioDia> miListaHorarioDia;
         public wHorarioSemana()
         {
             InitializeComponent();
@@ -39,8 +39,8 @@ namespace CapaPresentacion.caHorarioSemana
         {
             txtNombres.Text = miHorarioSemana.Nombre;
             dtgListaDias.ItemsSource = miHorarioSemana.Dia;
-            miListaHorarioDia = oblHorarioDia.ListarHorarioDias();
-            cboHorariosDias.ItemsSource = miListaHorarioDia;
+            //miListaHorarioDia = oblHorarioDia.ListarHorarioDias();
+            //cboHorariosDias.ItemsSource = miListaHorarioDia;
             //cboHorarios.DisplayMemberPath = "Nombre";
         }
 

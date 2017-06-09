@@ -10,40 +10,38 @@
         <EntityTypeShape EntityType="mAsistencia.Asistencia" Width="1.5" PointX="2.5" PointY="11" />
         <EntityTypeShape EntityType="mAsistencia.Local" Width="1.5" PointX="3.125" PointY="2.75" />
         <AssociationConnector Association="mAsistencia.LocalOficina" />
-        <EntityTypeShape EntityType="mAsistencia.Horario" Width="1.5" PointX="10.25" PointY="0.5" />
-        <EntityTypeShape EntityType="mAsistencia.HorarioDia" Width="1.5" PointX="7.125" PointY="0.5" />
-        <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="7.125" PointY="5.375" />
+        <EntityTypeShape EntityType="mAsistencia.Horario" Width="2" PointX="8.5" PointY="1.75" />
+        <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="5.875" PointY="5.125" />
         <AssociationConnector Association="mAsistencia.TrabajadorAsistencia" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7.875" PointY="7.5" />
-        <EntityTypeShape EntityType="mAsistencia.TipoPermisos" Width="1.5" PointX="10.5" PointY="7.375" />
-        <EntityTypeShape EntityType="mAsistencia.PermisosDias" Width="1.5" PointX="7.875" PointY="9.625" />
+        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7.625" PointY="7.875" />
+        <EntityTypeShape EntityType="mAsistencia.TipoPermisos" Width="1.5" PointX="10.25" PointY="9.125" />
+        <EntityTypeShape EntityType="mAsistencia.PermisosDias" Width="1.5" PointX="7.875" PointY="10.125" />
         <AssociationConnector Association="mAsistencia.PermisosHorasTipoPermisos" />
         <AssociationConnector Association="mAsistencia.PermisosDiasTipoPermisos" />
-        <EntityTypeShape EntityType="mAsistencia.DiaFestivo" Width="1.5" PointX="9.625" PointY="12.75" />
+        <EntityTypeShape EntityType="mAsistencia.DiaFestivo" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="mAsistencia.CronogramaVacaciones" Width="1.5" PointX="0.5" PointY="13.625" />
         <AssociationConnector Association="mAsistencia.OficinaOficina" />
         <EntityTypeShape EntityType="mAsistencia.Empresa" Width="1.5" PointX="3.125" PointY="0.5" />
         <AssociationConnector Association="mAsistencia.EmpresaLocal" />
         <EntityTypeShape EntityType="mAsistencia.Prueba" Width="1.5" PointX="1.125" PointY="5" />
-        <EntityTypeShape EntityType="mAsistencia.PeriodoTrabajador" Width="2" PointX="4.5" PointY="8.375" />
+        <EntityTypeShape EntityType="mAsistencia.PeriodoTrabajador" Width="2" PointX="4.75" PointY="8.375" />
         <AssociationConnector Association="mAsistencia.TrabajadorPeriodo" />
         <AssociationConnector Association="mAsistencia.OficinaPeriodoTrabajador" />
         <AssociationConnector Association="mAsistencia.HorarioSemanaPeriodoTrabajador" />
-        <AssociationConnector Association="mAsistencia.PeriodoTrabajadorPermisosHoras" />
+        <AssociationConnector Association="mAsistencia.PeriodoTrabajadorPermisosHoras" ></AssociationConnector>
         <AssociationConnector Association="mAsistencia.PeriodoTrabajadorPermisosDias" />
         <AssociationConnector Association="mAsistencia.OficinaTrabajador" />
-        <EntityTypeShape EntityType="mAsistencia.Dia" Width="1.75" PointX="7.125" PointY="3" />
-        <AssociationConnector Association="mAsistencia.DiaHorarioDia" />
-        <AssociationConnector Association="mAsistencia.HorarioSemanaDia" />
-        <AssociationConnector Association="mAsistencia.HorarioHorarioDia" />
-        <EntityTypeShape EntityType="mAsistencia.AsistenciaPeriodoLaborado" Width="2.375" PointX="4.5" PointY="11.625" />
+        <EntityTypeShape EntityType="mAsistencia.Dia" Width="1.75" PointX="5.875" PointY="2.5" />
+        <EntityTypeShape EntityType="mAsistencia.AsistenciaPeriodoLaborado" Width="2.375" PointX="4.625" PointY="13.25" />
         <AssociationConnector Association="mAsistencia.PeriodoTrabajadorAsistenciaPeriodoLaborado" />
-        <EntityTypeShape EntityType="mAsistencia.Vacaciones" Width="2.125" PointX="4.5" PointY="15" />
+        <EntityTypeShape EntityType="mAsistencia.Vacaciones" Width="2.125" PointX="4.5" PointY="17.125" />
         <AssociationConnector Association="mAsistencia.AsistenciaPeriodoLaboradoVacaciones" />
         <EntityTypeShape EntityType="mAsistencia.DetalleCronogramaVacaciones" Width="1.5" PointX="0.5" PointY="10.875" />
         <AssociationConnector Association="mAsistencia.TrabajadorDetalleCronogramaVacaciones" />
         <AssociationConnector Association="mAsistencia.CronogramaVacacionesDetalleCronogramaVacaciones" />
+        <AssociationConnector Association="mAsistencia.HorarioDia" />
+        <AssociationConnector Association="mAsistencia.HorarioSemanaDia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

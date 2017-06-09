@@ -14,7 +14,7 @@ namespace CapaDeNegocios.blHorarioSemana
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<HorarioSemana> consultaHorarioSemanas = from d in bd.HorarioSemanaSet.Include("Dia").Include("Dia.HorarioDia")
+                IQueryable<HorarioSemana> consultaHorarioSemanas = from d in bd.HorarioSemanaSet.Include("Dia").Include("Dia.Horario")
                                                              select d;
                 return consultaHorarioSemanas.ToList() ;
             }
@@ -27,9 +27,9 @@ namespace CapaDeNegocios.blHorarioSemana
             {
                 foreach (Dia item in miAgregarHorarioSemana.Dia)
                 {
-                    if (item.HorarioDia != null)
+                    if (item.Horario != null)
                     {
-                           bd.HorarioDiaSet.Attach(item.HorarioDia);
+                        bd.HorarioSet.Attach(item.Horario);
                     }
                 }
                 bd.HorarioSemanaSet.Add(miAgregarHorarioSemana);
@@ -39,7 +39,6 @@ namespace CapaDeNegocios.blHorarioSemana
 
         public void ModificarHorarioSemana(HorarioSemana miModificarHorarioSemana)
         {
-            
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
                 HorarioSemana auxiliar = (from c in bd.HorarioSemanaSet.Include("Dia").Include("Dia.HorarioDia") 

@@ -22,76 +22,121 @@ namespace CapaPresentacion.caHorarioSemana
     public partial class wHorarioDelaSemana : Window
     {
         public CapaEntities.HorarioSemana miHorarioSemana;
-        CapaDeNegocios.blHorarioDia.blHorarioDia oblHorarioDia = new CapaDeNegocios.blHorarioDia.blHorarioDia();
-        public ICollection<HorarioDia> HorarioDias;
-        
-
-
+        CapaDeNegocios.blHorario.blHorario oblHorario = new CapaDeNegocios.blHorario.blHorario();
+        public ICollection<Horario> miListaHorario;
 
         public wHorarioDelaSemana()
         {
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Iniciar();
+        }
+
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Dia item in miHorarioSemana.Dia)
+            {
+                switch (item.NombreDiaSemana)
+                {
+                    case "Lunes":
+                        item.Horario = (Horario)cboLunes.SelectedItem;
+                        break;
+                    case "Martes":
+                        item.Horario = (Horario)cboMartes.SelectedItem;
+                        break;
+                    case "Miercoles":
+                        item.Horario = (Horario)cboMiercoles.SelectedItem;
+                        break;
+                    case "Jueves":
+                        item.Horario = (Horario)cboJueves.SelectedItem;
+                        break;
+                    case "Viernes":
+                        item.Horario = (Horario)cboViernes.SelectedItem;
+                        break;
+                    case "Sabado":
+                        item.Horario = (Horario)cboSabado.SelectedItem;
+                        break;
+                    case "Domingo":
+                        item.Horario = (Horario)cboDomingo.SelectedItem;
+                        break;
+                    default:
+                        break;
+                }
+                if (item.Horario.Nombre == "SIN HORARIO")
+                {
+                    item.Horario = null;
+                }
+            }
+            miHorarioSemana.Nombre = txtNombres.Text;
+            DialogResult = true;
+        }
+
+        private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
         public void Iniciar()
         {
             txtNombres.Text = miHorarioSemana.Nombre;
-            HorarioDia auxHorario = new HorarioDia();
+            Horario auxHorario = new Horario();
             auxHorario.Nombre = "SIN HORARIO";
-            
-            HorarioDias = oblHorarioDia.ListarHorarioDias();
-            HorarioDias.Add(auxHorario);
-         
-            cboLunes.ItemsSource = HorarioDias;
+
+            miListaHorario = oblHorario.ListarHorarios();
+            miListaHorario.Add(auxHorario);
+
+            cboLunes.ItemsSource = miListaHorario;
             cboLunes.DisplayMemberPath = "Nombre";
-            cboMartes.ItemsSource = HorarioDias;
+            cboMartes.ItemsSource = miListaHorario;
             cboMartes.DisplayMemberPath = "Nombre";
-            cboMiercoles.ItemsSource = HorarioDias;
+            cboMiercoles.ItemsSource = miListaHorario;
             cboMiercoles.DisplayMemberPath = "Nombre";
-            cboJueves.ItemsSource = HorarioDias;
+            cboJueves.ItemsSource = miListaHorario;
             cboJueves.DisplayMemberPath = "Nombre";
-            cboViernes.ItemsSource = HorarioDias;
+            cboViernes.ItemsSource = miListaHorario;
             cboViernes.DisplayMemberPath = "Nombre";
-            cboSabado.ItemsSource = HorarioDias;
+            cboSabado.ItemsSource = miListaHorario;
             cboSabado.DisplayMemberPath = "Nombre";
-            cboDomingo.ItemsSource = HorarioDias;
+            cboDomingo.ItemsSource = miListaHorario;
             cboDomingo.DisplayMemberPath = "Nombre";
 
             foreach (Dia item in miHorarioSemana.Dia)
             {
-                if (item.HorarioDia !=null)
+                if (item.Horario != null)
                 {
                     switch (item.NombreDiaSemana)
                     {
                         case "Lunes":
                             //cboLunes.SelectedItem = item.HorarioDia;
-                            cboLunes.Text = item.HorarioDia.Nombre;
+                            cboLunes.Text = item.Horario.Nombre;
                             break;
                         case "Martes":
                             //cboMartes.SelectedItem = item.HorarioDia;
-                            cboMartes.Text = item.HorarioDia.Nombre;
+                            cboMartes.Text = item.Horario.Nombre;
                             break;
                         case "Miercoles":
                             //cboMiercoles.SelectedItem =  item.HorarioDia;
-                            cboMiercoles.Text = item.HorarioDia.Nombre;
+                            cboMiercoles.Text = item.Horario.Nombre;
                             break;
                         case "Jueves":
                             //cboJueves.SelectedItem  =  item.HorarioDia;
-                            cboJueves.Text = item.HorarioDia.Nombre;
+                            cboJueves.Text = item.Horario.Nombre;
                             break;
                         case "Viernes":
                             //cboViernes.SelectedItem =  item.HorarioDia;
-                            cboViernes.Text = item.HorarioDia.Nombre;
+                            cboViernes.Text = item.Horario.Nombre;
                             break;
                         case "Sabado":
                             //cboSabado.SelectedItem =  item.HorarioDia;
-                            cboSabado.Text = item.HorarioDia.Nombre;
+                            cboSabado.Text = item.Horario.Nombre;
                             break;
                         case "Domingo":
                             //cboDomingo.SelectedItem =  item.HorarioDia;
-                            cboDomingo.Text = item.HorarioDia.Nombre;
+                            cboDomingo.Text = item.Horario.Nombre;
                             break;
-
                         default:
                             break;
                     }
@@ -128,63 +173,11 @@ namespace CapaPresentacion.caHorarioSemana
                             //cboDomingo.SelectedItem =  item.HorarioDia;
                             cboDomingo.Text = "SIN HORARIO";
                             break;
-
                         default:
                             break;
                     }
                 }
-                
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Iniciar();
-        }
-
-        private void btnOK_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (Dia item in miHorarioSemana.Dia )
-            {
-                switch (item.NombreDiaSemana )
-                {
-                    case "Lunes":
-                        item.HorarioDia = (HorarioDia ) cboLunes.SelectedItem;
-                        break;
-                    case "Martes":
-                        item.HorarioDia = (HorarioDia)cboMartes.SelectedItem;
-                        break;
-                    case "Miercoles":
-                        item.HorarioDia = (HorarioDia)cboMiercoles.SelectedItem;
-                        break;
-                    case "Jueves":
-                        item.HorarioDia = (HorarioDia)cboJueves.SelectedItem;
-                        break;
-                    case "Viernes":
-                        item.HorarioDia = (HorarioDia)cboViernes.SelectedItem;
-                        break;
-                    case "Sabado":
-                        item.HorarioDia = (HorarioDia)cboSabado.SelectedItem;
-                        break;
-                    case "Domingo":
-                        item.HorarioDia = (HorarioDia)cboDomingo.SelectedItem;
-                        break;
-                    
-                    default:
-                        break;
-                }
-                if (item.HorarioDia.Nombre == "SIN HORARIO")
-                {
-                    item.HorarioDia = null;
-                }
-            }
-            miHorarioSemana.Nombre = txtNombres.Text;
-            DialogResult = true;
-        }
-
-        private void btnCANCELAR_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
         }
     }
 }

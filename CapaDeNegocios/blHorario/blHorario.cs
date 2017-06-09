@@ -10,7 +10,6 @@ namespace CapaDeNegocios.blHorario
 {
     public class blHorario
     {
-
         public ICollection<Horario> ListarHorarios()
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

@@ -17,7 +17,7 @@ namespace CapaEntities
         public int Id { get; set; }
         public string NombreDiaSemana { get; set; }
     
-        public virtual HorarioDia HorarioDia { get; set; }
+        public virtual Horario Horario { get; set; }
         public virtual HorarioSemana HorarioSemana { get; set; }
     }
 }
