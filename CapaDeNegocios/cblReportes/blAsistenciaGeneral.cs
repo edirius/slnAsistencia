@@ -44,13 +44,13 @@ namespace CapaDeNegocios.cblReportes
                 PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
 
                 nro_filas += 1;
-                oHoja.Range["A6"].Formula = "INFORME DE ASISTENCIA GENERAL DE " + miFechaInicio.Date + " HASTA " + miFechaFin.Date;
+                oHoja.Range["A6"].Formula = "INFORME DE ASISTENCIA GENERAL DE " + miFechaInicio.Date.ToString().Substring(0, 10) + " HASTA " + miFechaFin.Date.ToString().Substring(0, 10);
                 oHoja.Range["A" + (celda_inicio + contador).ToString()].Formula = nro_filas;
                 oHoja.Range["B" + (celda_inicio + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
                 oHoja.Range["E" + (celda_inicio + contador).ToString()].Formula = item.DNI.ToString();//DNI
 
                 int nro_fechas = 0;
-                for (int i = 0; i < (miFechaFin - miFechaInicio).Days; i++)
+                for (int i = 0; i < (miFechaFin - miFechaInicio).Days + 1; i++)
                 {
                     nro_fechas += 1;
                     DateTime auxiliar = miFechaInicio.AddDays(i);
@@ -61,36 +61,57 @@ namespace CapaDeNegocios.cblReportes
                     string Dia = (QuitarAcento(auxiliar.ToString("dddd"))).ToUpper();
                     string HEntrada = ENTRADA(miHorario, miAsistenciaTrabajador);
                     string HSalida = SALIDA(miHorario, miAsistenciaTrabajador);
-                    string RInicio = "";
-                    string RFin = "";
+                    string RInicio = R_INICIO(miHorario, miAsistenciaTrabajador);
+                    string RFin = R_FIN(miHorario, miAsistenciaTrabajador);
                     TimeSpan Tardanza = TARDANZA(miHorario, HEntrada);
                     int Permiso = miPermisoDiasTrabajador.Count;
                     int Falta = FALTA(miHorario, HEntrada, Permiso);
 
                     string fecha = auxiliar.Date.ToString();
-                    oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = auxiliar.Date.ToString();
-                    oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
-                    oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
-                    oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
-                    oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
-                    oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = miHorario.InicioPicadoRefrigerio.TimeOfDay.ToString();
-                    oHoja.Range["L" + (celda_inicio + contador).ToString()].Formula = RInicio;
-                    oHoja.Range["M" + (celda_inicio + contador).ToString()].Formula = miHorario.FinPicadoRefrigerio.TimeOfDay.ToString();
-                    oHoja.Range["N" + (celda_inicio + contador).ToString()].Formula = RFin;
-                    oHoja.Range["O" + (celda_inicio + contador).ToString()].Formula = miHorario.Salida.TimeOfDay.ToString();
-                    oHoja.Range["P" + (celda_inicio + contador).ToString()].Formula = HSalida;
+                    oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = auxiliar.Date.ToString().Substring(0, 10);
                     oHoja.Range["Q" + (celda_inicio + contador).ToString()].Formula = Tardanza.ToString();
                     oHoja.Range["R" + (celda_inicio + contador).ToString()].Formula = Permiso.ToString();
                     oHoja.Range["S" + (celda_inicio + contador).ToString()].Formula = Falta.ToString();
-                    //if (Falta == 1)
-                    //{
-                    //    oHoja.Range["O" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 3;
-                    //}
+                    if (miHorario.Id == 0)
+                    {
+                        oHoja.Range["G" + (celda_inicio + contador).ToString(), "P" + (celda_inicio + contador).ToString()].Merge(true);
+                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
+                    }
+                    else if (Falta >= 1)
+                    {
+                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
+                        oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
+                        oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
+                        oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
+                        oHoja.Range["K" + (celda_inicio + contador).ToString(), "P" + (celda_inicio + contador).ToString()].Merge(true);
+                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = "FALTA";
+                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 3;
+                    }
+                    else
+                    {
+                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
+                        oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
+                        oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
+                        oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
+                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = miHorario.InicioPicadoRefrigerio.TimeOfDay.ToString();
+                        oHoja.Range["L" + (celda_inicio + contador).ToString()].Formula = RInicio;
+                        oHoja.Range["M" + (celda_inicio + contador).ToString()].Formula = miHorario.FinPicadoRefrigerio.TimeOfDay.ToString();
+                        oHoja.Range["N" + (celda_inicio + contador).ToString()].Formula = RFin;
+                        oHoja.Range["O" + (celda_inicio + contador).ToString()].Formula = miHorario.Salida.TimeOfDay.ToString();
+                        oHoja.Range["P" + (celda_inicio + contador).ToString()].Formula = HSalida;
+                    }
+
+                    if (Tardanza.ToString() != "00:00:00")
+                    {
+                        oHoja.Range["Q" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbOrange;
+                    }
 
                     if (nro_fechas <= (miFechaFin - miFechaInicio).Days)
                     {
                         contador += 1;
                         oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
+                        oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbWhite;
                     }
                 }
 
@@ -98,6 +119,8 @@ namespace CapaDeNegocios.cblReportes
                 {
                     contador += 1;
                     oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
+                    oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbWhite;
                 }
             }
         }
@@ -142,6 +165,62 @@ namespace CapaDeNegocios.cblReportes
             return Hora.TimeOfDay.ToString();
         }
 
+        public string R_INICIO(Horario miHorario, List<Asistencia> miAsistenciaTrabajador)
+        {
+            DateTime Hora = DateTime.Today;
+            DateTime Inicio_Picado = DateTime.Today;
+            DateTime Fin_Picado = DateTime.Today;
+            if (miHorario.Id != 0)
+            {
+                Inicio_Picado = miHorario.InicioPicadoRefrigerio.AddMinutes(-30);
+                Fin_Picado = miHorario.InicioPicadoRefrigerio.AddMinutes(30);
+            }
+
+            foreach (Asistencia item in miAsistenciaTrabajador)
+            {
+                if (item.PicadoReloj.TimeOfDay >= Inicio_Picado.TimeOfDay && item.PicadoReloj.TimeOfDay <= Fin_Picado.TimeOfDay)
+                {
+                    if (Hora.TimeOfDay.ToString() == "00:00:00")
+                    {
+                        Hora = item.PicadoReloj;
+                    }
+                    else if (Hora.TimeOfDay >= item.PicadoReloj.TimeOfDay)
+                    {
+                        Hora = item.PicadoReloj;
+                    }
+                }
+            }
+            return Hora.TimeOfDay.ToString();
+        }
+
+        public string R_FIN(Horario miHorario, List<Asistencia> miAsistenciaTrabajador)
+        {
+            DateTime Hora = DateTime.Today;
+            DateTime Inicio_Picado = DateTime.Today;
+            DateTime Fin_Picado = DateTime.Today;
+            if (miHorario.Id != 0)
+            {
+                Inicio_Picado = miHorario.FinPicadoRefrigerio.AddMinutes(-30);
+                Fin_Picado = miHorario.FinPicadoRefrigerio.AddMinutes(30);
+            }
+
+            foreach (Asistencia item in miAsistenciaTrabajador)
+            {
+                if (item.PicadoReloj.TimeOfDay >= Inicio_Picado.TimeOfDay && item.PicadoReloj.TimeOfDay <= Fin_Picado.TimeOfDay)
+                {
+                    if (Hora.TimeOfDay.ToString() == "00:00:00")
+                    {
+                        Hora = item.PicadoReloj;
+                    }
+                    else if (Hora.TimeOfDay >= item.PicadoReloj.TimeOfDay)
+                    {
+                        Hora = item.PicadoReloj;
+                    }
+                }
+            }
+            return Hora.TimeOfDay.ToString();
+        }
+
         public TimeSpan TARDANZA(Horario miHorario, string miH_Entrada)
         {
             TimeSpan Hora = new TimeSpan(00, 00, 00);
@@ -157,9 +236,12 @@ namespace CapaDeNegocios.cblReportes
         {
             int Hora = 0;
             DateTime H_Entrada = Convert.ToDateTime(miH_Entrada);
-            if ((H_Entrada.TimeOfDay.ToString() == "00:00:00" || H_Entrada.TimeOfDay > miHorario.Tolerancia.TimeOfDay) && (miPermiso == 0))
+            if (miHorario.Id != 0)
             {
-                Hora = 1;
+                if ((H_Entrada.TimeOfDay.ToString() == "00:00:00" || H_Entrada.TimeOfDay > miHorario.Tolerancia.TimeOfDay) && (miPermiso == 0))
+                {
+                    Hora = 1;
+                }
             }
             return Hora;
         }
