@@ -41,77 +41,101 @@ namespace CapaDeNegocios.cblReportes
             int celda_inicio = 10;
             foreach (Trabajador item in miListaTrabajadores)
             {
-                PeriodoTrabajador miPeridodTrabajador = CargarPeriodoTrabajador(item);
+                PeriodoTrabajador miPeriodoTrabajador = CargarPeriodoTrabajador(item);
 
                 nro_filas += 1;
-                oHoja.Range["A6"].Formula = "INFORME DE ASISTENCIA GENERAL DE " + miFechaInicio.Date.ToString().Substring(0, 10) + " HASTA " + miFechaFin.Date.ToString().Substring(0, 10);
-                oHoja.Range["A" + (celda_inicio + contador).ToString()].Formula = nro_filas;
-                oHoja.Range["B" + (celda_inicio + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
-                oHoja.Range["E" + (celda_inicio + contador).ToString()].Formula = item.DNI.ToString();//DNI
+                oHoja.Range["A6"].Formula = "INFORME DE ASISTENCIA GENERAL DE " + miFechaInicio.ToString("dd/MM/yyyy").Substring(0, 10) + " HASTA " + miFechaFin.ToString("dd/MM/yyyy").Substring(0, 10);
 
                 int nro_fechas = 0;
                 for (int i = 0; i < (miFechaFin - miFechaInicio).Days + 1; i++)
                 {
                     nro_fechas += 1;
                     DateTime auxiliar = miFechaInicio.AddDays(i);
-                    Horario miHorario = CargarHorario(miPeridodTrabajador, auxiliar);
-                    List<Asistencia> miAsistenciaTrabajador = LlenarAsistencia(item, auxiliar);
-                    List<PermisosDias> miPermisoDiasTrabajador = LlenarPermisos(item, auxiliar);
+                    List<Asistencia> miAsistenciaTrabajador = CargarAsistencia(item, auxiliar);
+                    Horario miHorario = CargarHorario(miPeriodoTrabajador, auxiliar);
+                    PermisosDias miPermisoDiasTrabajador = CargarPermisos(item, auxiliar);
+                    Vacaciones miVacaciones = CargarVacaciones(miPeriodoTrabajador, auxiliar);
+                    DiaFestivo miDiaFestivo = CargarDiaFestivo(auxiliar);
+                    int Vacaciones = 0; int DiaFestivo = 0; int Permiso = 0; 
 
                     string Dia = (QuitarAcento(auxiliar.ToString("dddd"))).ToUpper();
                     string HEntrada = ENTRADA(miHorario, miAsistenciaTrabajador);
                     string HSalida = SALIDA(miHorario, miAsistenciaTrabajador);
                     string RInicio = R_INICIO(miHorario, miAsistenciaTrabajador);
                     string RFin = R_FIN(miHorario, miAsistenciaTrabajador);
+                    if (miVacaciones.Id != 0) { Vacaciones = 1; }
+                    if (miDiaFestivo.Id != 0) { DiaFestivo = 1; }
+                    if (miPermisoDiasTrabajador.Id != 0) { Permiso = 1; }
+                    int Falta = FALTA(miHorario, HEntrada, Vacaciones, DiaFestivo, Permiso);
                     TimeSpan Tardanza = TARDANZA(miHorario, HEntrada);
-                    int Permiso = miPermisoDiasTrabajador.Count;
-                    int Falta = FALTA(miHorario, HEntrada, Permiso);
 
-                    string fecha = auxiliar.Date.ToString();
-                    oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = auxiliar.Date.ToString().Substring(0, 10);
-                    oHoja.Range["Q" + (celda_inicio + contador).ToString()].Formula = Tardanza.ToString();
-                    oHoja.Range["R" + (celda_inicio + contador).ToString()].Formula = Permiso.ToString();
-                    oHoja.Range["S" + (celda_inicio + contador).ToString()].Formula = Falta.ToString();
-                    if (miHorario.Id == 0)
+                    oHoja.Range["A" + (celda_inicio + contador).ToString()].Formula = item.DNI.ToString();//DNI
+                    oHoja.Range["B" + (celda_inicio + contador).ToString()].Formula = item.ApellidoPaterno.ToString() + " " + item.ApellidoMaterno.ToString() + ", " + item.Nombre.ToString();//APELLIDSO Y NOMBRES
+                    oHoja.Range["C" + (celda_inicio + contador).ToString()].Formula = auxiliar.ToString("dd/MM/yyyy").Substring(0, 10);//FECHA
+                    oHoja.Range["D" + (celda_inicio + contador).ToString()].Formula = Dia.Substring(0, 3);//DIA
+                    oHoja.Range["E" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
+
+                    if (Vacaciones >= 1)
                     {
-                        oHoja.Range["G" + (celda_inicio + contador).ToString(), "P" + (celda_inicio + contador).ToString()].Merge(true);
-                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = "VACACIONES";
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
+                    }
+                    else if (miHorario.Id == 0)
+                    {
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = "DESCANSO";
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+                    }
+                    else if (DiaFestivo >= 1)
+                    {
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = "FERIADO " + miDiaFestivo.Nombre;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+                    }
+                    else if (Permiso >= 1)
+                    {
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = "PERMISO POR " + miPermisoDiasTrabajador.TipoPermisos.Nombre;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbYellow;
                     }
                     else if (Falta >= 1)
                     {
-                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
-                        oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
-                        oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
-                        oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
-                        oHoja.Range["K" + (celda_inicio + contador).ToString(), "P" + (celda_inicio + contador).ToString()].Merge(true);
-                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = "FALTA";
-                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 3;
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = "FALTA";
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
                     }
                     else
                     {
-                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = Dia;
-                        oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = miHorario.Nombre;
-                        oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
-                        oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = HEntrada;
-                        oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = miHorario.InicioPicadoRefrigerio.TimeOfDay.ToString();
-                        oHoja.Range["L" + (celda_inicio + contador).ToString()].Formula = RInicio;
-                        oHoja.Range["M" + (celda_inicio + contador).ToString()].Formula = miHorario.FinPicadoRefrigerio.TimeOfDay.ToString();
-                        oHoja.Range["N" + (celda_inicio + contador).ToString()].Formula = RFin;
-                        oHoja.Range["O" + (celda_inicio + contador).ToString()].Formula = miHorario.Salida.TimeOfDay.ToString();
-                        oHoja.Range["P" + (celda_inicio + contador).ToString()].Formula = HSalida;
+                        //oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = miHorario.Entrada.TimeOfDay.ToString();
+                        oHoja.Range["F" + (celda_inicio + contador).ToString()].Formula = HEntrada;
+                        //oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = miHorario.InicioPicadoRefrigerio.TimeOfDay.ToString();
+                        oHoja.Range["G" + (celda_inicio + contador).ToString()].Formula = RInicio;
+                        //oHoja.Range["M" + (celda_inicio + contador).ToString()].Formula = miHorario.FinPicadoRefrigerio.TimeOfDay.ToString();
+                        oHoja.Range["H" + (celda_inicio + contador).ToString()].Formula = RFin;
+                        //oHoja.Range["O" + (celda_inicio + contador).ToString()].Formula = miHorario.Salida.TimeOfDay.ToString();
+                        oHoja.Range["I" + (celda_inicio + contador).ToString()].Formula = HSalida;
                     }
 
+                    oHoja.Range["J" + (celda_inicio + contador).ToString()].Formula = Tardanza.Minutes.ToString();
+                    oHoja.Range["K" + (celda_inicio + contador).ToString()].Formula = Permiso.ToString();
+                    oHoja.Range["L" + (celda_inicio + contador).ToString()].Formula = Falta.ToString();
                     if (Tardanza.ToString() != "00:00:00")
                     {
-                        oHoja.Range["Q" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbOrange;
+                        oHoja.Range["J" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbOrange;
+                    }
+                    if (Permiso >= 1)
+                    {
+                        oHoja.Range["k" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbGreen;
+                    }
+                    if (Falta >= 1)
+                    {
+                        oHoja.Range["L" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbRed;
                     }
 
                     if (nro_fechas <= (miFechaFin - miFechaInicio).Days)
                     {
                         contador += 1;
                         oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
-                        oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbWhite;
+                        oHoja.Range["A" + (celda_inicio + contador).ToString(), "L" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 0;
+                        oHoja.Range["C" + (celda_inicio + contador).ToString(), "L" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                     }
                 }
 
@@ -119,8 +143,9 @@ namespace CapaDeNegocios.cblReportes
                 {
                     contador += 1;
                     oHoja.Range[(celda_inicio + contador).ToString() + ":" + (celda_inicio + contador).ToString()].Insert();
-                    oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                    oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbWhite;
+                    //oHoja.Range["F" + (celda_inicio + contador).ToString(), "S" + (celda_inicio + contador).ToString()].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    oHoja.Range["A" + (celda_inicio + contador).ToString(), "L" + (celda_inicio + contador).ToString()].Interior.ColorIndex = 0;
+                    oHoja.Range["C" + (celda_inicio + contador).ToString(), "L" + (celda_inicio + contador).ToString()].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
                 }
             }
         }
@@ -221,6 +246,20 @@ namespace CapaDeNegocios.cblReportes
             return Hora.TimeOfDay.ToString();
         }
 
+        public int FALTA(Horario miHorario, string miH_Entrada, int miVacaciones, int miDiaFestivo, int miPermiso)
+        {
+            int Hora = 0;
+            DateTime H_Entrada = Convert.ToDateTime(miH_Entrada);
+            if (miHorario.Id != 0)
+            {
+                if ((H_Entrada.TimeOfDay.ToString() == "00:00:00" || H_Entrada.TimeOfDay > miHorario.Tolerancia.TimeOfDay) && (miVacaciones == 0) && (miDiaFestivo == 0) && (miPermiso == 0))
+                {
+                    Hora = 1;
+                }
+            }
+            return Hora;
+        }
+
         public TimeSpan TARDANZA(Horario miHorario, string miH_Entrada)
         {
             TimeSpan Hora = new TimeSpan(00, 00, 00);
@@ -232,33 +271,72 @@ namespace CapaDeNegocios.cblReportes
             return Hora;
         }
 
-        public int FALTA(Horario miHorario, string miH_Entrada, int miPermiso)
+        public string QuitarAcento(string miTexto)
         {
-            int Hora = 0;
-            DateTime H_Entrada = Convert.ToDateTime(miH_Entrada);
-            if (miHorario.Id != 0)
+            string normalizedString = miTexto.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+            for (int i = 0; i < normalizedString.Length; i++)
             {
-                if ((H_Entrada.TimeOfDay.ToString() == "00:00:00" || H_Entrada.TimeOfDay > miHorario.Tolerancia.TimeOfDay) && (miPermiso == 0))
+                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
                 {
-                    Hora = 1;
+                    sb.Append(normalizedString[i]);
                 }
             }
-            return Hora;
+            return (sb.ToString().Normalize(NormalizationForm.FormC));
         }
 
-        public PeriodoTrabajador CargarPeriodoTrabajador(Trabajador miTrabajador)
+        public DiaFestivo CargarDiaFestivo(DateTime miFecha)
         {
-            PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
+            DiaFestivo miDiaFestivo = new DiaFestivo();
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet.Include("HorarioSemana")
-                                                                          where d.Trabajador.Id == miTrabajador.Id
-                                                                          select d;
-                foreach (PeriodoTrabajador item in consultaPeriodoTrabajador.OrderBy(x => x.Id))
+                IQueryable<DiaFestivo> consultaDiaFestivo = from d in bd.DiaFestivoSet
+                                                            where d.Dia.Year == miFecha.Year
+                                                            && d.Dia.Month == miFecha.Month
+                                                            && d.Dia.Day == miFecha.Day
+                                                            select d;
+                foreach (DiaFestivo item in consultaDiaFestivo.OrderBy(x => x.Id))
                 {
-                    miPeriodoTrabajador = item;
+                    miDiaFestivo = item;
                 }
-                return miPeriodoTrabajador;
+                return miDiaFestivo;
+            }
+        }
+
+        public Vacaciones CargarVacaciones(PeriodoTrabajador miPeriodoTrabajador, DateTime miFecha)
+        {
+            Vacaciones miVacaciones = new Vacaciones();
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Vacaciones> consultaVacaciones = from d in bd.VacacionesSet
+                                                            where d.AsistenciaPeriodoLaborado.PeriodoTrabajador.Id == miPeriodoTrabajador.Id
+                                                            && miFecha >= d.Inicio
+                                                            && miFecha <= d.Fin
+                                                            select d;
+                foreach (Vacaciones item in consultaVacaciones)
+                {
+                    miVacaciones = item;
+                }
+                return miVacaciones;
+            }
+        }
+
+        public PermisosDias CargarPermisos(Trabajador miTrabajador, DateTime miFecha)
+        {
+            PermisosDias miPermisosDias = new PermisosDias();
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet.Include("TipoPermisos")
+                                                            where d.PeriodoTrabajador.Trabajador.Id == miTrabajador.Id
+                                                            && miFecha >= d.Inicio
+                                                            && miFecha <= d.Fin
+                                                            select d;
+                foreach (PermisosDias item in consultaPermisos)
+                {
+                    miPermisosDias = item;
+                }
+                return miPermisosDias;
             }
         }
 
@@ -281,22 +359,7 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public string QuitarAcento(string miTexto)
-        {
-            string normalizedString = miTexto.Normalize(NormalizationForm.FormD);
-            var sb = new StringBuilder();
-            for (int i = 0; i < normalizedString.Length; i++)
-            {
-                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
-                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
-                {
-                    sb.Append(normalizedString[i]);
-                }
-            }
-            return (sb.ToString().Normalize(NormalizationForm.FormC));
-        }
-
-        public List<Asistencia> LlenarAsistencia(Trabajador miTrabajador, DateTime miFecha)
+        public List<Asistencia> CargarAsistencia(Trabajador miTrabajador, DateTime miFecha)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
@@ -310,16 +373,19 @@ namespace CapaDeNegocios.cblReportes
             }
         }
 
-        public List<PermisosDias> LlenarPermisos(Trabajador miTrabajador, DateTime miFecha)
+        public PeriodoTrabajador CargarPeriodoTrabajador(Trabajador miTrabajador)
         {
+            PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
-                IQueryable<PermisosDias> consultaPermisos = from d in bd.PermisosDiasSet
-                                                            where d.PeriodoTrabajador.Trabajador.Id == miTrabajador.Id
-                                                            && d.Inicio >= miFecha
-                                                            && d.Inicio <= miFecha
-                                                            select d;
-                return consultaPermisos.ToList();
+                IQueryable<PeriodoTrabajador> consultaPeriodoTrabajador = from d in bd.PeriodoTrabajadorSet.Include("HorarioSemana")
+                                                                          where d.Trabajador.Id == miTrabajador.Id
+                                                                          select d;
+                foreach (PeriodoTrabajador item in consultaPeriodoTrabajador.OrderBy(x => x.Id))
+                {
+                    miPeriodoTrabajador = item;
+                }
+                return miPeriodoTrabajador;
             }
         }
     }

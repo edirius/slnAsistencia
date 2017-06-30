@@ -21,6 +21,7 @@ namespace CapaPresentacion.caReportes
     /// </summary>
     public partial class wAsistenciaGeneral : Window
     {
+        Local miLocal = new Local();
         System.Data.DataTable oDataTrabajadores = new System.Data.DataTable();
 
         public wAsistenciaGeneral()
@@ -31,7 +32,7 @@ namespace CapaPresentacion.caReportes
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dpInicio.SelectedDate = DateTime.Today;
-            CargarTrabajadores();
+            CargarLocales();
         }
 
         private void btnImprimir_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,15 @@ namespace CapaPresentacion.caReportes
             Close();
         }
 
+        private void cbolocales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboLocales.DisplayMemberPath != "")
+            {
+                miLocal.Id = Convert.ToInt32(cboLocales.SelectedValue);
+                CargarTrabajadores();
+            }
+        }
+
         private void dpInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             dpFin.DisplayDateStart = dpInicio.SelectedDate;
@@ -77,10 +87,19 @@ namespace CapaPresentacion.caReportes
 
         }
 
+        private void CargarLocales()
+        {
+            CapaDeNegocios.blLocal.blLocal oblLocal = new CapaDeNegocios.blLocal.blLocal();
+            cboLocales.ItemsSource = oblLocal.ListarLocales();
+            cboLocales.DisplayMemberPath = "Nombre";
+            cboLocales.SelectedValuePath = "Id";
+            cboLocales.SelectedIndex = -1;
+        }
+
         private void CargarTrabajadores()
         {
             CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
+            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores(miLocal);
 
             oDataTrabajadores = new System.Data.DataTable();
             oDataTrabajadores.Columns.Add("ID", typeof(int));

@@ -19,13 +19,13 @@ namespace CapaPresentacion.caPermisos
     /// <summary>
     /// Lógica de interacción para wPermisos.xaml
     /// </summary>
-    public partial class wPermisos : Window
+    public partial class wPermisosHoras : Window
     {
-        public PermisosDias miPermiso;
-        public CapaEntities.TipoPermisos miTipoPermisos = new TipoPermisos();
+        public PermisosHoras miPermisoHoras;
+        public TipoPermisos miTipoPermisos = new TipoPermisos();
         CapaDeNegocios.blTipoPermisos.blTipoPermisos oblTipoPermisos = new CapaDeNegocios.blTipoPermisos.blTipoPermisos();
 
-        public wPermisos()
+        public wPermisosHoras()
         {
             InitializeComponent();
         }
@@ -38,14 +38,20 @@ namespace CapaPresentacion.caPermisos
 
         private void Iniciar()
         {
-            dtpInicio.SelectedDate = miPermiso.Inicio;
-            dtpFin.SelectedDate = miPermiso.Fin;
+            dtpFecha.SelectedDate = miPermisoHoras.Fecha;
+            cboRHoraInicio.Text = miPermisoHoras.Inicio.Hour.ToString("D2");
+            cboRMinutosInicio.Text = miPermisoHoras.Inicio.Minute.ToString("D2");
+            cboRSegundosInicio.Text = miPermisoHoras.Inicio.Second.ToString("D2");
+            cboRHoraFin.Text = miPermisoHoras.Fin.Hour.ToString("D2");
+            cboRMinutosFin.Text = miPermisoHoras.Fin.Minute.ToString("D2");
+            cboRSegundosFin.Text = miPermisoHoras.Fin.Second.ToString("D2");
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            miPermiso.Inicio = Convert.ToDateTime(dtpInicio.Text);
-            miPermiso.Fin = Convert.ToDateTime(dtpFin.Text);
+            miPermisoHoras.Fecha = Convert.ToDateTime(dtpFecha.Text);
+            miPermisoHoras.Inicio = new DateTime(1, 1, 1, Convert.ToInt16(cboRHoraInicio.Text), Convert.ToInt16(cboRMinutosInicio.Text), Convert.ToInt16(cboRSegundosInicio.Text));
+            miPermisoHoras.Fin = new DateTime(1, 1, 1, Convert.ToInt16(cboRHoraFin.Text), Convert.ToInt16(cboRMinutosFin.Text), Convert.ToInt16(cboRSegundosFin.Text));
             this.DialogResult = true;
         }
 

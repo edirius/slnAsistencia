@@ -8,11 +8,12 @@
         Title="Lista de Periodo Trabajador" Height="329.594" Width="504.729" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="lblTrabajador" Content="TRABAJADOR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="98,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="383" IsEnabled="False"/>
+        <TextBox x:Name="txtTrabajador" HorizontalAlignment="Left" Height="23" Margin="98,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="321" IsEnabled="False"/>
         <DataGrid x:Name="dgPeriodoTrabajador" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="195" Width="471" SelectionChanged="dgHorarioSemana_SelectionChanged" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True"/>
         <Button x:Name="btnNuevo" Content="Nuevo" HorizontalAlignment="Left" Height="38" Margin="190,242,0,0" VerticalAlignment="Top" Width="69" Click="btnNuevo_Click"/>
         <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="38" Margin="264,242,0,0" VerticalAlignment="Top" Width="69" Click="btnModificar_Click"/>
         <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="338,242,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
         <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="412,242,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
+        <Button x:Name="btnTrabajador" Content="Buscar" HorizontalAlignment="Left" Margin="425,12,0,0" VerticalAlignment="Top" Width="57" Click="btnTrabajador_Click" Height="24"/>
     </Grid>
 </Window>

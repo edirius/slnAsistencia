@@ -20,14 +20,14 @@ namespace CapaPresentacion.caPermisos
     /// <summary>
     /// Lógica de interacción para wListaPermisos.xaml
     /// </summary>
-    public partial class wListaPermisos : Window
+    public partial class wListaPermisosHoras : Window
     {
-        public PermisosDias miPermisos = new PermisosDias();
+        public PermisosHoras miPermisosHoras = new PermisosHoras();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
-        CapaDeNegocios.blPermisosDias.blPermisosDias oblPermisos = new CapaDeNegocios.blPermisosDias.blPermisosDias();
+        CapaDeNegocios.blPermisosHoras.blPermisosHoras oblPermisosHoras = new CapaDeNegocios.blPermisosHoras.blPermisosHoras();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
-        public wListaPermisos()
+        public wListaPermisosHoras()
         {
             InitializeComponent();
         }
@@ -46,18 +46,17 @@ namespace CapaPresentacion.caPermisos
                 //    MessageBox.Show("EL TRABAJADOR TIENE QUE TENER UN PERIODO ACTIVO", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
                 //    return;
                 //}
-                caPermisos.wPermisos fPermisos = new wPermisos();
-                fPermisos.miPermiso = new PermisosDias();
-                fPermisos.miPermiso.Inicio = DateTime.Today;
-                fPermisos.miPermiso.Fin = DateTime.Today;
-                fPermisos.Owner = this.Owner;
-                if (fPermisos.ShowDialog() == true)
+                caPermisos.wPermisosHoras fPermisosHoras = new wPermisosHoras();
+                fPermisosHoras.miPermisoHoras = new PermisosHoras();
+                fPermisosHoras.miPermisoHoras.Fecha = DateTime.Today;
+                fPermisosHoras.Owner = this.Owner;
+                if (fPermisosHoras.ShowDialog() == true)
                 {
-                    fPermisos.miPermiso.TipoPermisos = fPermisos.miTipoPermisos;
-                    fPermisos.miPermiso.PeriodoTrabajador = miPeriodoTrabajador;
-                    oblPermisos.AgregarPermisosDias(fPermisos.miPermiso);
+                    fPermisosHoras.miPermisoHoras.TipoPermisos = fPermisosHoras.miTipoPermisos;
+                    fPermisosHoras.miPermisoHoras.PeriodoTrabajador = miPeriodoTrabajador;
+                    oblPermisosHoras.AgregarPermisosHoras(fPermisosHoras.miPermisoHoras);
                 }
-                CargarPermisos();
+                CargarPermisosHoras();
             }
             catch
             { }
@@ -67,19 +66,19 @@ namespace CapaPresentacion.caPermisos
         {
             try
             {
-                if (miPermisos.Id == 0)
+                if (miPermisosHoras.Id == 0)
                 {
                     MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN PERMISO DEL TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
-                caPermisos.wPermisos fPermisos = new caPermisos.wPermisos();
-                fPermisos.miPermiso = miPermisos;
-                fPermisos.Owner = this.Owner;
-                if (fPermisos.ShowDialog() == true)
+                caPermisos.wPermisosHoras fPermisosHoras = new caPermisos.wPermisosHoras();
+                fPermisosHoras.miPermisoHoras = miPermisosHoras;
+                fPermisosHoras.Owner = this.Owner;
+                if (fPermisosHoras.ShowDialog() == true)
                 {
-                    oblPermisos.ModificarPermisosDias(fPermisos.miPermiso);
+                    oblPermisosHoras.ModificarPermisosHoras(fPermisosHoras.miPermisoHoras);
                 }
-                CargarPermisos();
+                CargarPermisosHoras();
             }
             catch
             { }
@@ -89,12 +88,12 @@ namespace CapaPresentacion.caPermisos
         {
             try
             {
-                if (miPermisos.Id == 0)
+                if (miPermisosHoras.Id == 0)
                 {
                     MessageBox.Show("TIENE QUE ESTAR SELECCIONADO ALGUN PERMISO DEL TRABAJADOR.", "GESTIÓN DEL SISTEMA", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                oblPermisos.EliminarPermisosDias(miPermisos);
-                CargarPermisos();
+                oblPermisosHoras.EliminarPermisosHoras(miPermisosHoras);
+                CargarPermisosHoras();
             }
             catch
             { }
@@ -115,7 +114,7 @@ namespace CapaPresentacion.caPermisos
                     txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
                     CargarPeriodoTrabajador(fTrabajadores.miTrabajador);
                 }
-                CargarPermisos();
+                CargarPermisosHoras();
             }
             catch
             { }
@@ -123,22 +122,22 @@ namespace CapaPresentacion.caPermisos
 
         private void dgPermisos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            miPermisos = (PermisosDias)dgPermisos.SelectedItem;
+            miPermisosHoras = (PermisosHoras)dgPermisos.SelectedItem;
         }
 
         private void CargarPeriodoTrabajador(Trabajador miTrabajador)
         {
             ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
-            foreach (PeriodoTrabajador name in ListaPeriodoTrabajador)
+            foreach (PeriodoTrabajador item in ListaPeriodoTrabajador)
             {
-                miPeriodoTrabajador = name;
+                miPeriodoTrabajador = item;
             }
         }
 
-        private void CargarPermisos()
+        private void CargarPermisosHoras()
         {
-            ICollection<PermisosDias> ListaPermisoDias = oblPermisos.ListarPermisosDias();
-            dgPermisos.ItemsSource = ListaPermisoDias;
+            ICollection<PermisosHoras> ListaPermisosHoras = oblPermisosHoras.ListarPermisosHoras();
+            dgPermisos.ItemsSource = ListaPermisosHoras;
         }
     }
 }

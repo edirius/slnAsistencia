@@ -18,16 +18,16 @@ using CapaEntities;
 namespace CapaPresentacion.caReportes
 {
     /// <summary>
-    /// Lógica de interacción para wAcuTardanzasMeses.xaml
+    /// Lógica de interacción para wAcuFaltasMeses.xaml
     /// </summary>
-    public partial class wAcuTardanzasMeses : Window
+    public partial class wAcuFaltasMeses : Window
     {
         int sAño;
         int sMes;
         Local miLocal = new Local();
         System.Data.DataTable oDataTrabajadores = new System.Data.DataTable();
 
-        public wAcuTardanzasMeses()
+        public wAcuFaltasMeses()
         {
             InitializeComponent();
         }
@@ -60,8 +60,8 @@ namespace CapaPresentacion.caReportes
                         miListaTrabajadores.Add(auxTrabajador);
                     }
                 }
-                CapaDeNegocios.cblReportes.blAcuTardanzasMeses miReporteAcuTardanzasMeses = new CapaDeNegocios.cblReportes.blAcuTardanzasMeses();
-                miReporteAcuTardanzasMeses.Asistencia_Meses(miListaTrabajadores, sAño, sMes);
+                CapaDeNegocios.cblReportes.blAcuFaltasMeses miReporteAcuFaltasMeses = new CapaDeNegocios.cblReportes.blAcuFaltasMeses();
+                miReporteAcuFaltasMeses.Asistencia_Meses(miListaTrabajadores, sAño, sMes);
             }
             catch (Exception m)
             { }

@@ -5,10 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caTrabajadores"
         mc:Ignorable="d"
-        Title="Buscar Trabajadores" Height="448.747" Width="501.868" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Buscar Trabajadores" Height="448.747" Width="455.868" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgTrabajadores" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Height="290" Width="464" SelectionChanged="dgTrabajadores_SelectionChanged" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" AreRowDetailsFrozen="True" IsReadOnly="True" MouseDoubleClick="dgTrabajadores_MouseDoubleClick"/>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="331,359,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
-        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="405,359,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click" RenderTransformOrigin="0.64,4.674"/>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Height="38" Margin="289,355,0,0" VerticalAlignment="Top" Width="69" Click="btnOK_Click"/>
+        <Button x:Name="btnCancelar" Content="CANCELAR" HorizontalAlignment="Left" Height="38" Margin="363,355,0,0" VerticalAlignment="Top" Width="69" Click="btnCANCELAR_Click" RenderTransformOrigin="0.64,4.674"/>
+        <Label x:Name="lblLocal" Content="LOCAL" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="69"/>
+        <ComboBox x:Name="cboLocales" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top" Width="348" SelectionChanged="cbolocales_SelectionChanged"/>
+        <DataGrid x:Name="dgTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="10,40,17,74" SelectionChanged="dgTrabajadores_SelectionChanged" MouseDoubleClick="dgTrabajadores_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="0.7*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE}" Header="NOMBRE" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding APATERNO}" Header="A. PATERNO" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding AMATERNO}" Header="A. MATERNO" Width="1.5*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding DNI}" Header="DNI" Width="1.5*" IsReadOnly="True"/>
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Checked="CheckBox_Checked" Unchecked="UnCheckBox_Checked"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Click="Chk_Checked" IsChecked="{Binding CHK}" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -117,6 +117,13 @@ namespace CapaPresentacion
             fListaTrabajadores.ShowDialog();
         }
 
+        private void mnuPeriodo_Click(object sender, RoutedEventArgs e)
+        {
+            caPeriodoTrabajador.wListaPeriodoTrabajador fListaPeriodoTrabajadores = new caPeriodoTrabajador.wListaPeriodoTrabajador();
+            fListaPeriodoTrabajadores.Owner = this;
+            fListaPeriodoTrabajadores.ShowDialog();
+        }
+
         private void mnuAsistencia_Click(object sender, RoutedEventArgs e)
         {
 
@@ -150,11 +157,18 @@ namespace CapaPresentacion
             fListaHorarioSemana.ShowDialog();
         }
 
-        private void mnuPermisos_Click(object sender, RoutedEventArgs e)
+        private void mnuPermisosDias_Click(object sender, RoutedEventArgs e)
         {
-            caPermisos.wListaPermisos fListaPermisos = new caPermisos.wListaPermisos();
-            fListaPermisos.Owner = this;
-            fListaPermisos.Show();
+            caPermisos.wListaPermisosDias fListaPermisosDias = new caPermisos.wListaPermisosDias();
+            fListaPermisosDias.Owner = this;
+            fListaPermisosDias.Show();
+        }
+
+        private void mnuPermisosHoras_Click(object sender, RoutedEventArgs e)
+        {
+            caPermisos.wListaPermisosHoras fListaPermisosHoras = new caPermisos.wListaPermisosHoras();
+            fListaPermisosHoras.Owner = this;
+            fListaPermisosHoras.Show();
         }
 
         private void mnuTipoPermisos_Click(object sender, RoutedEventArgs e)
@@ -225,6 +239,13 @@ namespace CapaPresentacion
             caReportes.wAcuTardanzasMeses fAcuTardanzasMeses = new caReportes.wAcuTardanzasMeses();
             fAcuTardanzasMeses.Owner = this;
             fAcuTardanzasMeses.ShowDialog();
+        }
+
+        private void mnuAcuFaltasMeses_Click(object sender, RoutedEventArgs e)
+        {
+            caReportes.wAcuFaltasMeses fAcuFaltasMeses = new caReportes.wAcuFaltasMeses();
+            fAcuFaltasMeses.Owner = this;
+            fAcuFaltasMeses.ShowDialog();
         }
 
         private void mnuRVacaciones_Click(object sender, RoutedEventArgs e)

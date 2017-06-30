@@ -22,6 +22,7 @@ namespace CapaPresentacion.caReporteAsistencia
     /// </summary>
     public partial class wReporteAsistencia : Window
     {
+        Local miLocal = new Local();
         System.Data.DataTable oDataTrabajadores = new System.Data.DataTable();
 
         public wReporteAsistencia()
@@ -32,7 +33,16 @@ namespace CapaPresentacion.caReporteAsistencia
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dtpFechaInicio.SelectedDate = DateTime.Today;
-            CargarTrabajadores();
+            CargarLocales();
+        }
+
+        private void cbolocales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboLocales.DisplayMemberPath != "")
+            {
+                miLocal.Id = Convert.ToInt32(cboLocales.SelectedValue);
+                CargarTrabajadores();
+            }
         }
 
         private void dtpFechaInicio_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -72,10 +82,19 @@ namespace CapaPresentacion.caReporteAsistencia
             }
         }
 
+        private void CargarLocales()
+        {
+            CapaDeNegocios.blLocal.blLocal oblLocal = new CapaDeNegocios.blLocal.blLocal();
+            cboLocales.ItemsSource = oblLocal.ListarLocales();
+            cboLocales.DisplayMemberPath = "Nombre";
+            cboLocales.SelectedValuePath = "Id";
+            cboLocales.SelectedIndex = -1;
+        }
+
         private void CargarTrabajadores()
         {
             CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
-            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores();
+            ICollection<Trabajador> ListaTrabajadores = oblTrabajador.ListaTrabajadores(miLocal);
 
             oDataTrabajadores = new System.Data.DataTable();
             oDataTrabajadores.Columns.Add("ID", typeof(int));

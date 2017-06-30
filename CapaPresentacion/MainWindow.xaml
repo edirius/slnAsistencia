@@ -18,6 +18,7 @@
             </MenuItem>
             <MenuItem Header="Recursos Huamanos">
                 <MenuItem x:Name="mnuTrabajador" Header="Trabajadores" HorizontalAlignment="Left" Width="155" Click="mnuTrabajador_Click"/>
+                <MenuItem x:Name="mnuPeriodo" Header="Periodo Laboral" HorizontalAlignment="Left" Width="155" Click="mnuPeriodo_Click"/>
             </MenuItem>
             <MenuItem Header="Horario">
                 <MenuItem x:Name="mnuHorario" Header="Turno" HorizontalAlignment="Left" Width="170" Click="mnuHorario_Click"/>
@@ -32,7 +33,8 @@
                 <MenuItem x:Name="mnuCargarAsistencia" Header="Cargar Asistencia" Click="mnuCargarAsistencia_Click"/>
             </MenuItem>
             <MenuItem Header="Permisos">
-                <MenuItem x:Name="mnuPermisos" Header="Asignar Permisos" HorizontalAlignment="Left" Width="180" Click="mnuPermisos_Click"/>
+                <MenuItem x:Name="mnuPermisosDias" Header="Permisos Dias" HorizontalAlignment="Left" Width="180" Click="mnuPermisosDias_Click"/>
+                <MenuItem x:Name="mnuPermisosHoras" Header="Permisos Horas" HorizontalAlignment="Left" Width="180" Click="mnuPermisosHoras_Click"/>
                 <Separator HorizontalAlignment="Left" Height="1" Width="180"/>
                 <MenuItem x:Name="mnuTipoPermisos" Header="Tipo de Permisos" HorizontalAlignment="Left" Width="180" Click="mnuTipoPermisos_Click"/>
             </MenuItem>
@@ -49,6 +51,8 @@
                 <MenuItem x:Name="mnuAsistenciaGeneral" Header="Asistencia General" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuAsistenciaGeneral_Click"/>
                 <MenuItem x:Name="mnuAsistenciaMeses" Header="Asistencia Meses" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuAsistenciaMeses_Click"/>
                 <MenuItem x:Name="mnuAcuTardanzasMeses" Header="Acumulado Tardanzas" HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuAcuTardanzasMeses_Click"/>
+                <MenuItem x:Name="mnuAcuFaltasMeses" Header="Acumulado Faltas
+                          " HorizontalAlignment="Left" Width="202" Margin="0,0,-27,0" Click="mnuAcuFaltasMeses_Click"/>
                 <MenuItem x:Name="mnuRVacaciones" Header="Reporte de Vacaciones" HorizontalAlignment="Left" Width="212" Margin="0,0,-37,0" Click="mnuRVacaciones_Click"/>
                 <MenuItem x:Name="mnuRAsistencia" Header="Reporte de Asistencia" HorizontalAlignment="Left" Width="212" Margin="0,0,-37,0" Click="mnuRAsistencia_Click"/>
             </MenuItem>

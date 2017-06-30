@@ -16,6 +16,6 @@
         <Button x:Name="btnModificar" Content="Modificar" HorizontalAlignment="Left" Height="38" Margin="257,359,0,0" VerticalAlignment="Top" Width="69" Click="btnModificar_Click"/>
         <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="331,359,0,0" VerticalAlignment="Top" Width="69" Click="btnEliminar_Click"/>
         <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Left" Height="38" Margin="405,359,0,0" VerticalAlignment="Top" Width="69" Click="btnSalir_Click"/>
-        <Button x:Name="btnPeriodo" Content="PERIODOS" HorizontalAlignment="Left" Height="38" Margin="109,359,0,0" VerticalAlignment="Top" Width="69" Click="btnPeriodo_Click"/>
+        <Button x:Name="btnPeriodo" Content="PERIODOS" HorizontalAlignment="Left" Height="38" Margin="109,359,0,0" VerticalAlignment="Top" Width="69" Click="btnPeriodo_Click" Visibility="Hidden"/>
     </Grid>
 </Window>

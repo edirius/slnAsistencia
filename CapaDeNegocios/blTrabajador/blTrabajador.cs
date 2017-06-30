@@ -10,6 +10,17 @@ namespace CapaDeNegocios.blTrabajador
 {
     public class blTrabajador
     {
+        public ICollection<Trabajador> ListaTrabajadores(Local miLocal)
+        {
+            using (mAsistenciaContainer bd = new mAsistenciaContainer())
+            {
+                IQueryable<Trabajador> consultaTrabajadores = from d in bd.TrabajadorSet
+                                                              where d.OficinaActual.Local.Id == miLocal.Id
+                                                              select d;
+                return consultaTrabajadores.ToList();
+            }
+        }
+
         public ICollection<Trabajador> ListaTrabajadores(Oficina miOficina)
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())

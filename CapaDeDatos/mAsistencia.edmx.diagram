@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="mAsistencia.HorarioSemana" Width="1.5" PointX="5.875" PointY="5.125" />
         <AssociationConnector Association="mAsistencia.TrabajadorAsistencia" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="7.625" PointY="7.875" />
+        <EntityTypeShape EntityType="mAsistencia.PermisosHoras" Width="1.5" PointX="8" PointY="7.625" />
         <EntityTypeShape EntityType="mAsistencia.TipoPermisos" Width="1.5" PointX="10.25" PointY="9.125" />
         <EntityTypeShape EntityType="mAsistencia.PermisosDias" Width="1.5" PointX="7.875" PointY="10.125" />
         <AssociationConnector Association="mAsistencia.PermisosHorasTipoPermisos" />

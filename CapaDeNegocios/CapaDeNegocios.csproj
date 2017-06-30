@@ -82,6 +82,8 @@
     <Compile Include="cblReportesAsistencia\cDetalleAsistenciaXDia.cs" />
     <Compile Include="cblReportesAsistencia\cDetalleReporteAsistenciaXTrabajador.cs" />
     <Compile Include="cblReportesAsistencia\cReporteAsistencia.cs" />
+    <Compile Include="cblReportes\blAcuAsistenciaMeses.cs" />
+    <Compile Include="cblReportes\blAcuFaltasMeses.cs" />
     <Compile Include="cblReportes\blAcuTardanzasMeses.cs" />
     <Compile Include="cblReportes\blControlVacaciones.cs" />
     <Compile Include="cblReportes\blAsistenciaMeses.cs" />

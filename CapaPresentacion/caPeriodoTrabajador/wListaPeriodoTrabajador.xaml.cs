@@ -21,9 +21,8 @@ namespace CapaPresentacion.caPeriodoTrabajador
     /// </summary>
     public partial class wListaPeriodoTrabajador : Window
     {
-        public Trabajador miTrabajador;
+        public Trabajador miTrabajador = new Trabajador();
         public PeriodoTrabajador miPeriodoTrabajador = new PeriodoTrabajador();
-        CapaDeNegocios.blTrabajador.blTrabajador oblTrabajador = new CapaDeNegocios.blTrabajador.blTrabajador();
         CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador oblPeriodoTrabajador = new CapaDeNegocios.blPeriodoTrabajador.blPeriodoTrabajador();
 
         public wListaPeriodoTrabajador()
@@ -33,12 +32,28 @@ namespace CapaPresentacion.caPeriodoTrabajador
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarPeriodoTrabajador();
+
         }
 
         private void dgHorarioSemana_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             miPeriodoTrabajador = (PeriodoTrabajador)dgPeriodoTrabajador.SelectedItem;
+        }
+
+        private void btnTrabajador_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                caTrabajadores.wBuscarTrabajadores fTrabajadores = new caTrabajadores.wBuscarTrabajadores();
+                if (fTrabajadores.ShowDialog() == true)
+                {
+                    txtTrabajador.Text = fTrabajadores.miTrabajador.Nombre + " " + fTrabajadores.miTrabajador.ApellidoPaterno + " " + fTrabajadores.miTrabajador.ApellidoMaterno;
+                    miTrabajador = fTrabajadores.miTrabajador;
+                    CargarPeriodoTrabajador();
+                }
+            }
+            catch
+            { }
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -107,14 +122,14 @@ namespace CapaPresentacion.caPeriodoTrabajador
         {
             ICollection<PeriodoTrabajador> ListaPeriodoTrabajador = oblPeriodoTrabajador.ListarPeriodoTrabajador(miTrabajador);
             dgPeriodoTrabajador.ItemsSource = ListaPeriodoTrabajador;
-            //if (dgHorarioSemana.Items.Count > 0)
-            //{
-            //    object item = dgTrabajadores.Items[dgTrabajadores.Items.Count - 1];
-            //    dgTrabajadores.SelectedItem = item;
-            //    //dgTrabajadores.ScrollIntoView(item);
-            //    //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-            //    //break;
-            //}
+            if (dgPeriodoTrabajador.Items.Count > 0)
+            {
+                object item = dgPeriodoTrabajador.Items[dgPeriodoTrabajador.Items.Count - 1];
+                dgPeriodoTrabajador.SelectedItem = item;
+                //dgTrabajadores.ScrollIntoView(item);
+                //row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                //break;
+            }
         }
     }
 }

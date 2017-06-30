@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CapaPresentacion.caReporteAsistencia"
         mc:Ignorable="d"
-        Title="Reporte de Asistencia" Height="500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Width="550">
+        Title="Reporte de Asistencia" Height="560" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Width="550">
     <Grid>
         <Button x:Name="btnExportarExcel" Content="Exportar Excel" HorizontalAlignment="Right" Height="50" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="108" Click="btnExportarExcel_Click"/>
         <Label x:Name="label" Content="Fecha Inicio :" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
         <DatePicker x:Name="dtpFechaInicio" HorizontalAlignment="Left" Height="25" Margin="95,10,0,0" VerticalAlignment="Top" Width="160" SelectedDateChanged="dtpFechaInicio_SelectedDateChanged"/>
         <Label x:Name="label1" Content="Fecha Fin" HorizontalAlignment="Right" Height="25" Margin="0,10,180,0" VerticalAlignment="Top" Width="75"/>
         <DatePicker x:Name="dtpFechaFin" HorizontalAlignment="Right" Height="25" Margin="0,10,10,0" VerticalAlignment="Top" Width="160"/>
-        <DataGrid x:Name="dtgListaTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="10,40,10,65">
+        <DataGrid x:Name="dtgListaTrabajadores" x:Uid="MyDataGrid" AutoGenerateColumns="False" SelectionMode="Single" ItemsSource="{Binding Table}" IsReadOnly="True" HeadersVisibility="Column" Margin="10,80,10,65">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="0.7*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NOMBRE}" Header="NOMBRE" Width="1.5*" IsReadOnly="True"/>
@@ -31,5 +31,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Label x:Name="lblLocal" Content="Local" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="45" Height="25"/>
+        <ComboBox x:Name="cboLocales" Margin="95,45,10,0" VerticalAlignment="Top" SelectionChanged="cbolocales_SelectionChanged" Height="25"/>
     </Grid>
 </Window>

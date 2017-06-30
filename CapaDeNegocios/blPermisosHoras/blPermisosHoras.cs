@@ -25,6 +25,8 @@ namespace CapaDeNegocios.blPermisosHoras
         {
             using (mAsistenciaContainer bd = new mAsistenciaContainer())
             {
+                bd.TipoPermisosSet.Attach(miAgregarPermisosHoras.TipoPermisos);
+                bd.PeriodoTrabajadorSet.Attach(miAgregarPermisosHoras.PeriodoTrabajador);
                 bd.PermisosHorasSet.Add(miAgregarPermisosHoras);
                 bd.SaveChanges();
             }
@@ -37,7 +39,10 @@ namespace CapaDeNegocios.blPermisosHoras
                 PermisosHoras auxiliar = (from c in bd.PermisosHorasSet
                                        where c.Id == miModificarPermisosHoras.Id
                                        select c).FirstOrDefault();
+                auxiliar.Id = miModificarPermisosHoras.Id;
+                auxiliar.Fecha = miModificarPermisosHoras.Fecha;
                 auxiliar.Inicio = miModificarPermisosHoras.Inicio;
+                auxiliar.Fin = miModificarPermisosHoras.Fin;
                 bd.SaveChanges();
             }
         }

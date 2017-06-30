@@ -161,7 +161,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Inicio" Type="longtext" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Inicio" Type="datetime" Nullable="false" />
     <Property Name="Fin" Type="datetime" Nullable="false" />
     <Property Name="TipoPermisos_Id" Type="int" Nullable="false" />
     <Property Name="PeriodoTrabajador_Id" Type="int" Nullable="true" />
@@ -659,7 +660,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Inicio" Type="String" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="TipoPermisos" Relationship="mAsistencia.PermisosHorasTipoPermisos" FromRole="PermisosHoras" ToRole="TipoPermisos" />
           <NavigationProperty Name="PeriodoTrabajador" Relationship="mAsistencia.PeriodoTrabajadorPermisosHoras" FromRole="PermisosHoras" ToRole="PeriodoTrabajador" />
           <Property Name="Fin" Type="DateTime" Nullable="false" />
@@ -905,6 +907,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(mAsistencia.PermisosHoras)">
         <MappingFragment StoreEntitySet="PermisosHorasSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Inicio" ColumnName="Inicio" />
           <ScalarProperty Name="Fin" ColumnName="Fin" />
         </MappingFragment>

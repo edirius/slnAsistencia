@@ -92,11 +92,20 @@
     <Compile Include="caCronogramaVacaciones\wCronogramaVacaciones.xaml.cs">
       <DependentUpon>wCronogramaVacaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="caPermisos\wListaPermisosHoras.xaml.cs">
+      <DependentUpon>wListaPermisosHoras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caPermisos\wPermisosHoras.xaml.cs">
+      <DependentUpon>wPermisosHoras.xaml</DependentUpon>
+    </Compile>
     <Compile Include="caRecordAsistencia\wListaRecordAsistencia.xaml.cs">
       <DependentUpon>wListaRecordAsistencia.xaml</DependentUpon>
     </Compile>
     <Compile Include="caReporteAsistencia\wReporteAsistencia.xaml.cs">
       <DependentUpon>wReporteAsistencia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="caReportes\wAcuFaltasMeses.xaml.cs">
+      <DependentUpon>wAcuFaltasMeses.xaml</DependentUpon>
     </Compile>
     <Compile Include="caReportes\wAsistenciaGeneral.xaml.cs">
       <DependentUpon>wAsistenciaGeneral.xaml</DependentUpon>
@@ -128,8 +137,8 @@
     <Compile Include="caTrabajadores\wBuscarTrabajadores.xaml.cs">
       <DependentUpon>wBuscarTrabajadores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="caPermisos\wPermisos.xaml.cs">
-      <DependentUpon>wPermisos.xaml</DependentUpon>
+    <Compile Include="caPermisos\wPermisosDias.xaml.cs">
+      <DependentUpon>wPermisosDias.xaml</DependentUpon>
     </Compile>
     <Compile Include="caVacaciones\wAPeriodoLaboradoAnteriores.xaml.cs">
       <DependentUpon>wAPeriodoLaboradoAnteriores.xaml</DependentUpon>
@@ -164,8 +173,8 @@
     <Compile Include="caPeriodoTrabajador\wListaPeriodoTrabajador.xaml.cs">
       <DependentUpon>wListaPeriodoTrabajador.xaml</DependentUpon>
     </Compile>
-    <Compile Include="caPermisos\wListaPermisos.xaml.cs">
-      <DependentUpon>wListaPermisos.xaml</DependentUpon>
+    <Compile Include="caPermisos\wListaPermisosDias.xaml.cs">
+      <DependentUpon>wListaPermisosDias.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReglasTardanza\wListaReglasTardanzas.xaml.cs">
       <DependentUpon>wListaReglasTardanzas.xaml</DependentUpon>
@@ -202,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="caPermisos\wListaPermisosHoras.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="caPermisos\wPermisosHoras.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="caRecordAsistencia\wListaRecordAsistencia.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -209,6 +226,10 @@
     <Page Include="caReporteAsistencia\wReporteAsistencia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="caReportes\wAcuFaltasMeses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="caReportes\wAsistenciaGeneral.xaml">
       <SubType>Designer</SubType>
@@ -250,7 +271,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="caPermisos\wPermisos.xaml">
+    <Page Include="caPermisos\wPermisosDias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -324,7 +345,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="caPermisos\wListaPermisos.xaml">
+    <Page Include="caPermisos\wListaPermisosDias.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

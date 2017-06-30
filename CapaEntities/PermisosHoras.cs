@@ -15,7 +15,8 @@ namespace CapaEntities
     public partial class PermisosHoras
     {
         public int Id { get; set; }
-        public string Inicio { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public System.DateTime Inicio { get; set; }
         public System.DateTime Fin { get; set; }
     
         public virtual TipoPermisos TipoPermisos { get; set; }
